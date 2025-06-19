@@ -7,9 +7,9 @@ export const ProfileIcon = async () => {
   return (
     <Link href="/login">
       {session ? (
-        <FaUser className="text-[17px] text-text cursor-pointer group-hover:text-accent-text transition-colors" />
+        <FaUser className="text-[17px] cursor-pointer group-hover:text-accent-text transition-colors" />
       ) : (
-        <FaRegUser className="text-[17px] text-text cursor-pointer group-hover:text-accent-text transition-colors" />
+        <FaRegUser className="text-[17px]cursor-pointer group-hover:text-accent-text transition-colors" />
       )}
     </Link>
   );

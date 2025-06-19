@@ -1,8 +1,8 @@
-import { Input } from "@/shared/ui/Input";
 import { checkPasswordSafeness } from "@/shared/utils/checkPasswordSafeness";
 import React, { ChangeEvent, useEffect, useState } from "react";
 import ErrorIcon from "./ErrorIcon";
 import useTip from "@/shared/hooks/useTip";
+import { Input } from "@/shared/ui/Input";
 
 type Props = {
   pending: boolean;

@@ -1,16 +1,16 @@
 "use client";
 import Form from "next/form";
-import { Input } from "@/shared/ui/Input";
 import { signUp } from "../actions/signUp";
 import { InitialRegForm } from "../lib/types";
 import { useActionState, useEffect, useState } from "react";
 import { FaUserPlus } from "react-icons/fa";
 import { redirect } from "next/navigation";
-import ErrorMessage from "@/shared/ui/Error";
-import FormName from "@/shared/ui/FormName";
 import PasswordField from "./PasswordField";
 import VerifyPasswordField from "./VerifyPasswordField";
 import SubmitButton from "./SubmitButton";
+import FormName from "@/shared/ui/FormName";
+import { Input } from "@/shared/ui/Input";
+import ErrorMessage from "@/shared/ui/Error";
 
 const initialForm = {
   _id: "",

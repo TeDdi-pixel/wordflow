@@ -3,16 +3,16 @@
 import { useActionState, useEffect } from "react";
 import { redirect } from "next/navigation";
 import Form from "next/form";
-import FormName from "@/shared/ui/FormName";
-import { Input } from "@/shared/ui/Input";
-import ErrorMessage from "@/shared/ui/Error";
-import SubmitButton from "@/shared/ui/SubmitButton";
 import { IoEnter } from "react-icons/io5";
 import { AdditionalEntrance } from "./AdditionalEntrance";
 import { FaGoogle, FaGithub } from "react-icons/fa";
-import CheckBox from "@/shared/ui/CheckBox";
 import { InitialLoginForm } from "../lib/types";
 import { signIn } from "../actions/sighIn";
+import FormName from "@/shared/ui/FormName";
+import { Input } from "@/shared/ui/Input";
+import CheckBox from "@/shared/ui/CheckBox";
+import ErrorMessage from "@/shared/ui/Error";
+import SubmitButton from "@/shared/ui/SubmitButton";
 
 const initialForm = {
   _id: "",
