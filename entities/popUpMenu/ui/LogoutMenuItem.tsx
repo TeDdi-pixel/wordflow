@@ -1,21 +1,26 @@
 "use client";
-import React from "react";
-import { logout } from "../../../widgets/header/actions/logout";
+
 import { IoExit } from "react-icons/io5";
+import { logOutUser } from "../actions/logout";
+import { useRouter } from "next/navigation";
 
 const LogoutMenuItem = () => {
+  const router = useRouter();
+  const handleLogout = async () => {
+    await logOutUser();
+    router.push("/login");
+  };
   return (
-    <form action={logout}>
-      <button
-        type="submit"
-        className="flex items-center gap-2 cursor-pointer hover:bg-accent-text hover:text-foreground w-full px-4 py-2"
-      >
-        <span className="text-[14px]">
-          <IoExit />
-        </span>{" "}
-        Вихід
-      </button>
-    </form>
+    <button
+      type="button"
+      className="flex items-center gap-2 cursor-pointer hover:bg-accent-text hover:text-foreground w-full px-4 py-2"
+      onClick={handleLogout}
+    >
+      <span className="text-[14px]">
+        <IoExit />
+      </span>{" "}
+      Вихід
+    </button>
   );
 };
 

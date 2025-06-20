@@ -1,12 +1,12 @@
 "use server";
 
 import { InitialRegForm } from "../lib/types";
-import User from "../../../shared/lib/schemas/User";
+import User from "../../../shared/model/schemas/User";
 import bcrypt from "bcrypt";
-import { ERROR_MESSAGES } from "@/shared/lib/constants/errors";
-import { EMAIL_REGEX, SALT_ROUNDS } from "@/shared/lib/constants/variables";
-import createDbConnection from "@/shared/model/mongoose";
-import { createSession } from "@/shared/model/session";
+import { ERROR_MESSAGES } from "@/shared/model/constants/errors";
+import { EMAIL_REGEX, SALT_ROUNDS } from "@/shared/model/constants/variables";
+import createDbConnection from "@/shared/lib/mongoose";
+import { createSession } from "@/shared/lib/session";
 
 const userBackUpFields = (formData: InitialRegForm) => ({
   ...formData,

@@ -1,4 +1,4 @@
-import { TypeInput } from "../lib/types/types";
+import { TypeInput } from "../model/types/types";
 
 export const Input = ({
   placeholder,

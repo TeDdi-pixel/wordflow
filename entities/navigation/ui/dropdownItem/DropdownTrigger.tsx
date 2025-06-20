@@ -19,8 +19,14 @@ export const DropdownTrigger = ({ id, icon, name }: Props) => {
       className={`flex gap-1 items-center font-medium hover:text-accent-text duration-150 transition-colors cursor-pointer 
         ${isDropdownActive ? "text-accent-text" : ""}`}
     >
-      {icon}
       {name}
+      <span
+        className={`transition-transform duration-150 ${
+          isDropdownActive ? "rotate-180" : "rotate-0"
+        }`}
+      >
+        {icon}
+      </span>
     </button>
   );
 };

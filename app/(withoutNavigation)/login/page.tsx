@@ -1,4 +1,4 @@
-import { checkForSession } from "@/shared/model/session";
+import { checkForSession } from "@/shared/lib/session";
 import { redirect } from "next/navigation";
 import { SignUpForm } from "@/features/signUpForm";
 import { SignInForm } from "@/features/signInForm";

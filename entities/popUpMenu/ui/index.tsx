@@ -1,14 +1,14 @@
-import { getSession } from "@/shared/model/session";
+import { checkForSession } from "@/shared/lib/session";
 import LogoutMenuItem from "./LogoutMenuItem";
 import { menuConfig, TypePopUpMenu } from "../config";
 import { PopUpMenuWrapper } from "./PopUpMenuWrapper";
 import { PopUpMenuItem } from "./PopUpMenuItem";
 
 export const PopUpMenu = async () => {
-  const session = await getSession();
+  const isSession = await checkForSession();
 
   return (
-    session && (
+    isSession && (
       <PopUpMenuWrapper>
         {menuConfig.map((item: TypePopUpMenu) => (
           <PopUpMenuItem

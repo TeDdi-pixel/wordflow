@@ -8,7 +8,7 @@ import HomeIcon from "@/shared/icons/navigation/HomeIcon";
 import CardsIcon from "@/shared/icons/navigation/CardsIcon";
 import { HiSquaresPlus } from "react-icons/hi2";
 import CommunityIcon from "@/shared/icons/navigation/community";
-import { FaRegUser } from "react-icons/fa";
+import { FaAngleDown } from "react-icons/fa";
 
 export type NavigationItemOption = {
   id: number;
@@ -29,7 +29,7 @@ export const navigation = {
   games: [
     {
       id: 0,
-      icon: <CardsIcon />,
+      icon: <FaAngleDown />,
       name: "Картки",
       path: "/cards",
       options: [
@@ -41,7 +41,7 @@ export const navigation = {
         },
         {
           id: 1,
-          icon: <FaRegUser />,
+          icon: <CardsIcon />,
           name: "Мої картки",
           path: "/my-card-sets",
         },
@@ -55,7 +55,7 @@ export const navigation = {
     },
     {
       id: 1,
-      icon: <MemorizeIcon />,
+      icon: <FaAngleDown />,
       name: "Завчати",
       options: [
         {
@@ -66,7 +66,7 @@ export const navigation = {
         },
         {
           id: 1,
-          icon: <FaRegUser />,
+          icon: <MemorizeIcon />,
           name: "Мої мемокартки",
           path: "/my-memorize-sets",
         },
@@ -80,7 +80,7 @@ export const navigation = {
     },
     {
       id: 2,
-      icon: <SelectionIcon />,
+      icon: <FaAngleDown />,
       name: "Підбір",
       options: [
         {
@@ -91,7 +91,7 @@ export const navigation = {
         },
         {
           id: 1,
-          icon: <FaRegUser />,
+          icon: <SelectionIcon />,
           name: "Мої підбори",
           path: "/my-selection-sets",
         },
@@ -105,7 +105,7 @@ export const navigation = {
     },
     {
       id: 3,
-      icon: <TestIcon />,
+      icon: <FaAngleDown />,
       name: "Тест",
 
       options: [
@@ -117,7 +117,7 @@ export const navigation = {
         },
         {
           id: 1,
-          icon: <FaRegUser />,
+          icon: <TestIcon />,
           name: "Мої тести",
           path: "/my-tests",
         },

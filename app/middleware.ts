@@ -1,4 +1,4 @@
-import { updateSession } from "@/shared/model/session";
+import { updateSession } from "@/shared/lib/session";
 import { NextRequest } from "next/server";
 
 export async function middleware(request: NextRequest) {

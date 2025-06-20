@@ -1,5 +1,5 @@
-import { SessionUser } from "@/shared/lib/types/types";
-import { getSession } from "@/shared/model/session";
+import { SessionUser } from "@/shared/model/types/types";
+import { getSession } from "@/shared/lib/session";
 
 export const UserName = async () => {
   const session = (await getSession()) as SessionUser;

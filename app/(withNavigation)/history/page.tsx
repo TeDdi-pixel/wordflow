@@ -1,9 +1,9 @@
-import { getSession } from "@/shared/model/session";
+import { checkForSession } from "@/shared/lib/session";
 import { redirect } from "next/navigation";
 
 const History = async () => {
-  const session = await getSession();
-  if (!session) redirect("/login");
+  const isSession = await checkForSession();
+  if (!isSession) redirect("/login");
   return <div>History</div>;
 };
 

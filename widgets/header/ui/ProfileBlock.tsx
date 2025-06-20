@@ -1,16 +1,16 @@
 import { PopUpMenu } from "@/entities/popUpMenu";
 import { ProfileIcon } from "./ProfileIcon";
 import { UserName } from "./UserName";
-import { getSession } from "@/shared/model/session";
+import { checkForSession } from "@/shared/lib/session";
 
 export const ProfileBlock = async () => {
-  const session = await getSession();
+  const isSession = await checkForSession();
 
   return (
     <div className="relative group w-max">
       <div
         className={`cursor-pointer ${
-          session ? "text-accent-text" : "text-text"
+          isSession ? "text-accent-text" : "text-text"
         } hover:text-accent-text transition-colors flex items-center gap-2`}
       >
         <ProfileIcon />
