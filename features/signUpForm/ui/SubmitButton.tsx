@@ -14,10 +14,10 @@ const SubmitButton = ({ icon, text, className, isPasswordSafe }: TypeProps) => {
       disabled={!isPasswordSafe}
       className={
         className ??
-        `w-full bg-button cursor-pointer py-1.5 rounded-[8px] flex gap-2 justify-center items-center ${
+        `w-full bg-button cursor-not-allowed py-1.5 rounded-[8px] flex gap-2 justify-center items-center ${
           isPasswordSafe
-            ? "hover:bg-button-accent hover:text-background transition-colors duration-150 text-accent-text"
-            : "text-darker-text"
+            ? "hover:bg-background-accent-2 cursor-pointer hover:text-text-2 transition-colors duration-150 text-accent-text"
+            : "text-disabled"
         }`
       }
     >

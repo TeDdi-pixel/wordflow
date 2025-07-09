@@ -23,4 +23,6 @@ export type OperationResult<S extends string, E extends string> =
   | { type: E; message: string }
   | { type: string; message: string };
 
-export type SessionUser = Omit<TypeUser, "password">;
+export type SessionUser = {
+  userId: string
+};

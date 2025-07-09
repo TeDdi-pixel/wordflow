@@ -13,7 +13,7 @@ const LogoutMenuItem = () => {
   return (
     <button
       type="button"
-      className="flex items-center gap-2 cursor-pointer hover:bg-accent-text hover:text-foreground w-full px-4 py-2"
+      className="flex items-center gap-2 cursor-pointer hover:bg-background-accent hover:text-accent w-full px-4 py-2"
       onClick={handleLogout}
     >
       <span className="text-[14px]">

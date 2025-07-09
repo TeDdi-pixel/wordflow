@@ -7,7 +7,7 @@ import HistoryIcon from "@/shared/icons/navigation/HistoryIcon";
 import HomeIcon from "@/shared/icons/navigation/HomeIcon";
 import CardsIcon from "@/shared/icons/navigation/CardsIcon";
 import { HiSquaresPlus } from "react-icons/hi2";
-import CommunityIcon from "@/shared/icons/navigation/community";
+import CommunityIcon from "@/shared/icons/navigation/Community";
 import { FaAngleDown } from "react-icons/fa";
 
 export type NavigationItemOption = {

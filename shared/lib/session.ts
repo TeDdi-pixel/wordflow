@@ -10,7 +10,7 @@ export async function encrypt(payload: JWTPayload) {
   return new SignJWT(payload)
     .setProtectedHeader({ alg: "HS256" })
     .setIssuedAt()
-    .setExpirationTime("7d")
+    .setExpirationTime("90d")
     .sign(encodedKey);
 }
 
@@ -53,24 +53,6 @@ export async function createSession(user: SessionUser) {
   });
 }
 
-export async function updateCookies(updatedUser: SessionUser) {
-  const expires = new Date(Date.now() + 7 * 24 * 60 * 60 * 1000);
-
-  const session = await encrypt({ ...updatedUser, expires });
-
-  try {
-    (await cookies()).set("session", session, {
-      httpOnly: true,
-      secure: true,
-      expires: expires,
-      sameSite: "lax",
-      path: "/",
-    });
-  } catch (error) {
-    console.error("Error setting cookies:", error);
-  }
-}
-
 export const updateSession = async (request: NextRequest) => {
   const session = request.cookies.get("session")?.value;
   if (!session) return NextResponse.next();
@@ -79,7 +61,7 @@ export const updateSession = async (request: NextRequest) => {
   if (!parsed) {
     throw new Error("Error while parsing session");
   }
-  parsed.expires = new Date(Date.now() + 10 * 1000);
+  parsed.expires = new Date(Date.now() + 90 * 24 * 60 * 60 * 1000);
   const res = NextResponse.next();
   res.cookies.set({
     name: "session",
@@ -89,4 +71,9 @@ export const updateSession = async (request: NextRequest) => {
     expires: parsed.expires as Date,
   });
   return res;
+};
+
+export const getUserId = async () => {
+  const session = await getSession();
+  return session?.userId as string;
 };

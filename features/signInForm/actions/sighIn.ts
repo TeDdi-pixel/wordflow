@@ -43,8 +43,6 @@ export const signIn = async (
     throw err;
   }
   const user = { ...userDoc?.toObject(), _id: userDoc?._id.toString() };
-  console.log(user);
-
   if (!user)
     return {
       ...userBackUpFields(formData),
@@ -58,9 +56,8 @@ export const signIn = async (
       ...userBackUpFields(formData),
       message: ERROR_MESSAGES.INVALID_CREDENTIALS,
     };
-  delete user.password;
   //creating jwt session in cookies
-  await createSession(user);
+  await createSession({userId:user?._id.toString()});
 
   //return an empty state to form back if success
   return { ...prevState, type: "SIGN_UP_SUCCESS" };

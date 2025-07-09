@@ -1,11 +1,9 @@
-import { useDropdownStore } from "@/entities/navigation/store";
+import { useNavStore } from "@/entities/navigation/store";
 import { useEffect, useRef } from "react";
 
 const useClickOutside = () => {
   const dropdownRef = useRef<HTMLDivElement>(null);
-  const { isVisibleIndex, setIsVisibleIndex } = useDropdownStore(
-    (state) => state
-  );
+  const { isVisibleIndex, setIsVisibleIndex } = useNavStore((state) => state);
 
   useEffect(() => {
     const handleClickOutside = (event: MouseEvent) => {

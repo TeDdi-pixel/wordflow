@@ -1,5 +1,29 @@
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
+## Project Structure
+
+This project uses Next.js App Router for routing. The routing structure is organized as follows:
+
+- `app/` - The main directory for all routes
+  - `(withNavigation)/` - Route group for pages that include navigation
+    - `cards/` - Cards page
+    - `create-card-set/` - Create card set page
+    - `history/` - History page
+    - `library/` - Library page
+  - `(withoutNavigation)/` - Route group for pages without navigation
+    - `login/` - Login page
+  - `page.tsx` - Home page
+  - `layout.tsx` - Root layout
+
+### Route Groups
+
+Route groups in Next.js (folders in parentheses like `(withNavigation)`) are used for organizational purposes and don't affect the URL path. For example:
+
+- The URL for the cards page is `/cards`, not `/(withNavigation)/cards`
+- The URL for the login page is `/login`, not `/(withoutNavigation)/login`
+
+This approach allows us to share layouts between related routes without affecting the URL structure.
+
 ## Getting Started
 
 First, run the development server:

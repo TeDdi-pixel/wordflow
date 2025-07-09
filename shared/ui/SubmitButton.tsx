@@ -12,7 +12,7 @@ const SubmitButton = ({ icon, text, className }: TypeProps) => {
       type="submit"
       className={
         className ??
-        "w-full bg-button cursor-pointer py-1.5 rounded-[8px] text-accent-text flex gap-2 justify-center items-center hover:bg-button-accent hover:text-background transition-colors duration-150"
+        "w-full bg-button cursor-pointer py-1.5 rounded-[8px] text-accent-text flex gap-2 justify-center items-center hover:bg-background-accent-2 hover:text-text-2 transition-colors duration-150"
       }
     >
       {icon}

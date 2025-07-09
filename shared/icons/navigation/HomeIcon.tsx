@@ -1,12 +1,15 @@
 "use client";
 import React from "react";
-import HomeUnfocused from "./HomeUnfocused";
 import HomeFocused from "./HomeFocused";
-import { usePathname } from "next/navigation";
+// import HomeUnfocused from "./HomeUnfocused";
+
+// const HomeIcon = () => {
+//   const pathname = usePathname();
+//   return <>{pathname === "/" ? <HomeFocused /> : <HomeUnfocused />}</>;
+// };
 
 const HomeIcon = () => {
-  const pathname = usePathname();
-  return <>{pathname === "/" ? <HomeFocused /> : <HomeUnfocused />}</>;
+  return <HomeFocused />;
 };
 
 export default HomeIcon;

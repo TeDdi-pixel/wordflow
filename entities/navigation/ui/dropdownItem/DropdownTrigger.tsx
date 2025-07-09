@@ -1,5 +1,7 @@
-import { ReactNode } from "react";
-import { useDropdownStore } from "../../store";
+import { memo, ReactNode } from "react";
+import { useNavStore } from "../../store";
+import { LabelWithIcon } from "./LabelWithIcon";
+import { FakeTextWithIcon } from "./FakeTextWithIcon";
 
 type Props = {
   icon: ReactNode;
@@ -7,26 +9,31 @@ type Props = {
   id?: number;
 };
 
-export const DropdownTrigger = ({ id, icon, name }: Props) => {
-  const { isVisibleIndex, setIsVisibleIndex } = useDropdownStore(
-    (state) => state
+export const DropdownTrigger = memo(({ id, icon, name }: Props) => {
+  const setActiveItem = useNavStore((state) => state.setActiveItem);
+  const setIsVisibleIndex = useNavStore((state) => state.setIsVisibleIndex);
+  const isDropdownActive = useNavStore(
+    (state) => state.isVisibleIndex === id && state.activeItemId === id
   );
-  const isDropdownActive = isVisibleIndex === id;
+  const handleItemClick = () => {
+    setIsVisibleIndex(id ?? null);
+    setActiveItem(id ?? null);
+  };
+
+  const styles = isDropdownActive
+    ? "-translate-y-[33px] rounded-[8px] text-active-nav-text bg-active-nav-item"
+    : "translate-y-0 group-hover:-translate-y-[33px] bg-hover-nav-item text-accent-text scale-100";
 
   return (
-    <button
-      onClick={() => setIsVisibleIndex(id ?? null)}
-      className={`flex gap-1 items-center font-medium hover:text-accent-text duration-150 transition-colors cursor-pointer 
-        ${isDropdownActive ? "text-accent-text" : ""}`}
-    >
-      {name}
-      <span
-        className={`transition-transform duration-150 ${
-          isDropdownActive ? "rotate-180" : "rotate-0"
-        }`}
+    <div className="relative group max-h-[33px] h-full overflow-hidden select-none">
+      <FakeTextWithIcon icon={icon} name={name} />
+      <button
+        onClick={handleItemClick}
+        className={`absolute flex gap-1 items-center z-10 rounded-4xl px-[12px] py-[6px] font-medium duration-300 transition-all cursor-pointer group-hover:scale-90
+        ${styles}`}
       >
-        {icon}
-      </span>
-    </button>
+        <LabelWithIcon name={name} icon={icon} />
+      </button>
+    </div>
   );
-};
+});

@@ -45,8 +45,8 @@ export const signUp = async (
   //connect and create user in db
   await createDbConnection();
   //check for an existing user
-  const existEmail = await User.findOne({ email: formData.email });
-  if (existEmail) {
+  const existUserDoc = await User.findOne({ email: formData.email });
+  if (existUserDoc) {
     return {
       ...userBackUpFields(formData),
       message: ERROR_MESSAGES.EMAIL_IS_ALREADY_IN_USE,
@@ -60,9 +60,8 @@ export const signUp = async (
     email: formData.email,
   });
   const user = userDoc.toObject();
-  delete user.password;
 
-  await createSession({ ...user, _id: user._id.toString() });
+  await createSession({ userId: user._id.toString() });
   //return an empty state to form back if success
   return { ...prevState, type: "SIGN_UP_SUCCESS" };
 };
