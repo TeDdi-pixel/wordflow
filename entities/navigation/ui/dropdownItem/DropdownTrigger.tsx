@@ -26,13 +26,13 @@ export const DropdownTrigger = memo(({ id, icon, name }: Props) => {
 
   return (
     <div className="relative group max-h-[33px] h-full overflow-hidden select-none">
-      <FakeTextWithIcon icon={icon} name={name} />
+      <FakeTextWithIcon id={id} icon={icon} name={name} />
       <button
         onClick={handleItemClick}
         className={`absolute flex gap-1 items-center z-10 rounded-4xl px-[12px] py-[6px] font-medium duration-300 transition-all cursor-pointer group-hover:scale-90
         ${styles}`}
       >
-        <LabelWithIcon name={name} icon={icon} />
+        <LabelWithIcon id={id} name={name} icon={icon} />
       </button>
     </div>
   );
