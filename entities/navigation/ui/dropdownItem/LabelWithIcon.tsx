@@ -1,5 +1,5 @@
 import { memo } from "react";
-import { useNavStore } from "../../store";
+import { useNavStore } from "../../../../store/useNavStore";
 import { Props } from "../types";
 
 export const LabelWithIcon = memo(({ id, name, icon }: Props) => {

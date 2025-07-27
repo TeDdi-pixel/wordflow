@@ -1,4 +1,4 @@
-import { useNavStore } from "@/entities/navigation/store";
+import { useNavStore } from "@/store/useNavStore";
 import { useEffect, useRef } from "react";
 
 const useClickOutside = () => {

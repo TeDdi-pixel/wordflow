@@ -1,5 +1,5 @@
 import { memo, ReactNode } from "react";
-import { useNavStore } from "../../store";
+import { useNavStore } from "../../../../store/useNavStore";
 import { LabelWithIcon } from "./LabelWithIcon";
 import { FakeTextWithIcon } from "./FakeTextWithIcon";
 

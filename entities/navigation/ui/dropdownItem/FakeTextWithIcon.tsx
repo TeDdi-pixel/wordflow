@@ -1,7 +1,7 @@
 import React, { memo } from "react";
 import { Props } from "../types";
 import { LabelWithIcon } from "./LabelWithIcon";
-import { useNavStore } from "../../store";
+import { useNavStore } from "../../../../store/useNavStore";
 
 export const FakeTextWithIcon = memo(({ id, name, icon }: Props) => {
   const isDropdownActive = useNavStore(

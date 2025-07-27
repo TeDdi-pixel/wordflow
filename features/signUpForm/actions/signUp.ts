@@ -3,7 +3,7 @@
 import { InitialRegForm } from "../lib/types";
 import User from "../../../shared/model/schemas/User";
 import bcrypt from "bcrypt";
-import { ERROR_MESSAGES } from "@/shared/model/constants/errors";
+import { AUTH_ERROR_MESSAGES } from "@/shared/model/constants/errors";
 import { EMAIL_REGEX, SALT_ROUNDS } from "@/shared/model/constants/variables";
 import createDbConnection from "@/shared/lib/mongoose";
 import { createSession } from "@/shared/lib/session";
@@ -22,14 +22,14 @@ export const signUp = async (
   if (formData.email === "" || formData.password === "")
     return {
       ...userBackUpFields(formData),
-      message: ERROR_MESSAGES.MISSING_FIELDS,
+      message: AUTH_ERROR_MESSAGES.MISSING_FIELDS,
     };
 
   //testing email for correct format
   if (!EMAIL_REGEX.test(formData?.email)) {
     return {
       ...userBackUpFields(formData),
-      message: ERROR_MESSAGES.INVALID_EMAIL,
+      message: AUTH_ERROR_MESSAGES.INVALID_EMAIL,
     };
   }
 
@@ -39,7 +39,7 @@ export const signUp = async (
   ) {
     return {
       ...userBackUpFields(formData),
-      message: ERROR_MESSAGES.INVALID_CREDENTIALS,
+      message: AUTH_ERROR_MESSAGES.INVALID_CREDENTIALS,
     };
   }
   //connect and create user in db
@@ -49,7 +49,7 @@ export const signUp = async (
   if (existUserDoc) {
     return {
       ...userBackUpFields(formData),
-      message: ERROR_MESSAGES.EMAIL_IS_ALREADY_IN_USE,
+      message: AUTH_ERROR_MESSAGES.EMAIL_IS_ALREADY_IN_USE,
     };
   }
   const hashedPassword = bcrypt.hashSync(formData.password, SALT_ROUNDS);

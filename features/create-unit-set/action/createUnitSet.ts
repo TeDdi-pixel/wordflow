@@ -1,24 +1,63 @@
+"use server";
+
+import { withError } from "@/shared/helpers/withError";
+import { getUserId } from "@/shared/lib/session";
+import { UNIT_SET_ERROR_MESSAGES } from "@/shared/model/constants/errors";
+import UnitSet from "@/shared/model/schemas/UnitSet";
 import { TypeUnit, TypeUnitForm } from "@/shared/model/types/unit";
 
-export const createUnitSet = (prevState: TypeUnitForm, form: FormData) => {
+const ERRORS = UNIT_SET_ERROR_MESSAGES;
+
+export const createUnitSet = async (
+  prevState: TypeUnitForm,
+  form: FormData
+) => {
   const title = form.get("title");
+
+  if (!title) return withError<TypeUnitForm>(prevState, ERRORS.MISSING_TITLE);
+
   const description = form.get("description");
 
   const entries = [...form.entries()];
 
-  const restructuredFormData = {
-    title: title,
-    description: description,
-  } as TypeUnitForm;
+  if (!entries)
+    return withError<TypeUnitForm>(prevState, ERRORS.MISSING_FIELDS);
 
   const units: TypeUnit[] = [];
 
-  for (let i = 0; i < entries.length; i++) {
+  const maxCards = 30;
+
+  for (let i = 0; i < maxCards; i++) {
     const term = form.get(`card[${i}].term`) as string;
     const definition = form.get(`card[${i}].definition`) as string;
-    if (!term && !definition) break;
-    units.push({ id: i, term: term, definition: definition });
+
+    if (!term && !definition) continue;
+
+    if (!term || !definition) {
+      return withError<TypeUnitForm>(
+        prevState,
+        `Картка №${i + 1} має бути повністю заповнена`
+      );
+    }
+
+    units.push({ unitId: i + 1, term, definition });
   }
-  restructuredFormData.units = units;
-  return restructuredFormData;
+
+  if (units.length === 0) {
+    return withError<TypeUnitForm>(prevState, ERRORS.MISSING_CARDS);
+  }
+
+  const relatedUserId = await getUserId();
+
+  await UnitSet.insertOne({
+    relatedUserId,
+    title,
+    description,
+    units,
+  });
+
+  return {
+    ...prevState,
+    type: "SUCCESS",
+  };
 };

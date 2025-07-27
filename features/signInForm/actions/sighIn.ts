@@ -5,7 +5,7 @@ import User from "../../../shared/model/schemas/User";
 import bcrypt from "bcrypt";
 import createDbConnection from "@/shared/lib/mongoose";
 import { EMAIL_REGEX } from "@/shared/model/constants/variables";
-import { ERROR_MESSAGES } from "@/shared/model/constants/errors";
+import { AUTH_ERROR_MESSAGES } from "@/shared/model/constants/errors";
 import { createSession } from "@/shared/lib/session";
 
 const userBackUpFields = (formData: InitialLoginForm) => ({
@@ -23,13 +23,13 @@ export const signIn = async (
   if (formData?.email === "" || formData?.password === "")
     return {
       ...userBackUpFields(formData),
-      message: ERROR_MESSAGES.MISSING_FIELDS,
+      message: AUTH_ERROR_MESSAGES.MISSING_FIELDS,
     };
   //testing email for correct format
   if (!EMAIL_REGEX.test(formData?.email)) {
     return {
       ...userBackUpFields(formData),
-      message: ERROR_MESSAGES.INVALID_EMAIL,
+      message: AUTH_ERROR_MESSAGES.INVALID_EMAIL,
     };
   }
 
@@ -46,7 +46,7 @@ export const signIn = async (
   if (!user)
     return {
       ...userBackUpFields(formData),
-      message: ERROR_MESSAGES.USER_NOT_FOUND,
+      message: AUTH_ERROR_MESSAGES.USER_NOT_FOUND,
     };
 
   const isPasswordMatch = bcrypt.compareSync(formData.password, user.password);
@@ -54,10 +54,10 @@ export const signIn = async (
   if (!isPasswordMatch)
     return {
       ...userBackUpFields(formData),
-      message: ERROR_MESSAGES.INVALID_CREDENTIALS,
+      message: AUTH_ERROR_MESSAGES.INVALID_CREDENTIALS,
     };
   //creating jwt session in cookies
-  await createSession({userId:user?._id.toString()});
+  await createSession({ userId: user?._id.toString() });
 
   //return an empty state to form back if success
   return { ...prevState, type: "SIGN_UP_SUCCESS" };

@@ -12,7 +12,7 @@ export type TypePopUpMenu = {
   apiCall?: string;
 };
 
-export const menuConfig: TypePopUpMenu[] = [
+export const menuButtons: TypePopUpMenu[] = [
   {
     id: 0,
     name: "Профіль",
@@ -27,7 +27,7 @@ export const menuConfig: TypePopUpMenu[] = [
   },
   {
     id: 2,
-    name: "Історіія",
+    name: "Історія",
     icon: <HistoryIcon />,
     path: "/history",
   },

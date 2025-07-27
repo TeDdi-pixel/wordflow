@@ -4,7 +4,7 @@ import Link from "next/link";
 import { NavigationItemOption } from "@/entities/navigation/config";
 import { memo, ReactNode, useEffect } from "react";
 import { DropdownItem } from "@/entities/navigation";
-import { useNavStore } from "@/entities/navigation/store";
+import { useNavStore } from "@/store/useNavStore";
 import { usePathname } from "next/navigation";
 
 type Props = {

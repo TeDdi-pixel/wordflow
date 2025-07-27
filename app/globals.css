@@ -7,6 +7,7 @@
   --color-input: #1c1a22;
   --color-button: #1c1a22;
   --color-button-accent: #b25ab0;
+  --color-button-default: #7956a5;
   --color-accent-text: #c4a5f2;
   --color-disabled: #39314a;
   --color-text: #c4a5f2;
@@ -29,4 +30,15 @@ body {
   color: var(--color-accent-text);
   font-family: "Roboto Mono", monospace;
   font-weight: 500;
+}
+
+.unit-button-shadow {
+  box-shadow: none;
+  &:hover {
+    box-shadow: 4px 4px 0px rgb(214, 200, 163);
+  }
+}
+
+.unit-button-shadow-disabled {
+  box-shadow: none;
 }

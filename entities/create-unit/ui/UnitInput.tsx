@@ -1,17 +1,17 @@
 "use client";
-import { useTempStore } from "@/features/create-unit-set/store";
+import { useTempStore } from "@/store/useTempStore";
 import { ChangeEvent, memo, useCallback } from "react";
 
 type Props = {
-  id: number;
+  unitId: number;
   name: string;
   label: string;
   fieldType: "term" | "definition";
 };
 
-export const UnitInput = memo(({ id, name, label, fieldType }: Props) => {
+export const UnitInput = memo(({ unitId, name, label, fieldType }: Props) => {
   const value = useTempStore((state) => {
-    const item = state.items.find((i) => i.id === id);
+    const item = state.items.find((i) => i.unitId === unitId);
     return fieldType === "term" ? item?.term : item?.definition;
   });
 
@@ -20,10 +20,10 @@ export const UnitInput = memo(({ id, name, label, fieldType }: Props) => {
 
   const handleChange = useCallback(
     (e: ChangeEvent<HTMLInputElement>) => {
-      if (fieldType === "term") setUnitTerm(id, e.target.value);
-      else setUnitDefinition(id, e.target.value);
+      if (fieldType === "term") setUnitTerm(unitId, e.target.value);
+      else setUnitDefinition(unitId, e.target.value);
     },
-    [id, fieldType, setUnitTerm, setUnitDefinition]
+    [unitId, fieldType, setUnitTerm, setUnitDefinition]
   );
 
   return (

@@ -5,7 +5,7 @@ import { NavigationItemOption } from "@/entities/navigation/config";
 import { DropdownTrigger } from "./DropdownTrigger";
 import useClickOutside from "@/shared/hooks/useClickOutside";
 import { DropdownList } from "./DropdownList";
-import { useNavStore } from "../../store";
+import { useNavStore } from "../../../../store/useNavStore";
 
 type Props = {
   icon: ReactNode;

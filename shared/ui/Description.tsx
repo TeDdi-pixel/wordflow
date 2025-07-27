@@ -1,4 +1,4 @@
-import { useTempStore } from "@/features/create-unit-set/store";
+import { useTempStore } from "@/store/useTempStore";
 import { ChangeEvent } from "react";
 
 type Props = {

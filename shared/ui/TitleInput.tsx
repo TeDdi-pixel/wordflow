@@ -1,4 +1,4 @@
-import { useTempStore } from "@/features/create-unit-set/store";
+import { useTempStore } from "@/store/useTempStore";
 import { ChangeEvent } from "react";
 
 type Props = {
@@ -15,6 +15,7 @@ const TitleInput = ({ placeholder }: Props) => {
     <input
       type="text"
       name="title"
+      required
       placeholder={placeholder}
       defaultValue={unitSetTitle}
       onChange={handleChangeUnitTitle}
