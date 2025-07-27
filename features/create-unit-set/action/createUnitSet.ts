@@ -1,6 +1,7 @@
 "use server";
 
 import { withError } from "@/shared/helpers/withError";
+import createDbConnection from "@/shared/lib/mongoose";
 import { getUserId } from "@/shared/lib/session";
 import { UNIT_SET_ERROR_MESSAGES } from "@/shared/model/constants/errors";
 import UnitSet from "@/shared/model/schemas/UnitSet";
@@ -48,6 +49,8 @@ export const createUnitSet = async (
   }
 
   const relatedUserId = await getUserId();
+
+  await createDbConnection();
 
   await UnitSet.create({
     relatedUserId,
