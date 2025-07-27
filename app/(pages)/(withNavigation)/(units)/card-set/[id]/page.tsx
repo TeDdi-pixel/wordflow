@@ -6,10 +6,10 @@ import UnitNav from "./ui/UnitNav";
 import UnitInputBlock from "./ui/UnitInputBlock";
 import { UnitHeader } from "@/entities/unit-set/intex";
 
-const CardSet = async ({ params }: { params: { id: string } }) => {
+const CardSet = async ({ params }: { params: Promise<{ id: string }> }) => {
   await createDbConnection();
 
-  const { id } = params;
+  const { id } = await params;
 
   const unitSet = await UnitSet.findById(id).lean<TypeUnitSet>();
 
