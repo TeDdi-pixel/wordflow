@@ -7,7 +7,7 @@ export const MainTitle = () => {
     <Link href="/" className="flex items-center gap-2">
       <LogoIcon />
       <h1 className="text-4xl align-middle leading-[110%] font-medium">
-        Openword
+        WordFlow
       </h1>
     </Link>
   );

@@ -49,7 +49,7 @@ export const createUnitSet = async (
 
   const relatedUserId = await getUserId();
 
-  await UnitSet.insertOne({
+  await UnitSet.create({
     relatedUserId,
     title,
     description,
