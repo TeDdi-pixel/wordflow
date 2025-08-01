@@ -7,6 +7,18 @@ type TypeUnit = {
   definition: string;
 };
 
+const initialState: Pick<
+  TempStore,
+  "unitSetTitle" | "unitSetDescription" | "items"
+> = {
+  unitSetTitle: "",
+  unitSetDescription: "",
+  items: [
+    { unitId: 1, term: "", definition: "" },
+    { unitId: 2, term: "", definition: "" },
+  ],
+};
+
 type TempStore = {
   unitSetTitle: string;
   unitSetDescription: string;
@@ -18,6 +30,7 @@ type TempStore = {
   addUnit: (currentUnitId: number) => void;
   removeUnit: (unitId: number) => void;
   reorderUnits: (oldIndex: number, newIndex: number) => void;
+  resetTempStore: () => void;
 };
 
 const MAX_ITEMS_LENGTH = 30;
@@ -91,6 +104,9 @@ export const useTempStore = create<TempStore>()(
 
         return { items: reindexedItems };
       });
+    },
+    resetTempStore: () => {
+      set({ ...initialState });
     },
   }))
 );

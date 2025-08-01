@@ -19,7 +19,7 @@ const Description = ({ placeholder }: Props) => {
       name="description"
       defaultValue={unitSetDescription}
       onChange={handleChange}
-      className="w-full h-[112px] py-[12px] px-4 bg-foreground rounded-lg mb-[50px] resize-none focus:ring-2 focus:ring-input-border focus:outline-none"
+      className="w-full h-[112px] py-[12px] px-4 bg-foreground rounded-lg mb-[50px] resize-none focus:ring-2 focus:ring-accent focus:outline-none"
     />
   );
 };

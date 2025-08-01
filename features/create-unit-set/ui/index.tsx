@@ -35,7 +35,7 @@ export const UnitForm = () => {
         <UnitSetError error={state.error} />
         <div className="flex justify-center w-full">
           <UnitSubmitButton
-            text="Створення списку"
+            text="Створити список"
             pending={pending}
             error={state.error}
           />

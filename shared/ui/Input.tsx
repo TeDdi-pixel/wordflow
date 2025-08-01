@@ -16,7 +16,8 @@ export const Input = ({
       placeholder={placeholder}
       name={name}
       defaultValue={defaultValue}
-      className={`bg-input text-input-border placeholder:text-text h-9 w-823:max-w-[272px] w-full rounded-default pl-2 focus:ring-2 focus:ring-accent-border focus:outline-none ${
+      suppressHydrationWarning
+      className={`bg-input text-accent placeholder:text-text h-9 w-823:max-w-[272px] w-full rounded-default pl-2 focus:ring-2 focus:ring-background-accent focus:outline-none ${
         pending ? "animate-pulse" : ""
       }`}
       required={required}

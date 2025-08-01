@@ -52,7 +52,12 @@ export const SortableUnit = memo(({ unitId }: { unitId: number }) => {
   );
 
   return (
-    <div ref={setNodeRef} style={style} className={dragClassName}>
+    <div
+      ref={setNodeRef}
+      style={style}
+      className={dragClassName}
+      suppressHydrationWarning
+    >
       <div className="relative group w-full bg-foreground rounded-lg py-3 px-6">
         <UnitHeader
           unitId={unitId}
