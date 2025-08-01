@@ -7,27 +7,39 @@ import React from "react";
 import { IoSend } from "react-icons/io5";
 import { FaCheck } from "react-icons/fa";
 import MistakeIcon from "@/shared/icons/unit/MistakeIcon";
+import { distance } from "fastest-levenshtein";
+
+const MAX_ALLOWED_DISTANCE = 2;
 
 const UnitInputBlock = ({ units }: { units: TypeUnit[] }) => {
   const answer = useUnitStore((state) => state.answer);
   const resetAnswer = useUnitStore((state) => state.resetAnswer);
   const termNumber = useUnitStore((state) => state.termNumber);
+  const unitsLength = useUnitStore((state) => state.unitsLength);
   const setNextTerm = useUnitStore((state) => state.setNextTerm);
   const checkStatus = useUnitStore((state) => state.checkStatus);
   const setCheckStatus = useUnitStore((state) => state.setCheckStatus);
   const resetCheckStatus = useUnitStore((state) => state.resetCheckStatus);
 
   const handleCheckAnswer = () => {
-    const correctDefinition = units[termNumber]?.definition;
+    const correctDefinition = units[termNumber]?.definition
+      .toLowerCase()
+      .trim();
 
-    if (answer === correctDefinition) {
+    const trimmedAnswer = answer.trim();
+    const levenshteinDistance = distance(trimmedAnswer, correctDefinition);
+    const isCorrect = levenshteinDistance <= MAX_ALLOWED_DISTANCE;
+
+    if (isCorrect) {
       setCheckStatus("CORRECTNESS");
       setTimeout(() => {
         resetCheckStatus();
-        setNextTerm();
+
+        if (unitsLength - (termNumber + 1) !== 0) setNextTerm();
+
         resetAnswer();
       }, 2000);
-    } else if (answer !== correctDefinition) {
+    } else {
       setCheckStatus("MISTAKE");
     }
   };

@@ -21,7 +21,7 @@ export const DropdownTrigger = memo(({ id, icon, name }: Props) => {
   };
 
   const styles = isDropdownActive
-    ? "-translate-y-[33px] rounded-[8px] text-active-nav-text bg-active-nav-item"
+    ? "-translate-y-[33px] rounded-default text-active-nav-text bg-active-nav-item"
     : "translate-y-0 group-hover:-translate-y-[33px] bg-hover-nav-item text-accent-text scale-100";
 
   return (

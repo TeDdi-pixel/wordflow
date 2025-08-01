@@ -14,7 +14,7 @@ export const DropdownList = memo(({ id, options }: Props) => {
       {options?.map((option: NavigationItemOption) => (
         <li
           key={option.id}
-          className="group px-4 py-2 hover:bg-hover-nav-item hover:text-active-nav-text text-text cursor-pointer"
+          className="group px-4 py-2 hover:bg-background-accent hover:text-active-nav-text text-text cursor-pointer"
         >
           <Link
             href={option.path!}

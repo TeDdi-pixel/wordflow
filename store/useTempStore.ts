@@ -15,9 +15,12 @@ type TempStore = {
   setUnitSetDescription: (description: string) => void;
   setUnitTerm: (unitId: number, term: string) => void;
   setUnitDefinition: (unitId: number, description: string) => void;
-  addUnit: () => void;
+  addUnit: (currentUnitId: number) => void;
   removeUnit: (unitId: number) => void;
+  reorderUnits: (oldIndex: number, newIndex: number) => void;
 };
+
+const MAX_ITEMS_LENGTH = 30;
 
 export const useTempStore = create<TempStore>()(
   subscribeWithSelector((set, get) => ({
@@ -49,14 +52,24 @@ export const useTempStore = create<TempStore>()(
       }));
     },
 
-    addUnit: () =>
-      set((state) => ({
-        items: [
-          ...state.items,
-          { unitId: state.items.length + 1, term: "", definition: "" },
-        ],
-      })),
+    addUnit: (currentUnitId: number) => {
+      set((state) => {
+        if (state.items.length >= MAX_ITEMS_LENGTH) return {};
 
+        const reindexedItems = state.items
+          .toSpliced(currentUnitId, 0, {
+            unitId: 0,
+            term: "",
+            definition: "",
+          })
+          .map((item, index) => ({
+            ...item,
+            unitId: index + 1,
+          }));
+
+        return { items: reindexedItems };
+      });
+    },
     removeUnit: (unitId: number) => {
       const filtered = get().items.filter((item) => item.unitId !== unitId);
       const reindexed = filtered.map((item, index) => ({
@@ -64,6 +77,20 @@ export const useTempStore = create<TempStore>()(
         unitId: index + 1,
       }));
       set({ items: reindexed });
+    },
+    reorderUnits: (oldIndex: number, newIndex: number) => {
+      set((state) => {
+        const newItems = [...state.items];
+        const [reorderedItem] = newItems.splice(oldIndex, 1);
+        newItems.splice(newIndex, 0, reorderedItem);
+
+        const reindexedItems = newItems.map((item, index) => ({
+          ...item,
+          unitId: index + 1,
+        }));
+
+        return { items: reindexedItems };
+      });
     },
   }))
 );

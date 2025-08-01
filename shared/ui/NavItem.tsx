@@ -34,7 +34,7 @@ const NavItem = memo(({ item }: Props) => {
   }, [pathname]);
 
   const styles = isActive
-    ? "-translate-y-[33px] rounded-[8px] bg-active-nav-item text-active-nav-text"
+    ? "-translate-y-[33px] rounded-default bg-active-nav-item text-active-nav-text"
     : "translate-y-0 bg-hover-nav-item text-accent-text scale-100";
 
   return (

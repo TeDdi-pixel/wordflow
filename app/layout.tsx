@@ -1,6 +1,6 @@
 import type { Metadata } from "next";
 import { Roboto_Mono } from "next/font/google";
-import "./globals.css";
+import "./(css)/globals.css";
 import { Header } from "@/widgets/header";
 
 const robotoMono = Roboto_Mono({
@@ -21,11 +21,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${robotoMono.variable} selection:bg-selection antialiased bg-background pt-8 flex flex-col items-center justify-between gap-y-8 min-h-screen`}
+        className={`${robotoMono.variable} selection:bg-selection antialiased bg-background pt-8 flex flex-col items-center justify-between gap-y-8 min-h-screen overflow-x-hidden`}
       >
         <Header />
         {children}
-        <footer>Footer</footer>
+        {/* <footer>Footer</footer> */}
       </body>
     </html>
   );

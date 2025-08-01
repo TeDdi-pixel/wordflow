@@ -22,7 +22,7 @@ export const useUnitStore = create<UnitStore>((set) => ({
   setCheckStatus: (status: "MISTAKE" | "CORRECTNESS") =>
     set({ checkStatus: status }),
   resetCheckStatus: () => set({ checkStatus: "" }),
-  setAnswer: (answer: string) => set({ answer: answer }),
+  setAnswer: (answer: string) => set({ answer: answer.toLowerCase() }),
   resetAnswer: () => set({ answer: "" }),
   setUnitsLength: (length: number) => set({ unitsLength: length }),
   setPrevTerm: () => set((state) => ({ termNumber: state.termNumber - 1 })),

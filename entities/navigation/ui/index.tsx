@@ -4,7 +4,7 @@ import NavItem from "@/shared/ui/NavItem";
 export const Navigation = () => {
   return (
     <nav className="mb-[100px]">
-      <ul className="bg-foreground rounded-[8px] py-3 px-6 text-text flex gap-1 items-center text-[14px]">
+      <ul className="bg-foreground rounded-default py-3 px-6 text-text flex gap-1 items-center text-[14px]">
         {navigation.regularPages.map((item: NavigationItem) => (
           <NavItem key={item.id} item={item} />
         ))}

@@ -8,7 +8,7 @@ export const UnitTerm = ({ units }: { units: TypeUnit[] }) => {
 
   return (
     <div className="w-full flex justify-center">
-      <span className="text-[32px]">{units[termNumber].term}</span>
+      <span className="text-[32px]">{units[termNumber]?.term}</span>
     </div>
   );
 };
