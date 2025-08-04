@@ -7,7 +7,7 @@ type TypeProps = {
 
 const FormName = ({ name, icon }: TypeProps) => {
   return (
-    <div className="text-text flex gap-2 items-center">
+    <div className="text-text flex gap-2 items-center ml-[2px]">
       <span>{icon}</span>
       <h3>{name}</h3>
     </div>

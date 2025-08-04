@@ -33,10 +33,6 @@ const NavItem = memo(({ item }: Props) => {
     }
   }, [pathname]);
 
-  const styles = isActive
-    ? "-translate-y-[33px] rounded-default bg-active-nav-item text-active-nav-text"
-    : "translate-y-0 bg-hover-nav-item text-accent-text scale-100";
-
   return (
     <li className="relative">
       {!item.options && item.path ? (
@@ -48,7 +44,11 @@ const NavItem = memo(({ item }: Props) => {
           <Link
             onClick={() => setActiveItem(item.id ?? null)}
             href={item.path}
-            className={`absolute flex gap-1 items-center z-10 rounded-4xl px-[8px] py-[4px] transition-all duration-300 group-hover:-translate-y-[33px] h-[33px] group-hover:scale-90 ${styles}`}
+            className={`absolute flex gap-1 items-center z-10 rounded-4xl px-[8px] py-[4px] transition-all duration-300 group-hover:-translate-y-[33px] h-[33px] group-hover:scale-90 ${
+              isActive
+                ? "-translate-y-[33px] rounded-default bg-active-nav-item text-active-nav-text"
+                : "translate-y-0 bg-hover-nav-item text-hover-nav-text scale-100"
+            }`}
           >
             <span className="text-[20px]">{item.icon}</span>
             <span className="font-medium">{item.name}</span>

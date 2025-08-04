@@ -9,6 +9,7 @@ export type TypeInput = {
   required?: boolean;
   onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
   autoComplete?: string;
+  storeName?: PasswordFieldType;
 };
 
 export type TypeInputError = {
@@ -20,6 +21,13 @@ export type TypeInputError = {
 };
 
 export type PasswordFieldType = "password" | "verifyPassword" | "loginPassword";
+
+export type PasswordFieldState = {
+  tipMessage: string;
+  tipVisible: boolean;
+  password: string | null;
+  isPasswordSafe: boolean;
+};
 
 export type TypeUser = {
   _id: string;

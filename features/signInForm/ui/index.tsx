@@ -10,10 +10,10 @@ import { signIn } from "../actions/sighIn";
 import FormName from "@/shared/ui/FormName";
 import CheckBox from "@/shared/ui/CheckBox";
 import ErrorMessage from "@/shared/ui/Error";
-import PasswordField from "@/shared/ui/PasswordField";
 import SubmitButton from "@/shared/ui/SubmitButton";
 import Input from "@/shared/ui/Input";
 import useRedirect from "@/shared/hooks/useRedirect";
+import { PasswordField } from "@/entities/authentication";
 
 const initialForm = {
   _id: "",

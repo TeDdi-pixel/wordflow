@@ -15,16 +15,15 @@ const SubmitButton = ({
   className,
   isLoginButton = false,
 }: TypeProps) => {
-  const fields = usePasswordStore((state) => state.fields);
-
   const mustBeSafe: PasswordFieldType[] = isLoginButton
     ? ["loginPassword"]
     : ["password", "verifyPassword"];
 
-  const passwordsAreSafe = mustBeSafe.every(
-    (name) => fields[name].isPasswordSafe
-  );
+  const fields = usePasswordStore.getState().fields;
 
+  const passwordsAreSafe = usePasswordStore((state) =>
+    mustBeSafe.every((name) => state.fields[name].isPasswordSafe)
+  );
   return (
     <button
       type="submit"

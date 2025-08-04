@@ -38,16 +38,18 @@ export const signIn = async (
 
   const userDoc = await User.findOne({ email: formData.email });
   if (!userDoc) {
-    const err = new Error("User not found") as Error & { status?: number };
-    err.status = 404;
-    throw err;
-  }
-  const user = { ...userDoc?.toObject(), _id: userDoc?._id.toString() };
-  if (!user)
     return {
       ...userBackUpFields(formData),
       message: AUTH_ERROR_MESSAGES.USER_NOT_FOUND,
     };
+  }
+  const user = { ...userDoc?.toObject(), _id: userDoc?._id.toString() };
+  if (!user) {
+    return {
+      ...userBackUpFields(formData),
+      message: AUTH_ERROR_MESSAGES.USER_NOT_FOUND,
+    };
+  }
 
   if (!formData.password || !user.password) {
     return {

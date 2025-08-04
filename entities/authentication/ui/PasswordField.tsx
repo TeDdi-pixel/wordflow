@@ -1,0 +1,38 @@
+import { isPasswordField } from "@/shared/helpers/isPasswordField";
+import { Tip } from "./Tip";
+import Input from "@/shared/ui/Input";
+
+type TypeProps = {
+  pending: boolean;
+  defaultValue: string;
+  name: "password" | "verifyPassword" | "loginPassword";
+  placeholder?: string;
+  autoComplete?: string;
+  isLoginPassword?: boolean;
+};
+
+export const PasswordField = ({
+  pending,
+  defaultValue,
+  name,
+  placeholder = "password",
+  autoComplete = "new-password",
+  isLoginPassword = false,
+}: TypeProps) => {
+  const storeName = isLoginPassword ? "loginPassword" : name;
+
+  return (
+    <div className="relative w-full">
+      <Input
+        placeholder={placeholder}
+        name={name}
+        storeName={storeName}
+        autoComplete={autoComplete}
+        type="password"
+        pending={pending}
+        defaultValue={defaultValue}
+      />
+      {isPasswordField(storeName) && <Tip name={storeName} />}
+    </div>
+  );
+};

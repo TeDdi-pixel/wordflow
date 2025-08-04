@@ -5,12 +5,12 @@ import { signUp } from "../actions/signUp";
 import { InitialRegForm } from "../lib/types";
 import { useActionState } from "react";
 import { FaUserPlus } from "react-icons/fa";
-import PasswordField from "../../../shared/ui/PasswordField";
 import SubmitButton from "../../../shared/ui/SubmitButton";
 import FormName from "@/shared/ui/FormName";
 import ErrorMessage from "@/shared/ui/Error";
 import Input from "@/shared/ui/Input";
 import useRedirect from "@/shared/hooks/useRedirect";
+import { PasswordField } from "@/entities/authentication";
 
 const initialForm = {
   _id: "",
@@ -44,7 +44,6 @@ export const SignUpForm = () => {
         type="text"
         defaultValue={state.username}
         pending={pending}
-        autoComplete="username"
       />
       <Input
         placeholder="email"

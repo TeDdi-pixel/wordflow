@@ -12,9 +12,12 @@ export const PopUpMenuItem = ({ id, path, name, icon }: Props) => {
   return (
     <li
       key={id}
-      className="hover:bg-background-accent hover:text-accent px-4 py-2"
+      className="group/item hover:bg-active-nav-item hover:text-active-nav-text h-[34px] w-full cursor-pointer"
     >
-      <Link href={path} className="flex items-center gap-2.5">
+      <Link
+        href={path}
+        className="flex items-center gap-2.5 group-hover/item:translate-x-2 translate-x-0 px-4 py-2 transition-transform ease-out duration-150"
+      >
         <span className="text-[14px]">{icon}</span>
         {name}
       </Link>

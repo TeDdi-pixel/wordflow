@@ -13,13 +13,15 @@ const LogoutMenuItem = () => {
   return (
     <button
       type="button"
-      className="flex items-center gap-2 cursor-pointer hover:bg-background-accent hover:text-accent w-full px-4 py-2"
+      className="group/item cursor-pointer hover:bg-background-accent hover:text-accent w-full px-4 py-2"
       onClick={handleLogout}
     >
-      <span className="text-[14px]">
-        <IoExit />
-      </span>{" "}
-      Вихід
+      <div className="flex items-center gap-2  group-hover/item:translate-x-2 translate-x-0 transition-transform ease-out duration-150">
+        <span className="text-[14px]">
+          <IoExit />
+        </span>{" "}
+        Вихід
+      </div>
     </button>
   );
 };

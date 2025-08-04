@@ -1,6 +1,6 @@
-import { ReactNode } from "react";
+import { memo, ReactNode } from "react";
 
-export const AdditionalEntrance = ({ icon }: { icon: ReactNode }) => {
+export const AdditionalEntrance = memo(({ icon }: { icon: ReactNode }) => {
   return (
     <button
       type="button"
@@ -9,4 +9,4 @@ export const AdditionalEntrance = ({ icon }: { icon: ReactNode }) => {
       {icon}
     </button>
   );
-};
+});

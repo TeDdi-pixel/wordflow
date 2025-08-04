@@ -1,4 +1,6 @@
-const MistakeIcon = () => {
+import { memo } from "react";
+
+const MistakeIcon = memo(() => {
   return (
     <svg
       className="fill-[#67A2FF]"
@@ -14,6 +16,5 @@ const MistakeIcon = () => {
       />
     </svg>
   );
-};
-
+});
 export default MistakeIcon;

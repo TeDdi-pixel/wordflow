@@ -16,12 +16,14 @@
   --color-accent: #d6c8a3;
   --color-error: #8e2b61;
   --color-popup: #1c1a22;
+  --color-tip: #c4a5f2;
   --color-input-border: #8e2b61;
   --color-border: #383245;
   --color-selection: #8e2b61;
-  --color-active-nav-text: #d6c8a3;
-  --color-hover-nav-item: #7956a5;
-  --color-active-nav-item: #8e2b61;
+  --color-active-nav-text: #8e2b61;
+  --color-active-nav-item: #c4a5f2;
+  --color-hover-nav-item: #c4a5f2;
+  --color-hover-nav-text: #1c1a22;
 
   --radius-default: 0.5rem;
 
