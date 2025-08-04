@@ -1,16 +1,26 @@
-type PasswordCheckResult = { isPasswordSafe: boolean; passwordTip: string };
+type PasswordCheckResult = {
+  isPasswordSafe: boolean;
+  passwordTip: string;
+  isError: boolean;
+};
 
 const responses = {
   DEFAULT_UNSAFE_RESPONSE: {
     isPasswordSafe: false,
+    isError: true,
     passwordTip:
       "Password must contain at least one capital letter, number and special character",
   },
   NOT_LONG_ENOUGH_RESPONSE: {
     isPasswordSafe: false,
+    isError: true,
     passwordTip: "Password must be at least 8 characters",
   },
-  SAFE_RESPONSE: { isPasswordSafe: true, passwordTip: "" },
+  SAFE_RESPONSE: {
+    isPasswordSafe: true,
+    passwordTip: "Your password is perfect! :)",
+    isError: false,
+  },
 };
 
 export const checkPasswordSafeness = (

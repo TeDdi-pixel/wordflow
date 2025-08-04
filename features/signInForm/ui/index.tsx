@@ -1,7 +1,6 @@
 "use client";
 
-import { useActionState, useEffect } from "react";
-import { redirect } from "next/navigation";
+import { useActionState } from "react";
 import Form from "next/form";
 import { IoEnter } from "react-icons/io5";
 import { AdditionalEntrance } from "./AdditionalEntrance";
@@ -9,10 +8,12 @@ import { FaGoogle, FaGithub } from "react-icons/fa";
 import { InitialLoginForm } from "../lib/types";
 import { signIn } from "../actions/sighIn";
 import FormName from "@/shared/ui/FormName";
-import { Input } from "@/shared/ui/Input";
 import CheckBox from "@/shared/ui/CheckBox";
 import ErrorMessage from "@/shared/ui/Error";
+import PasswordField from "@/shared/ui/PasswordField";
 import SubmitButton from "@/shared/ui/SubmitButton";
+import Input from "@/shared/ui/Input";
+import useRedirect from "@/shared/hooks/useRedirect";
 
 const initialForm = {
   _id: "",
@@ -28,11 +29,8 @@ export const SignInForm = () => {
     initialForm
   );
 
-  useEffect(() => {
-    if (state.type === "SIGN_UP_SUCCESS") {
-      redirect("/");
-    }
-  }, [state.type]);
+  useRedirect(state.type, "/");
+
   return (
     <Form
       action={action}
@@ -49,23 +47,30 @@ export const SignInForm = () => {
           or
         </span>
       </div>
-      <Input
-        placeholder="email"
-        name="email"
-        type="email"
-        pending={pending}
-        defaultValue={state.email}
-      />
-      <Input
-        placeholder="password"
-        name="password"
-        type="password"
-        pending={pending}
-        defaultValue={state.password}
-      />
+      <div className="flex flex-col gap-1">
+        <Input
+          placeholder="email"
+          name="email"
+          type="email"
+          pending={pending}
+          autoComplete="email"
+          defaultValue={state.email}
+        />
+        <PasswordField
+          defaultValue={state.password}
+          name="password"
+          pending={pending}
+          autoComplete="current-password"
+          isLoginPassword
+        />
+      </div>
       <CheckBox label="remember me" />
       {state?.message ? <ErrorMessage message={state?.message} /> : null}
-      <SubmitButton text="sign in" icon={<IoEnter className="text-[20px]" />} />
+      <SubmitButton
+        text="sign in"
+        icon={<IoEnter className="text-[20px]" />}
+        isLoginButton
+      />
     </Form>
   );
 };

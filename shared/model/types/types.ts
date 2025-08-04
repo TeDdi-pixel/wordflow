@@ -11,6 +11,16 @@ export type TypeInput = {
   autoComplete?: string;
 };
 
+export type TypeInputError = {
+  tipDisplay?: boolean;
+  tipVisible?: boolean;
+  tipMessage?: string;
+  isError?: boolean;
+  setTip?: (tip: boolean) => void;
+};
+
+export type PasswordFieldType = "password" | "verifyPassword" | "loginPassword";
+
 export type TypeUser = {
   _id: string;
   username: string;
@@ -24,5 +34,5 @@ export type OperationResult<S extends string, E extends string> =
   | { type: string; message: string };
 
 export type SessionUser = {
-  userId: string
+  userId: string;
 };

@@ -1,11 +1,11 @@
 "use client";
 
 import Link from "next/link";
-import { NavigationItemOption } from "@/entities/navigation/config";
 import { memo, ReactNode, useEffect } from "react";
-import { DropdownItem } from "@/entities/navigation";
 import { useNavStore } from "@/store/useNavStore";
 import { usePathname } from "next/navigation";
+import { NavigationItemOption } from "@/widgets/navigation/config";
+import { DropdownItem } from "@/widgets/navigation";
 
 type Props = {
   item: {

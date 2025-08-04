@@ -26,6 +26,7 @@ export const UnitHeader = memo(
         <div className="flex items-center gap-4">
           <span
             ref={setActivatorNodeRef}
+            suppressHydrationWarning
             className="text-accent-text cursor-grab active:cursor-grabbing hover:text-text-2 transition-colors ease-out duration-150"
             {...attributes}
             {...listeners}

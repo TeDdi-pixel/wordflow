@@ -9,9 +9,11 @@ export type TypeUnitForm = {
   description: string;
   units: TypeUnit[];
   error: string;
+  unitType: "cardSet";
 };
 
 export type TypeUnitSet = {
+  authorsName: string;
   _id: string;
   title: string;
   description: string;

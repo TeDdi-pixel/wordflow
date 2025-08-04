@@ -1,16 +1,16 @@
 "use client";
+
 import Form from "next/form";
 import { signUp } from "../actions/signUp";
 import { InitialRegForm } from "../lib/types";
-import { useActionState, useEffect, useState } from "react";
+import { useActionState } from "react";
 import { FaUserPlus } from "react-icons/fa";
-import { redirect } from "next/navigation";
-import PasswordField from "./PasswordField";
-import VerifyPasswordField from "./VerifyPasswordField";
-import SubmitButton from "./SubmitButton";
+import PasswordField from "../../../shared/ui/PasswordField";
+import SubmitButton from "../../../shared/ui/SubmitButton";
 import FormName from "@/shared/ui/FormName";
-import { Input } from "@/shared/ui/Input";
 import ErrorMessage from "@/shared/ui/Error";
+import Input from "@/shared/ui/Input";
+import useRedirect from "@/shared/hooks/useRedirect";
 
 const initialForm = {
   _id: "",
@@ -29,21 +29,13 @@ export const SignUpForm = () => {
     initialForm
   );
 
-  const [isPasswordSafe, setIsPasswordSafe] = useState(false);
+  useRedirect(state.type, "/");
 
-  const handlePasswordSafeCheck = (safe: boolean) => {
-    setIsPasswordSafe(safe);
-  };
-
-  useEffect(() => {
-    if (state.type === "SIGN_UP_SUCCESS") {
-      redirect("/");
-    }
-  }, [state.type]);
   return (
     <Form
       action={action}
-      className="flex flex-col gap-2 w-805:max-w-[272px] w-full"
+      className="flex flex-col gap-1 w-805:max-w-[272px] w-full"
+      autoComplete="on"
     >
       <FormName icon={<FaUserPlus className="text-[20px]" />} name="register" />
       <Input
@@ -52,6 +44,7 @@ export const SignUpForm = () => {
         type="text"
         defaultValue={state.username}
         pending={pending}
+        autoComplete="username"
       />
       <Input
         placeholder="email"
@@ -59,6 +52,7 @@ export const SignUpForm = () => {
         type="email"
         pending={pending}
         defaultValue={state.email}
+        autoComplete="email"
       />
       <Input
         pending={pending}
@@ -66,22 +60,23 @@ export const SignUpForm = () => {
         name="verifyEmail"
         type="email"
         defaultValue={state.verifyEmail}
+        autoComplete="email"
       />
       <PasswordField
+        name="password"
         defaultValue={state.password}
-        onPasswordSafeCheck={handlePasswordSafeCheck}
         pending={pending}
       />
-      <VerifyPasswordField
-        pending={pending}
+      <PasswordField
         defaultValue={state.verifyPassword}
-        onPasswordSafeCheck={handlePasswordSafeCheck}
+        pending={pending}
+        name="verifyPassword"
+        placeholder="verify password"
       />
       {state?.message ? <ErrorMessage message={state?.message} /> : null}
       <SubmitButton
         text="sign up"
         icon={<FaUserPlus className="text-[20px]" />}
-        isPasswordSafe={isPasswordSafe}
       />
     </Form>
   );

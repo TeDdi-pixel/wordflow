@@ -4,13 +4,13 @@ import StarIcon from "@/shared/icons/unit/StarIcon";
 import TipIcon from "@/shared/icons/unit/TipIcon";
 import createDbConnection from "@/shared/lib/mongoose";
 import { getUserId } from "@/shared/lib/session";
-import UnitSet from "@/shared/model/schemas/UnitSet";
+import UnitSetSchema from "@/shared/model/schemas/UnitSet";
 
 const MyCardSet = async () => {
   await createDbConnection();
   const userId = await getUserId();
 
-  const data = await UnitSet.find({ relatedUserId: userId });
+  const data = await UnitSetSchema.find({ relatedUserId: userId });
 
   return;
 };

@@ -1,6 +1,7 @@
 import { getUserId } from "@/shared/lib/session";
+import { TypeUnitSet } from "@/shared/model/types/unit";
+import { UnitCard } from "@/entities/unit-card";
 import UnitSet from "@/shared/model/schemas/UnitSet";
-import TestButton from "./ui/TestButton";
 
 export default async function Home() {
   const userId = await getUserId();
@@ -8,9 +9,14 @@ export default async function Home() {
 
   return (
     <div className="flex flex-1 max-w-[1440px] w-full h-full flex-col items-center">
-      {unitSets.map((unitSet) => (
-        <div key={unitSet._id.toString()} className="mb-4">
-          <TestButton id={unitSet._id.toString()} />
+      {unitSets.map((unitSet: TypeUnitSet) => (
+        <div key={unitSet._id.toString()} className="mb-4 w-full">
+          <UnitCard
+            authorsName={unitSet.authorsName}
+            termsCount={unitSet.units.length}
+            title={unitSet.title}
+            unitId={unitSet._id.toString()}
+          />
         </div>
       ))}
     </div>

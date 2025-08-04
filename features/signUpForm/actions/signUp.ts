@@ -18,6 +18,7 @@ export const signUp = async (
   form: FormData
 ): Promise<InitialRegForm> => {
   const formData = Object.fromEntries(form.entries()) as InitialRegForm;
+
   //errors validation
   if (formData.email === "" || formData.password === "")
     return {

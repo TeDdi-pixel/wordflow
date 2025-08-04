@@ -1,5 +1,6 @@
 "use client";
 
+import { UnitCard } from "@/entities/unit-card";
 import { useRouter } from "next/navigation";
 
 const TestButton = ({ id }: { id: string }) => {

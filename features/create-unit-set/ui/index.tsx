@@ -10,16 +10,22 @@ import Form from "next/form";
 import { UnitList } from "./UnitList";
 import UnitSubmitButton from "@/shared/ui/unit/UnitSubmitButton";
 import UnitSetError from "@/shared/ui/unit/UnitSetError";
+import { usePathname } from "next/navigation";
 
-const initialForm = {
-  title: "",
-  type: "",
-  description: "",
-  units: [],
-  error: "",
-};
+const typeMap = new Map<string, string>([["/create-card-set", "cardSet"]]);
 
 export const UnitForm = () => {
+  const pathname = usePathname();
+
+  const initialForm = {
+    title: "",
+    type: "",
+    description: "",
+    units: [],
+    unitType: typeMap.get(pathname) as "cardSet",
+    error: "",
+  };
+
   const [state, action, pending] = useActionState<TypeUnitForm, FormData>(
     createUnitSet,
     initialForm

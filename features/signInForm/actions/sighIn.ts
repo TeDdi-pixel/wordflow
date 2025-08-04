@@ -49,6 +49,13 @@ export const signIn = async (
       message: AUTH_ERROR_MESSAGES.USER_NOT_FOUND,
     };
 
+  if (!formData.password || !user.password) {
+    return {
+      ...userBackUpFields(formData),
+      message: AUTH_ERROR_MESSAGES.MISSING_FIELDS,
+    };
+  }
+
   const isPasswordMatch = bcrypt.compareSync(formData.password, user.password);
 
   if (!isPasswordMatch)

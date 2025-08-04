@@ -1,5 +1,5 @@
-import { navigation, NavigationItem } from "@/entities/navigation/config";
 import NavItem from "@/shared/ui/NavItem";
+import { navigation, NavigationItem } from "../config";
 
 export const Navigation = () => {
   return (

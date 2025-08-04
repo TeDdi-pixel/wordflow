@@ -1,17 +1,17 @@
 import { UnitTerm } from "@/entities/unit-set/ui/UnitTerm";
 import createDbConnection from "@/shared/lib/mongoose";
-import UnitSet from "@/shared/model/schemas/UnitSet";
 import { TypeUnitSet } from "@/shared/model/types/unit";
 import UnitNav from "./ui/UnitNav";
 import UnitInputBlock from "./ui/UnitInputBlock";
 import { UnitHeader } from "@/entities/unit-set/intex";
+import UnitSetSchema from "@/shared/model/schemas/UnitSet";
 
 const CardSet = async ({ params }: { params: Promise<{ id: string }> }) => {
   await createDbConnection();
 
   const { id } = await params;
 
-  const unitSet = await UnitSet.findById(id).lean<TypeUnitSet>();
+  const unitSet = await UnitSetSchema.findById(id).lean<TypeUnitSet>();
 
   if (!unitSet) {
     return <div>Unit set not found</div>;

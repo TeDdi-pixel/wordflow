@@ -17,7 +17,7 @@ export const DropdownList = memo(({ id, options }: Props) => {
           className="group px-4 py-2 hover:bg-background-accent hover:text-active-nav-text text-text cursor-pointer"
         >
           <Link
-            href={option.path!}
+            href={option.path}
             className="flex gap-2.5 items-center group-hover:translate-x-2 translate-x-0 transition-transform duration-300"
           >
             <span className="text-[16px]">{option.icon}</span>

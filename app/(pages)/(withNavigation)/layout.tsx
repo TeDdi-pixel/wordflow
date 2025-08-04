@@ -1,4 +1,4 @@
-import { Navigation } from "@/entities/navigation";
+import { Navigation } from "@/widgets/navigation";
 
 export default function GamesLayout({
   children,

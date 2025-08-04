@@ -4,7 +4,8 @@ import { withError } from "@/shared/helpers/withError";
 import createDbConnection from "@/shared/lib/mongoose";
 import { getUserId } from "@/shared/lib/session";
 import { UNIT_SET_ERROR_MESSAGES } from "@/shared/model/constants/errors";
-import UnitSet from "@/shared/model/schemas/UnitSet";
+import UnitSetSchema from "@/shared/model/schemas/UnitSet";
+import User from "@/shared/model/schemas/User";
 import { TypeUnit, TypeUnitForm } from "@/shared/model/types/unit";
 
 const ERRORS = UNIT_SET_ERROR_MESSAGES;
@@ -53,14 +54,19 @@ export const createUnitSet = async (
     }
 
     const relatedUserId = await getUserId();
+    const userDoc = await User.findById({ _id: relatedUserId });
+    const authorsName = userDoc.username;
+    const unitType = prevState.unitType;
 
     await createDbConnection();
 
-    await UnitSet.create({
+    await UnitSetSchema.create({
       relatedUserId,
       title,
       description,
       units,
+      unitType,
+      authorsName,
     });
 
     return {

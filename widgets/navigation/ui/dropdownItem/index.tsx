@@ -1,11 +1,11 @@
 "use client";
 
 import { memo, ReactNode } from "react";
-import { NavigationItemOption } from "@/entities/navigation/config";
 import { DropdownTrigger } from "./DropdownTrigger";
 import useClickOutside from "@/shared/hooks/useClickOutside";
 import { DropdownList } from "./DropdownList";
 import { useNavStore } from "../../../../store/useNavStore";
+import { NavigationItemOption } from "../../config";
 
 type Props = {
   icon: ReactNode;
