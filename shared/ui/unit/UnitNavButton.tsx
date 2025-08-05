@@ -14,7 +14,7 @@ const UnitNavButton = ({ left, onClick, isDisabled }: Props) => {
       disabled={isDisabled}
       type="button"
       onClick={onClick}
-      className={`group max-w-[44px] w-full h-[44px] bg-button-default hover:bg-active-nav-item flex items-center justify-center rounded-default transition-all ease-in-out duration-150 ${
+      className={`group max-w-[44px] w-full h-[44px] bg-button hover:bg-button-accent flex items-center justify-center rounded-default transition-all ease-in-out duration-150 ${
         left ? "rotate-180" : ""
       } ${
         isDisabled

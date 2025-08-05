@@ -5,11 +5,11 @@ const unitSet = new mongoose.Schema({
   title: { type: String, required: true },
   description: { type: String, default: "" },
   authorsName: { type: String, required: true },
-  unitType: { type: String, required: true },
+  unitSetType: { type: String, required: true },
   units: [
     {
       _id: false,
-      unitId: { type: String, required: true },
+      unitId: { type: Number, required: true },
       term: { type: String, required: true },
       definition: { type: String, required: true },
     },

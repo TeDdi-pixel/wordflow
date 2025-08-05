@@ -1,10 +1,9 @@
-import { UnitTerm } from "@/entities/unit-set/ui/UnitTerm";
 import createDbConnection from "@/shared/lib/mongoose";
 import { TypeUnitSet } from "@/shared/model/types/unit";
 import UnitNav from "./ui/UnitNav";
 import UnitInputBlock from "./ui/UnitInputBlock";
-import { UnitHeader } from "@/entities/unit-set/intex";
 import UnitSetSchema from "@/shared/model/schemas/UnitSet";
+import { UnitHeader, UnitTerm } from "@/entities/unit-set";
 
 const CardSet = async ({ params }: { params: Promise<{ id: string }> }) => {
   await createDbConnection();

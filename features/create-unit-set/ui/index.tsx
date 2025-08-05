@@ -3,7 +3,7 @@
 import MainTitle from "@/shared/ui/MainTitle";
 import TitleInput from "@/shared/ui/TitleInput";
 import { useActionState } from "react";
-import { TypeUnitForm } from "@/shared/model/types/unit";
+import { TypeUnitForm, UnitSetType } from "@/shared/model/types/unit";
 import Description from "@/shared/ui/Description";
 import { createUnitSet } from "../action/createUnitSet";
 import Form from "next/form";
@@ -12,7 +12,7 @@ import UnitSubmitButton from "@/shared/ui/unit/UnitSubmitButton";
 import UnitSetError from "@/shared/ui/unit/UnitSetError";
 import { usePathname } from "next/navigation";
 
-const typeMap = new Map<string, string>([["/create-card-set", "cardSet"]]);
+const typeMap = new Map<string, string>([["/create-card-set", "cards"]]);
 
 export const UnitForm = () => {
   const pathname = usePathname();
@@ -22,7 +22,7 @@ export const UnitForm = () => {
     type: "",
     description: "",
     units: [],
-    unitType: typeMap.get(pathname) as "cardSet",
+    unitSetType: typeMap.get(pathname) as UnitSetType,
     error: "",
   };
 
@@ -34,8 +34,14 @@ export const UnitForm = () => {
   return (
     <Form action={action} className="max-w-[935px] w-full flex flex-col">
       <MainTitle text="Створити список карток" />
-      <TitleInput placeholder="Впишіть назву, наприклад, “Verbs”" />
-      <Description placeholder="Додайте опис..." />
+      <TitleInput
+        placeholder="Впишіть назву, наприклад, “Verbs”"
+        defaultValue={state.title}
+      />
+      <Description
+        placeholder="Додайте опис..."
+        defaultValue={state.description}
+      />
       <div className="flex flex-col">
         <UnitList />
         <UnitSetError error={state.error} />

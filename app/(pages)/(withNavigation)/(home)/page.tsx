@@ -8,10 +8,12 @@ export default async function Home() {
   const unitSets = await UnitSet.find({ relatedUserId: userId });
 
   return (
-    <div className="flex flex-1 max-w-[1440px] w-full h-full flex-col items-center">
+    <div className="grid grid-cols-3 gap-4 px-[16px] md:px-[32px] max-w-[1146px] mx-auto w-full h-full">
       {unitSets.map((unitSet: TypeUnitSet) => (
-        <div key={unitSet._id.toString()} className="mb-4 w-full">
+        <div key={unitSet._id.toString()}>
           <UnitCard
+            unitSetType={unitSet.unitSetType}
+            description={unitSet.description}
             authorsName={unitSet.authorsName}
             termsCount={unitSet.units.length}
             title={unitSet.title}

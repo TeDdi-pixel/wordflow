@@ -84,7 +84,11 @@ export const useTempStore = create<TempStore>()(
       });
     },
     removeUnit: (unitId: number) => {
-      const filtered = get().items.filter((item) => item.unitId !== unitId);
+      const items = get().items;
+
+      if (items.length <= 1) return {};
+
+      const filtered = items.filter((item) => item.unitId !== unitId);
       const reindexed = filtered.map((item, index) => ({
         ...item,
         unitId: index + 1,

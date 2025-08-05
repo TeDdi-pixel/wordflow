@@ -92,7 +92,7 @@ const Input = memo(
               onMouseEnter={handleMouseEnter}
               onMouseLeave={handleMouseLeave}
             >
-              <FaCheck className="text-[#67FFB3]" />
+              <FaCheck className="text-success" />
             </div>
 
             <div

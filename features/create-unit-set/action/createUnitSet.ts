@@ -15,6 +15,8 @@ export const createUnitSet = async (
   form: FormData
 ): Promise<TypeUnitForm> => {
   try {
+    await createDbConnection();
+
     const title = form.get("title");
 
     if (!title) {
@@ -56,16 +58,14 @@ export const createUnitSet = async (
     const relatedUserId = await getUserId();
     const userDoc = await User.findById({ _id: relatedUserId });
     const authorsName = userDoc.username;
-    const unitType = prevState.unitType;
-
-    await createDbConnection();
+    const unitSetType = prevState.unitSetType;
 
     await UnitSetSchema.create({
       relatedUserId,
       title,
       description,
       units,
-      unitType,
+      unitSetType,
       authorsName,
     });
 
@@ -76,9 +76,6 @@ export const createUnitSet = async (
     };
   } catch (error) {
     console.error("Error in createUnitSet:", error);
-    return withError<TypeUnitForm>(
-      prevState,
-      "Сталася помилка при створенні списку карток"
-    );
+    return withError<TypeUnitForm>(prevState, ERRORS.SERVER_ERROR);
   }
 };

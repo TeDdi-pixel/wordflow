@@ -3,9 +3,10 @@ import { ChangeEvent } from "react";
 
 type Props = {
   placeholder: string;
+  defaultValue: string;
 };
 
-const TitleInput = ({ placeholder }: Props) => {
+const TitleInput = ({ placeholder, defaultValue }: Props) => {
   const setUnitSetTitle = useTempStore((state) => state.setUnitSetTitle);
   const unitSetTitle = useTempStore((state) => state.unitSetTitle);
 
@@ -20,7 +21,7 @@ const TitleInput = ({ placeholder }: Props) => {
         name="title"
         required
         placeholder={placeholder}
-        defaultValue={unitSetTitle}
+        defaultValue={unitSetTitle ?? defaultValue}
         onChange={handleChangeUnitTitle}
         className="w-full py-[12px] px-4 bg-foreground rounded-lg mb-8 focus:ring-2 focus:ring-accent focus:outline-none"
       />

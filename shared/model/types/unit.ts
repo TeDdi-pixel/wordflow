@@ -3,13 +3,16 @@ export type TypeUnit = {
   term: string;
   definition: string;
 };
+
+export type UnitSetType = "cards";
+
 export type TypeUnitForm = {
   type: "SUCCESS" | "ERROR" | string;
   title: string;
   description: string;
   units: TypeUnit[];
   error: string;
-  unitType: "cardSet";
+  unitSetType: UnitSetType;
 };
 
 export type TypeUnitSet = {
@@ -17,5 +20,6 @@ export type TypeUnitSet = {
   _id: string;
   title: string;
   description: string;
+  unitSetType: "cards";
   units: TypeUnit[];
 };

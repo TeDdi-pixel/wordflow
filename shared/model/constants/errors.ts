@@ -17,4 +17,5 @@ export const UNIT_SET_ERROR_MESSAGES = {
   MISSING_FIELDS:
     "Хоча б одне одне поле термінів та визначень має бути заповнене",
   MISSING_CARDS: "Додайте хоча б одну картку",
+  SERVER_ERROR: "Виникла внутрішня помилка сервера",
 };
