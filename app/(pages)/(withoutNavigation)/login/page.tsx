@@ -1,7 +1,7 @@
 import { checkForSession } from "@/shared/lib/session";
 import { redirect } from "next/navigation";
-import { SignUpForm } from "@/features/signUpForm";
-import { SignInForm } from "@/features/signInForm";
+import { SignUpForm } from "@/features/auth/sign-up-form";
+import { SignInForm } from "@/features/auth/sign-in-form";
 
 const page = async () => {
   const isSession = await checkForSession();

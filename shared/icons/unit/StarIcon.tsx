@@ -1,9 +1,9 @@
 "use client";
 
-import { useUnitStore } from "@/store/useUnitStore";
+import { useUnitPracticeStore } from "@/store/useUnitPracticeStore";
 
 const StarIcon = () => {
-  const isFeatureActive = useUnitStore((state) =>
+  const isFeatureActive = useUnitPracticeStore((state) =>
     state.isFeatureActive("star")
   );
 

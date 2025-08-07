@@ -3,7 +3,7 @@ import { memo } from "react";
 const MistakeIcon = memo(() => {
   return (
     <svg
-      className="fill-[#67A2FF]"
+      className="fill-error"
       width="16"
       height="16"
       viewBox="0 0 16 16"

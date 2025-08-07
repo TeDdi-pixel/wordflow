@@ -1,7 +1,7 @@
-import OpenUnitSetButton from "@/app/(pages)/(withNavigation)/(home)/ui/OpenUnitSetButton";
-import { getTermsLabel } from "@/shared/helpers/getTermsLabel";
-import { unitTypeIcon } from "@/shared/helpers/getUnitTypeIcon";
+import { getTermsLabel } from "@/shared/utils/getTermsLabel";
+import { unitTypeIcon } from "@/shared/utils/getUnitTypeIcon";
 import { UnitSetType } from "@/shared/model/types/unit";
+import UnitSetOpenButton from "@/shared/components/buttons/UnitSetOpenButton";
 
 type Props = {
   unitId: string;
@@ -37,7 +37,7 @@ export const UnitCard = ({
           <span>{unitTypeIcon(unitSetType)}</span>
           <span>by {authorsName}</span>
         </div>
-        <OpenUnitSetButton id={unitId} />
+        <UnitSetOpenButton id={unitId} />
       </div>
     </div>
   );

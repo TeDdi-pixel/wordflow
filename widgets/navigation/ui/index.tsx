@@ -1,4 +1,4 @@
-import NavItem from "@/shared/ui/NavItem";
+import NavItem from "@/shared/components/NavItem";
 import { navigation, NavigationItem } from "../config";
 
 export const Navigation = () => {

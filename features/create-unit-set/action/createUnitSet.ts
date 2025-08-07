@@ -1,6 +1,6 @@
 "use server";
 
-import { withError } from "@/shared/helpers/withError";
+import { withError } from "@/shared/utils/withError";
 import createDbConnection from "@/shared/lib/mongoose";
 import { getUserId } from "@/shared/lib/session";
 import { UNIT_SET_ERROR_MESSAGES } from "@/shared/model/constants/errors";

@@ -1,10 +1,13 @@
 "use client";
 
-import { FeatureName, useUnitStore } from "@/store/useUnitStore";
+import {
+  FeatureName,
+  useUnitPracticeStore,
+} from "@/store/useUnitPracticeStore";
 import { memo } from "react";
 
 const BookmarkIcon = memo(() => {
-  const isFeatureActive = useUnitStore((state) =>
+  const isFeatureActive = useUnitPracticeStore((state) =>
     state.isFeatureActive("bookmark")
   );
 

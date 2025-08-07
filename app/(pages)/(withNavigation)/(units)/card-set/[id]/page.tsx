@@ -1,9 +1,12 @@
 import createDbConnection from "@/shared/lib/mongoose";
 import { TypeUnitSet } from "@/shared/model/types/unit";
-import UnitNav from "./ui/UnitNav";
-import UnitInputBlock from "./ui/UnitInputBlock";
 import UnitSetSchema from "@/shared/model/schemas/UnitSet";
-import { UnitHeader, UnitTerm } from "@/entities/unit-set";
+import {
+  UnitPracticeHeader,
+  UnitPracticeInput,
+  UnitPracticeNavButtons,
+  UnitPracticeTerm,
+} from "@/entities/unit-practice";
 
 const CardSet = async ({ params }: { params: Promise<{ id: string }> }) => {
   await createDbConnection();
@@ -21,11 +24,11 @@ const CardSet = async ({ params }: { params: Promise<{ id: string }> }) => {
   return (
     <div className="max-w-[821px] w-full">
       <div className="mx-auto h-[506px] w-full bg-foreground rounded-lg p-8 flex flex-col items-center justify-between mb-4">
-        <UnitHeader />
-        <UnitTerm units={units} />
-        <UnitInputBlock units={units} />
+        <UnitPracticeHeader />
+        <UnitPracticeTerm units={units} />
+        <UnitPracticeInput units={units} />
       </div>
-      <UnitNav units={units} />
+      <UnitPracticeNavButtons units={units} />
     </div>
   );
 };

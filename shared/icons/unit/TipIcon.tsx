@@ -1,9 +1,11 @@
 "use client";
 
-import { useUnitStore } from "@/store/useUnitStore";
+import { useUnitPracticeStore } from "@/store/useUnitPracticeStore";
 
 const TipIcon = () => {
-  const isFeatureActive = useUnitStore((state) => state.isFeatureActive("tip"));
+  const isFeatureActive = useUnitPracticeStore((state) =>
+    state.isFeatureActive("tip")
+  );
   return (
     <div className="relative w-[24px] h-[24px]">
       <svg

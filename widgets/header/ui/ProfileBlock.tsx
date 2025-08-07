@@ -1,4 +1,4 @@
-import { PopUpMenu } from "@/entities/popUpMenu";
+import { PopUpMenu } from "@/entities/pop-up-menu";
 import { ProfileIcon } from "./ProfileIcon";
 import { UserName } from "./UserName";
 import { checkForSession } from "@/shared/lib/session";
