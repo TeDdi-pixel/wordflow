@@ -30,15 +30,17 @@ export const UnitList = () => {
     })
   );
 
-  const itemIds = useMemo(() => items.map((item) => item.unitId), [items]);
+  const itemIds = useMemo(() => items.map((item) => item.itemNumber), [items]);
 
   const handleDragEnd = useCallback(
     (event: DragEndEvent) => {
       const { active, over } = event;
 
       if (over && active.id !== over.id) {
-        const oldIndex = items.findIndex((item) => item.unitId === active.id);
-        const newIndex = items.findIndex((item) => item.unitId === over.id);
+        const oldIndex = items.findIndex(
+          (item) => item.itemNumber === active.id
+        );
+        const newIndex = items.findIndex((item) => item.itemNumber === over.id);
 
         if (oldIndex !== -1 && newIndex !== -1) {
           requestAnimationFrame(() => {
@@ -59,7 +61,7 @@ export const UnitList = () => {
     >
       <SortableContext items={itemIds} strategy={verticalListSortingStrategy}>
         {items.map((unit: TypeUnit) => (
-          <UnitSetItem key={unit.unitId} unitId={unit.unitId} />
+          <UnitSetItem key={unit.itemNumber} itemNumber={unit.itemNumber} />
         ))}
       </SortableContext>
     </DndContext>

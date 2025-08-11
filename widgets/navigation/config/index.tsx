@@ -43,8 +43,7 @@ export const navigation = {
           id: 1,
           icon: <CardsIcon />,
           name: "Мої картки",
-          path: "/",
-          // path: "/my-card-sets",
+          path: "/my-card-sets",
         },
         {
           id: 2,

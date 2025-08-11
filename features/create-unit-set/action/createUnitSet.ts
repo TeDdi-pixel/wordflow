@@ -6,21 +6,21 @@ import { getUserId } from "@/shared/lib/session";
 import { UNIT_SET_ERROR_MESSAGES } from "@/shared/model/constants/errors";
 import UnitSetSchema from "@/shared/model/schemas/UnitSet";
 import User from "@/shared/model/schemas/User";
-import { TypeUnit, TypeUnitForm } from "@/shared/model/types/unit";
+import { TypeUnit, TypeUnitSetForm } from "@/shared/model/types/unit";
 
 const ERRORS = UNIT_SET_ERROR_MESSAGES;
 
 export const createUnitSet = async (
-  prevState: TypeUnitForm,
+  prevState: TypeUnitSetForm,
   form: FormData
-): Promise<TypeUnitForm> => {
+): Promise<TypeUnitSetForm> => {
   try {
     await createDbConnection();
 
     const title = form.get("title");
 
     if (!title) {
-      return withError<TypeUnitForm>(prevState, ERRORS.MISSING_TITLE);
+      return withError<TypeUnitSetForm>(prevState, ERRORS.MISSING_TITLE);
     }
 
     const description = form.get("description");
@@ -28,10 +28,10 @@ export const createUnitSet = async (
     const entries = [...form.entries()];
 
     if (!entries) {
-      return withError<TypeUnitForm>(prevState, ERRORS.MISSING_FIELDS);
+      return withError<TypeUnitSetForm>(prevState, ERRORS.MISSING_FIELDS);
     }
 
-    const units: TypeUnit[] = [];
+    const units: Omit<TypeUnit, "_id">[] = [];
 
     const maxCards = 30;
 
@@ -42,17 +42,17 @@ export const createUnitSet = async (
       if (!term && !definition) continue;
 
       if (!term || !definition) {
-        return withError<TypeUnitForm>(
+        return withError<TypeUnitSetForm>(
           prevState,
           `Картка №${i + 1} має бути повністю заповнена`
         );
       }
 
-      units.push({ unitId: i + 1, term, definition });
+      units.push({ termNumber: i + 1, term, definition });
     }
 
     if (units.length === 0) {
-      return withError<TypeUnitForm>(prevState, ERRORS.MISSING_CARDS);
+      return withError<TypeUnitSetForm>(prevState, ERRORS.MISSING_CARDS);
     }
 
     const relatedUserId = await getUserId();
@@ -76,6 +76,6 @@ export const createUnitSet = async (
     };
   } catch (error) {
     console.error("Error in createUnitSet:", error);
-    return withError<TypeUnitForm>(prevState, ERRORS.SERVER_ERROR);
+    return withError<TypeUnitSetForm>(prevState, ERRORS.SERVER_ERROR);
   }
 };

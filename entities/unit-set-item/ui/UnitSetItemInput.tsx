@@ -3,16 +3,16 @@ import { useTempStore } from "@/store/useTempStore";
 import { ChangeEvent, memo, useCallback } from "react";
 
 type Props = {
-  unitId: number;
+  itemNumber: number;
   name: string;
   label: string;
   fieldType: "term" | "definition";
 };
 
 export const UnitSetItemInput = memo(
-  ({ unitId, name, label, fieldType }: Props) => {
+  ({ itemNumber, name, label, fieldType }: Props) => {
     const value = useTempStore((state) => {
-      const item = state.items.find((i) => i.unitId === unitId);
+      const item = state.items.find((i) => i.itemNumber === itemNumber);
       return fieldType === "term" ? item?.term : item?.definition;
     });
 
@@ -21,10 +21,10 @@ export const UnitSetItemInput = memo(
 
     const handleChange = useCallback(
       (e: ChangeEvent<HTMLInputElement>) => {
-        if (fieldType === "term") setUnitTerm(unitId, e.target.value);
-        else setUnitDefinition(unitId, e.target.value);
+        if (fieldType === "term") setUnitTerm(itemNumber, e.target.value);
+        else setUnitDefinition(itemNumber, e.target.value);
       },
-      [unitId, fieldType, setUnitTerm, setUnitDefinition]
+      [itemNumber, fieldType, setUnitTerm, setUnitDefinition]
     );
 
     return (

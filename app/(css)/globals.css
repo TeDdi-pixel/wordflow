@@ -22,8 +22,9 @@
 
   /* персиковый и мятный акценты */
   --color-accent: #ffcfab; /* персик стал более солнечным */
-  --color-success: #90f0d8; /* мята с бирюзовым отливом */
+  --color-accent-muted: #ffe8d5;
   --color-unit-icon: #ffcfab;
+  --color-success: #90f0d8; /* мята с бирюзовым отливом */
 
   /* бордюры, disabled и ошибки */
   --color-border: #2a2134;

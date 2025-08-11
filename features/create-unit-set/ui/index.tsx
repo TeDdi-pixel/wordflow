@@ -2,7 +2,7 @@
 
 import MainTitle from "@/shared/components/MainTitle";
 import { useActionState } from "react";
-import { TypeUnitForm, UnitSetType } from "@/shared/model/types/unit";
+import { TypeUnitSetForm, UnitSetType } from "@/shared/model/types/unit";
 import { createUnitSet } from "../action/createUnitSet";
 import Form from "next/form";
 import { UnitList } from "./UnitList";
@@ -13,7 +13,7 @@ import { UnitSetDescription, UnitSetTitleInput } from "@/entities/unit-set";
 
 const typeMap = new Map<string, string>([["/create-card-set", "cards"]]);
 
-export const UnitForm = () => {
+export const UnitSetForm = () => {
   const pathname = usePathname();
 
   const initialForm = {
@@ -25,7 +25,7 @@ export const UnitForm = () => {
     error: "",
   };
 
-  const [state, action, pending] = useActionState<TypeUnitForm, FormData>(
+  const [state, action, pending] = useActionState<TypeUnitSetForm, FormData>(
     createUnitSet,
     initialForm
   );
@@ -56,4 +56,4 @@ export const UnitForm = () => {
   );
 };
 
-export default UnitForm;
+export default UnitSetForm;

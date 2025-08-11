@@ -2,7 +2,7 @@ import { create } from "zustand";
 import { subscribeWithSelector } from "zustand/middleware";
 
 type TypeUnit = {
-  unitId: number;
+  itemNumber: number;
   term: string;
   definition: string;
 };
@@ -14,8 +14,8 @@ const initialState: Pick<
   unitSetTitle: "",
   unitSetDescription: "",
   items: [
-    { unitId: 1, term: "", definition: "" },
-    { unitId: 2, term: "", definition: "" },
+    { itemNumber: 1, term: "", definition: "" },
+    { itemNumber: 2, term: "", definition: "" },
   ],
 };
 
@@ -25,10 +25,10 @@ type TempStore = {
   items: TypeUnit[];
   setUnitSetTitle: (title: string) => void;
   setUnitSetDescription: (description: string) => void;
-  setUnitTerm: (unitId: number, term: string) => void;
-  setUnitDefinition: (unitId: number, description: string) => void;
+  setUnitTerm: (itemNumber: number, term: string) => void;
+  setUnitDefinition: (itemNumber: number, description: string) => void;
   addUnit: (currentUnitId: number) => void;
-  removeUnit: (unitId: number) => void;
+  removeUnit: (itemNumber: number) => void;
   reorderUnits: (oldIndex: number, newIndex: number) => void;
   resetTempStore: () => void;
 };
@@ -40,8 +40,8 @@ export const useTempStore = create<TempStore>()(
     unitSetTitle: "",
     unitSetDescription: "",
     items: [
-      { unitId: 1, term: "", definition: "" },
-      { unitId: 2, term: "", definition: "" },
+      { itemNumber: 1, term: "", definition: "" },
+      { itemNumber: 2, term: "", definition: "" },
     ],
 
     setUnitSetTitle: (title: string) => set({ unitSetTitle: title }),
@@ -49,18 +49,18 @@ export const useTempStore = create<TempStore>()(
     setUnitSetDescription: (description: string) =>
       set({ unitSetDescription: description }),
 
-    setUnitTerm: (unitId: number, term: string) => {
+    setUnitTerm: (itemNumber: number, term: string) => {
       set((state) => ({
         items: state.items.map((item) =>
-          item.unitId === unitId ? { ...item, term } : item
+          item.itemNumber === itemNumber ? { ...item, term } : item
         ),
       }));
     },
 
-    setUnitDefinition: (unitId: number, definition: string) => {
+    setUnitDefinition: (itemNumber: number, definition: string) => {
       set((state) => ({
         items: state.items.map((item) =>
-          item.unitId === unitId ? { ...item, definition } : item
+          item.itemNumber === itemNumber ? { ...item, definition } : item
         ),
       }));
     },
@@ -71,27 +71,27 @@ export const useTempStore = create<TempStore>()(
 
         const reindexedItems = state.items
           .toSpliced(currentUnitId, 0, {
-            unitId: 0,
+            itemNumber: 0,
             term: "",
             definition: "",
           })
           .map((item, index) => ({
             ...item,
-            unitId: index + 1,
+            itemNumber: index + 1,
           }));
 
         return { items: reindexedItems };
       });
     },
-    removeUnit: (unitId: number) => {
+    removeUnit: (itemNumber: number) => {
       const items = get().items;
 
       if (items.length <= 1) return {};
 
-      const filtered = items.filter((item) => item.unitId !== unitId);
+      const filtered = items.filter((item) => item.itemNumber !== itemNumber);
       const reindexed = filtered.map((item, index) => ({
         ...item,
-        unitId: index + 1,
+        itemNumber: index + 1,
       }));
       set({ items: reindexed });
     },
@@ -103,7 +103,7 @@ export const useTempStore = create<TempStore>()(
 
         const reindexedItems = newItems.map((item, index) => ({
           ...item,
-          unitId: index + 1,
+          itemNumber: index + 1,
         }));
 
         return { items: reindexedItems };

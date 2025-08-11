@@ -1,27 +1,33 @@
-"use client";
-
 import { useUnitPracticeStore } from "@/store/useUnitPracticeStore";
 
 const PracticeInput = ({
   handleKeyDown,
+  disabledInput,
 }: {
   handleKeyDown: (e: React.KeyboardEvent) => void;
+  disabledInput: boolean;
 }) => {
-  const answer = useUnitPracticeStore((state) => state.answer);
-  const setAnswer = useUnitPracticeStore((state) => state.setAnswer);
+  const setNewAnswer = useUnitPracticeStore((state) => state.setNewAnswer);
+  const newAnswer = useUnitPracticeStore((state) => state.newAnswer);
+  const oldAnswer = useUnitPracticeStore((state) => state.oldAnswer);
+  const hasNewAnswer = useUnitPracticeStore((state) => state.hasNewAnswer);
   const resetCheckStatus = useUnitPracticeStore(
     (state) => state.resetCheckStatus
   );
+
   return (
     <input
-      value={answer}
       onKeyDown={handleKeyDown}
       onChange={(e) => {
-        setAnswer(e.target.value);
-        resetCheckStatus();
+        if (!disabledInput) {
+          setNewAnswer(e.target.value);
+          resetCheckStatus();
+        }
       }}
+      value={hasNewAnswer ? newAnswer || "" : oldAnswer}
       type="text"
       placeholder="Відповідь"
+      disabled={disabledInput}
       className="w-full border-b-[2px] border-background-accent-2 pb-[5px] text-[14px] focus:outline-none focus:border-accent transition-colors ease-out duration-150"
     />
   );

@@ -1,15 +1,23 @@
 import mongoose from "mongoose";
+import { UnitSetType } from "../types/unit";
 
 const unitSet = new mongoose.Schema({
-  relatedUserId: { type: String, required: true },
+  relatedUserId: {
+    type: mongoose.Schema.Types.ObjectId,
+    required: true,
+    ref: "User",
+  },
   title: { type: String, required: true },
   description: { type: String, default: "" },
   authorsName: { type: String, required: true },
-  unitSetType: { type: String, required: true },
+  unitSetType: {
+    type: String as () => UnitSetType,
+    enum: ["cards"],
+    required: true,
+  },
   units: [
     {
-      _id: false,
-      unitId: { type: Number, required: true },
+      termNumber: { type: Number, required: true },
       term: { type: String, required: true },
       definition: { type: String, required: true },
     },

@@ -6,23 +6,23 @@ import { memo } from "react";
 import { LuTrash2 } from "react-icons/lu";
 
 type Props = {
-  unitId: number;
+  itemNumber: number;
   setActivatorNodeRef?: (element: HTMLElement | null) => void;
   attributes?: Record<string, any>;
   listeners?: Record<string, any>;
 };
 
 export const UnitSetItemHeader = memo(
-  ({ unitId, setActivatorNodeRef, attributes, listeners }: Props) => {
+  ({ itemNumber, setActivatorNodeRef, attributes, listeners }: Props) => {
     const removeUnit = useTempStore((state) => state.removeUnit);
 
     const handleClick = () => {
-      removeUnit(unitId);
+      removeUnit(itemNumber);
     };
 
     return (
       <div className="relative w-full flex items-center justify-between mb-2">
-        #{unitId}
+        #{itemNumber}
         <div className="flex items-center gap-4">
           <span
             ref={setActivatorNodeRef}

@@ -9,8 +9,10 @@ type Props = {
 const SendButton = ({ onClick, isDisabled, icon }: Props) => {
   return (
     <button
-      className={`absolute top-1/2 right-0 -translate-y-1/2 text-[20px] ${
-        isDisabled ? "cursor-not-allowed" : "cursor-pointer "
+      className={`absolute top-1/2 right-0 -translate-y-1/2 text-[20px] transition-transform duration-150 ease-out ${
+        isDisabled
+          ? "cursor-not-allowed scale-110"
+          : "cursor-pointer scale-100 hover:scale-110"
       }`}
       onClick={onClick}
       disabled={isDisabled}

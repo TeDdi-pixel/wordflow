@@ -8,7 +8,7 @@ import { CSS } from "@dnd-kit/utilities";
 import { useDndContext } from "@dnd-kit/core";
 import { UnitSetItemInput } from "./UnitSetItemInput";
 
-export const UnitSetItem = memo(({ unitId }: { unitId: number }) => {
+export const UnitSetItem = memo(({ itemNumber }: { itemNumber: number }) => {
   const {
     attributes,
     listeners,
@@ -17,11 +17,11 @@ export const UnitSetItem = memo(({ unitId }: { unitId: number }) => {
     transition,
     setActivatorNodeRef,
   } = useSortable({
-    id: unitId,
+    id: itemNumber,
     animateLayoutChanges: () => false,
   });
   const { active } = useDndContext();
-  const isActive = active?.id === unitId;
+  const isActive = active?.id === itemNumber;
 
   const style = useMemo(() => {
     if (!transform) {
@@ -60,7 +60,7 @@ export const UnitSetItem = memo(({ unitId }: { unitId: number }) => {
     >
       <div className="relative group w-full bg-foreground rounded-lg py-3 px-6">
         <UnitSetItemHeader
-          unitId={unitId}
+          itemNumber={itemNumber}
           setActivatorNodeRef={setActivatorNodeRef}
           listeners={listeners}
           attributes={attributes}
@@ -68,21 +68,21 @@ export const UnitSetItem = memo(({ unitId }: { unitId: number }) => {
         <span className="flex w-full h-[2px] bg-accent-text absolute left-0"></span>
         <div className="flex w-full gap-8 mt-[46px] mb-40px font-normal">
           <UnitSetItemInput
-            unitId={unitId}
+            itemNumber={itemNumber}
             fieldType="term"
-            name={`card[${unitId - 1}].term`}
+            name={`card[${itemNumber - 1}].term`}
             label="Термін"
           />
           <UnitSetItemInput
-            unitId={unitId}
+            itemNumber={itemNumber}
             fieldType="definition"
-            name={`card[${unitId - 1}].definition`}
+            name={`card[${itemNumber - 1}].definition`}
             label="Визначення"
           />
         </div>
       </div>
       <div className="relative h-[32px] flex items-center justify-center group">
-        <AddUnitButton unitId={unitId} />
+        <AddUnitButton itemNumber={itemNumber} />
       </div>
     </div>
   );

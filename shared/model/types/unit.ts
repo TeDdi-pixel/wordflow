@@ -1,12 +1,15 @@
+export type TypeTermStatus = "unlearned" | "learned" | "excluded";
+
 export type TypeUnit = {
-  unitId: number;
+  _id: string;
+  termNumber: number;
   term: string;
   definition: string;
 };
 
 export type UnitSetType = "cards";
 
-export type TypeUnitForm = {
+export type TypeUnitSetForm = {
   type: "SUCCESS" | "ERROR" | string;
   title: string;
   description: string;
