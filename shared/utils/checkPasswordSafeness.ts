@@ -9,16 +9,16 @@ const responses = {
     isPasswordSafe: false,
     isError: true,
     passwordTip:
-      "Password must contain at least one capital letter, number and special character",
+      "Пароль повинен містити принаймні одну велику літеру, цифру та спеціальний символ($,%,#...)",
   },
   NOT_LONG_ENOUGH_RESPONSE: {
     isPasswordSafe: false,
     isError: true,
-    passwordTip: "Password must be at least 8 characters",
+    passwordTip: "Пароль повинен складатися щонайменше з 8 символів",
   },
   SAFE_RESPONSE: {
     isPasswordSafe: true,
-    passwordTip: "Your password is perfect! :)",
+    passwordTip: "Ваш пароль ідеальний! :)",
     isError: false,
   },
 };

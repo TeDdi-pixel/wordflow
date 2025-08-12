@@ -1,6 +1,6 @@
 const CheckBox = ({ label }: { label: string }) => {
   return (
-    <div className="flex items-center gap-2 w-full">
+    <div className="flex items-center gap-2 w-full ml-0.5">
       <input
         type="checkbox"
         id="rememberMe"

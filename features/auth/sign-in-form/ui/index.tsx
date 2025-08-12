@@ -34,20 +34,20 @@ export const SignInForm = () => {
   return (
     <Form
       action={action}
-      className="flex flex-col gap-2 w-805:max-w-[272px] w-full"
+      className="flex flex-col md:items-center gap-2 md:max-w-[272px] w-full"
     >
       <AuthFormName icon={<IoEnter className="text-[20px]" />} name="login" />
-      <div className="flex gap-4">
+      <div className="flex gap-4 md:w-full">
         <AdditionalEntrance icon={<FaGoogle />} />
         <AdditionalEntrance icon={<FaGithub />} />
       </div>
 
-      <div>
+      <div className="md:w-full">
         <span className="flex items-center before:mr-2 before:flex-1 before:h-1 before:bg-foreground after:ml-2 after:flex-1 after:h-1 after:bg-foreground">
           or
         </span>
       </div>
-      <div className="flex flex-col gap-1">
+      <div className="flex flex-col gap-1 md:w-full">
         <Input
           placeholder="email"
           name="email"

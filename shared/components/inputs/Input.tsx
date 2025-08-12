@@ -66,7 +66,7 @@ const Input = memo(
     return (
       <div className="relative w-full rounded-default overflow-hidden transition-colors duration-200 border-2 border-transparent focus-within:border-background-accent">
         <input
-          className={`bg-input text-accent placeholder:text-text h-9 w-823:max-w-[272px] w-full rounded-default px-2 focus:outline-none ${
+          className={`bg-input text-accent placeholder:text-text h-9 w-full rounded-default px-2 focus:outline-none ${
             pending ? "animate-pulse" : ""
           }`}
           type={type}

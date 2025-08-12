@@ -1,18 +1,12 @@
-import { getSpecificUnitSet } from "../model/getSpecificUnitSet";
-import {
-  EmptyResults,
-  TableBottom,
-  TBody,
-  THead,
-} from "@/entities/result-table";
+import { TableBottom, TBody, THead } from "@/entities/result-table";
+import { TypeUserTermItem } from "@/shared/model/types/user-terms";
 
-export const ResultTable = async ({ unitSetId }: { unitSetId: string }) => {
-  const unitSet = await getSpecificUnitSet(unitSetId);
+type Props = {
+  unitSet: TypeUserTermItem[];
+  unitSetId: string;
+};
 
-  if (!unitSet || unitSet.length === 0) {
-    return <EmptyResults id={unitSetId} />;
-  }
-
+export const ResultTable = async ({ unitSetId, unitSet }: Props) => {
   const numberOfCorrectAnswers =
     unitSet?.filter((term) => term.status === "learned").length ?? 0;
 

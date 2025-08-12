@@ -16,7 +16,7 @@ export const Tip = memo(({ name }: Props) => {
 
   return (
     <div
-      className={`absolute top-1/2 right-[32px] px-4 pointer-events-none select-none bg-tip text-active-nav-text w-[305px] -translate-y-1/2 rounded-default transition-opacity ease-linear duration-150 z-50 ${
+      className={`absolute top-1/2 right-[32px] px-4 pointer-events-none select-none shadow-md bg-tip text-text-2 w-[305px] -translate-y-1/2 rounded-default transition-opacity ease-out duration-150 z-50 ${
         tipVisible ? "opacity-100" : "opacity-0"
       } ${isPasswordSafe ? "py-2.5" : "py-1"}`}
       style={{
