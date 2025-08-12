@@ -1,9 +1,7 @@
 "use client";
 
-import {
-  useUnitPracticeStore,
-  FeatureName,
-} from "@/store/useUnitPracticeStore";
+import { FeatureName } from "@/shared/model/types/practice-store";
+import { usePracticeStore } from "@/store/usePracticeStore";
 import { ReactNode, memo } from "react";
 
 type Props = {
@@ -13,7 +11,7 @@ type Props = {
 };
 
 const IconButton = memo(({ icon, onClick, featureName }: Props) => {
-  const toggleFeature = useUnitPracticeStore((state) => state.toggleFeature);
+  const toggleFeature = usePracticeStore((state) => state.toggleFeature);
 
   const handleClick = () => {
     toggleFeature(featureName);

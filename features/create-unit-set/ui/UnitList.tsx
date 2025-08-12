@@ -1,6 +1,5 @@
 "use client";
 
-import { TypeUnit } from "@/shared/model/types/unit";
 import { useTempStore } from "@/store/useTempStore";
 import {
   SortableContext,
@@ -60,7 +59,7 @@ export const UnitList = () => {
       onDragEnd={handleDragEnd}
     >
       <SortableContext items={itemIds} strategy={verticalListSortingStrategy}>
-        {items.map((unit: TypeUnit) => (
+        {items.map((unit) => (
           <UnitSetItem key={unit.itemNumber} itemNumber={unit.itemNumber} />
         ))}
       </SortableContext>

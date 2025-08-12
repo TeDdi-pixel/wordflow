@@ -1,4 +1,4 @@
-import { CheckStatus } from "@/store/useUnitPracticeStore";
+import { CheckStatus } from "@/shared/model/types/practice-store";
 
 export const getTermStatus = (checkStatus: CheckStatus) => {
   switch (checkStatus) {

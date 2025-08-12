@@ -1,4 +1,4 @@
-import { TypeCompletedUnit } from "@/store/useUnitPracticeStore";
+import { TypeCompletedUnit } from "@/shared/model/types/practice-store";
 import axios from "axios";
 
 export const updateUserResults = async (

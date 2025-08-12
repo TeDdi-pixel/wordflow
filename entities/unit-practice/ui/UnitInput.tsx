@@ -7,10 +7,10 @@ import { useCheckAnswer } from "@/shared/hooks/useCheckAnswer";
 import { TypeUnit } from "@/shared/model/types/unit";
 import { useTermsHandling } from "@/features/practice-session/model/useTermsHandling";
 import useSetInputData from "@/shared/hooks/useSetInputData";
-import { useUnitPracticeStore } from "@/store/useUnitPracticeStore";
+import { usePracticeStore } from "@/store/usePracticeStore";
 
 export const UnitInput = ({ units }: { units: TypeUnit[] }) => {
-  const checkStatus = useUnitPracticeStore((state) => state.checkStatus);
+  const checkStatus = usePracticeStore((state) => state.checkStatus);
   const { checkAnswer } = useCheckAnswer(units);
 
   const { isDisabled, onEnterPress } = useTermsHandling({

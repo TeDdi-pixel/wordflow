@@ -2,7 +2,7 @@
 
 import TipButton from "@/shared/components/buttons/TipButton";
 import { TypeUnit } from "@/shared/model/types/unit";
-import { useUnitPracticeStore } from "@/store/useUnitPracticeStore";
+import { usePracticeStore } from "@/store/usePracticeStore";
 import { useEffect } from "react";
 import { IoPlaySkipForward } from "react-icons/io5";
 
@@ -12,11 +12,11 @@ type Props = {
 };
 
 const SkipButton = ({ unitLength, units }: Props) => {
-  const skipTerm = useUnitPracticeStore((state) => state.skipTerm);
-  const setNextTerm = useUnitPracticeStore((state) => state.setNextTerm);
-  const setNewAnswer = useUnitPracticeStore((state) => state.setNewAnswer);
-  const currentUnitId = useUnitPracticeStore((state) => state.currentUnitId);
-  const isUnitSetCompleted = useUnitPracticeStore(
+  const skipTerm = usePracticeStore((state) => state.skipTerm);
+  const setNextTerm = usePracticeStore((state) => state.setNextTerm);
+  const setNewAnswer = usePracticeStore((state) => state.setNewAnswer);
+  const currentUnitId = usePracticeStore((state) => state.currentUnitId);
+  const isUnitSetCompleted = usePracticeStore(
     (state) => state.isUnitSetCompleted
   );
 

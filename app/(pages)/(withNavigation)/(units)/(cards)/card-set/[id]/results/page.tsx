@@ -1,7 +1,7 @@
 import MainTitle from "@/shared/components/MainTitle";
 import { ResultTable } from "@/widgets/result-table";
 
-const page = async ({ params }: { params: { id: string } }) => {
+const page = async ({ params }: { params: Promise<{ id: string }> }) => {
   const { id } = await params;
   return (
     <div className="max-w-[1000px] w-full">

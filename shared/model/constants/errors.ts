@@ -19,3 +19,10 @@ export const UNIT_SET_ERROR_MESSAGES = {
   MISSING_CARDS: "Додайте хоча б одну картку",
   SERVER_ERROR: "Виникла внутрішня помилка сервера",
 };
+
+export const PRACTICE_BOARD_ERROR_MESSAGES = {
+  UNIT_SET_NOT_FOUND: "UnitSet не знайдено",
+  SERVER_ERROR: "Виникла внутрішня помилка сервера",
+  INVALID_DATA: "Передані дані мають неправильну структуру",
+  DATABASE_UNAVAILABLE: "Сервіс тимчасово недоступний, спробуйте пізніше",
+};

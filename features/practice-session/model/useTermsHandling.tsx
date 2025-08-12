@@ -1,7 +1,7 @@
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect } from "react";
 import { updateUserResults } from "../api/updateUserResults";
-import { useUnitPracticeStore } from "@/store/useUnitPracticeStore";
+import { usePracticeStore } from "@/store/usePracticeStore";
 
 type Params = {
   checkAnswer: () => void;
@@ -10,11 +10,11 @@ type Params = {
 export const useTermsHandling = ({ checkAnswer }: Params) => {
   const router = useRouter();
 
-  const unitSetId = useUnitPracticeStore((state) => state.unitSetId);
-  const completedTerms = useUnitPracticeStore((state) => state.completedTerms);
-  const isPending = useUnitPracticeStore((state) => state.isPending);
-  const setIsPending = useUnitPracticeStore((state) => state.setIsPending);
-  const resetCompletedTerms = useUnitPracticeStore(
+  const unitSetId = usePracticeStore((state) => state.unitSetId);
+  const completedTerms = usePracticeStore((state) => state.completedTerms);
+  const isPending = usePracticeStore((state) => state.isPending);
+  const setIsPending = usePracticeStore((state) => state.setIsPending);
+  const resetCompletedTerms = usePracticeStore(
     (state) => state.resetCompletedTerms
   );
 

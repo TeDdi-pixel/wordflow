@@ -1,5 +1,5 @@
 import { useEffect, useCallback, useMemo } from "react";
-import { useUnitPracticeStore } from "@/store/useUnitPracticeStore";
+import { usePracticeStore } from "@/store/usePracticeStore";
 import { TypeUnit } from "@/shared/model/types/unit";
 
 type Params = {
@@ -8,20 +8,14 @@ type Params = {
 };
 
 export const useHandleNavigation = ({ units, unitSetId }: Params) => {
-  const termNumber = useUnitPracticeStore((state) => state.termNumber);
-  const setUnitSetId = useUnitPracticeStore((state) => state.setUnitSetId);
-  const setCurrentUnitId = useUnitPracticeStore(
-    (state) => state.setCurrentUnitId
-  );
-  const setNewAnswer = useUnitPracticeStore((state) => state.setNewAnswer);
-  const setPrevTerm = useUnitPracticeStore((state) => state.setPrevTerm);
-  const setNextTerm = useUnitPracticeStore((state) => state.setNextTerm);
-  const resetTermNumber = useUnitPracticeStore(
-    (state) => state.resetTermNumber
-  );
-  const resetCheckStatus = useUnitPracticeStore(
-    (state) => state.resetCheckStatus
-  );
+  const termNumber = usePracticeStore((state) => state.termNumber);
+  const setUnitSetId = usePracticeStore((state) => state.setUnitSetId);
+  const setCurrentUnitId = usePracticeStore((state) => state.setCurrentUnitId);
+  const setNewAnswer = usePracticeStore((state) => state.setNewAnswer);
+  const setPrevTerm = usePracticeStore((state) => state.setPrevTerm);
+  const setNextTerm = usePracticeStore((state) => state.setNextTerm);
+  const resetTermNumber = usePracticeStore((state) => state.resetTermNumber);
+  const resetCheckStatus = usePracticeStore((state) => state.resetCheckStatus);
 
   useEffect(() => {
     setUnitSetId(unitSetId);

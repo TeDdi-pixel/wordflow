@@ -1,22 +1,30 @@
 import createDbConnection from "@/shared/lib/mongoose";
 import { getUserId } from "@/shared/lib/session";
+import { PRACTICE_BOARD_ERROR_MESSAGES } from "@/shared/model/constants/errors";
 import UnitSet from "@/shared/model/schemas/UnitSet";
 import UserTerms from "@/shared/model/schemas/UserTerms";
+import { TypeCompletedUnit } from "@/shared/model/types/practice-store";
 import { TypeUnitSet } from "@/shared/model/types/unit";
 import { getTermStatus } from "@/shared/utils/unit-set/getTermStatus";
-import { TypeCompletedUnit } from "@/store/useUnitPracticeStore";
 import { NextRequest, NextResponse } from "next/server";
+
+const ERRORS = PRACTICE_BOARD_ERROR_MESSAGES;
 
 export const POST = async (
   req: NextRequest,
-  { params }: { params: { unitSetId: string } }
+  { params }: { params: Promise<{ unitSetId: string }> }
 ) => {
   await createDbConnection();
   try {
     const { unitSetId } = await params;
     const { completedTerms } = await req.json();
 
-    if (!completedTerms || completedTerms.length === 0) return;
+    if (!Array.isArray(completedTerms) || completedTerms.length === 0) {
+      return NextResponse.json(
+        { message: ERRORS.INVALID_DATA },
+        { status: 400 }
+      );
+    }
 
     const relatedUserId = await getUserId();
 
@@ -24,7 +32,7 @@ export const POST = async (
 
     if (!unitSetDoc) {
       return NextResponse.json(
-        { message: "UnitSet not found" },
+        { message: ERRORS.UNIT_SET_NOT_FOUND },
         { status: 404 }
       );
     }
@@ -56,10 +64,25 @@ export const POST = async (
       { status: 200 }
     );
   } catch (error: unknown) {
-    console.log(error);
-    return NextResponse.json(
-      { message: "Error updating status", error },
-      { status: 500 }
-    );
+    let status = 500;
+    let message = "Internal server error";
+    const errorDetails = error instanceof Error ? error.message : String(error);
+
+    const normalized = errorDetails.toLowerCase();
+    if (normalized.includes("unitset not found")) {
+      status = 404;
+      message = ERRORS.UNIT_SET_NOT_FOUND;
+    } else if (
+      normalized.includes("validation failed") ||
+      normalized.includes("cast to objectid failed")
+    ) {
+      status = 400;
+      message = ERRORS.INVALID_DATA;
+    } else if (normalized.includes("database unavailable")) {
+      status = 503;
+      message = ERRORS.DATABASE_UNAVAILABLE;
+    }
+
+    return NextResponse.json({ message, error: errorDetails }, { status });
   }
 };

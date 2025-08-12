@@ -1,9 +1,9 @@
 "use client";
 
-import { useUnitPracticeStore } from "@/store/useUnitPracticeStore";
+import { usePracticeStore } from "@/store/usePracticeStore";
 
 const TipIcon = () => {
-  const isFeatureActive = useUnitPracticeStore((state) =>
+  const isFeatureActive = usePracticeStore((state) =>
     state.isFeatureActive("tip")
   );
   return (

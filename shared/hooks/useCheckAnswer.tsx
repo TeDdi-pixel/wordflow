@@ -1,28 +1,24 @@
 "use client";
 
-import {
-  TypeCompletedUnit,
-  useUnitPracticeStore,
-} from "@/store/useUnitPracticeStore";
+import { usePracticeStore } from "@/store/usePracticeStore";
 import { distance } from "fastest-levenshtein";
 import { TypeUnit } from "@/shared/model/types/unit";
 import { useEffect, useRef } from "react";
+import { TypeCompletedUnit } from "../model/types/practice-store";
 
 const MAX_ALLOWED_DISTANCE = 2;
 
 export const useCheckAnswer = (units: TypeUnit[]) => {
-  const newAnswer = useUnitPracticeStore((state) => state.newAnswer);
-  const resetNewAnswer = useUnitPracticeStore((state) => state.resetNewAnswer);
-  const termNumber = useUnitPracticeStore((state) => state.termNumber);
-  const setNextTerm = useUnitPracticeStore((state) => state.setNextTerm);
-  const completedTerms = useUnitPracticeStore((state) => state.completedTerms);
-  const setCompletedTerms = useUnitPracticeStore(
+  const newAnswer = usePracticeStore((state) => state.newAnswer);
+  const resetNewAnswer = usePracticeStore((state) => state.resetNewAnswer);
+  const termNumber = usePracticeStore((state) => state.termNumber);
+  const setNextTerm = usePracticeStore((state) => state.setNextTerm);
+  const completedTerms = usePracticeStore((state) => state.completedTerms);
+  const setCompletedTerms = usePracticeStore(
     (state) => state.setCompletedTerms
   );
-  const setCheckStatus = useUnitPracticeStore((state) => state.setCheckStatus);
-  const resetCheckStatus = useUnitPracticeStore(
-    (state) => state.resetCheckStatus
-  );
+  const setCheckStatus = usePracticeStore((state) => state.setCheckStatus);
+  const resetCheckStatus = usePracticeStore((state) => state.resetCheckStatus);
 
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 

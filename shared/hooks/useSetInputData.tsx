@@ -1,19 +1,15 @@
 "use client";
 
-import { useUnitPracticeStore } from "@/store/useUnitPracticeStore";
+import { usePracticeStore } from "@/store/usePracticeStore";
 import { useEffect } from "react";
 
 const useSetInputData = () => {
-  const completedTerms = useUnitPracticeStore((state) => state.completedTerms);
-  const currentUnitId = useUnitPracticeStore((state) => state.currentUnitId);
-  const setOldAnswer = useUnitPracticeStore((state) => state.setOldAnswer);
-  const setCheckStatus = useUnitPracticeStore((state) => state.setCheckStatus);
-  const resetCheckStatus = useUnitPracticeStore(
-    (state) => state.resetCheckStatus
-  );
-  const setHasNewAnswer = useUnitPracticeStore(
-    (state) => state.setHasNewAnswer
-  );
+  const completedTerms = usePracticeStore((state) => state.completedTerms);
+  const currentUnitId = usePracticeStore((state) => state.currentUnitId);
+  const setOldAnswer = usePracticeStore((state) => state.setOldAnswer);
+  const setCheckStatus = usePracticeStore((state) => state.setCheckStatus);
+  const resetCheckStatus = usePracticeStore((state) => state.resetCheckStatus);
+  const setHasNewAnswer = usePracticeStore((state) => state.setHasNewAnswer);
 
   useEffect(() => {
     setHasNewAnswer(false);

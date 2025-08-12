@@ -1,9 +1,9 @@
 "use client";
 
-import { useUnitPracticeStore } from "@/store/useUnitPracticeStore";
+import { usePracticeStore } from "@/store/usePracticeStore";
 
 const SoundIcon = () => {
-  const isFeatureActive = useUnitPracticeStore((state) =>
+  const isFeatureActive = usePracticeStore((state) =>
     state.isFeatureActive("sound")
   );
   return (

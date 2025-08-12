@@ -3,7 +3,7 @@ import {
   features,
 } from "@/features/practice-session/config/features";
 import IconButton from "@/shared/components/buttons/IconButton";
-import { FeatureName } from "@/store/useUnitPracticeStore";
+import { FeatureName } from "@/shared/model/types/practice-store";
 
 export const ActionBar = () => {
   return (

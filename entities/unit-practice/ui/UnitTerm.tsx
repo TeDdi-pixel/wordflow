@@ -1,14 +1,12 @@
 "use client";
 
 import { TypeUnit } from "@/shared/model/types/unit";
-import { useUnitPracticeStore } from "@/store/useUnitPracticeStore";
+import { usePracticeStore } from "@/store/usePracticeStore";
 import { useEffect } from "react";
 
 export const UnitTerm = ({ units }: { units: TypeUnit[] }) => {
-  const termNumber = useUnitPracticeStore((state) => state.termNumber);
-  const setCurrentUnitId = useUnitPracticeStore(
-    (state) => state.setCurrentUnitId
-  );
+  const termNumber = usePracticeStore((state) => state.termNumber);
+  const setCurrentUnitId = usePracticeStore((state) => state.setCurrentUnitId);
 
   useEffect(() => {
     setCurrentUnitId(units[termNumber]._id);

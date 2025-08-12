@@ -1,4 +1,4 @@
-import { useUnitPracticeStore } from "@/store/useUnitPracticeStore";
+import { usePracticeStore } from "@/store/usePracticeStore";
 
 const PracticeInput = ({
   handleKeyDown,
@@ -7,13 +7,11 @@ const PracticeInput = ({
   handleKeyDown: (e: React.KeyboardEvent) => void;
   disabledInput: boolean;
 }) => {
-  const setNewAnswer = useUnitPracticeStore((state) => state.setNewAnswer);
-  const newAnswer = useUnitPracticeStore((state) => state.newAnswer);
-  const oldAnswer = useUnitPracticeStore((state) => state.oldAnswer);
-  const hasNewAnswer = useUnitPracticeStore((state) => state.hasNewAnswer);
-  const resetCheckStatus = useUnitPracticeStore(
-    (state) => state.resetCheckStatus
-  );
+  const setNewAnswer = usePracticeStore((state) => state.setNewAnswer);
+  const newAnswer = usePracticeStore((state) => state.newAnswer);
+  const oldAnswer = usePracticeStore((state) => state.oldAnswer);
+  const hasNewAnswer = usePracticeStore((state) => state.hasNewAnswer);
+  const resetCheckStatus = usePracticeStore((state) => state.resetCheckStatus);
 
   return (
     <input

@@ -2,7 +2,7 @@ import BookmarkIcon from "@/shared/icons/unit/BookmarkIcon";
 import SoundIcon from "@/shared/icons/unit/SoundIcon";
 import StarIcon from "@/shared/icons/unit/StarIcon";
 import TipIcon from "@/shared/icons/unit/TipIcon";
-import { FeatureName } from "@/store/useUnitPracticeStore";
+import { FeatureName } from "@/shared/model/types/practice-store";
 import { ReactNode } from "react";
 
 export type FeatureConfig = {
