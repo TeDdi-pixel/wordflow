@@ -1,12 +1,22 @@
 import mongoose from "mongoose";
 
-const createDbConnection = async () => {
-  if (mongoose.connection.readyState === 0) {
-    if (!process.env.MONGO_URI) {
-      throw new Error("MONGO_URI is not defined");
-    }
-    await mongoose.connect(process.env.MONGO_URI);
-  }
-};
+const MONGO_URI = process.env.MONGO_URI!;
 
-export default createDbConnection;
+if (!MONGO_URI) {
+  throw new Error("MONGO_URI is not defined");
+}
+
+let cached = (global as any).mongoose;
+
+if (!cached) {
+  cached = (global as any).mongoose = { conn: null, promise: null };
+}
+
+export default async function createDbConnection() {
+  if (cached.conn) return cached.conn;
+  if (!cached.promise) {
+    cached.promise = mongoose.connect(MONGO_URI).then((mongoose) => mongoose);
+  }
+  cached.conn = await cached.promise;
+  return cached.conn;
+}
