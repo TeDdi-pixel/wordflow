@@ -1,3 +1,4 @@
+import { EmptyPage } from "@/entities/result-table";
 import { UnitCard } from "@/entities/unit-card";
 import MainTitle from "@/shared/components/MainTitle";
 import { checkForSession, getUserId } from "@/shared/lib/session";
@@ -31,6 +32,15 @@ const History = async () => {
   const unitSets = await UnitSet.find({
     _id: { $in: unitSetIdsArray },
   });
+
+  if (!unitSets)
+    return (
+      <EmptyPage
+        text="Ви ще не маєте жожної історії взаємодій"
+        buttonText="Перейти на головну"
+        path="/"
+      />
+    );
 
   return (
     <div className="max-w-[1146px] w-full px-[16px] md:px-[32px] mx-auto h-full">
