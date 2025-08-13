@@ -33,7 +33,7 @@ const History = async () => {
     _id: { $in: unitSetIdsArray },
   });
 
-  if (!unitSets)
+  if (!unitSets || unitSets.length === 0)
     return (
       <EmptyPage
         text="Ви ще не маєте жожної історії взаємодій"
