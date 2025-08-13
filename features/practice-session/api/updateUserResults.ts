@@ -13,7 +13,7 @@ export const updateUserResults = async (
     });
     return true;
   } catch (error) {
-    console.error("Ошибка при сохранении результатов:", error);
+    console.error("Помилка при збереженні результатів:", error);
     return false;
   }
 };

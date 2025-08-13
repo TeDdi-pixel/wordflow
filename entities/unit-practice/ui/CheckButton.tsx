@@ -17,7 +17,7 @@ const CheckButton = ({ units }: { units: TypeUnit[] }) => {
     <button
       type="button"
       onClick={saveResults}
-      className="relative group cursor-pointer bg-foreground hover:bg-background-accent w-full h-[44px] py-[16px] px-[24px] rounded-default flex justify-center items-center overflow-hidden unit-button-shadow transition-all duration-150 ease-out"
+      className="relative group cursor-pointer bg-foreground hover:bg-button-accent w-full h-[44px] py-[16px] px-[24px] rounded-default flex justify-center items-center overflow-hidden unit-button-shadow transition-all duration-150 ease-out"
     >
       <div className="z-10 flex items-center justify-center gap-2 transition-all duration-150 ease-out group-hover:text-accent">
         <div className="w-[24px] h-[24px] flex">

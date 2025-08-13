@@ -6,28 +6,39 @@ import { memo } from "react";
 import { LuTrash2 } from "react-icons/lu";
 
 type Props = {
-  itemNumber: number;
+  termNumber: number;
   setActivatorNodeRef?: (element: HTMLElement | null) => void;
   attributes?: Record<string, any>;
   listeners?: Record<string, any>;
+  unitId: string;
 };
 
-export const UnitSetItemHeader = memo(
-  ({ itemNumber, setActivatorNodeRef, attributes, listeners }: Props) => {
+export const UnitHeader = memo(
+  ({
+    termNumber,
+    unitId,
+    setActivatorNodeRef,
+    attributes,
+    listeners,
+  }: Props) => {
     const removeUnit = useTempStore((state) => state.removeUnit);
+    const setCurrentUnitId = useTempStore((state) => state.setCurrentUnitId);
 
     const handleClick = () => {
-      removeUnit(itemNumber);
+      setCurrentUnitId(unitId);
+      removeUnit();
     };
 
     return (
       <div className="relative w-full flex items-center justify-between mb-2">
-        #{itemNumber}
+        #{termNumber}
         <div className="flex items-center gap-4">
           <span
             ref={setActivatorNodeRef}
             {...attributes}
             {...listeners}
+            onMouseDown={() => setCurrentUnitId(unitId)}
+            onMouseUp={() => setCurrentUnitId("")}
             suppressHydrationWarning
             className="text-accent-text cursor-grab active:cursor-grabbing hover:text-text-2 transition-colors ease-out duration-150"
           >

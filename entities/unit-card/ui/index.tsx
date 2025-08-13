@@ -1,7 +1,8 @@
 import { getTermsLabel } from "@/shared/utils/getTermsLabel";
 import { unitTypeIcon } from "@/shared/utils/getUnitTypeIcon";
 import { UnitSetType } from "@/shared/model/types/unit";
-import UnitSetOpenButton from "@/shared/components/buttons/UnitSetOpenButton";
+import Link from "next/link";
+import { FiExternalLink } from "react-icons/fi";
 
 type Props = {
   unitSetId: string;
@@ -21,7 +22,10 @@ export const UnitCard = ({
   description,
 }: Props) => {
   return (
-    <div className="group relative max-w-[371px] h-[210px] rounded-default w-full flex flex-col justify-between bg-foreground border-2 border-transparent hover:border-accent p-[16px] text-[14px] overflow-hidden transition-colors ease-out duration-150">
+    <Link
+      href={`/card-set/${unitSetId}`}
+      className="group relative max-w-[371px] h-[210px] rounded-default w-full flex flex-col justify-between bg-foreground border-2 border-transparent hover:border-accent p-[16px] text-[14px] overflow-hidden transition-colors ease-out duration-150"
+    >
       <span className="absolute top-0 right-0 w-[16px] group-hover:translate-0 translate-x-[16px] -translate-y-[16px] h-[16px] bg-background-accent rounded-[2px] transition-transform ease-out duration-150"></span>
       <div className="flex flex-col gap-[16px]">
         <h4 className="text-[18px] truncate">{title}</h4>
@@ -37,8 +41,8 @@ export const UnitCard = ({
           <span>{unitTypeIcon(unitSetType)}</span>
           <span>by {authorsName}</span>
         </div>
-        <UnitSetOpenButton id={unitSetId} />
+        <FiExternalLink className="cursor-pointer w-[24px] h-[24px] hover:text-text-2 group-hover:translate-x-0 translate-x-[38px] transition-all ease-out duration-150" />
       </div>
-    </div>
+    </Link>
   );
 };

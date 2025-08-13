@@ -1,4 +1,4 @@
 export { TBody } from "./ui/TBody";
 export { THead } from "./ui/THead";
 export { TableBottom } from "./ui/TableBottom";
-export { EmptyResults } from "./ui/EmptyResults";
+export { EmptyPage } from "./ui/EmptyPage";

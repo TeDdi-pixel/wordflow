@@ -5,6 +5,7 @@ import UnitSet from "@/shared/model/schemas/UnitSet";
 import UserTerms from "@/shared/model/schemas/UserTerms";
 import { TypeCompletedUnit } from "@/shared/model/types/practice-store";
 import { TypeUnitSet } from "@/shared/model/types/unit";
+import { TypeUserTermItem } from "@/shared/model/types/user-terms";
 import { getTermStatus } from "@/shared/utils/unit-set/getTermStatus";
 import { NextRequest, NextResponse } from "next/server";
 
@@ -15,6 +16,7 @@ export const POST = async (
   { params }: { params: Promise<{ unitSetId: string }> }
 ) => {
   await createDbConnection();
+
   try {
     const { unitSetId } = await params;
     const { completedTerms } = await req.json();
@@ -29,7 +31,6 @@ export const POST = async (
     const relatedUserId = await getUserId();
 
     const unitSetDoc = await UnitSet.findById(unitSetId).lean<TypeUnitSet>();
-
     if (!unitSetDoc) {
       return NextResponse.json(
         { message: ERRORS.UNIT_SET_NOT_FOUND },
@@ -37,7 +38,7 @@ export const POST = async (
       );
     }
 
-    const updatedTerms = unitSetDoc.units
+    const updatedTermsForUnitSet = unitSetDoc.units
       .map((term) => {
         const completedTerm = completedTerms.find(
           (t: TypeCompletedUnit) => t.termId === term._id.toString()
@@ -54,11 +55,26 @@ export const POST = async (
       })
       .filter(Boolean);
 
-    await UserTerms.findOneAndUpdate(
-      { relatedUserId },
-      { $set: { terms: updatedTerms } },
-      { upsert: true, new: true, runValidators: true }
-    );
+    const userTermsDoc = await UserTerms.findOne({ relatedUserId });
+
+    if (!userTermsDoc) {
+      const newDoc = new UserTerms({
+        relatedUserId,
+        terms: updatedTermsForUnitSet,
+      });
+      await newDoc.save();
+    } else {
+      const newTermsArray = userTermsDoc.terms
+        .filter(
+          (term: TypeUserTermItem) => term.unitSetId.toString() !== unitSetId
+        )
+        .concat(updatedTermsForUnitSet);
+
+      userTermsDoc.terms = newTermsArray;
+
+      await userTermsDoc.save();
+    }
+
     return NextResponse.json(
       { message: "Status updated successfully" },
       { status: 200 }

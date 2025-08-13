@@ -3,13 +3,13 @@
 import MainTitle from "@/shared/components/MainTitle";
 import { useActionState } from "react";
 import { TypeUnitSetForm, UnitSetType } from "@/shared/model/types/unit";
-import { createUnitSet } from "../action/createUnitSet";
 import Form from "next/form";
-import { UnitList } from "./UnitList";
 import { usePathname } from "next/navigation";
 import Error from "@/shared/components/errors/Error";
 import SubmitButton from "@/shared/components/buttons/SubmitButton";
 import { UnitSetDescription, UnitSetTitleInput } from "@/entities/unit-set";
+import { createUnitSet } from "@/features/create-unit-set/action/createUnitSet";
+import { UnitList } from "@/features/create-unit-set";
 
 const typeMap = new Map<string, string>([["/create-card-set", "cards"]]);
 

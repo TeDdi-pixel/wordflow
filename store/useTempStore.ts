@@ -1,116 +1,114 @@
+import { TempStore } from "@/shared/model/types/temp-store";
+import { arrayMove } from "@dnd-kit/sortable";
 import { create } from "zustand";
 import { subscribeWithSelector } from "zustand/middleware";
 
-type TypeUnit = {
-  itemNumber: number;
-  term: string;
-  definition: string;
-};
-
-const initialState: Pick<
+const initialUnitSet: Pick<
   TempStore,
-  "unitSetTitle" | "unitSetDescription" | "items"
+  "unitSetTitle" | "unitSetDescription" | "units"
 > = {
   unitSetTitle: "",
   unitSetDescription: "",
-  items: [
-    { itemNumber: 1, term: "", definition: "" },
-    { itemNumber: 2, term: "", definition: "" },
+  units: [
+    { _id: crypto.randomUUID(), termNumber: 1, term: "", definition: "" },
+    { _id: crypto.randomUUID(), termNumber: 2, term: "", definition: "" },
   ],
-};
-
-type TempStore = {
-  unitSetTitle: string;
-  unitSetDescription: string;
-  items: TypeUnit[];
-  setUnitSetTitle: (title: string) => void;
-  setUnitSetDescription: (description: string) => void;
-  setUnitTerm: (itemNumber: number, term: string) => void;
-  setUnitDefinition: (itemNumber: number, description: string) => void;
-  addUnit: (currentUnitId: number) => void;
-  removeUnit: (itemNumber: number) => void;
-  reorderUnits: (oldIndex: number, newIndex: number) => void;
-  resetTempStore: () => void;
 };
 
 const MAX_ITEMS_LENGTH = 30;
 
 export const useTempStore = create<TempStore>()(
   subscribeWithSelector((set, get) => ({
+    currentUnitId: "",
     unitSetTitle: "",
     unitSetDescription: "",
-    items: [
-      { itemNumber: 1, term: "", definition: "" },
-      { itemNumber: 2, term: "", definition: "" },
+    units: [
+      { _id: crypto.randomUUID(), termNumber: 1, term: "", definition: "" },
+      { _id: crypto.randomUUID(), termNumber: 2, term: "", definition: "" },
     ],
 
+    setCurrentUnitId: (id: string) => set({ currentUnitId: id }),
     setUnitSetTitle: (title: string) => set({ unitSetTitle: title }),
 
     setUnitSetDescription: (description: string) =>
       set({ unitSetDescription: description }),
 
-    setUnitTerm: (itemNumber: number, term: string) => {
+    setUnitTerm: (term: string) => {
       set((state) => ({
-        items: state.items.map((item) =>
-          item.itemNumber === itemNumber ? { ...item, term } : item
+        units: state.units.map((unit) =>
+          unit._id === state.currentUnitId ? { ...unit, term } : unit
         ),
       }));
     },
 
-    setUnitDefinition: (itemNumber: number, definition: string) => {
+    setUnitDefinition: (definition: string) => {
       set((state) => ({
-        items: state.items.map((item) =>
-          item.itemNumber === itemNumber ? { ...item, definition } : item
+        units: state.units.map((unit) =>
+          unit._id === state.currentUnitId ? { ...unit, definition } : unit
         ),
       }));
     },
 
-    addUnit: (currentUnitId: number) => {
+    addUnit: () => {
       set((state) => {
-        if (state.items.length >= MAX_ITEMS_LENGTH) return {};
+        if (state.units.length >= MAX_ITEMS_LENGTH) return {};
 
-        const reindexedItems = state.items
-          .toSpliced(currentUnitId, 0, {
-            itemNumber: 0,
+        const insertAt = (() => {
+          const currentIdUnitId = state.currentUnitId;
+          if (!currentIdUnitId) return state.units.length;
+
+          const foundIndex = state.units.findIndex(
+            (u) => u._id === currentIdUnitId
+          );
+          return foundIndex === -1 ? state.units.length : foundIndex + 1;
+        })();
+
+        const reindexedItems = state.units
+          .toSpliced(insertAt, 0, {
+            _id: crypto.randomUUID(),
+            termNumber: 0,
             term: "",
             definition: "",
           })
-          .map((item, index) => ({
-            ...item,
-            itemNumber: index + 1,
+          .map((unit, index) => ({
+            ...unit,
+            termNumber: index + 1,
           }));
 
-        return { items: reindexedItems };
+        return { units: reindexedItems, currentUnitId: "" };
       });
     },
-    removeUnit: (itemNumber: number) => {
-      const items = get().items;
+    removeUnit: () =>
+      set((state) => {
+        const units = get().units;
 
-      if (items.length <= 1) return {};
+        if (units.length <= 1) {
+          return { units, currentUnitId: "" };
+        }
 
-      const filtered = items.filter((item) => item.itemNumber !== itemNumber);
-      const reindexed = filtered.map((item, index) => ({
-        ...item,
-        itemNumber: index + 1,
-      }));
-      set({ items: reindexed });
-    },
+        const filtered = units.filter(
+          (unit) => unit._id !== state.currentUnitId
+        );
+        const reindexed = filtered.map((unit, index) => ({
+          ...unit,
+          termNumber: index + 1,
+        }));
+        return { units: reindexed, currentUnitId: "" };
+      }),
     reorderUnits: (oldIndex: number, newIndex: number) => {
       set((state) => {
-        const newItems = [...state.items];
-        const [reorderedItem] = newItems.splice(oldIndex, 1);
-        newItems.splice(newIndex, 0, reorderedItem);
+        const newItems = arrayMove(state.units, oldIndex, newIndex).map(
+          (unit, index) => ({
+            ...unit,
+            termNumber: index + 1,
+          })
+        );
 
-        const reindexedItems = newItems.map((item, index) => ({
-          ...item,
-          itemNumber: index + 1,
-        }));
-
-        return { items: reindexedItems };
+        return { units: newItems };
       });
     },
     resetTempStore: () => {
-      set({ ...initialState });
+      set({ ...initialUnitSet });
     },
   }))
 );

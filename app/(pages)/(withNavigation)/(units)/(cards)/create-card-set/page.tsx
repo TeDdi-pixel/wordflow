@@ -1,4 +1,4 @@
-import { UnitSetForm } from "@/features/create-unit-set";
+import { UnitSetForm } from "@/widgets/unit-set-form";
 
 const CreateCardSet = () => {
   return <UnitSetForm />;
