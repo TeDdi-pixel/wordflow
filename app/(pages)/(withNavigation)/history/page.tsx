@@ -1,4 +1,3 @@
-import { EmptyPage } from "@/entities/result-table";
 import { UnitCard } from "@/entities/unit-card";
 import MainTitle from "@/shared/components/MainTitle";
 import { checkForSession, getUserId } from "@/shared/lib/session";
@@ -7,7 +6,7 @@ import UserTerms from "@/shared/model/schemas/UserTerms";
 import { TypeUnitSet } from "@/shared/model/types/unit";
 import { TypeUserTerms } from "@/shared/model/types/user-terms";
 import mongoose from "mongoose";
-import { redirect } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 
 const History = async () => {
   const isSession = await checkForSession();
@@ -33,14 +32,7 @@ const History = async () => {
     _id: { $in: unitSetIdsArray },
   });
 
-  if (!unitSets || unitSets.length === 0)
-    return (
-      <EmptyPage
-        text="Ви ще не маєте жожної історії взаємодій"
-        buttonText="Перейти на головну"
-        path="/"
-      />
-    );
+  if (!unitSets || unitSets.length === 0) notFound();
 
   return (
     <div className="max-w-[1146px] w-full px-[16px] md:px-[32px] mx-auto h-full">

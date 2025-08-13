@@ -1,6 +1,6 @@
-import { EmptyPage } from "@/entities/result-table";
 import { getUnitSetForClient } from "@/shared/utils/unit-set/getUnitSetForClient";
 import { PracticeBoardBlock } from "@/widgets/practice-board";
+import { notFound } from "next/navigation";
 
 const CardSet = async ({
   params,
@@ -10,15 +10,7 @@ const CardSet = async ({
   const { unitSetId } = await params;
   const unitSet = await getUnitSetForClient(unitSetId);
 
-  if (!unitSet || !unitSetId) {
-    return (
-      <EmptyPage
-        text="Виникла помилка із завантаженням юніта"
-        buttonText="Перейти на головну"
-        path="/"
-      />
-    );
-  }
+  if (!unitSet || !unitSetId) notFound();
 
   const units = unitSet.units;
 

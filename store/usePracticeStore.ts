@@ -33,7 +33,7 @@ export const usePracticeStore = create<PracticeStore>((set, get) => ({
 
   setNewAnswer: (value: string) =>
     set({
-      newAnswer: value.toLowerCase().trim(),
+      newAnswer: value,
       hasNewAnswer: true,
     }),
 
