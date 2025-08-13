@@ -1,4 +1,3 @@
-import { EmptyPage } from "@/entities/result-table";
 import MainTitle from "@/shared/components/MainTitle";
 import { ResultTable } from "@/widgets/result-table";
 import { getSpecificUnitSet } from "@/widgets/result-table/model/getSpecificUnitSet";

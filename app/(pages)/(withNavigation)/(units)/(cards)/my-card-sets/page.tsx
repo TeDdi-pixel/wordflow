@@ -1,4 +1,3 @@
-import { EmptyPage } from "@/entities/result-table";
 import { UnitCard } from "@/entities/unit-card";
 import { getUserId } from "@/shared/lib/session";
 import UnitSet from "@/shared/model/schemas/UnitSet";
