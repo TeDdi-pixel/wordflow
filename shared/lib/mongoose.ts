@@ -6,11 +6,15 @@ if (!MONGO_URI) {
   throw new Error("MONGO_URI is not defined");
 }
 
-let cached = (global as any).mongoose;
+let cached: {
+  conn: mongoose.Mongoose | null;
+  promise: Promise<mongoose.Mongoose> | null;
+};
 
-if (!cached) {
-  cached = (global as any).mongoose = { conn: null, promise: null };
+if (!(global as any).mongoose) {
+  (global as any).mongoose = { conn: null, promise: null };
 }
+cached = (global as any).mongoose;
 
 export default async function createDbConnection() {
   if (cached.conn) return cached.conn;

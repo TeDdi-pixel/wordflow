@@ -1,12 +1,12 @@
 "use server";
 
 import { withError } from "@/shared/utils/withError";
-import createDbConnection from "@/shared/lib/mongoose";
 import { getUserId } from "@/shared/lib/session";
 import { UNIT_SET_ERROR_MESSAGES } from "@/shared/model/constants/errors";
 import UnitSetSchema from "@/shared/model/schemas/UnitSet";
 import User from "@/shared/model/schemas/User";
 import { TypeUnit, TypeUnitSetForm } from "@/shared/model/types/unit";
+import createDbConnection from "@/shared/lib/mongoose";
 
 const ERRORS = UNIT_SET_ERROR_MESSAGES;
 

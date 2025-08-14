@@ -4,9 +4,9 @@ import User from "../../../../shared/model/schemas/User";
 import bcrypt from "bcrypt";
 import { AUTH_ERROR_MESSAGES } from "@/shared/model/constants/errors";
 import { EMAIL_REGEX, SALT_ROUNDS } from "@/shared/model/constants/variables";
-import createDbConnection from "@/shared/lib/mongoose";
 import { createSession } from "@/shared/lib/session";
 import { InitialRegForm } from "@/shared/model/types/auth";
+import createDbConnection from "@/shared/lib/mongoose";
 
 const userBackUpFields = (formData: InitialRegForm) => ({
   ...formData,

@@ -1,6 +1,6 @@
-import createDbConnection from "@/shared/lib/mongoose";
 import User from "@/shared/model/schemas/User";
 import { cache } from "react";
+import createDbConnection from "../mongoose";
 
 export const getUserName = cache(async (userId: string) => {
   await createDbConnection();

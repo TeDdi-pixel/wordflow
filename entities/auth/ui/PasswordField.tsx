@@ -15,7 +15,7 @@ export const PasswordField = ({
   pending,
   defaultValue,
   name,
-  placeholder = "password",
+  placeholder = "пароль",
   autoComplete = "new-password",
   isLoginPassword = false,
 }: TypeProps) => {

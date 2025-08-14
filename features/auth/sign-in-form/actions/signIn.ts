@@ -2,11 +2,11 @@
 
 import User from "../../../../shared/model/schemas/User";
 import bcrypt from "bcrypt";
-import createDbConnection from "@/shared/lib/mongoose";
 import { EMAIL_REGEX } from "@/shared/model/constants/variables";
 import { AUTH_ERROR_MESSAGES } from "@/shared/model/constants/errors";
 import { createSession } from "@/shared/lib/session";
 import { InitialLoginForm } from "@/shared/model/types/auth";
+import createDbConnection from "@/shared/lib/mongoose";
 
 const userBackUpFields = (formData: InitialLoginForm) => ({
   ...formData,

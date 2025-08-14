@@ -42,7 +42,7 @@ export const SignUpForm = () => {
         name="register"
       />
       <Input
-        placeholder="username"
+        placeholder="ім'я користувача"
         name="username"
         type="text"
         defaultValue={state.username}
@@ -58,7 +58,7 @@ export const SignUpForm = () => {
       />
       <Input
         pending={pending}
-        placeholder="verify email"
+        placeholder="підтвердіть email"
         name="verifyEmail"
         type="email"
         defaultValue={state.verifyEmail}
@@ -73,11 +73,11 @@ export const SignUpForm = () => {
         defaultValue={state.verifyPassword}
         pending={pending}
         name="verifyPassword"
-        placeholder="verify password"
+        placeholder="підтвердіть пароль"
       />
       {state?.message ? <AuthError message={state?.message} /> : null}
       <SubmitButton
-        text="sign up"
+        text="зареєструватися"
         icon={<FaUserPlus className="text-[20px]" />}
       />
     </Form>

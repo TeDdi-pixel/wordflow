@@ -5,7 +5,7 @@ import Form from "next/form";
 import { IoEnter } from "react-icons/io5";
 import { AdditionalEntrance } from "./AdditionalEntrance";
 import { FaGoogle, FaGithub } from "react-icons/fa";
-import { signIn } from "../actions/sighIn";
+import { signIn } from "../actions/signIn";
 import CheckBox from "@/shared/components/CheckBox";
 import SubmitButton from "@/shared/components/buttons/AuthSubmitButton";
 import Input from "@/shared/components/inputs/Input";
@@ -64,10 +64,10 @@ export const SignInForm = () => {
           isLoginPassword
         />
       </div>
-      <CheckBox label="remember me" />
+      <CheckBox label="запам'ятати мене" />
       {state?.message ? <AuthError message={state?.message} /> : null}
       <SubmitButton
-        text="sign in"
+        text="вхід"
         icon={<IoEnter className="text-[20px]" />}
         isLoginButton
       />
