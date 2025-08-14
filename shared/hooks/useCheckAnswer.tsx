@@ -5,6 +5,7 @@ import { distance } from "fastest-levenshtein";
 import { TypeUnit } from "@/shared/model/types/unit";
 import { useEffect, useRef } from "react";
 import { TypeCompletedUnit } from "../model/types/practice-store";
+import { normalizeText } from "../utils/unit-set/normalizeText";
 
 const MAX_ALLOWED_DISTANCE = 2;
 
@@ -42,13 +43,18 @@ export const useCheckAnswer = (units: TypeUnit[]) => {
       return;
     }
 
-    const correctDefinition = units[termNumber]?.definition
-      .toLowerCase()
-      .trim();
-    const trimmedAnswer = newAnswer?.trim();
-    if (!trimmedAnswer) return;
-    const levenshteinDistance = distance(trimmedAnswer, correctDefinition);
-    const isCorrect = levenshteinDistance <= MAX_ALLOWED_DISTANCE;
+    const allUniqueDefinitions = normalizeText(units[termNumber]?.definition);
+    if (!newAnswer || newAnswer.trim() === "") {
+      return;
+    }
+    const allUniqueAnswerWords = normalizeText(newAnswer);
+    if (!allUniqueAnswerWords.length) return;
+
+    const isCorrect = allUniqueAnswerWords.some((ans) =>
+      allUniqueDefinitions.some(
+        (def) => distance(ans, def) <= MAX_ALLOWED_DISTANCE
+      )
+    );
 
     if (isCorrect) {
       setCheckStatus("CORRECTNESS");

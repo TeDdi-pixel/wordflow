@@ -24,6 +24,7 @@ const unitSet = new mongoose.Schema({
   ],
 });
 
-const UnitSet = mongoose.models.UnitSet || mongoose.model("UnitSet", unitSet);
+const UnitSet =
+  mongoose.models.UnitSet || mongoose.model("UnitSet", unitSet, "unit_sets");
 
 export default UnitSet;
