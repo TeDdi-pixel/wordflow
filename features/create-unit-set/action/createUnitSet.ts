@@ -56,7 +56,13 @@ export const createUnitSet = async (
     }
 
     const relatedUserId = await getUserId();
+    if (!relatedUserId)
+      return withError<TypeUnitSetForm>(prevState, ERRORS.USERNAME_MISSING);
+
     const userDoc = await User.findById({ _id: relatedUserId });
+    if (!userDoc)
+      return withError<TypeUnitSetForm>(prevState, ERRORS.USERNAME_MISSING);
+
     const authorsName = userDoc.username;
     const unitSetType = prevState.unitSetType;
 
