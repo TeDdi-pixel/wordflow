@@ -10,10 +10,5 @@ export async function getSpecificUnitSet(
     return [];
   }
 
-  console.log("unitSetId param:", unitSetId);
-  console.log(
-    "unitSetIds from DB:",
-    userTerms.terms.map((t) => t.unitSetId)
-  );
   return userTerms.terms.filter((term) => term.unitSetId === unitSetId);
 }
