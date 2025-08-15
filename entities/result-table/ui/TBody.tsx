@@ -24,7 +24,9 @@ export const TBody = ({ unitSet }: Props) => {
             </td>
           )}
           <Separator />
-          <Td text={unit.lastAnswer} />
+          <td className="px-4 py-2 text-center relative">
+            {unit.lastAnswer && <TextWithExpand text={unit.lastAnswer} />}
+          </td>
           <Separator />
           <Td
             icon={

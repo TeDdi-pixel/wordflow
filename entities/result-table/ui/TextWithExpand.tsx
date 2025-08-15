@@ -43,7 +43,7 @@ export const TextWithExpand = memo(({ text }: Props) => {
         ref={textRef}
         className={`px-4 py-2 text-center w-full absolute rounded-default ease-out transition-all duration-150 ${
           active
-            ? "whitespace-normal text-clip text-start z-10 bg-background-accent-2 text-text-2 px-[8px] scale-110 shadow-md"
+            ? "whitespace-normal text-clip text-start z-10 bg-background-accent-2 text-text-2 scale-110 shadow-md"
             : "truncate bg-transparent"
         }`}
       >

@@ -14,13 +14,13 @@ export const UnitNavButtons = ({ units, unitSetId }: Props) => {
     useHandleNavigation({ units, unitSetId });
 
   return (
-    <div className="flex w-[159px] gap-4 items-center ml-[4px]">
+    <div className="flex w-fit gap-4 items-center ml-[4px]">
       <PracticeNavButton
         side="left"
         onClick={() => handleClick("left")}
         isDisabled={isDisabledLeft}
       />
-      <div>{range}</div>
+      <div className="w-[49px] text-center">{range}</div>
       <PracticeNavButton
         side="right"
         onClick={() => handleClick("right")}
