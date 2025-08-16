@@ -34,15 +34,17 @@ export const UnitSetForm = () => {
     <Form action={action} className="max-w-[935px] w-full flex flex-col">
       <MainTitle text="Створити список карток" />
       <UnitSetTitleInput
-        placeholder="Впишіть назву, наприклад, “Verbs”"
+        placeholder="Створіть назву для вашої картки, наприклад, “Verbs”."
         defaultValue={state.title}
       />
       <UnitSetDescription
-        placeholder="Додайте опис..."
+        placeholder="Додайте опис... (не обо'язково)"
         defaultValue={state.description}
       />
       <div className="flex flex-col">
-        <UnitList />
+        <div className="mb-[18px]">
+          <UnitList />
+        </div>
         <Error error={state.error} />
         <div className="flex justify-center w-full">
           <SubmitButton

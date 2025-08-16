@@ -1,9 +1,9 @@
 "use client";
 
 import TipButton from "@/shared/components/buttons/TipButton";
+import SkipIcon from "@/shared/icons/unit/SkipIcon";
 import { TypeUnit } from "@/shared/model/types/unit";
 import { usePracticeStore } from "@/store/usePracticeStore";
-import { useEffect } from "react";
 import { IoPlaySkipForward } from "react-icons/io5";
 
 type Props = {
@@ -31,7 +31,7 @@ const SkipButton = ({ unitLength, units }: Props) => {
     <TipButton
       onClick={handleSkip}
       isDisabled={isUnitSetCompleted}
-      icon={<IoPlaySkipForward className="w-[24px] h-[24px]" />}
+      icon={<SkipIcon />}
       tipText="Пропустити термін"
       side="left"
     />

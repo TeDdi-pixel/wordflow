@@ -16,6 +16,8 @@
     "@svgr/webpack": "^8.1.0",
     "@types/bcrypt": "^6.0.0",
     "@types/js-cookie": "^3.0.6",
+    "@vercel/analytics": "^1.5.0",
+    "@vercel/speed-insights": "^1.2.0",
     "axios": "^1.9.0",
     "bcrypt": "^6.0.0",
     "fastest-levenshtein": "^1.0.16",

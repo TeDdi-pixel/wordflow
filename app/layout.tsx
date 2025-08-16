@@ -2,6 +2,9 @@ import type { Metadata } from "next";
 import { Roboto_Mono } from "next/font/google";
 import "./(css)/globals.css";
 import { Header } from "@/widgets/header";
+import { IoMdInfinite } from "react-icons/io";
+import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const robotoMono = Roboto_Mono({
   variable: "--font-roboto-mono",
@@ -25,7 +28,13 @@ export default function RootLayout({
       >
         <Header />
         {children}
-        <footer>Footer</footer>
+        <footer className="mb-4 flex text-[14px]">
+          2025 — <IoMdInfinite className="ml-2 text-[24px]" />. All bugs are
+          features, some just undocumented. Proudly made with 1% inspiration and
+          99% StackOverflow.
+        </footer>
+        <SpeedInsights />
+        <Analytics />
       </body>
     </html>
   );

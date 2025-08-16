@@ -40,7 +40,7 @@ export const signUp = async (
   ) {
     return {
       ...userBackUpFields(formData),
-      message: AUTH_ERROR_MESSAGES.INVALID_CREDENTIALS,
+      message: AUTH_ERROR_MESSAGES.CREDENTIALS_DO_NOT_MATCH,
     };
   }
   //connect and create user in db

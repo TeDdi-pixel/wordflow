@@ -1,11 +1,10 @@
-import { EmptyPage } from "@/entities/result-table";
+"use client";
 
-const NotFound = ({
-  searchParams,
-}: {
-  searchParams?: { unitSetId?: string };
-}) => {
-  const unitSetId = searchParams?.unitSetId;
+import { EmptyPage } from "@/entities/result-table";
+import { useParams } from "next/navigation";
+
+const NotFound = () => {
+  const { unitSetId } = useParams();
 
   return (
     <EmptyPage

@@ -6,7 +6,7 @@ export const AUTH_ERROR_MESSAGES = {
   PASSWORD_SHORT: "Пароль має містити щонайменше 6 символів",
   USER_NOT_FOUND: "Користувача з такою електронною поштою не знайдено.",
   SERVER_ERROR: "Виникла внутрішня помилка сервера",
-  INVALID_CREDENTIALS: "Електронна пошта або пароль невірні",
+  CREDENTIALS_DO_NOT_MATCH: "Електронна пошта або пароль не співпадають",
   EMAIL_IS_ALREADY_IN_USE: "Ця електронна пошта вже використовується",
   UNKNOWN: "Щось пішло не так",
   SESSION_NOT_FOUND: "Сесію не було створено",
