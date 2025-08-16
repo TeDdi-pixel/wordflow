@@ -34,7 +34,7 @@ export const SignInForm = () => {
   return (
     <Form
       action={action}
-      className="flex flex-col md:items-center gap-2 md:max-w-[272px] w-full"
+      className="flex flex-col md:items-center gap-2 md:max-w-[272px] w-full -translate-y-1/2"
     >
       <AuthFormName icon={<IoEnter className="text-[20px]" />} name="login" />
       <div className="flex gap-4 md:w-full">

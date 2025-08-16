@@ -28,5 +28,7 @@ export async function middleware(request: NextRequest) {
     return NextResponse.redirect(new URL("/login", request.url));
   }
 
-  return await updateSession(request);
+  const response = await updateSession(request);
+
+  return response;
 }

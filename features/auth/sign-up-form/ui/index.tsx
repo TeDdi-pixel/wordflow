@@ -34,7 +34,7 @@ export const SignUpForm = () => {
   return (
     <Form
       action={action}
-      className="flex flex-col gap-1 md:max-w-[272px] w-full"
+      className="flex flex-col gap-1 md:max-w-[272px] w-full -translate-y-1/2"
       autoComplete="on"
     >
       <AuthFormName

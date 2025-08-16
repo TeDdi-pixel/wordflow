@@ -21,7 +21,7 @@ export default function RootLayout({
   return (
     <html lang="uk">
       <body
-        className={`${robotoMono.variable} selection:bg-selection antialiased bg-background pt-8 flex flex-col items-center justify-between gap-y-8 min-h-screen overflow-x-hidden`}
+        className={`${robotoMono.variable} selection:bg-selection antialiased bg-background pt-8 flex flex-col items-center justify-between min-h-screen overflow-x-hidden`}
       >
         <Header />
         {children}

@@ -8,7 +8,7 @@ export default function GamesLayout({
   return (
     <>
       <Navigation />
-      <main className="flex max-w-[1440px] w-full h-full flex-col items-center grow">
+      <main className="flex max-w-[1440px] w-full h-full flex-col items-center grow mb-[50px]">
         {children}
       </main>
     </>
