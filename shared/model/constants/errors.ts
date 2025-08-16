@@ -7,6 +7,7 @@ export const AUTH_ERROR_MESSAGES = {
   USER_NOT_FOUND: "Користувача з такою електронною поштою не знайдено.",
   SERVER_ERROR: "Виникла внутрішня помилка сервера",
   CREDENTIALS_DO_NOT_MATCH: "Електронна пошта або пароль не співпадають",
+  INVALID_CREDENTIALS: "Електронна пошта або пароль невірні",
   EMAIL_IS_ALREADY_IN_USE: "Ця електронна пошта вже використовується",
   UNKNOWN: "Щось пішло не так",
   SESSION_NOT_FOUND: "Сесію не було створено",

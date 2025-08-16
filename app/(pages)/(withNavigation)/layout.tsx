@@ -1,5 +1,4 @@
 import { Navigation } from "@/widgets/navigation";
-import { IoMdInfinite } from "react-icons/io";
 
 export default function GamesLayout({
   children,
