@@ -3,7 +3,7 @@ import { navigation, NavigationItem } from "../config";
 
 export const Navigation = () => {
   return (
-    <nav className="mb-[100px]">
+    <nav className="mb-[100px] max-w-[755px] w-full">
       <ul className="bg-foreground rounded-default py-3 px-6 text-text flex gap-1 items-center text-[14px]">
         {navigation.regularPages.map((item: NavigationItem) => (
           <NavItem key={item.id} item={item} />

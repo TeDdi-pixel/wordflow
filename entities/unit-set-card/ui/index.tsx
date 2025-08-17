@@ -13,7 +13,7 @@ type Props = {
   unitSetType: UnitSetType;
 };
 
-export const UnitCard = ({
+export const UnitSetCard = ({
   unitSetId,
   unitSetType,
   title,

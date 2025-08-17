@@ -1,1 +1,1 @@
-export { UnitCard } from "./ui";
+export { UnitSetCard } from "./ui";

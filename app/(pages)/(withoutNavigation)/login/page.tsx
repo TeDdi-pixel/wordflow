@@ -6,7 +6,6 @@ import { SignInForm } from "@/widgets/auth/sign-in-form";
 const page = async () => {
   const isSession = await checkForSession();
   if (isSession) redirect("/");
-
   return (
     <main className="flex flex-col items-center justify-around w-full p-4 grow md:flex-row">
       <SignUpForm />

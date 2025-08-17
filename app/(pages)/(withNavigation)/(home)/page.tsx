@@ -1,7 +1,7 @@
-import { TypeUnitSet } from "@/shared/model/types/unit";
-import { UnitCard } from "@/entities/unit-set-card";
-import UnitSet from "@/shared/model/schemas/UnitSet";
+import { UnitSetCard } from "@/entities/unit-set-card";
 import MainTitle from "@/shared/components/MainTitle";
+import UnitSet from "@/shared/model/schemas/UnitSet";
+import { TypeUnitSet } from "@/shared/model/types/unit";
 
 export default async function Home() {
   const unitSets = await UnitSet.find({});
@@ -12,16 +12,15 @@ export default async function Home() {
 
       <div className="grid grid-cols-3 gap-4 w-full">
         {unitSets.map((unitSet: TypeUnitSet) => (
-          <div key={unitSet._id.toString()}>
-            <UnitCard
-              unitSetType={unitSet.unitSetType}
-              description={unitSet.description}
-              authorsName={unitSet.authorsName}
-              termsCount={unitSet.units.length}
-              title={unitSet.title}
-              unitSetId={unitSet._id.toString()}
-            />
-          </div>
+          <UnitSetCard
+            key={unitSet._id.toString()}
+            unitSetType={unitSet.unitSetType}
+            description={unitSet.description}
+            authorsName={unitSet.authorsName}
+            termsCount={unitSet.units.length}
+            title={unitSet.title}
+            unitSetId={unitSet._id.toString()}
+          />
         ))}
       </div>
     </div>
