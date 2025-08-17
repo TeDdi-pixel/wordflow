@@ -1,9 +1,11 @@
 import { UnitSetCard } from "@/entities/unit-set-card";
 import MainTitle from "@/shared/components/MainTitle";
+import createDbConnection from "@/shared/lib/mongoose";
 import UnitSet from "@/shared/model/schemas/UnitSet";
 import { TypeUnitSet } from "@/shared/model/types/unit";
 
 export default async function Home() {
+  await createDbConnection();
   const unitSets = await UnitSet.find({});
 
   return (

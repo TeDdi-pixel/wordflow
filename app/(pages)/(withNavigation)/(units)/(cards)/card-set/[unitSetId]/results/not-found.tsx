@@ -8,7 +8,7 @@ const NotFound = () => {
 
   return (
     <EmptyPage
-      text="У вас поки немає результатів за цією карткою"
+      text="У вас поки немає результатів за цією карткою ┐( ˘_˘ )┌"
       buttonText="Перейти до практики"
       path={unitSetId ? `/card-set/${unitSetId}` : "/"}
     />

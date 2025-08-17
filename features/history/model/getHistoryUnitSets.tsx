@@ -1,3 +1,4 @@
+import createDbConnection from "@/shared/lib/mongoose";
 import { checkForSession, getUserId } from "@/shared/lib/session";
 import UnitSet from "@/shared/model/schemas/UnitSet";
 import UserTerms from "@/shared/model/schemas/UserTerms";
@@ -8,6 +9,8 @@ import { notFound, redirect } from "next/navigation";
 export const getHistoryUnitSets = async () => {
   const isSession = await checkForSession();
   if (!isSession) redirect("/login");
+
+  await createDbConnection();
 
   const relatedUserId = await getUserId();
 

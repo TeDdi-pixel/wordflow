@@ -6,7 +6,7 @@ const NotFound = () => {
     <main className="flex max-w-[1440px] w-full h-full items-center flex-col grow justify-start">
       <Navigation />
       <EmptyPage
-        text="Помилка 404. Потрібна сторінка не знайдена"
+        text="Помилка 404. Потрібна сторінка не знайдена (ಥ﹏ಥ)"
         buttonText="Перейти на головну"
         path="/"
       />

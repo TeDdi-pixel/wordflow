@@ -1,11 +1,16 @@
 import { UnitSetCard } from "@/entities/unit-set-card";
+import createDbConnection from "@/shared/lib/mongoose";
 import { getUserId } from "@/shared/lib/session";
 import UnitSet from "@/shared/model/schemas/UnitSet";
 import { TypeUnitSet } from "@/shared/model/types/unit";
-import { notFound } from "next/navigation";
+import { notFound, redirect } from "next/navigation";
 
 const page = async () => {
   const userId = await getUserId();
+
+  if (!userId) redirect("/login");
+
+  await createDbConnection();
 
   const userUnitSets = await UnitSet.find({ relatedUserId: userId });
 

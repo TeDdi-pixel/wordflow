@@ -1,10 +1,14 @@
 import MainTitle from "@/shared/components/MainTitle";
+import createDbConnection from "@/shared/lib/mongoose";
 import { ResultTable } from "@/widgets/results-table";
 import { getSpecificUnitSet } from "@/widgets/results-table/model/getSpecificUnitSet";
 import { notFound } from "next/navigation";
 
 const page = async ({ params }: { params: Promise<{ unitSetId: string }> }) => {
   const { unitSetId } = await params;
+
+  await createDbConnection();
+
   const unitSet = await getSpecificUnitSet(unitSetId);
 
   if (!unitSet || unitSet.length === 0) notFound();

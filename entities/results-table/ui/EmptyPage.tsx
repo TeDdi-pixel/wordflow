@@ -11,8 +11,8 @@ export const EmptyPage = ({
   buttonText: string;
 }) => {
   return (
-    <div className="flex flex-col items-center justify-center gap-4">
-      <span>{text}</span>
+    <main className="flex flex-col items-center justify-center gap-4">
+      <p>{text}</p>
       <Link
         href={path}
         className="bg-background-accent-2 py-2 px-4 rounded-default inline-flex items-center gap-2 text-text-2"
@@ -20,6 +20,6 @@ export const EmptyPage = ({
         <span>{buttonText}</span>
         <IoOpen className="w-[24px] h-[24px]" />
       </Link>
-    </div>
+    </main>
   );
 };
