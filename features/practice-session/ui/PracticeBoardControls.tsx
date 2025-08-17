@@ -2,9 +2,9 @@ import React from "react";
 import TipButton from "@/shared/components/buttons/TipButton";
 import { FaClipboardList } from "react-icons/fa";
 import { TypeUnit } from "@/shared/model/types/unit";
-import { UnitNavButtons } from "@/entities/unit-practice";
-import SkipButton from "@/entities/unit-practice/ui/SkipButton";
-import CheckButton from "@/entities/unit-practice/ui/CheckButton";
+import { UnitNavButtons } from "@/entities/unit-set-practice";
+import SkipButton from "@/entities/unit-set-practice/ui/SkipButton";
+import CheckButton from "@/entities/unit-set-practice/ui/CheckButton";
 
 type Props = {
   units: TypeUnit[];

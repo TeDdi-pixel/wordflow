@@ -1,5 +1,5 @@
 import { FaCheck } from "react-icons/fa";
-import MistakeIcon from "../icons/unit/MistakeIcon";
+import MistakeIcon from "../../icons/unit/MistakeIcon";
 import { IoSend } from "react-icons/io5";
 
 export const getIcon = (

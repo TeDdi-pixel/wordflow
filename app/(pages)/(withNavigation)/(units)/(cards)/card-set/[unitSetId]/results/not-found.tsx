@@ -1,6 +1,6 @@
 "use client";
 
-import { EmptyPage } from "@/entities/result-table";
+import { EmptyPage } from "@/entities/results-table";
 import { useParams } from "next/navigation";
 
 const NotFound = () => {

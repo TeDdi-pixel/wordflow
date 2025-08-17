@@ -28,7 +28,7 @@ export default function RootLayout({
       >
         <Header />
         {children}
-        <footer className="mb-4 flex text-[14px]">
+        <footer className="mb-4 flex text-[12px] items-center">
           2025 — <IoMdInfinite className="ml-2 text-[24px]" />. All bugs are
           features, some just undocumented. Proudly made with 1% inspiration and
           99% StackOverflow.

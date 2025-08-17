@@ -16,10 +16,20 @@ const responses = {
     isError: true,
     passwordTip: "Пароль повинен складатися щонайменше з 8 символів",
   },
+  PASSWORDS_DONT_MATCH_RESPONSE: {
+    isPasswordSafe: false,
+    isError: true,
+    passwordTip: "Паролі не співпадають",
+  },
   SAFE_RESPONSE: {
     isPasswordSafe: true,
     passwordTip: "Ваш пароль ідеальний! :)",
     isError: false,
+  },
+  EMPTY_PASSWORD_RESPONSE: {
+    isPasswordSafe: false,
+    isError: true,
+    passwordTip: "Пароль не може бути порожнім",
   },
 };
 
@@ -35,4 +45,17 @@ export const checkPasswordSafeness = (
   const hasSpecialChar = /[^A-Za-z0-9]/.test(password);
   if (!hasSpecialChar) return responses.DEFAULT_UNSAFE_RESPONSE;
   return responses.SAFE_RESPONSE;
+};
+
+export const checkPasswordsMatch = (
+  password: string | null,
+  confirmPassword: string | null
+) => {
+  if (!confirmPassword) return;
+
+  if (!password || password !== confirmPassword) {
+    return responses.PASSWORDS_DONT_MATCH_RESPONSE;
+  }
+
+  return checkPasswordSafeness(confirmPassword);
 };

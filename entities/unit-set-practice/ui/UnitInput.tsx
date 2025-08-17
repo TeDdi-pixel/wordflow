@@ -1,7 +1,7 @@
 "use client";
 
 import SendButton from "@/shared/components/buttons/SendButton";
-import { getIcon } from "@/shared/utils/getIcons";
+import { getIcon } from "@/shared/utils/unit-set-practice/getIcons";
 import PracticeInput from "@/shared/components/inputs/UnitPracticeInput";
 import { useCheckAnswer } from "@/shared/hooks/useCheckAnswer";
 import { TypeUnit } from "@/shared/model/types/unit";

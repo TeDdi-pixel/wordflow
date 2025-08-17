@@ -1,16 +1,16 @@
 "use client";
 
 import Form from "next/form";
-import { signUp } from "../actions/signUp";
+import { signUp } from "../../../../features/auth/model/actions/signUp";
 import { useActionState } from "react";
 import { FaUserPlus } from "react-icons/fa";
 import SubmitButton from "../../../../shared/components/buttons/AuthSubmitButton";
-import Input from "@/shared/components/inputs/Input";
 import useRedirect from "@/shared/hooks/useRedirect";
 import { PasswordField } from "@/entities/auth";
 import AuthError from "@/shared/components/errors/AuthError";
 import AuthFormName from "@/shared/components/form/AuthFormName";
 import { InitialRegForm } from "@/shared/model/types/auth";
+import AuthInput from "@/shared/components/inputs/AuthInput";
 
 const initialForm = {
   _id: "",
@@ -41,14 +41,14 @@ export const SignUpForm = () => {
         icon={<FaUserPlus className="text-[20px]" />}
         name="register"
       />
-      <Input
+      <AuthInput
         placeholder="ім'я користувача"
         name="username"
         type="text"
         defaultValue={state.username}
         pending={pending}
       />
-      <Input
+      <AuthInput
         placeholder="email"
         name="email"
         type="email"
@@ -56,7 +56,7 @@ export const SignUpForm = () => {
         defaultValue={state.email}
         autoComplete="email"
       />
-      <Input
+      <AuthInput
         pending={pending}
         placeholder="підтвердіть email"
         name="verifyEmail"

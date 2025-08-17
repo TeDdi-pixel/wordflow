@@ -1,6 +1,6 @@
 "use server";
 
-import { withError } from "@/shared/utils/withError";
+import { withError } from "@/shared/utils/auth/withError";
 import { getUserId } from "@/shared/lib/session";
 import { UNIT_SET_ERROR_MESSAGES } from "@/shared/model/constants/errors";
 import UnitSetSchema from "@/shared/model/schemas/UnitSet";

@@ -1,6 +1,6 @@
 import { TypeUnit } from "@/shared/model/types/unit";
 import { ActionBar } from "./ActionBar";
-import { UnitInput, UnitTerm } from "@/entities/unit-practice";
+import { UnitInput, UnitTerm } from "@/entities/unit-set-practice";
 
 export const PracticeBoard = ({ units }: { units: TypeUnit[] }) => {
   return (

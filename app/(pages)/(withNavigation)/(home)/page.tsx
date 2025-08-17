@@ -1,5 +1,5 @@
 import { TypeUnitSet } from "@/shared/model/types/unit";
-import { UnitCard } from "@/entities/unit-card";
+import { UnitCard } from "@/entities/unit-set-card";
 import UnitSet from "@/shared/model/schemas/UnitSet";
 import MainTitle from "@/shared/components/MainTitle";
 

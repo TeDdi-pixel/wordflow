@@ -1,7 +1,6 @@
 import { FaCheck } from "react-icons/fa";
-import { TypeTermStatus } from "../model/types/unit";
-import { PiExcludeSquareBold } from "react-icons/pi";
-import MistakeIcon from "../icons/unit/MistakeIcon";
+import { TypeTermStatus } from "../../model/types/unit";
+import MistakeIcon from "../../icons/unit/MistakeIcon";
 
 export const getStatusIcon = (status: TypeTermStatus) => {
   switch (status) {

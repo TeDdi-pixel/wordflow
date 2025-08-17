@@ -1,4 +1,4 @@
-import { TableBottom, TBody, THead } from "@/entities/result-table";
+import { TableBottom, TBody, THead } from "@/entities/results-table";
 import { TypeUserTermItem } from "@/shared/model/types/user-terms";
 
 type Props = {

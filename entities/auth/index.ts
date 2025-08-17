@@ -1,2 +1,2 @@
 export { Tip } from "./ui/Tip";
-export { PasswordField } from "./ui/PasswordField";
+export { PasswordField } from "../../features/auth/ui/PasswordField";

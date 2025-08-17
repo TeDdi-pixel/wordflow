@@ -1,6 +1,6 @@
 import { ReactNode } from "react";
-import { UnitSetType } from "../model/types/unit";
-import CardsIcon from "../icons/unit/CardsIcon";
+import { UnitSetType } from "../../model/types/unit";
+import CardsIcon from "../../icons/unit/CardsIcon";
 
 const unitTypeIconMap = new Map<UnitSetType, ReactNode>([
   ["cards", <CardsIcon />],

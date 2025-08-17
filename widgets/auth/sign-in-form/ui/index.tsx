@@ -3,17 +3,17 @@
 import { useActionState } from "react";
 import Form from "next/form";
 import { IoEnter } from "react-icons/io5";
-import { AdditionalEntrance } from "./AdditionalEntrance";
+import { AdditionalEntrance } from "../../../../shared/components/buttons/AdditionalEntrance";
 import { FaGoogle, FaGithub } from "react-icons/fa";
-import { signIn } from "../actions/signIn";
+import { signIn } from "../../../../features/auth/model/actions/signIn";
 import CheckBox from "@/shared/components/CheckBox";
 import SubmitButton from "@/shared/components/buttons/AuthSubmitButton";
-import Input from "@/shared/components/inputs/Input";
 import useRedirect from "@/shared/hooks/useRedirect";
 import { PasswordField } from "@/entities/auth";
 import AuthError from "@/shared/components/errors/AuthError";
 import AuthFormName from "@/shared/components/form/AuthFormName";
 import { InitialLoginForm } from "@/shared/model/types/auth";
+import AuthInput from "@/shared/components/inputs/AuthInput";
 
 const initialForm = {
   _id: "",
@@ -48,7 +48,7 @@ export const SignInForm = () => {
         </span>
       </div>
       <div className="flex flex-col gap-1 md:w-full">
-        <Input
+        <AuthInput
           placeholder="email"
           name="email"
           type="email"

@@ -1,4 +1,4 @@
-import { UnitCard } from "@/entities/unit-card";
+import { UnitCard } from "@/entities/unit-set-card";
 import { getUserId } from "@/shared/lib/session";
 import UnitSet from "@/shared/model/schemas/UnitSet";
 import { TypeUnitSet } from "@/shared/model/types/unit";

@@ -1,4 +1,4 @@
-import { ChangeEvent } from "react";
+import { ChangeEvent, MouseEventHandler, RefObject } from "react";
 
 export type TypeInput = {
   placeholder: string;
@@ -7,9 +7,9 @@ export type TypeInput = {
   defaultValue?: string;
   pending: boolean;
   required?: boolean;
-  onChange?: (e: ChangeEvent<HTMLInputElement>) => void;
+  handleChange?: (e: ChangeEvent<HTMLInputElement>) => void;
   autoComplete?: string;
-  storeName?: PasswordFieldType;
+  inputRef?: RefObject<HTMLInputElement>;
 };
 
 export type TypeInputError = {

@@ -3,7 +3,7 @@ import {
   features,
 } from "@/features/practice-session/config/features";
 import { TypeUserTermItem } from "@/shared/model/types/user-terms";
-import { getStatusIcon } from "@/shared/utils/getStatusIcon";
+import { getStatusIcon } from "@/shared/utils/results-table/getStatusIcon";
 import IconButton from "../../../shared/components/buttons/IconButton";
 import Separator from "../../../shared/components/table/Separator";
 import Td from "../../../shared/components/table/Td";
