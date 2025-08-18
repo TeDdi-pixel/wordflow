@@ -9,8 +9,8 @@ export const UnitTerm = ({ units }: { units: TypeUnit[] }) => {
   const setCurrentUnitId = usePracticeStore((state) => state.setCurrentUnitId);
 
   useEffect(() => {
-    setCurrentUnitId(units[termNumber]._id);
-  }, [termNumber]);
+    if (units[termNumber]) setCurrentUnitId(units[termNumber]._id);
+  }, [termNumber, units, setCurrentUnitId]);
 
   return (
     <div className="w-full flex justify-center">

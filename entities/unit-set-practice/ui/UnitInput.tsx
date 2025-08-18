@@ -20,7 +20,7 @@ export const UnitInput = ({ units }: { units: TypeUnit[] }) => {
   useSetInputData();
 
   return (
-    <div className="max-w-[485px] w-full relative">
+    <div className="max-w-[485px] w-full relative overflow-hidden px-[16px]">
       <PracticeInput
         handleKeyDown={onEnterPress}
         disabledInput={isDisabled || checkStatus === "CORRECTNESS"}
@@ -34,6 +34,7 @@ export const UnitInput = ({ units }: { units: TypeUnit[] }) => {
           if (!isDisabled) checkAnswer();
         }}
         icon={getIcon(checkStatus)}
+        animationKey={checkStatus}
       />
     </div>
   );

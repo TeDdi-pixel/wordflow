@@ -1,44 +1,37 @@
 @import "tailwindcss";
 @theme {
-  /* базовый фон и текст */
-  --color-background: #2a2134; /* чуть темнее, чтобы глубже «сидел» текст */
+  --color-background: #2a2134;
   --color-foreground: #17131c;
   --color-input: #17131c;
   --color-button: #17131c;
   --color-popup: #17131c;
 
-  /* главный фиолетовый акцент */
-  --color-background-accent: #8a3e8a; /* насыщеннее, краснок оттенок фиалки */
-  --color-button-accent: #c05be0; /* более «неоновый» пурпур */
-  --color-button-accent-2: #e0c0ff; /* лаванда чуть ярче и теплее */
+  --color-background-accent: #8a3e8a;
+  --color-button-accent: #c05be0;
+  --color-button-accent-2: #e0c0ff;
   --color-button-default: #8a3e8a;
 
-  /* текст и hover */
-  --color-text: #e0c0ff; /* светлая лаванда для читаемости */
-  --color-text-2: #8a3e8a; /* тёмный пурпур для акцентов */
+  --color-text: #e0c0ff;
+  --color-text-2: #8a3e8a;
   --color-accent-text: #e0c0ff;
   --color-active-nav-text: #8a3e8a;
   --color-hover-nav-text: #17131c;
 
-  /* персиковый и мятный акценты */
-  --color-accent: #ffcfab; /* персик стал более солнечным */
+  --color-accent: #ffcfab;
   --color-accent-muted: #ffe8d5;
   --color-unit-icon: #ffcfab;
-  --color-success: #90f0d8; /* мята с бирюзовым отливом */
+  --color-success: #90f0d8;
 
-  /* бордюры, disabled и ошибки */
   --color-border: #2a2134;
-  --color-input-border: #c05be0; /* фиолетовый акцент */
-  --color-disabled: #3d3346; /* чуть светлее, чтобы видно было */
-  --color-error: #ff7b85; /* насыщенный коралл для ошибок */
+  --color-input-border: #c05be0;
+  --color-disabled: #3d3346;
+  --color-error: #ff7b85;
 
-  /* фоновые второстепенные акценты */
-  --color-background-accent-2: #e0c0ff; /* светлая лаванда */
+  --color-background-accent-2: #e0c0ff;
   --color-selection: #c05be0;
   --color-active-nav-item: #e0c0ff;
   --color-hover-nav-item: #e0c0ff;
 
-  /* всплывающие подсказки */
   --color-tip: #e0c0ff;
 
   --radius-default: 0.5rem;
@@ -78,4 +71,19 @@ body {
 
 .animate-text-bounce {
   animation: text-bounce 1.2s infinite;
+}
+
+@keyframes appear-from-right {
+  0% {
+    transform: translateX(20px);
+    scale: 0;
+  }
+  100% {
+    transform: translateX(-16px);
+    scale: 100%;
+  }
+}
+
+.animate-appear-from-right {
+  animation: appear-from-right 150ms ease-out forwards;
 }

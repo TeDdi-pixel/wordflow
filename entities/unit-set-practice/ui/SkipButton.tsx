@@ -4,7 +4,6 @@ import TipButton from "@/shared/components/buttons/TipButton";
 import SkipIcon from "@/shared/icons/unit/SkipIcon";
 import { TypeUnit } from "@/shared/model/types/unit";
 import { usePracticeStore } from "@/store/usePracticeStore";
-import { IoPlaySkipForward } from "react-icons/io5";
 
 type Props = {
   units: TypeUnit[];
