@@ -2,11 +2,11 @@
 
 import { redirect } from "next/navigation";
 
-import { logout } from "@/shared/lib/session";
+import { signOut } from "@/auth";
 
-export const logOutUser = async (formData: FormData) => {
+export const signOutUser = async (formData: FormData) => {
   try {
-    await logout();
+    await signOut({ redirect: false });
   } catch (error) {
     console.error("Logout error:", error);
   }

@@ -11,6 +11,9 @@ export const AUTH_ERROR_MESSAGES = {
   EMAIL_IS_ALREADY_IN_USE: "Ця електронна пошта вже використовується",
   UNKNOWN: "Щось пішло не так",
   SESSION_NOT_FOUND: "Сесію не було створено",
+  AUTH_ERROR: "Помилка авторизації",
+  SIGN_UP_ERROR: "Помилка реєстрації",
+  SIGN_IN_ERROR: "Помилка реєстрації",
 };
 
 export const UNIT_SET_ERROR_MESSAGES = {

@@ -7,6 +7,7 @@ import UnitSetSchema from "@/shared/model/schemas/UnitSet";
 import User from "@/shared/model/schemas/User";
 import { TypeUnit, TypeUnitSetForm } from "@/shared/model/types/unit";
 import createDbConnection from "@/shared/lib/mongoose";
+import { auth } from "@/auth";
 
 const ERRORS = UNIT_SET_ERROR_MESSAGES;
 
@@ -56,6 +57,8 @@ export const createUnitSet = async (
     }
 
     const relatedUserId = await getUserId();
+    console.log(relatedUserId);
+
     if (!relatedUserId)
       return withError<TypeUnitSetForm>(prevState, ERRORS.USERNAME_MISSING);
 

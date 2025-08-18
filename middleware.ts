@@ -1,5 +1,5 @@
-import { checkForSession, updateSession } from "@/shared/lib/session";
 import { NextRequest, NextResponse } from "next/server";
+import { auth } from "./auth";
 
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
@@ -18,17 +18,14 @@ export async function middleware(request: NextRequest) {
     "/card-sets-community",
     "/memorize-sets-community",
     "/selection-sets-community",
-    "/test-community",
+    "/tests-community",
   ];
 
-  const isPublic = publicPaths.includes(pathname);
-  const isSession = await checkForSession();
+  const session = await auth();
 
-  if (!isPublic && !isSession) {
+  if (!session && !publicPaths.includes(pathname)) {
     return NextResponse.redirect(new URL("/login", request.url));
   }
 
-  const response = await updateSession(request);
-
-  return response;
+  return NextResponse.next();
 }

@@ -1,9 +1,9 @@
-import { checkForSession } from "@/shared/lib/session";
+import { auth } from "@/auth";
 import { notFound, redirect } from "next/navigation";
 
 const Library = async () => {
-  const isSession = await checkForSession();
-  if (!isSession) redirect("/login");
+  const session = await auth();
+  if (!session) redirect("/login");
   return notFound();
 };
 

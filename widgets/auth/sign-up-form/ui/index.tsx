@@ -1,7 +1,7 @@
 "use client";
 
 import Form from "next/form";
-import { signUp } from "../../../../features/auth/model/actions/signUp";
+import { signUpCredentials } from "../../../../features/auth/model/actions/signUpCredentials";
 import { useActionState } from "react";
 import { FaUserPlus } from "react-icons/fa";
 import SubmitButton from "../../../../shared/components/buttons/AuthSubmitButton";
@@ -25,7 +25,7 @@ const initialForm = {
 
 export const SignUpForm = () => {
   const [state, action, pending] = useActionState<InitialRegForm, FormData>(
-    signUp,
+    signUpCredentials,
     initialForm
   );
 
@@ -77,6 +77,7 @@ export const SignUpForm = () => {
       />
       {state?.message ? <AuthError message={state?.message} /> : null}
       <SubmitButton
+        pending={pending}
         text="зареєструватися"
         icon={<FaUserPlus className="text-[20px]" />}
       />

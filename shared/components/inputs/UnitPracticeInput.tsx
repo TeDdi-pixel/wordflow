@@ -26,6 +26,11 @@ const PracticeInput = ({
       type="text"
       placeholder="Відповідь"
       disabled={disabledInput}
+      autoComplete="off"
+      autoCorrect="off"
+      spellCheck={false}
+      name="practice-input"
+      id="practice-input"
       className="w-full border-b-[2px] border-background-accent-2 pb-[5px] text-[14px] focus:outline-none focus:border-accent transition-colors ease-out duration-150"
     />
   );

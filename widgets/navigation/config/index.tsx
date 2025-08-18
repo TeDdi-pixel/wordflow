@@ -123,7 +123,7 @@ export const navigation = {
           id: 2,
           icon: <CommunityIcon />,
           name: "Ком'юніті",
-          path: "/test-community",
+          path: "/tests-community",
         },
       ],
     },

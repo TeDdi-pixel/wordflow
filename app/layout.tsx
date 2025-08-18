@@ -29,13 +29,19 @@ export default function RootLayout({
         className={`${robotoMono.variable} selection:bg-selection antialiased bg-background pt-8 flex flex-col items-center justify-between min-h-screen overflow-x-hidden`}
       >
         <Header />
-        <Suspense fallback={<Loading />}>{children}</Suspense>
+
+        <main className="flex max-w-[1440px] w-full h-full items-center flex-col grow justify-start">
+          <Suspense fallback={<Loading />}>{children}</Suspense>
+        </main>
+
         <footer className="mb-4 flex text-[12px] items-center">
           2025 — <IoMdInfinite className="ml-2 text-[24px]" />. All bugs are
           features, some just undocumented. Proudly made with 1% inspiration and
           99% StackOverflow.
         </footer>
+
         <SpeedInsights />
+
         <Analytics />
       </body>
     </html>

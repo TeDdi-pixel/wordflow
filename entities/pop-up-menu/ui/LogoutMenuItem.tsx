@@ -1,9 +1,9 @@
 import { IoExit } from "react-icons/io5";
-import { logOutUser } from "../actions/logout";
+import { signOutUser } from "../actions/sign-out";
 
 const LogoutMenuItem = async () => {
   return (
-    <form action={logOutUser} className="w-full">
+    <form action={signOutUser} className="w-full">
       <button
         type="submit"
         className="w-full px-4 py-2 text-left cursor-pointer group/item hover:bg-background-accent hover:text-accent"

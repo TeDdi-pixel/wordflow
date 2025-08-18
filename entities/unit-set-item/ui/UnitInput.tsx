@@ -36,6 +36,7 @@ export const UnitInput = memo(({ unitId, name, label, fieldType }: Props) => {
         name={name}
         value={value || ""}
         onChange={handleChange}
+        autoComplete="off"
         className="border-b-2 border-accent-border focus:outline-none text-[16px] mb-2 focus:border-accent"
       />
       <label className="text-[12px] uppercase font-bold mb-[38px]">

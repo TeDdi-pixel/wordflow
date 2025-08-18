@@ -2,17 +2,19 @@
 
 import AddCollectionIcon from "@/shared/icons/unit/AddCollectionIcon";
 import { useTempStore } from "@/store/useTempStore";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef } from "react";
 import { RiUploadCloud2Fill } from "react-icons/ri";
 import { redirect } from "next/navigation";
+import Spinner from "../Spinner";
 
 type Props = {
   pending: boolean;
   text: string;
   error: string;
+  pendingText: string;
 };
 
-const SubmitButton = ({ pending, text, error }: Props) => {
+const SubmitButton = ({ pending, text, error, pendingText }: Props) => {
   const resetTempStore = useTempStore((state) => state.resetTempStore);
   const previousPending = useRef<boolean>(false);
 
@@ -33,7 +35,7 @@ const SubmitButton = ({ pending, text, error }: Props) => {
       <div className="z-10 flex items-center justify-center gap-2 transition-all duration-150 ease-out group-hover:text-accent">
         <div className="w-[24px] h-[24px] flex">
           {pending && !error ? (
-            <div className="w-[24px] h-[24px] border-4 border-t-transparent border-accent rounded-full animate-spin" />
+            <Spinner />
           ) : (
             <>
               <span className="transition-all duration-150 ease-out translate-x-0 group-hover:translate-x-[24px] opacity-100 group-hover:opacity-0">
@@ -45,7 +47,7 @@ const SubmitButton = ({ pending, text, error }: Props) => {
             </>
           )}
         </div>
-        <span>{text}</span>
+        {pending ? <span>{pendingText}</span> : <span>{text}</span>}
       </div>
     </button>
   );
