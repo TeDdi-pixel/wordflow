@@ -1,17 +1,15 @@
 import { redirect } from "next/navigation";
-import { SignUpForm } from "@/widgets/auth/sign-up-form";
-import { SignInForm } from "@/widgets/auth/sign-in-form";
-import AuthFormName from "@/shared/components/form/AuthFormName";
-import { IoEnter } from "react-icons/io5";
 import { auth } from "@/auth";
-import { AdditionalEntranceForm } from "@/widgets/auth/additional-entrance-form";
+import { AdditionalEntranceForm, SignInForm, SignUpForm } from "@/widgets/auth";
+import { IoEnter } from "react-icons/io5";
+import AuthFormName from "@/shared/components/form/AuthFormName";
 
 const page = async () => {
   const session = await auth();
   if (session) redirect("/");
 
   return (
-    <div className="flex flex-col items-center justify-around w-full p-4 grow md:flex-row">
+    <div className="relative flex flex-col items-center justify-around w-full p-4 grow md:flex-row">
       <SignUpForm />
 
       <div className="flex flex-col gap-[8px] max-w-[272px] w-full -translate-y-1/2">

@@ -24,9 +24,9 @@ export const UnitSetCard = ({
   return (
     <Link
       href={`/card-set/${unitSetId}`}
-      className="group relative shadow-none hover:shadow-2xl hover:scale-105 scale-100 max-w-[371px] h-[210px] rounded-default w-full flex flex-col justify-between bg-foreground border-2 border-transparent p-[16px] text-[14px] overflow-hidden transition-all ease-out duration-150"
+      className="group relative shadow-none hover:shadow-xl hover:scale-105 scale-100 max-w-[371px] h-[210px] rounded-default w-full flex flex-col justify-between bg-foreground border-2 border-transparent p-[16px] text-[14px] overflow-hidden transition-all ease-out duration-[215ms]"
     >
-      <span className="absolute top-0 right-0 w-[16px] group-hover:translate-0 translate-x-[16px] -translate-y-[16px] h-[16px] bg-background-accent rounded-[2px] transition-transform ease-out duration-150"></span>
+      <span className="absolute top-0 right-0 w-[16px] group-hover:translate-0 translate-x-[16px] -translate-y-[16px] h-[16px] bg-background-accent rounded-[2px] transition-transform ease-out duration-[215ms]"></span>
 
       <div className="flex flex-col gap-[16px]">
         <h4 className="text-[18px] truncate">{title}</h4>
@@ -46,7 +46,7 @@ export const UnitSetCard = ({
 
           <span>by {authorsName}</span>
         </div>
-        <FiExternalLink className="group-hover:scale-100 scale-0 cursor-pointer w-[24px] h-[24px] hover:text-text-2 group-hover:translate-x-0 translate-x-[38px] transition-all ease-out duration-150" />
+        <FiExternalLink className="group-hover:scale-100 scale-0 cursor-pointer w-[24px] h-[24px] hover:text-text-2 group-hover:translate-x-0 translate-x-[38px] transition-all ease-out duration-[215ms]" />
       </div>
     </Link>
   );

@@ -32,7 +32,7 @@ const AuthSubmitButton = ({
       className={
         className ??
         `w-full md:w-[268px] px-2 bg-button cursor-not-allowed py-1.5 rounded-default flex gap-2 justify-center items-center mx-0.5 border-transparent h-[36px] ${
-          passwordsAreSafe
+          passwordsAreSafe && !pending
             ? "hover:bg-background-accent-2 cursor-pointer hover:text-text-2 transition-colors duration-150 text-accent-text"
             : "text-disabled"
         }`

@@ -16,6 +16,7 @@ export type TypeUnitSetForm = {
   units: TypeUnit[];
   error: string;
   unitSetType: UnitSetType;
+  errorId: string;
 };
 
 export type TypeUnitSet = {

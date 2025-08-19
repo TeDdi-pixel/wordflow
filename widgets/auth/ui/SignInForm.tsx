@@ -1,16 +1,15 @@
 "use client";
 
-import { useActionState } from "react";
+import { useActionState, useEffect } from "react";
 import { IoEnter } from "react-icons/io5";
-import { signInCredentials } from "../../../../features/auth/model/actions/signInCredentials";
+import { signInCredentials } from "../../../features/auth/model/actions/signInCredentials";
 import CheckBox from "@/shared/components/CheckBox";
 import SubmitButton from "@/shared/components/buttons/AuthSubmitButton";
-import useRedirect from "@/shared/hooks/useRedirect";
 import { PasswordField } from "@/entities/auth";
-import AuthError from "@/shared/components/errors/AuthError";
 import { InitialLoginForm } from "@/shared/model/types/auth";
 import AuthInput from "@/shared/components/inputs/AuthInput";
 import Form from "next/form";
+import toast from "react-hot-toast";
 
 const initialForm = {
   _id: "",
@@ -18,6 +17,7 @@ const initialForm = {
   password: "",
   message: "",
   type: "",
+  errorId: "",
 };
 
 export const SignInForm = () => {
@@ -26,7 +26,11 @@ export const SignInForm = () => {
     initialForm
   );
 
-  useRedirect(state.type, "/");
+  useEffect(() => {
+    if (state.type === "SIGN_IN_ERROR" && state.errorId) {
+      toast.error(state.message, { id: state.errorId });
+    }
+  }, [state.type, state.errorId, state.message]);
 
   return (
     <Form
@@ -51,7 +55,6 @@ export const SignInForm = () => {
         />
       </div>
       <CheckBox label="запам'ятати мене" />
-      {state?.message ? <AuthError message={state?.message} /> : null}
       <SubmitButton
         pending={pending}
         text="вхід"

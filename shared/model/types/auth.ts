@@ -37,9 +37,9 @@ export type TypeUser = {
 };
 
 export type OperationResult<S extends string, E extends string> =
-  | { type: S; message: string }
-  | { type: E; message: string }
-  | { type: string; message: string };
+  | { type: S; message: string; errorId: string }
+  | { type: E; message: string; errorId: string }
+  | { type: string; message: string; errorId: string };
 
 export type SessionUser = {
   userId: string;

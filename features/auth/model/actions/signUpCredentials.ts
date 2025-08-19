@@ -8,10 +8,12 @@ import { InitialRegForm } from "@/shared/model/types/auth";
 import createDbConnection from "@/shared/lib/mongoose";
 import { AuthError } from "next-auth";
 import { signIn } from "@/auth";
+import { redirect } from "next/navigation";
 
 const userBackUpFields = (formData: InitialRegForm) => ({
   ...formData,
   type: "SIGN_UP_ERROR",
+  errorId: crypto.randomUUID(),
 });
 
 export const signUpCredentials = async (
@@ -64,12 +66,19 @@ export const signUpCredentials = async (
       provider: "credentials",
     });
 
-    await signIn("credentials", {
+    const res = await signIn("credentials", {
       email: formData.email,
       password: formData.password,
+      redirect: false,
     });
 
-    return { ...prevState, type: "SIGN_UP_SUCCESS" };
+    if (res?.error) {
+      return {
+        ...userBackUpFields(formData),
+        message: res.error,
+      };
+    }
+    redirect("/");
   } catch (error) {
     console.error("Registration error:", error);
 

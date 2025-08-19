@@ -10,6 +10,7 @@ import { redirect } from "next/navigation";
 const userBackUpFields = (formData: InitialLoginForm) => ({
   ...formData,
   type: "SIGN_IN_ERROR",
+  errorId: crypto.randomUUID(),
 });
 
 export const signInCredentials = async (
@@ -33,12 +34,20 @@ export const signInCredentials = async (
   }
 
   try {
-    await signIn("credentials", {
+    const res = await signIn("credentials", {
       email: formData.email,
       password: formData.password,
+      redirect: false,
     });
 
-    return { ...prevState, type: "SIGN_IN_SUCCESS" };
+    if (res?.error) {
+      return {
+        ...userBackUpFields(formData),
+        message: res.error,
+      };
+    }
+
+    redirect("/");
   } catch (error) {
     console.error("Login error:", error);
 
@@ -50,9 +59,10 @@ export const signInCredentials = async (
             message: AUTH_ERROR_MESSAGES.INVALID_CREDENTIALS,
           };
         default:
+          const errorM = error.cause?.err?.message || error.message;
           return {
             ...userBackUpFields(formData),
-            message: AUTH_ERROR_MESSAGES.SIGN_IN_ERROR,
+            message: errorM ?? AUTH_ERROR_MESSAGES.SIGN_IN_ERROR,
           };
       }
     }

@@ -9,6 +9,7 @@ import { usePasswordStore } from "@/store/usePasswordStore";
 import { StatusIconsHover } from "../../../entities/auth/ui/StatusIconsHover";
 import CopyPasswordButton from "@/shared/components/buttons/CopyPasswordButton";
 import AuthInput from "@/shared/components/inputs/AuthInput";
+import { useEffect } from "react";
 
 type TypeProps = {
   pending: boolean;

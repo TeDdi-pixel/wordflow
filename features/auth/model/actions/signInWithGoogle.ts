@@ -3,5 +3,9 @@
 import { signIn } from "@/auth";
 
 export const signInWithGoogle = async () => {
-  await signIn("google");
+  try {
+    await signIn("google");
+  } catch (error) {
+    throw error;
+  }
 };

@@ -10,10 +10,13 @@ import {
 import { getOppositeField } from "@/shared/utils/auth/getOppositeField";
 import { isPasswordField } from "@/shared/utils/auth/isPasswordField";
 import { usePasswordStore } from "@/store/usePasswordStore";
-import { useCallback, useRef } from "react";
+import { useCallback, useEffect, useRef } from "react";
 
 type Props = Omit<TypeInput, "type" | "placeholder" | "name" | "pending"> &
-  TypeInputError & { isLoginPassword: boolean; storeName: PasswordFieldType };
+  TypeInputError & {
+    isLoginPassword: boolean;
+    storeName: PasswordFieldType;
+  };
 
 const usePassword = ({ storeName, isLoginPassword }: Props) => {
   const setTipVisible = usePasswordStore((state) => state.setTipVisible);
@@ -22,9 +25,11 @@ const usePassword = ({ storeName, isLoginPassword }: Props) => {
   const setIsPasswordSafe = usePasswordStore(
     (state) => state.setIsPasswordSafe
   );
+  const resetPasswordFields = usePasswordStore(
+    (state) => state.resetPasswordFields
+  );
   const fields = usePasswordStore((state) => state.fields);
   const getPassword = usePasswordStore((state) => state.getPassword);
-
   const inputRef = useRef<HTMLInputElement>(null);
 
   const defaultHandlers = {
@@ -38,6 +43,14 @@ const usePassword = ({ storeName, isLoginPassword }: Props) => {
   };
 
   if (!storeName) return defaultHandlers;
+
+  useEffect(() => {
+    resetPasswordFields();
+
+    if (inputRef.current) {
+      inputRef.current.value = "";
+    }
+  }, []);
 
   const isStoreName = storeName && isPasswordField(storeName);
 

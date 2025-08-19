@@ -2,27 +2,46 @@ import createDbConnection from "@/shared/lib/mongoose";
 import User from "@/shared/model/schemas/User";
 import { NextRequest, NextResponse } from "next/server";
 import bcrypt from "bcrypt";
+import { AUTH_ERROR_MESSAGES } from "@/shared/model/constants/errors";
 
 export const POST = async (req: NextRequest) => {
-  const body = await req.json();
+  const { password, email } = await req.json();
 
   try {
     await createDbConnection();
-    const user = await User.findOne({ email: body.email });
+    const user = await User.findOne({ email });
 
+    if (user && user.provider === "google") {
+      return NextResponse.json({
+        ok: false,
+        message: AUTH_ERROR_MESSAGES.EMAIL_REGISTERED_WITH_PROVIDER.replace(
+          "{provider}",
+          "Google"
+        ),
+      });
+    }
     if (!user || !user.password) {
-      return null;
+      return NextResponse.json({
+        ok: false,
+        message: AUTH_ERROR_MESSAGES.INVALID_CREDENTIALS,
+      });
     }
 
     const isPasswordValid = bcrypt.compareSync(
-      body.password as string,
+      password as string,
       user.password
     );
-    if (!isPasswordValid) return null;
+
+    if (!isPasswordValid) {
+      return NextResponse.json({
+        ok: false,
+        message: AUTH_ERROR_MESSAGES.INVALID_CREDENTIALS,
+      });
+    }
 
     return NextResponse.json({
       ok: true,
-      message: "Користувача знайдено",
+      message: "Login successful",
       id: user._id.toString(),
       username: user.username,
       email: user.email,

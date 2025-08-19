@@ -3,5 +3,6 @@ export function withError<T>(prevState: T, error: string): T {
     ...prevState,
     error,
     type: "ERROR",
+    errorId: crypto.randomUUID(),
   };
 }

@@ -1,16 +1,15 @@
 "use client";
 
 import Form from "next/form";
-import { signUpCredentials } from "../../../../features/auth/model/actions/signUpCredentials";
-import { useActionState } from "react";
+import { signUpCredentials } from "../../../features/auth/model/actions/signUpCredentials";
+import { useActionState, useEffect, useRef } from "react";
 import { FaUserPlus } from "react-icons/fa";
-import SubmitButton from "../../../../shared/components/buttons/AuthSubmitButton";
-import useRedirect from "@/shared/hooks/useRedirect";
+import SubmitButton from "../../../shared/components/buttons/AuthSubmitButton";
 import { PasswordField } from "@/entities/auth";
-import AuthError from "@/shared/components/errors/AuthError";
 import AuthFormName from "@/shared/components/form/AuthFormName";
 import { InitialRegForm } from "@/shared/model/types/auth";
 import AuthInput from "@/shared/components/inputs/AuthInput";
+import toast from "react-hot-toast";
 
 const initialForm = {
   _id: "",
@@ -21,6 +20,7 @@ const initialForm = {
   verifyPassword: "",
   message: "",
   type: "",
+  errorId: "",
 };
 
 export const SignUpForm = () => {
@@ -29,7 +29,11 @@ export const SignUpForm = () => {
     initialForm
   );
 
-  useRedirect(state.type, "/");
+  useEffect(() => {
+    if (state.type === "SIGN_UP_ERROR" && state.errorId) {
+      toast.error(state.message, { id: state.errorId });
+    }
+  }, [state.type, state.errorId, state.message]);
 
   return (
     <Form
@@ -75,7 +79,6 @@ export const SignUpForm = () => {
         name="verifyPassword"
         placeholder="підтвердіть пароль"
       />
-      {state?.message ? <AuthError message={state?.message} /> : null}
       <SubmitButton
         pending={pending}
         text="зареєструватися"

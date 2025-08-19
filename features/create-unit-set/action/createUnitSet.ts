@@ -7,7 +7,6 @@ import UnitSetSchema from "@/shared/model/schemas/UnitSet";
 import User from "@/shared/model/schemas/User";
 import { TypeUnit, TypeUnitSetForm } from "@/shared/model/types/unit";
 import createDbConnection from "@/shared/lib/mongoose";
-import { auth } from "@/auth";
 
 const ERRORS = UNIT_SET_ERROR_MESSAGES;
 

@@ -12,6 +12,7 @@ type PasswordStore = {
   setIsPasswordSafe: (field: PasswordFieldType, status: boolean) => void;
   setTipVisible: (field: PasswordFieldType, visible: boolean) => void;
   getPassword: (field: PasswordFieldType) => string | null;
+  resetPasswordFields: () => void;
 };
 
 export const usePasswordStore = create<PasswordStore>((set, get) => {
@@ -44,5 +45,10 @@ export const usePasswordStore = create<PasswordStore>((set, get) => {
       updateField(field, { tipVisible: visible }),
 
     getPassword: (field) => get().fields[field]?.password || null,
+
+    resetPasswordFields: () =>
+      set(() => ({
+        fields: passwordFields,
+      })),
   };
 });

@@ -15,4 +15,5 @@ export type TempStore = {
   reorderUnits: (oldIndex: number, newIndex: number) => void;
   resetTempStore: () => void;
   setCurrentUnitId: (id: string) => void;
+  getUnits: () => TypeUnit[];
 };

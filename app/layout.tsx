@@ -7,6 +7,7 @@ import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Suspense } from "react";
 import Loading from "./loading";
+import ToasterProvider from "@/shared/components/providers/ToasterProvider";
 
 const robotoMono = Roboto_Mono({
   variable: "--font-roboto-mono",
@@ -28,6 +29,8 @@ export default function RootLayout({
       <body
         className={`${robotoMono.variable} selection:bg-selection antialiased bg-background pt-8 flex flex-col items-center justify-between min-h-screen overflow-x-hidden`}
       >
+        <ToasterProvider />
+
         <Header />
 
         <main className="flex max-w-[1440px] w-full h-full items-center flex-col grow justify-start">

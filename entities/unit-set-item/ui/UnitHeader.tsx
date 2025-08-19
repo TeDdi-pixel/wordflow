@@ -4,6 +4,7 @@ import { useTempStore } from "@/store/useTempStore";
 import DragIcon from "@/shared/icons/unit/DragIcon";
 import { memo } from "react";
 import { LuTrash2 } from "react-icons/lu";
+import toast from "react-hot-toast";
 
 type Props = {
   termNumber: number;
@@ -23,8 +24,17 @@ export const UnitHeader = memo(
   }: Props) => {
     const removeUnit = useTempStore((state) => state.removeUnit);
     const setCurrentUnitId = useTempStore((state) => state.setCurrentUnitId);
+    const getUnits = useTempStore((state) => state.getUnits);
 
     const handleClick = () => {
+      if (getUnits().length <= 1)
+        toast.error(
+          "Для успішного створення набору карток потрібна хоча б одна картка",
+          {
+            position: "top-center",
+            id: crypto.randomUUID(),
+          }
+        );
       setCurrentUnitId(unitId);
       removeUnit();
     };

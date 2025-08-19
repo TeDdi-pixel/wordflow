@@ -110,5 +110,6 @@ export const useTempStore = create<TempStore>()(
     resetTempStore: () => {
       set({ ...initialUnitSet });
     },
+    getUnits: () => get().units,
   }))
 );
