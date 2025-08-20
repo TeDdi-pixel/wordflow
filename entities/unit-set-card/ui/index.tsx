@@ -3,7 +3,6 @@ import { unitTypeIcon } from "@/shared/utils/unit-set-card/getUnitTypeIcon";
 import { UnitSetType } from "@/shared/model/types/unit";
 import Link from "next/link";
 import { FiExternalLink } from "react-icons/fi";
-import { FaHeart } from "react-icons/fa6";
 import LikeIcon from "@/shared/icons/unit/LikeIcon";
 
 type Props = {
@@ -28,9 +27,11 @@ export const UnitSetCard = ({
   return (
     <Link
       href={`/card-set/${unitSetId}`}
-      className="group relative shadow-none hover:shadow-xl hover:scale-105 scale-100 max-w-[371px] h-[210px] rounded-default w-full flex flex-col justify-between bg-foreground border-2 border-transparent p-[16px] text-[14px] overflow-hidden transition-all ease-out duration-[215ms]"
+      className="group relative shadow-none hover:shadow-xl hover:scale-105 scale-100 max-w-[371px] h-[210px] rounded-default w-full flex flex-col justify-between bg-foreground border-3 border-transparent p-[16px] text-[14px] overflow-hidden transition-all ease-out duration-[215ms]"
     >
-      <span className="absolute top-0 right-0 w-[16px] group-hover:translate-0 translate-x-[16px] -translate-y-[16px] h-[16px] bg-background-accent rounded-[2px] transition-transform ease-out duration-[215ms]"></span>
+      <span className="absolute top-0 right-0 w-fit h-fit p-1 flex items-center justify-center group-hover:translate-0 translate-x-[28px] -translate-y-[28px]  bg-background-accent rounded-[4px] transition-transform ease-out duration-[215ms]">
+        <FiExternalLink className="cursor-pointer w-[18px] h-[18px]" />
+      </span>
 
       <div className="flex flex-col gap-[16px]">
         <h4 className="text-[18px] truncate">{title}</h4>
@@ -57,7 +58,6 @@ export const UnitSetCard = ({
             </div>
           )}
         </div>
-        <FiExternalLink className="group-hover:scale-100 scale-0 cursor-pointer w-[24px] h-[24px] hover:text-text-2 group-hover:translate-x-0 translate-x-[38px] transition-all ease-out duration-[215ms]" />
       </div>
     </Link>
   );

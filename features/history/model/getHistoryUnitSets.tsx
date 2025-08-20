@@ -1,21 +1,15 @@
-import { auth } from "@/auth";
 import createDbConnection from "@/shared/lib/mongoose";
 import { getUserId } from "@/shared/lib/session";
 import UnitSet from "@/shared/model/schemas/UnitSet";
 import UserTerms from "@/shared/model/schemas/UserTerms";
 import { TypeUserTerms } from "@/shared/model/types/user-terms";
 import mongoose from "mongoose";
-import { notFound, redirect } from "next/navigation";
+import { notFound } from "next/navigation";
 
-export const getHistoryUnitSets = async () => {
-  const session = await auth();
-  if (!session) redirect("/login");
-
+export const getHistoryUnitSets = async (userId: string) => {
   await createDbConnection();
 
-  const relatedUserId = await getUserId();
-
-  const userPreviousUnitSets = await UserTerms.find({ relatedUserId });
+  const userPreviousUnitSets = await UserTerms.find({ relatedUserId: userId });
 
   const unitSetIdsSet = new Set<string>();
   userPreviousUnitSets.forEach((unitSet: TypeUserTerms) => {

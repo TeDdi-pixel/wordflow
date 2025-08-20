@@ -11,7 +11,6 @@ export default function ToasterProvider() {
           background: "var(--color-background-accent)",
           color: "var(--color-accent)",
           padding: "16px",
-          // border: "1px solid var(--color-text)",
           maxWidth: "360px",
         },
         error: {
@@ -28,9 +27,14 @@ export default function ToasterProvider() {
         },
 
         loading: {
-          icon: <Spinner foregroundColor="text-text" mainColor="text-text-2" />,
+          icon: (
+            <Spinner
+              foregroundColor="border-t-background-accent"
+              mainColor="border-foreground"
+            />
+          ),
           style: {
-            background: "var(--color-foreground)",
+            background: "var(--color-background-accent)",
             padding: "16px",
             maxWidth: "360px",
           },

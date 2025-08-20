@@ -30,22 +30,32 @@ export const signUpCredentials = async (
     };
 
   //testing email for correct format
-  if (!EMAIL_REGEX.test(formData?.email)) {
+  if (!EMAIL_REGEX.test(formData?.email))
     return {
       ...userBackUpFields(formData),
       message: AUTH_ERROR_MESSAGES.INVALID_EMAIL,
     };
-  }
 
   if (
     formData?.email !== formData?.verifyEmail ||
     formData?.password !== formData?.verifyPassword
-  ) {
+  )
     return {
       ...userBackUpFields(formData),
       message: AUTH_ERROR_MESSAGES.CREDENTIALS_DO_NOT_MATCH,
     };
-  }
+
+  if (formData.username === "admin")
+    return {
+      ...userBackUpFields(formData),
+      message: AUTH_ERROR_MESSAGES.RESERVED_USERNAME,
+    };
+
+  if (formData.email === "admin@gmail.com")
+    return {
+      ...userBackUpFields(formData),
+      message: AUTH_ERROR_MESSAGES.RESERVED_EMAIL,
+    };
   //connect and create user in db
   try {
     await createDbConnection();

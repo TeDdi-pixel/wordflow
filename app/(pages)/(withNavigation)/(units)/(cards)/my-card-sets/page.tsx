@@ -7,15 +7,13 @@ import { TypeUnitSet } from "@/shared/model/types/unit";
 import { notFound, redirect } from "next/navigation";
 
 const page = async () => {
-  const session = auth();
+  const session = await auth();
 
   if (!session) redirect("/login");
 
-  const id = await getUserId();
-
   await createDbConnection();
 
-  const userUnitSets = await UnitSet.find({ relatedUserId: id });
+  const userUnitSets = await UnitSet.find({ relatedUserId: session.user?.id });
 
   if (!userUnitSets || userUnitSets.length === 0) notFound();
 
