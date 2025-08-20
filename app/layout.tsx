@@ -7,7 +7,7 @@ import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { Suspense } from "react";
 import Loading from "./loading";
-import ToasterProvider from "@/shared/components/providers/ToasterProvider";
+import ToasterProvider from "@/shared/providers/ToasterProvider";
 
 const robotoMono = Roboto_Mono({
   variable: "--font-roboto-mono",

@@ -1,40 +1,41 @@
 "use client";
 
 import { Toaster } from "react-hot-toast";
-import Spinner from "../Spinner";
+import Spinner from "../components/Spinner";
 
 export default function ToasterProvider() {
   return (
     <Toaster
       toastOptions={{
         style: {
-          background: "var(--color-background-accent)",
+          background: "var(--color-toast-bg)",
           color: "var(--color-accent)",
           padding: "16px",
           maxWidth: "360px",
         },
         error: {
+          style: {
+            background: "#5a3a4a",
+          },
           iconTheme: {
             primary: "var(--color-error)",
-            secondary: "var(--color-text-2)",
+            secondary: "var(--color-toast-bg)",
           },
         },
         success: {
+          style: {
+            background: "#3a4a5a",
+          },
           iconTheme: {
             primary: "var(--color-success)",
-            secondary: "var(--color-text-2)",
+            secondary: "var(--color-toast-bg)",
           },
         },
 
         loading: {
-          icon: (
-            <Spinner
-              foregroundColor="border-t-background-accent"
-              mainColor="border-foreground"
-            />
-          ),
+          icon: <Spinner />,
           style: {
-            background: "var(--color-background-accent)",
+            background: "#2d2a3d",
             padding: "16px",
             maxWidth: "360px",
           },

@@ -6,6 +6,10 @@
   --color-button: #17131c;
   --color-popup: #17131c;
 
+  --color-toast-bg: #4a3a5a;
+  --color-toast-error-bg: #5a3a4a;
+  --color-toast-success-bg: #3a4a5a;
+
   --color-background-accent: #8a3e8a;
   --color-button-accent: #c05be0;
   --color-button-accent-2: #e0c0ff;
