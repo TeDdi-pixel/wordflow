@@ -8,43 +8,32 @@ export default function ToasterProvider() {
     <Toaster
       toastOptions={{
         style: {
-          background: "var(--color-foreground)",
-          color: "var(--color-text-2)",
+          background: "var(--color-background-accent)",
+          color: "var(--color-accent)",
           padding: "16px",
-          border: "1px solid var(--color-accent)",
-          borderRadius: "8px",
+          // border: "1px solid var(--color-text)",
           maxWidth: "360px",
         },
         error: {
-          style: {
-            background: "var(--color-foreground)",
-            color: "var(--color-error)",
-            border: "1px solid var(--color-error)",
-            borderRadius: "0.5rem",
-            padding: "12px 16px",
-          },
           iconTheme: {
             primary: "var(--color-error)",
-            secondary: "var(--color-foreground)",
+            secondary: "var(--color-text-2)",
           },
         },
         success: {
-          style: {
-            background: "var(--color-foreground)",
-            color: "var(--color-success)",
-            border: "1px solid var(--color-success)",
-            borderRadius: "8px",
-          },
           iconTheme: {
             primary: "var(--color-success)",
-            secondary: "var(--color-foreground)",
+            secondary: "var(--color-text-2)",
           },
         },
+
         loading: {
+          icon: <Spinner foregroundColor="text-text" mainColor="text-text-2" />,
           style: {
             background: "var(--color-foreground)",
+            padding: "16px",
+            maxWidth: "360px",
           },
-          icon: <Spinner />,
         },
         duration: 4000,
       }}

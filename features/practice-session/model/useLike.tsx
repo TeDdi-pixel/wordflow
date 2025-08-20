@@ -26,12 +26,12 @@ const useLike = () => {
       if (prevLiked) {
         toast.promise(axios.delete(`/api/unit-sets/${unitSetId}/like`), {
           loading: <LoadingText text="Завантаження..." />,
-          success: "Юніт успішно збережений",
+          success: "Юнітсет видалено з ваших вподобань",
         });
       } else {
         toast.promise(axios.post(`/api/unit-sets/${unitSetId}/like`), {
           loading: <LoadingText text="Завантаження..." />,
-          success: "Юніт успішно видалений",
+          success: "Юнітсет додано до ваших вподобань",
         });
       }
     } catch (error) {
@@ -39,7 +39,9 @@ const useLike = () => {
       if (error instanceof AxiosError) {
         console.error(error);
         const message = error.response?.data?.message || error.message;
+
         showError(message);
+
         if (error.response?.status === 401) {
           router.push("/login");
         }

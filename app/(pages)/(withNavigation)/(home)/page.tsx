@@ -10,7 +10,7 @@ export default async function Home() {
 
   return (
     <div className="max-w-[1146px] w-full px-[16px] md:px-[32px] mx-auto h-full">
-      <MainTitle text="Усі юніти" />
+      <MainTitle text="Усі юнітсети" />
 
       <div className="grid grid-cols-3 gap-4 w-full">
         {unitSets.map((unitSet: TypeUnitSet) => (
