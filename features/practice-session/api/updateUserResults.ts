@@ -13,7 +13,9 @@ export const updateUserResults = async (
     });
     return true;
   } catch (error) {
-    console.error("Помилка при збереженні результатів:", error);
-    return false;
+    if (axios.isAxiosError(error)) {
+      throw new Error(error.response?.data?.message);
+    }
+    throw new Error("Невідома помилка при збереженні результатів");
   }
 };

@@ -2,6 +2,9 @@ import { useRouter } from "next/navigation";
 import { useCallback, useEffect } from "react";
 import { updateUserResults } from "../api/updateUserResults";
 import { usePracticeStore } from "@/store/usePracticeStore";
+import { showError } from "@/shared/lib/toasts";
+import toast from "react-hot-toast";
+import LoadingText from "@/shared/components/LoadingText";
 
 type Params = {
   checkAnswer: () => void;
@@ -24,12 +27,23 @@ export const useTermsHandling = ({ checkAnswer }: Params) => {
 
   const handleSave = useCallback(async () => {
     if (!unitSetId || isPending) return false;
-    if (completedTerms.length === 0) return false;
+    if (completedTerms.length === 0) {
+      showError("Ви ще не надали жодної відповіді", crypto.randomUUID());
+      return;
+    }
 
     setIsPending(true);
 
+    const promise = updateUserResults(unitSetId, completedTerms);
+
+    toast.promise(promise, {
+      success: "Результати успішно перевірені",
+      loading: <LoadingText text="Завантаження..." />,
+      error: (error) => error.message,
+    });
+
     try {
-      const success = await updateUserResults(unitSetId, completedTerms);
+      const success = await promise;
 
       if (success) {
         router.push(`/card-set/${unitSetId}/results?refresh=${Date.now()}`);

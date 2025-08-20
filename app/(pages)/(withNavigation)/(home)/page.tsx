@@ -22,6 +22,7 @@ export default async function Home() {
             termsCount={unitSet.units.length}
             title={unitSet.title}
             unitSetId={unitSet._id.toString()}
+            likesCount={unitSet.likesCount}
           />
         ))}
       </div>

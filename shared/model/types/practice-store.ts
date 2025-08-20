@@ -1,7 +1,7 @@
 import { TypeUnit } from "./unit";
 
 export type CheckStatus = "MISTAKE" | "CORRECTNESS" | "EXCLUDED" | "";
-export type FeatureName = "bookmark" | "star" | "sound" | "tip";
+export type FeatureName = "bookmark" | "like" | "sound" | "tip";
 export type TypeCompletedUnit = {
   termId: string;
   checkStatus: CheckStatus;

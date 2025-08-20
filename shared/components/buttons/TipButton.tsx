@@ -26,7 +26,7 @@ const TipButton = ({
     return (
       <a
         href={path}
-        className="group relative max-w-[44px] w-full h-[44px] bg-button hover:bg-button-accent flex items-center justify-center rounded-default transition-all ease-in-out duration-150 unit-button-shadow cursor-pointer"
+        className="group relative max-w-[44px] w-full h-[44px] bg-button hover:bg-background-accent hover:text-accent flex items-center justify-center rounded-default transition-all ease-in-out duration-150 unit-button-shadow cursor-pointer"
         aria-label={tipText}
       >
         {icon}
@@ -40,7 +40,7 @@ const TipButton = ({
       onClick={onClick}
       type="button"
       disabled={isDisabled}
-      className="group relative w-[44px] h-[44px] bg-button hover:bg-button-accent flex items-center justify-center rounded-default transition-all ease-in-out duration-150 unit-button-shadow cursor-pointer"
+      className="group relative w-[44px] h-[44px] bg-button hover:bg-background-accent hover:text-accent flex items-center justify-center rounded-default transition-all ease-in-out duration-150 unit-button-shadow cursor-pointer"
       aria-label={tipText}
     >
       {icon}

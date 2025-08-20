@@ -5,6 +5,9 @@ import { memo } from "react";
 import AddUnitButton from "@/shared/components/buttons/AddUnitButton";
 import { UnitInput } from "./UnitInput";
 import useSortableStyles from "../../../features/create-unit-set/model/useSortableStyles";
+import { useTempStore } from "@/store/useTempStore";
+import toast from "react-hot-toast";
+import { MAX_ITEMS_LENGTH } from "@/shared/model/constants/units";
 
 export const Unit = memo(
   ({ unitId, termNumber }: { unitId: string; termNumber: number }) => {
@@ -16,6 +19,20 @@ export const Unit = memo(
       attributes,
       setActivatorNodeRef,
     } = useSortableStyles({ unitId });
+    const setCurrentUnitId = useTempStore((state) => state.setCurrentUnitId);
+    const addUnit = useTempStore((state) => state.addUnit);
+    const getUnits = useTempStore((state) => state.getUnits);
+
+    const handleClick = () => {
+      if (getUnits().length >= MAX_ITEMS_LENGTH) {
+        toast.error("Ви досягли максимальної кількості карток", {
+          position: "top-center",
+          id: crypto.randomUUID(),
+        });
+      }
+      setCurrentUnitId(unitId);
+      addUnit();
+    };
 
     return (
       <div ref={setNodeRef} style={style} suppressHydrationWarning>
@@ -32,7 +49,9 @@ export const Unit = memo(
             unitId={unitId}
             attributes={attributes}
           />
+
           <span className="flex w-full h-[2px] bg-accent-text absolute left-0"></span>
+
           <div className="flex w-full gap-8 mt-[46px] mb-40px font-normal">
             <UnitInput
               unitId={unitId}
@@ -40,6 +59,7 @@ export const Unit = memo(
               name={`card[${termNumber - 1}].term`}
               label="Термін"
             />
+
             <UnitInput
               unitId={unitId}
               fieldType="definition"
@@ -48,8 +68,9 @@ export const Unit = memo(
             />
           </div>
         </div>
+
         <div className="relative h-[32px] flex items-center justify-center group">
-          <AddUnitButton unitId={unitId} />
+          <AddUnitButton handleClick={handleClick} />
         </div>
       </div>
     );

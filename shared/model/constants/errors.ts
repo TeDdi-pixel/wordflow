@@ -18,6 +18,7 @@ export const AUTH_ERROR_MESSAGES = {
   AUTH_ERROR: "Помилка авторизації",
   SIGN_UP_ERROR: "Помилка реєстрації",
   SIGN_IN_ERROR: "Помилка реєстрації, переконайтесь, що дані коректні",
+  GOOGLE_AUTH_ERROR: "Помилка при аутентифікації через Google",
 };
 
 export const UNIT_SET_ERROR_MESSAGES = {

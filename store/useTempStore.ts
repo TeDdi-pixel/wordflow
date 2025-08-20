@@ -1,3 +1,4 @@
+import { MAX_ITEMS_LENGTH } from "@/shared/model/constants/units";
 import { TempStore } from "@/shared/model/types/temp-store";
 import { arrayMove } from "@dnd-kit/sortable";
 import { create } from "zustand";
@@ -14,8 +15,6 @@ const initialUnitSet: Pick<
     { _id: crypto.randomUUID(), termNumber: 2, term: "", definition: "" },
   ],
 };
-
-const MAX_ITEMS_LENGTH = 30;
 
 export const useTempStore = create<TempStore>()(
   subscribeWithSelector((set, get) => ({

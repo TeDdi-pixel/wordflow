@@ -15,6 +15,7 @@ const unitSet = new mongoose.Schema({
     enum: ["cards"],
     required: true,
   },
+  likesCount: { type: Number, required: true, default: 0, min: 0 },
   units: [
     {
       termNumber: { type: Number, required: true },

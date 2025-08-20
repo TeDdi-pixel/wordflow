@@ -26,4 +26,5 @@ export type TypeUnitSet = {
   description: string;
   unitSetType: "cards";
   units: TypeUnit[];
+  likesCount: number;
 };

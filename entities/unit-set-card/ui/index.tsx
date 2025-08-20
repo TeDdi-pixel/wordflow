@@ -3,6 +3,8 @@ import { unitTypeIcon } from "@/shared/utils/unit-set-card/getUnitTypeIcon";
 import { UnitSetType } from "@/shared/model/types/unit";
 import Link from "next/link";
 import { FiExternalLink } from "react-icons/fi";
+import { FaHeart } from "react-icons/fa6";
+import LikeIcon from "@/shared/icons/unit/LikeIcon";
 
 type Props = {
   unitSetId: string;
@@ -11,6 +13,7 @@ type Props = {
   authorsName: string;
   description: string;
   unitSetType: UnitSetType;
+  likesCount: number;
 };
 
 export const UnitSetCard = ({
@@ -20,6 +23,7 @@ export const UnitSetCard = ({
   termsCount,
   authorsName,
   description,
+  likesCount,
 }: Props) => {
   return (
     <Link
@@ -45,6 +49,13 @@ export const UnitSetCard = ({
           <span>{unitTypeIcon(unitSetType)}</span>
 
           <span>by {authorsName}</span>
+
+          {likesCount > 0 && (
+            <div className="flex gap-1 items-center">
+              <LikeIcon />
+              <span>{likesCount}</span>
+            </div>
+          )}
         </div>
         <FiExternalLink className="group-hover:scale-100 scale-0 cursor-pointer w-[24px] h-[24px] hover:text-text-2 group-hover:translate-x-0 translate-x-[38px] transition-all ease-out duration-[215ms]" />
       </div>

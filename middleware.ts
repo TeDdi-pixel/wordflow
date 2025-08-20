@@ -4,7 +4,14 @@ import { auth } from "./auth";
 export async function middleware(request: NextRequest) {
   const { pathname } = request.nextUrl;
 
-  const exceptions = ["/_next", "/api", "/favicon", "/assets"];
+  const exceptions = [
+    "/_next",
+    "/api",
+    "/favicon.ico",
+    "/manifest.webmanifest",
+    "/icon.ico",
+    "/assets",
+  ];
 
   const isException = exceptions.some((prefix) => pathname.startsWith(prefix));
 

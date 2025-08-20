@@ -30,6 +30,7 @@ const page = async () => {
             termsCount={unitSet.units.length}
             title={unitSet.title}
             unitSetId={unitSet._id.toString()}
+            likesCount={unitSet.likesCount}
           />
         </div>
       ))}

@@ -1,6 +1,6 @@
-import { TypeUnit } from "@/shared/model/types/unit";
 import { useSortable } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
+import { relative } from "path";
 
 const useSortableStyles = ({ unitId }: { unitId: string }) => {
   const {
@@ -21,8 +21,9 @@ const useSortableStyles = ({ unitId }: { unitId: string }) => {
     transition: isDragging
       ? "scale 150ms cubic-bezier(0.25, 1, 0.5, 1)"
       : `${transition}, scale 150ms cubic-bezier(0.25, 1, 0.5, 1)`,
-    zIndex: isDragging ? 1000 : "auto",
+    zIndex: isDragging ? 9999 : "auto",
     scale: isDragging ? 1.05 : 1,
+    position: "relative" as any,
   };
 
   return {

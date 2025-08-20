@@ -41,9 +41,12 @@ export const UnitSetForm = () => {
 
   useEffect(() => {
     if (pending) {
-      toastIdRef.current = toast.loading(<LoadingText text="Loading..." />, {
-        duration: Infinity,
-      });
+      toastIdRef.current = toast.loading(
+        <LoadingText text="Завантаження..." />,
+        {
+          duration: Infinity,
+        }
+      );
     } else if (toastIdRef.current) {
       toast.dismiss(toastIdRef.current);
       toastIdRef.current = undefined;
@@ -53,18 +56,22 @@ export const UnitSetForm = () => {
   return (
     <Form action={action} className="max-w-[935px] w-full flex flex-col">
       <MainTitle text="Створити список карток" />
+
       <UnitSetTitleInput
         placeholder="Створіть назву для вашої картки, наприклад, “Verbs”."
         defaultValue={state.title}
       />
+
       <UnitSetDescription
         placeholder="Додайте опис... (не обо'язково)"
         defaultValue={state.description}
       />
+
       <div className="flex flex-col">
         <div className="mb-[18px]">
           <UnitList />
         </div>
+
         <div className="flex justify-center w-full">
           <SubmitButton
             text="Створити список"
