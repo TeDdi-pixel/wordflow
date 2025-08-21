@@ -1,9 +1,10 @@
+import { Route } from "next";
 import Link from "next/link";
 import { ReactNode } from "react";
 
 type Props = {
   id: number;
-  path: string;
+  path: Route;
   name: string;
   icon: ReactNode;
 };

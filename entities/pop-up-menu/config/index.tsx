@@ -1,12 +1,14 @@
+import CardsIcon from "@/shared/icons/navigation/CardsIcon";
 import HistoryIcon from "@/shared/icons/navigation/HistoryIcon";
 import LibraryIcon from "@/shared/icons/navigation/LibraryIcon";
+import { Route } from "next";
 import { ReactNode } from "react";
 
 export type TypePopUpMenu = {
   id: number;
   name: string;
   icon: ReactNode;
-  path: string;
+  path: Route;
   apiCall?: string;
 };
 
@@ -17,6 +19,12 @@ export const menuButtons: TypePopUpMenu[] = [
   //   icon: <FaUser />,
   //   path: "/profile",
   // },
+  {
+    id: 0,
+    name: "Мої юніти",
+    icon: <CardsIcon />,
+    path: "/history",
+  },
   {
     id: 1,
     name: "Бібліотека",

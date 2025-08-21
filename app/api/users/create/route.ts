@@ -37,9 +37,13 @@ export const POST = async (req: NextRequest) => {
       );
     } catch (err) {
       console.error("Помилка при ствоненні користувача:", err);
+      return NextResponse.json(
+        { ok: false, message: "Помилка при ствоненні користувача" },
+        { status: 500 }
+      );
     }
   } catch (error) {
-    console.error("Ошибка в POST /api/users/create:", error);
+    console.error("Помилка в POST /api/users/create:", error);
     return NextResponse.json(
       { ok: false, message: "Internal Server Error" },
       { status: 500 }

@@ -9,9 +9,9 @@ export const ProfileBlock = async () => {
   return (
     <div className="relative group w-max">
       <div
-        className={`cursor-pointer ${
+        className={`cursor-pointer hover:text-accent-text transition-colors flex items-center gap-2 ${
           session ? "text-accent-text" : "text-text"
-        } hover:text-accent-text transition-colors flex items-center gap-2`}
+        }`}
       >
         <ProfileIcon />
 

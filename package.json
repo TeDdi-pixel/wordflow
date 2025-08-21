@@ -3,8 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "dev": "next dev --turbo",
-    "build": "next build --turbo",
+    "dev": "next dev --turbopack",
+    "build": "next build --turbopack",
     "start": "next start",
     "lint": "next lint"
   },
@@ -23,7 +23,7 @@
     "fastest-levenshtein": "^1.0.16",
     "mongodb": "^6.18.0",
     "mongoose": "^8.17.1",
-    "next": "15.4.6",
+    "next": "15.5.0",
     "next-auth": "5.0.0-beta.29",
     "react": "^19.1.1",
     "react-cookie": "^8.0.1",

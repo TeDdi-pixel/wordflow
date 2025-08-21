@@ -4,13 +4,14 @@ import { ReactNode } from "react";
 import { NavigationItemOption } from "../../../widgets/navigation/config";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
+import { Route } from "next";
 
 type Props = {
   item: {
     id: number;
     icon: ReactNode;
     name: string;
-    path?: string;
+    path: Route;
     options?: NavigationItemOption[];
   };
 };
@@ -27,7 +28,7 @@ export const SingleNavItem = ({ item }: Props) => {
         <span className="font-medium">{item.name}</span>
       </div>
       <Link
-        href={item.path!}
+        href={item.path}
         className={`absolute flex gap-1 items-center z-10 rounded-4xl px-[8px] py-[4px] transition-all duration-300 group-hover:-translate-y-[33px] h-[33px] group-hover:scale-90 ${
           isActive
             ? "-translate-y-[33px] rounded-default bg-active-nav-item text-active-nav-text"

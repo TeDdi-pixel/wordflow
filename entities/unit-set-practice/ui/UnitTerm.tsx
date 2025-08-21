@@ -13,10 +13,12 @@ export const UnitTerm = ({ units }: { units: TypeUnit[] }) => {
   }, [termNumber, units, setCurrentUnitId]);
 
   return (
-    <div className="w-full flex flex-col items-center">
-      <span className="text-[38px]">{units[termNumber]?.term}</span>
+    <div className="w-full flex flex-col items-center gap-0.5">
+      <span className="text-[38px] leading-[1]">
+        {units[termNumber]?.term.toLowerCase()}
+      </span>
       {units[termNumber]?.phonetic && (
-        <span className="text-[24px] text-accent bg-background rounded-default p-2 hover:scale-125 transition-transform ease-out duration-150">
+        <span className="text-[22px] leading-[1.1] text-accent rounded-default hover:scale-125 transition-transform ease-out duration-150">
           [{units[termNumber]?.phonetic.replaceAll("/", "")}]
         </span>
       )}

@@ -1,4 +1,5 @@
 const CardsIcon = ({ className }: { className?: string }) => {
+  const clipId = `clip-${Math.random().toString(36).substring(2, 9)}`;
   return (
     <svg
       width="14"
@@ -8,7 +9,7 @@ const CardsIcon = ({ className }: { className?: string }) => {
       xmlns="http://www.w3.org/2000/svg"
       className={className}
     >
-      <g clipPath="url(#clip0_78_436)">
+      <g clipPath={`url(#${clipId})`}>
         <path
           fillRule="evenodd"
           clipRule="evenodd"
@@ -17,7 +18,7 @@ const CardsIcon = ({ className }: { className?: string }) => {
         />
       </g>
       <defs>
-        <clipPath id="clip0_78_436">
+        <clipPath id={clipId}>
           <rect width="14" height="14" fill="white" />
         </clipPath>
       </defs>

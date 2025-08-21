@@ -1,15 +1,14 @@
+import { Route } from "next";
 import Link from "next/link";
 import { IoOpen } from "react-icons/io5";
 
-export const EmptyPage = ({
-  text,
-  path,
-  buttonText,
-}: {
+type Props = {
   text: string;
-  path: string;
+  path: Route;
   buttonText: string;
-}) => {
+};
+
+export const EmptyPage = ({ text, path, buttonText }: Props) => {
   return (
     <main className="flex flex-col items-center justify-center gap-4">
       <p>{text}</p>

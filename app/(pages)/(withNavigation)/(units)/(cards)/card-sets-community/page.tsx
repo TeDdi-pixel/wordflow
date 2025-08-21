@@ -1,29 +1,25 @@
 import { UnitSetCard } from "@/entities/unit-set-card";
 import MainTitle from "@/shared/components/MainTitle";
 import createDbConnection from "@/shared/lib/mongoose";
-import { getUserId } from "@/shared/lib/session";
 import UnitSet from "@/shared/model/schemas/UnitSet";
 import { TypeUnitSet } from "@/shared/model/types/unit";
 import { notFound } from "next/navigation";
 
 const page = async () => {
-  const userId = await getUserId();
-
   await createDbConnection();
 
-  const userUnitSets = await UnitSet.find({
-    relatedUserId: userId,
+  const communityUnitSets = await UnitSet.find({
     unitSetType: "cards",
   });
 
-  if (!userUnitSets || userUnitSets.length === 0) notFound();
+  if (!communityUnitSets || communityUnitSets.length === 0) notFound();
 
   return (
     <div className="max-w-[1146px] w-full px-[16px] md:px-[32px] mx-auto h-full">
-      <MainTitle text={"Мої картки"} />
+      <MainTitle text="Картки від ком'юніті" />
 
       <div className="grid grid-cols-3 gap-4 w-full">
-        {userUnitSets.map((unitSet: TypeUnitSet) => (
+        {communityUnitSets.map((unitSet: TypeUnitSet) => (
           <div key={unitSet._id.toString()}>
             <UnitSetCard
               unitSetType={unitSet.unitSetType}

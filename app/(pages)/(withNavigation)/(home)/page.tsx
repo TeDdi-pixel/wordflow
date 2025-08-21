@@ -6,6 +6,7 @@ import { TypeUnitSet } from "@/shared/model/types/unit";
 
 export default async function Home() {
   await createDbConnection();
+
   const unitSets = await UnitSet.find({});
 
   return (

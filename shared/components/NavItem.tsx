@@ -3,17 +3,10 @@ import {
   NavItemWithOptions,
   SingleNavItem,
 } from "@/entities/navigation";
-import { NavigationItemOption } from "@/widgets/navigation/config";
-import { ReactNode } from "react";
+import { NavigationItem } from "@/widgets/navigation/config";
 
 type Props = {
-  item: {
-    id: number;
-    icon: ReactNode;
-    name: string;
-    path?: string;
-    options?: NavigationItemOption[];
-  };
+  item: NavigationItem;
 };
 
 const NavItem = ({ item }: Props) => {

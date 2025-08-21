@@ -9,21 +9,32 @@ import CardsIcon from "@/shared/icons/navigation/CardsIcon";
 import { HiSquaresPlus } from "react-icons/hi2";
 import CommunityIcon from "@/shared/icons/navigation/CommunityIcon";
 import { FaAngleDown } from "react-icons/fa";
+import { Route } from "next";
 
 export type NavigationItemOption = {
   id: number;
   icon: ReactNode;
   name: string;
-  path: string;
+  path: Route;
 };
 
-export type NavigationItem = {
+export type SingleNavigationItem = {
   id: number;
   icon: ReactNode;
   name: string;
-  path?: string;
-  options?: NavigationItemOption[];
+  path: Route;
+  options?: never;
 };
+
+export type NavigationItemWithOptions = {
+  id: number;
+  icon: ReactNode;
+  name: string;
+  path?: never;
+  options: NavigationItemOption[];
+};
+
+export type NavigationItem = SingleNavigationItem | NavigationItemWithOptions;
 
 export const navigation = {
   games: [
@@ -127,7 +138,7 @@ export const navigation = {
         },
       ],
     },
-  ],
+  ] as NavigationItemWithOptions[],
   regularPages: [
     {
       id: 0,
@@ -147,5 +158,5 @@ export const navigation = {
       name: "Історія",
       path: "/history",
     },
-  ],
+  ] as SingleNavigationItem[],
 };

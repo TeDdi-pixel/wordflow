@@ -15,7 +15,7 @@ export const getUnitSetForClient = async (unitSetId: string) => {
     termNumber: unit.termNumber,
     term: unit.term,
     definition: unit.definition,
-    meanings: unit.meanings.map((m: any) => ({
+    meanings: (unit.meanings || []).map((m: any) => ({
       partOfSpeech: m.partOfSpeech || "",
       synonyms: m.synonyms || [],
       antonyms: m.antonyms || [],
