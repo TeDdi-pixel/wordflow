@@ -11,6 +11,7 @@ import { createUnitSet } from "@/features/create-unit-set/action/createUnitSet";
 import { UnitList } from "@/features/create-unit-set";
 import toast from "react-hot-toast";
 import LoadingText from "@/shared/components/LoadingText";
+import LanguageSelect from "@/entities/unit-set/ui/LanguageSelect";
 
 const typeMap = new Map<string, string>([["/create-card-set", "cards"]]);
 
@@ -66,6 +67,19 @@ export const UnitSetForm = () => {
         placeholder="Додайте опис... (не обо'язково)"
         defaultValue={state.description}
       />
+
+      {/* <div className="flex w-full gap-[32px]">
+        <LanguageSelect
+          defaultLanguage="ENG"
+          id={"termLang"}
+          label="Мова терінів:"
+        />
+        <LanguageSelect
+          defaultLanguage="UA"
+          id={"definitionLang"}
+          label="Мова визначень:"
+        />
+      </div> */}
 
       <div className="flex flex-col">
         <div className="mb-[18px]">

@@ -56,16 +56,20 @@ export const usePracticeStore = create<PracticeStore>((set, get) => ({
     units: TypeUnit[],
     termId: string,
     checkStatus: CheckStatus,
-    lastAnswer: string
+    lastAnswer: string,
+    audio: string,
+    phonetic: string
   ) => {
     return set((state) => {
       let completedTerms = state.completedTerms.length
         ? [...state.completedTerms]
         : units.map(
-            ({ _id }): TypeCompletedUnit => ({
+            ({ _id, audio, phonetic }): TypeCompletedUnit => ({
               termId: _id,
               checkStatus: "",
               lastAnswer: "",
+              audio: audio,
+              phonetic: phonetic,
             })
           );
 
@@ -76,6 +80,8 @@ export const usePracticeStore = create<PracticeStore>((set, get) => ({
           ...completedTerms[termIndex],
           checkStatus,
           lastAnswer,
+          audio,
+          phonetic,
         };
       }
 
@@ -106,21 +112,31 @@ export const usePracticeStore = create<PracticeStore>((set, get) => ({
       let completedTerms = state.completedTerms.length
         ? [...state.completedTerms]
         : units.map(
-            ({ _id }): TypeCompletedUnit => ({
+            ({ _id, audio, phonetic }): TypeCompletedUnit => ({
               termId: _id,
               checkStatus: "",
               lastAnswer: "",
+              audio: audio,
+              phonetic: phonetic,
             })
           );
+      const unit = units.find((u) => u._id === termId);
+
       return {
         completedTerms: [
-          ...completedTerms.filter((t) => t.termId !== termId),
-          { termId, checkStatus: "EXCLUDED", lastAnswer: currentAnswer ?? "" },
+          ...completedTerms.filter(
+            (t: TypeCompletedUnit) => t.termId !== termId
+          ),
+          {
+            termId,
+            checkStatus: "EXCLUDED",
+            lastAnswer: currentAnswer ?? "",
+            audio: unit?.audio,
+            phonetic: unit?.audio,
+          },
         ],
       };
     }),
-
-  setIsUnitSetCompleted: (value: boolean) => set({ isUnitSetCompleted: value }),
 
   setIsPending: (value: boolean) => set({ isPending: value }),
   setHasNewAnswer: (value: boolean) => set({ hasNewAnswer: value }),

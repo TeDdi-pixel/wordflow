@@ -29,6 +29,8 @@ const UserTermsSchema = new mongoose.Schema({
         type: mongoose.Schema.Types.ObjectId,
         required: true,
       },
+      audio: { type: String, default: "" },
+      phonetic: { type: String, default: "" },
     },
   ],
 });

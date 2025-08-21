@@ -15,16 +15,20 @@ export default function ToasterProvider() {
         },
         error: {
           style: {
-            background: "#5a3a4a",
+            background: "var(--color-foreground)",
+            color: "var(--color-text)",
+            border: "2px solid #5a3a4a",
           },
           iconTheme: {
             primary: "var(--color-error)",
-            secondary: "var(--color-toast-bg)",
+            secondary: "var(--color-foreground)",
           },
         },
         success: {
           style: {
-            background: "#3a4a5a",
+            background: "var(--color-foreground)",
+            color: "var(--color-text)",
+            border: "2px solid #3a4a5a",
           },
           iconTheme: {
             primary: "var(--color-success)",
@@ -35,9 +39,8 @@ export default function ToasterProvider() {
         loading: {
           icon: <Spinner />,
           style: {
-            background: "#2d2a3d",
-            padding: "16px",
-            maxWidth: "360px",
+            background: "var(--color-foreground)",
+            border: "2px solid #2d2a3d",
           },
         },
         duration: 4000,

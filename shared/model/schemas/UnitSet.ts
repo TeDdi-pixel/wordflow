@@ -1,7 +1,7 @@
 import mongoose from "mongoose";
 import { UnitSetType } from "../types/unit";
 
-const unitSet = new mongoose.Schema({
+const unitSetSchema = new mongoose.Schema({
   relatedUserId: {
     type: mongoose.Schema.Types.ObjectId,
     required: true,
@@ -21,11 +21,32 @@ const unitSet = new mongoose.Schema({
       termNumber: { type: Number, required: true },
       term: { type: String, required: true },
       definition: { type: String, required: true },
+      meanings: {
+        type: [
+          {
+            partOfSpeech: { type: String },
+            definitions: [
+              {
+                definition: { type: String },
+                example: { type: String },
+                synonyms: [{ type: String }],
+                antonyms: [{ type: String }],
+              },
+            ],
+            synonyms: [{ type: String }],
+            antonyms: [{ type: String }],
+          },
+        ],
+        default: [],
+      },
+      audio: { type: String, default: "" },
+      phonetic: { type: String, default: "" },
     },
   ],
 });
 
 const UnitSet =
-  mongoose.models.UnitSet || mongoose.model("UnitSet", unitSet, "unit_sets");
+  mongoose.models.UnitSet ||
+  mongoose.model("UnitSet", unitSetSchema, "unit_sets");
 
 export default UnitSet;

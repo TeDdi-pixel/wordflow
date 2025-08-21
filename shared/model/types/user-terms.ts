@@ -7,6 +7,8 @@ export type TypeUserTermItem = {
   status: TypeTermStatus;
   unitSetId: string;
   lastAnswer: string;
+  phonetic: string;
+  audio: string;
 };
 
 export type TypeUserTerms = {

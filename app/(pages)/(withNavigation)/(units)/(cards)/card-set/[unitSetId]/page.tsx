@@ -1,5 +1,3 @@
-import createDbConnection from "@/shared/lib/mongoose";
-import { getUnitSetForClient } from "@/shared/utils/unit-set/getUnitSetForClient";
 import { PracticeBoardBlock } from "@/widgets/practice-board";
 import { notFound } from "next/navigation";
 
@@ -10,15 +8,9 @@ const CardSet = async ({
 }) => {
   const { unitSetId } = await params;
 
-  await createDbConnection();
+  if (!unitSetId) notFound();
 
-  const unitSet = await getUnitSetForClient(unitSetId);
-
-  if (!unitSet || !unitSetId) notFound();
-
-  const units = unitSet.units;
-
-  return <PracticeBoardBlock id={unitSetId} units={units} />;
+  return <PracticeBoardBlock unitSetId={unitSetId} />;
 };
 
 export default CardSet;

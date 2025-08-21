@@ -4,7 +4,8 @@ import { useTempStore } from "@/store/useTempStore";
 import DragIcon from "@/shared/icons/unit/DragIcon";
 import { memo } from "react";
 import { LuTrash2 } from "react-icons/lu";
-import toast from "react-hot-toast";
+import { UNIT_SET_ERROR_MESSAGES } from "@/shared/model/constants/errors";
+import { showError } from "@/shared/lib/toasts";
 
 type Props = {
   termNumber: number;
@@ -28,12 +29,9 @@ export const UnitHeader = memo(
 
     const handleClick = () => {
       if (getUnits().length <= 1)
-        toast.error(
-          "Для успішного створення набору карток потрібна хоча б одна картка",
-          {
-            position: "top-center",
-            id: crypto.randomUUID(),
-          }
+        showError(
+          UNIT_SET_ERROR_MESSAGES.ERROR_CARD_SET_EMPTY,
+          crypto.randomUUID()
         );
       setCurrentUnitId(unitId);
       removeUnit();

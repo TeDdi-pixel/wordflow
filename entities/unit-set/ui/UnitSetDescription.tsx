@@ -20,7 +20,7 @@ export const UnitSetDescription = ({ placeholder, defaultValue }: Props) => {
       name="description"
       defaultValue={unitSetDescription ?? defaultValue}
       onChange={handleChange}
-      className="w-full h-[112px] py-[12px] px-4 bg-foreground rounded-lg mb-[50px] resize-none focus:ring-2 focus:ring-accent focus:outline-none"
+      className="w-full h-[112px] py-[12px] px-4 bg-foreground rounded-lg mb-[32px] resize-none focus:ring-2 focus:ring-accent focus:outline-none"
     />
   );
 };

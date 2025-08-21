@@ -1,16 +1,18 @@
 import TipButton from "@/shared/components/buttons/TipButton";
 import { FaClipboardList } from "react-icons/fa";
-import { TypeUnit } from "@/shared/model/types/unit";
 import { UnitNavButtons } from "@/entities/unit-set-practice";
 import SkipButton from "@/entities/unit-set-practice/ui/SkipButton";
 import CheckButton from "@/entities/unit-set-practice/ui/CheckButton";
+import { getUnitSetForClient } from "@/shared/utils/unit-set/getUnitSetForClient";
 
 type Props = {
-  units: TypeUnit[];
   unitSetId: string;
 };
 
-export const PracticeBoardControls = ({ units, unitSetId }: Props) => {
+export const PracticeBoardControls = async ({ unitSetId }: Props) => {
+  const unitSet = await getUnitSetForClient(unitSetId);
+
+  const units = unitSet?.units || [];
   return (
     <div className="flex items-center justify-between">
       <div className="flex items-center gap-4">

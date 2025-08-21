@@ -7,6 +7,8 @@ import UnitSetSchema from "@/shared/model/schemas/UnitSet";
 import User from "@/shared/model/schemas/User";
 import { TypeUnit, TypeUnitSetForm } from "@/shared/model/types/unit";
 import createDbConnection from "@/shared/lib/mongoose";
+import axios from "axios";
+import { normalizeTerm } from "@/shared/utils/unit-set/normalizeTerm";
 
 const ERRORS = UNIT_SET_ERROR_MESSAGES;
 
@@ -31,7 +33,7 @@ export const createUnitSet = async (
       return withError<TypeUnitSetForm>(prevState, ERRORS.MISSING_FIELDS);
     }
 
-    const units: Omit<TypeUnit, "_id">[] = [];
+    const units: Omit<TypeUnit, "_id" | "meanings" | "phonetics">[] = [];
 
     const maxCards = 30;
 
@@ -56,7 +58,6 @@ export const createUnitSet = async (
     }
 
     const relatedUserId = await getUserId();
-    console.log(relatedUserId);
 
     if (!relatedUserId)
       return withError<TypeUnitSetForm>(prevState, ERRORS.USERNAME_MISSING);
@@ -68,13 +69,59 @@ export const createUnitSet = async (
     const authorsName = userDoc.username;
     const unitSetType = prevState.unitSetType;
 
+    const updatedUnits = await Promise.all(
+      units.map(async (unit) => {
+        const cleanedUnit = {
+          ...unit,
+          term: normalizeTerm(unit.term),
+        };
+
+        try {
+          const res = await axios.get(
+            `https://api.dictionaryapi.dev/api/v2/entries/en/${cleanedUnit.term}`,
+            { timeout: 5000 }
+          );
+
+          if (!res.data || !Array.isArray(res.data) || res.data.length === 0) {
+            throw new Error("Invalid API response");
+          }
+
+          const meanings = res.data[0].meanings || [];
+          const phonetics = res.data[0].phonetics || [];
+
+          let audio = undefined as string | undefined;
+          let phonetic = undefined as string | undefined;
+
+          for (const p of phonetics) {
+            if (!phonetic && p.text) {
+              phonetic = p.text;
+            }
+            if (!audio && p.audio) {
+              audio = p.audio;
+            }
+            if (phonetic && audio) break;
+          }
+
+          return {
+            ...unit,
+            audio,
+            phonetic,
+            meanings,
+          };
+        } catch (error: any) {
+          console.error(`Помилка для слова ${unit.term}:`, error.message);
+          return { ...unit };
+        }
+      })
+    );
+
     await UnitSetSchema.create({
       relatedUserId,
       title,
       description,
-      units,
       unitSetType,
       authorsName,
+      units: updatedUnits,
     });
 
     return {
@@ -83,7 +130,7 @@ export const createUnitSet = async (
       type: "SUCCESS",
     };
   } catch (error) {
-    console.error("Error in createUnitSet:", error);
+    console.error("Помилка при створенні набору", error);
     return withError<TypeUnitSetForm>(prevState, ERRORS.SERVER_ERROR);
   }
 };

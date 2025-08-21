@@ -50,6 +50,8 @@ export const POST = async (
           definition: term.definition,
           unitSetId,
           lastAnswer: completedTerm.lastAnswer,
+          audio: completedTerm.audio,
+          phonetic: completedTerm.phonetic,
           status: getTermStatus(completedTerm.checkStatus),
         };
       })

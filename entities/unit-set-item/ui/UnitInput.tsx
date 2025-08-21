@@ -1,12 +1,13 @@
 "use client";
 
+import useChangeInput from "@/features/create-unit-set/model/useChangeInput";
 import { useTempStore } from "@/store/useTempStore";
-import { ChangeEvent, memo, useCallback } from "react";
+import { memo } from "react";
 
 type Props = {
-  unitId: string;
   name: string;
   label: string;
+  unitId: string;
   fieldType: "term" | "definition";
 };
 
@@ -15,19 +16,8 @@ export const UnitInput = memo(({ unitId, name, label, fieldType }: Props) => {
     const item = state.units.find((unit) => unit._id === unitId);
     return fieldType === "term" ? item?.term : item?.definition;
   });
-  const setCurrentUnitId = useTempStore((state) => state.setCurrentUnitId);
-  const setUnitTerm = useTempStore((state) => state.setUnitTerm);
-  const setUnitDefinition = useTempStore((state) => state.setUnitDefinition);
 
-  const handleChange = useCallback(
-    (e: ChangeEvent<HTMLInputElement>) => {
-      setCurrentUnitId(unitId);
-
-      if (fieldType === "term") setUnitTerm(e.target.value);
-      else setUnitDefinition(e.target.value);
-    },
-    [unitId, fieldType, setUnitTerm, setUnitDefinition]
-  );
+  const handleChange = useChangeInput({ unitId, fieldType });
 
   return (
     <div className="flex flex-col w-full">

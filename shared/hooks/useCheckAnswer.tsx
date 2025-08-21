@@ -62,7 +62,9 @@ export const useCheckAnswer = (units: TypeUnit[]) => {
         units,
         units[termNumber]._id,
         "CORRECTNESS",
-        newAnswer ?? ""
+        newAnswer ?? "",
+        units[termNumber]?.audio || "",
+        units[termNumber]?.phonetic || ""
       );
       resetNewAnswer();
 
@@ -81,7 +83,9 @@ export const useCheckAnswer = (units: TypeUnit[]) => {
         units,
         units[termNumber]._id,
         "MISTAKE",
-        newAnswer ?? ""
+        newAnswer ?? "",
+        units[termNumber]?.audio || "",
+        units[termNumber]?.phonetic || ""
       );
     }
   };

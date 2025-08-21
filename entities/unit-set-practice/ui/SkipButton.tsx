@@ -15,9 +15,6 @@ const SkipButton = ({ unitLength, units }: Props) => {
   const setNextTerm = usePracticeStore((state) => state.setNextTerm);
   const setNewAnswer = usePracticeStore((state) => state.setNewAnswer);
   const currentUnitId = usePracticeStore((state) => state.currentUnitId);
-  const isUnitSetCompleted = usePracticeStore(
-    (state) => state.isUnitSetCompleted
-  );
 
   const handleSkip = () => {
     if (!currentUnitId) return;
@@ -29,7 +26,6 @@ const SkipButton = ({ unitLength, units }: Props) => {
   return (
     <TipButton
       onClick={handleSkip}
-      isDisabled={isUnitSetCompleted}
       icon={<SkipIcon />}
       tipText="Пропустити термін"
       side="left"

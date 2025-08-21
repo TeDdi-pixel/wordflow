@@ -15,13 +15,15 @@ export const ResultTable = async ({ unitSetId, unitSet }: Props) => {
   const colWidths = [
     "w-[25%]", // Термін
     "w-[5px]",
+    "w-[25%]", // Транскрипція
+    "w-[5px]",
     "w-[25%]", // Визначення
     "w-[5px]",
     "w-[25%]", // Моя відповідь
     "w-[5px]",
     "w-[10%]", // Статус
     "w-[5px]",
-    "w-[10%]", // Дії
+    "w-[15%]", // Дії
   ];
 
   return (

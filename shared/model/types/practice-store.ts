@@ -6,6 +6,8 @@ export type TypeCompletedUnit = {
   termId: string;
   checkStatus: CheckStatus;
   lastAnswer: string;
+  audio?: string;
+  phonetic?: string;
 };
 
 export type PracticeStore = {
@@ -18,7 +20,6 @@ export type PracticeStore = {
   localCheckStatus: CheckStatus;
   activeFeatures: FeatureName[];
   completedTerms: TypeCompletedUnit[];
-  isUnitSetCompleted: boolean;
   isPending: boolean;
   hasNewAnswer: boolean;
 
@@ -33,7 +34,9 @@ export type PracticeStore = {
     units: TypeUnit[],
     termId: string,
     checkStatus: CheckStatus,
-    lastAnswer: string
+    lastAnswer: string,
+    audio: string,
+    phonetic: string
   ) => void;
   resetCompletedTerms: () => void;
   setCheckStatus: (status: CheckStatus) => void;
@@ -43,7 +46,6 @@ export type PracticeStore = {
   isFeatureActive: (featureName: FeatureName) => boolean;
   resetAllFeatures: () => void;
   skipTerm: (termId: string | null, units: TypeUnit[]) => void;
-  setIsUnitSetCompleted: (value: boolean) => void;
   setIsPending: (value: boolean) => void;
   setLocalCheckStatus: (value: CheckStatus) => void;
   resetLocalCheckStatus: () => void;

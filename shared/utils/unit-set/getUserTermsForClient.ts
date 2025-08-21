@@ -27,6 +27,8 @@ export const getUserTermsForClient = async () => {
       status: term.status,
       unitSetId: term.unitSetId.toString(),
       lastAnswer: term.lastAnswer,
+      audio: term.audio,
+      phonetic: term.phonetic,
     })),
   };
 };

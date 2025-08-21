@@ -24,6 +24,7 @@ export const AUTH_ERROR_MESSAGES = {
 };
 
 export const UNIT_SET_ERROR_MESSAGES = {
+  ERROR_CARD_SET_EMPTY: "Набір карток має містити хоча б одну картку",
   MISSING_TITLE: "Поле з назвою має пути заповнене",
   MISSING_FIELDS:
     "Хоча б одне одне поле термінів та визначень має бути заповнене",

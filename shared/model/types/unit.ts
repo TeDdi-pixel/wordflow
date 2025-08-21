@@ -5,6 +5,9 @@ export type TypeUnit = {
   termNumber: number;
   term: string;
   definition: string;
+  meanings?: TypeMeaning[];
+  phonetic?: string;
+  audio?: string;
 };
 
 export type UnitSetType = "cards";
@@ -20,6 +23,7 @@ export type TypeUnitSetForm = {
 };
 
 export type TypeUnitSet = {
+  relatedUserId: string;
   authorsName: string;
   _id: string;
   title: string;
@@ -27,4 +31,26 @@ export type TypeUnitSet = {
   unitSetType: "cards";
   units: TypeUnit[];
   likesCount: number;
+};
+
+export type TypePhonetic = {
+  text?: string;
+  audio?: string;
+  sourceUrl?: string;
+  license?: {
+    name: string;
+    url: string;
+  };
+};
+
+export type TypeMeaning = {
+  partOfSpeech: string;
+  definitions: {
+    definition: string;
+    example?: string;
+    synonyms?: string[];
+    antonyms?: string[];
+  }[];
+  synonyms?: string[];
+  antonyms?: string[];
 };
