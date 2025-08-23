@@ -1,4 +1,4 @@
-import { ChangeEvent, MouseEventHandler, RefObject } from "react";
+import { ChangeEvent, RefObject } from "react";
 
 export type TypeInput = {
   placeholder: string;
@@ -35,11 +35,6 @@ export type TypeUser = {
   email: string;
   password: string;
 };
-
-export type OperationResult<S extends string, E extends string> =
-  | { type: S; message: string }
-  | { type: E; message: string }
-  | { type: string; message: string };
 
 export type SessionUser = {
   userId: string;

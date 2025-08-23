@@ -1,11 +1,8 @@
-import { PracticeBoard } from "@/features/practice-session";
-import { PracticeBoardControls } from "@/features/practice-session/ui/PracticeBoardControls";
+import { PracticeBoardProps } from "../model/types";
+import { PracticeBoard } from "./Board";
+import { PracticeBoardControls } from "./Controls";
 
-type Props = {
-  unitSetId: string;
-};
-
-export const PracticeBoardBlock = ({ unitSetId }: Props) => {
+export const PracticeBoardBlock = ({ unitSetId }: PracticeBoardProps) => {
   return (
     <div className="max-w-[821px] w-full">
       <PracticeBoard unitSetId={unitSetId} />

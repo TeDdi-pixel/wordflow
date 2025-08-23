@@ -1,15 +1,15 @@
-import NavItem from "@/shared/components/NavItem";
-import { navigation } from "../config";
+import NavItem from "@/widgets/navigation/ui/NavItem";
+import { navigation } from "../model/config";
 
 export const Navigation = () => {
   return (
     <nav className="mb-[100px] max-w-[755px] w-full">
-      <ul className="bg-foreground rounded-default py-3 px-6 text-text flex gap-1 items-center text-[14px]">
+      <ul className="bg-fg rounded-default py-3 px-6 text-text flex gap-1 items-center text-[14px]">
         {navigation.regularPages.map((item) => (
           <NavItem key={item.id} item={item} />
         ))}
 
-        <span className="block w-[5px] h-5 bg-background rounded-full"></span>
+        <span className="block w-[5px] h-5 bg-bg rounded-full"></span>
 
         {navigation.games.map((item) => (
           <NavItem key={item.id} item={item} />

@@ -1,6 +1,6 @@
 "use client";
 
-import { EmptyPage } from "@/entities/results-table";
+import EmptyPage from "@/shared/ui/EmptyPage";
 import { Route } from "next";
 import { useParams } from "next/navigation";
 

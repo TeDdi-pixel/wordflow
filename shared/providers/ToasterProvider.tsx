@@ -1,7 +1,7 @@
 "use client";
 
 import { Toaster } from "react-hot-toast";
-import Spinner from "../components/Spinner";
+import Spinner from "../ui/Spinner";
 
 export default function ToasterProvider() {
   return (
@@ -15,19 +15,19 @@ export default function ToasterProvider() {
         },
         error: {
           style: {
-            background: "var(--color-foreground)",
-            color: "var(--color-text)",
+            background: "var(--color-fg)",
+            color: "var(--color-error)",
             border: "2px solid #5a3a4a",
           },
           iconTheme: {
             primary: "var(--color-error)",
-            secondary: "var(--color-foreground)",
+            secondary: "var(--color-fg)",
           },
         },
         success: {
           style: {
-            background: "var(--color-foreground)",
-            color: "var(--color-text)",
+            background: "var(--color-fg)",
+            color: "var(--color-success)",
             border: "2px solid #3a4a5a",
           },
           iconTheme: {
@@ -39,7 +39,7 @@ export default function ToasterProvider() {
         loading: {
           icon: <Spinner />,
           style: {
-            background: "var(--color-foreground)",
+            background: "var(--color-fg)",
             border: "2px solid #2d2a3d",
           },
         },

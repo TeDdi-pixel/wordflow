@@ -1,8 +1,10 @@
 import { redirect } from "next/navigation";
 import { auth } from "@/auth";
-import { AdditionalEntranceForm, SignInForm, SignUpForm } from "@/widgets/auth";
 import { IoEnter } from "react-icons/io5";
-import AuthFormName from "@/shared/components/form/AuthFormName";
+import { SignInWithGoogle } from "@/widgets/forms/sign-in-with-google";
+import { SignInForm } from "@/widgets/forms/sign-in-form";
+import { SignUpForm } from "@/widgets/forms/sign-up-form";
+import AuthFormName from "@/shared/ui/form/AuthFormName";
 
 const page = async () => {
   const session = await auth();
@@ -15,10 +17,10 @@ const page = async () => {
       <div className="flex flex-col gap-[8px] max-w-[272px] w-full -translate-y-1/2">
         <AuthFormName icon={<IoEnter className="text-[20px]" />} name="login" />
 
-        <AdditionalEntranceForm />
+        <SignInWithGoogle />
 
         <div className="md:max-w-[272px] w-full">
-          <span className="flex items-center before:mr-2 before:flex-1 before:h-1 before:bg-foreground after:ml-2 after:flex-1 after:h-1 after:bg-foreground">
+          <span className="flex items-center before:mr-2 before:flex-1 before:h-1 before:bg-fg after:ml-2 after:flex-1 after:h-1 after:bg-fg">
             or
           </span>
         </div>

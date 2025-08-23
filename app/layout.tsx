@@ -27,7 +27,7 @@ export default function RootLayout({
   return (
     <html lang="uk">
       <body
-        className={`${robotoMono.variable} selection:bg-selection antialiased bg-background pt-8 flex flex-col items-center justify-between min-h-screen overflow-x-hidden`}
+        className={`${robotoMono.variable} selection:bg-bg-accent antialiased bg-bg pt-8 flex flex-col items-center justify-between min-h-screen overflow-x-hidden`}
       >
         <ToasterProvider />
 

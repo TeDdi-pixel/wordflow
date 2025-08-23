@@ -1,4 +1,4 @@
-import { EmptyPage } from "@/entities/results-table";
+import EmptyPage from "@/shared/ui/EmptyPage";
 
 const NotFound = () => {
   return (

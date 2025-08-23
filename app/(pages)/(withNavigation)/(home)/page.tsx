@@ -1,21 +1,21 @@
-import { UnitSetCard } from "@/entities/unit-set-card";
-import MainTitle from "@/shared/components/MainTitle";
-import createDbConnection from "@/shared/lib/mongoose";
-import UnitSet from "@/shared/model/schemas/UnitSet";
+import { UnitSetCover } from "@/entities/unit-set";
+import { getAllUnitSets } from "@/entities/unit-set/api/getAllUnitSets";
+import MainTitle from "@/shared/ui/MainTitle";
 import { TypeUnitSet } from "@/shared/model/types/unit";
+import { notFound } from "next/navigation";
 
-export default async function Home() {
-  await createDbConnection();
+const Home = async () => {
+  const unitSets = await getAllUnitSets();
 
-  const unitSets = await UnitSet.find({});
+  if (unitSets.length === 0) return notFound();
 
   return (
     <div className="max-w-[1146px] w-full px-[16px] md:px-[32px] mx-auto h-full">
-      <MainTitle text="Усі юнітсети" />
+      <MainTitle text="Усі набори" />
 
       <div className="grid grid-cols-3 gap-4 w-full">
         {unitSets.map((unitSet: TypeUnitSet) => (
-          <UnitSetCard
+          <UnitSetCover
             key={unitSet._id.toString()}
             unitSetType={unitSet.unitSetType}
             description={unitSet.description}
@@ -29,4 +29,6 @@ export default async function Home() {
       </div>
     </div>
   );
-}
+};
+
+export default Home;

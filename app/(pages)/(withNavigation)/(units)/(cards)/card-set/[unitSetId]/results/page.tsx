@@ -1,23 +1,25 @@
-import MainTitle from "@/shared/components/MainTitle";
-import createDbConnection from "@/shared/lib/mongoose";
+import MainTitle from "@/shared/ui/MainTitle";
+import { notFound, redirect } from "next/navigation";
+import { getUserId } from "@/shared/lib/session";
 import { ResultTable } from "@/widgets/results-table";
-import { getSpecificUnitSet } from "@/widgets/results-table/model/getSpecificUnitSet";
-import { notFound } from "next/navigation";
+import { getUserResultTerms } from "@/widgets/results-table/api/getUserResult";
 
 const page = async ({ params }: { params: Promise<{ unitSetId: string }> }) => {
   const { unitSetId } = await params;
 
-  await createDbConnection();
+  const userId = await getUserId();
 
-  const unitSet = await getSpecificUnitSet(unitSetId);
+  if (!userId) return redirect("/login");
 
-  if (!unitSet || unitSet.length === 0) notFound();
+  const resultTerms = await getUserResultTerms(userId, unitSetId);
+
+  if (resultTerms.length === 0) notFound();
 
   return (
     <div className="max-w-[1000px] w-full">
       <MainTitle text="Результати" />
 
-      <ResultTable unitSetId={unitSetId} unitSet={unitSet} />
+      <ResultTable unitSetId={unitSetId} resultSetTerms={resultTerms} />
     </div>
   );
 };

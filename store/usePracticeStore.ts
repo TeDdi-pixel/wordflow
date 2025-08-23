@@ -15,7 +15,6 @@ export const usePracticeStore = create<PracticeStore>((set, get) => ({
   oldAnswer: "",
   checkStatus: "",
   localCheckStatus: "",
-  activeFeatures: [],
   isUnitSetCompleted: false,
   isPending: false,
   hasNewAnswer: false,
@@ -25,6 +24,7 @@ export const usePracticeStore = create<PracticeStore>((set, get) => ({
   setCurrentUnitId: (id: string) => set({ currentUnitId: id }),
 
   setCheckStatus: (status) => set({ checkStatus: status }),
+
   resetCheckStatus: () => set({ checkStatus: "" }),
 
   setLocalCheckStatus: (status) => set({ localCheckStatus: status }),
@@ -90,18 +90,8 @@ export const usePracticeStore = create<PracticeStore>((set, get) => ({
   },
 
   resetCompletedTerms: () => set({ completedTerms: [] }),
+
   resetTermNumber: () => set({ termNumber: 0 }),
-
-  toggleFeature: (featureName) =>
-    set((state) => ({
-      activeFeatures: state.activeFeatures.includes(featureName)
-        ? state.activeFeatures.filter((f) => f !== featureName)
-        : [...state.activeFeatures, featureName],
-    })),
-
-  isFeatureActive: (featureName) => get().activeFeatures.includes(featureName),
-
-  resetAllFeatures: () => set({ activeFeatures: [] }),
 
   skipTerm: (termId: string | null, units: TypeUnit[]) =>
     set((state) => {
@@ -139,5 +129,6 @@ export const usePracticeStore = create<PracticeStore>((set, get) => ({
     }),
 
   setIsPending: (value: boolean) => set({ isPending: value }),
+
   setHasNewAnswer: (value: boolean) => set({ hasNewAnswer: value }),
 }));

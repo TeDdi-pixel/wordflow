@@ -6,7 +6,7 @@ const ArrowIcon = ({ isDisabled }: { isDisabled: boolean }) => {
       viewBox="0 0 13 22"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"
-      className={`fill-text transition-colors ease duration-150 ${
+      className={`fill-text transition-colors ease ${
         !isDisabled ? "group-hover:fill-accent" : ""
       }`}
     >

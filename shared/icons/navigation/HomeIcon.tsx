@@ -1,5 +1,5 @@
 "use client";
-import React from "react";
+
 import HomeFocused from "./HomeFocused";
 // import HomeUnfocused from "./HomeUnfocused";
 

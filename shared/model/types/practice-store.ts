@@ -18,7 +18,6 @@ export type PracticeStore = {
   oldAnswer: string;
   checkStatus: CheckStatus;
   localCheckStatus: CheckStatus;
-  activeFeatures: FeatureName[];
   completedTerms: TypeCompletedUnit[];
   isPending: boolean;
   hasNewAnswer: boolean;
@@ -42,9 +41,6 @@ export type PracticeStore = {
   setCheckStatus: (status: CheckStatus) => void;
   resetCheckStatus: () => void;
   resetNewAnswer: () => void;
-  toggleFeature: (featureName: FeatureName) => void;
-  isFeatureActive: (featureName: FeatureName) => boolean;
-  resetAllFeatures: () => void;
   skipTerm: (termId: string | null, units: TypeUnit[]) => void;
   setIsPending: (value: boolean) => void;
   setLocalCheckStatus: (value: CheckStatus) => void;

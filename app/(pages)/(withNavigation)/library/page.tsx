@@ -1,12 +1,36 @@
-import LibraryUnitSets from "@/features/library/ui";
-import MainTitle from "@/shared/components/MainTitle";
+import { UnitSetCover } from "@/entities/unit-set";
+import { getLikedUnitSets } from "@/entities/unit-set/api/getLikedUnitSets";
+import MainTitle from "@/shared/ui/MainTitle";
+import { getUserId } from "@/shared/lib/session";
+import { notFound, redirect } from "next/navigation";
 
-const Library = () => {
+const Library = async () => {
+  const userId = await getUserId();
+
+  if (!userId) return redirect("/login");
+
+  const unitSets = await getLikedUnitSets(userId);
+
+  if (unitSets.length === 0) notFound();
+
   return (
     <div className="max-w-[1146px] w-full px-[16px] md:px-[32px] mx-auto h-full">
       <MainTitle text="Мої вподобання" />
 
-      <LibraryUnitSets />
+      <div className="grid grid-cols-3 gap-4 w-full">
+        {unitSets.map((unitSet) => (
+          <UnitSetCover
+            key={unitSet._id.toString()}
+            unitSetType={unitSet.unitSetType}
+            description={unitSet.description}
+            authorsName={unitSet.authorsName}
+            termsCount={unitSet.units.length}
+            title={unitSet.title}
+            unitSetId={unitSet._id.toString()}
+            likesCount={unitSet.likesCount}
+          />
+        ))}
+      </div>
     </div>
   );
 };

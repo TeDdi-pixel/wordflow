@@ -1,0 +1,27 @@
+"use client";
+
+import { memo } from "react";
+import useExpandText from "../model/useExpandText";
+
+export const TextWithExpand = memo(({ text }: { text: string }) => {
+  const { textRef, active, isTextTruncated, setActive } = useExpandText(text);
+
+  return (
+    <div
+      className="absolute flex items-center justify-center left-0 w-full"
+      onMouseEnter={() => isTextTruncated && setActive(true)}
+      onMouseLeave={() => setActive(false)}
+    >
+      <p
+        ref={textRef}
+        className={`px-4 py-2 text-center w-full absolute rounded-default transition-all ${
+          active
+            ? "whitespace-normal text-clip text-start z-10 bg-bg-accent-2 text-text-2 scale-110 shadow-md"
+            : "truncate bg-transparent"
+        }`}
+      >
+        {text}
+      </p>
+    </div>
+  );
+});

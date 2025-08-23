@@ -1,51 +1,28 @@
 @import "tailwindcss";
 @theme {
-  --color-background: #2a2134;
-  --color-foreground: #17131c;
-  --color-input: #17131c;
-  --color-button: #17131c;
-  --color-popup: #17131c;
-
+  --color-bg: #2a2134;
+  --color-fg: #17131c;
+  --color-bg-accent: #8a3e8a;
+  --color-bg-accent-2: #e0c0ff;
   --color-toast-bg: #4a3a5a;
   --color-toast-error-bg: #5a3a4a;
   --color-toast-success-bg: #3a4a5a;
-
-  --color-background-accent: #8a3e8a;
-  --color-button-accent: #c05be0;
-  --color-button-accent-2: #e0c0ff;
-  --color-button-default: #8a3e8a;
-
   --color-text: #e0c0ff;
   --color-text-2: #8a3e8a;
-  --color-accent-text: #e0c0ff;
-  --color-active-nav-text: #8a3e8a;
-  --color-hover-nav-text: #17131c;
-
   --color-accent: #ffcfab;
-  --color-accent-muted: #ffe8d5;
-  --color-unit-icon: #ffcfab;
   --color-success: #90f0d8;
-
-  --color-border: #2a2134;
-  --color-input-border: #c05be0;
-  --color-disabled: #3d3346;
   --color-error: #ff7b85;
-
-  --color-background-accent-2: #e0c0ff;
-  --color-selection: #c05be0;
-  --color-active-nav-item: #e0c0ff;
-  --color-hover-nav-item: #e0c0ff;
-
-  --color-tip: #e0c0ff;
+  --color-disabled: #3d3346;
 
   --radius-default: 0.5rem;
-
   --breakpoint-w-805: 805px;
+
+  --default-transition-timing-function: ;
 }
 
 body {
-  background: var(--color-background);
-  color: var(--color-accent-text);
+  background: var(--color-bg);
+  color: var(--color-text);
   font-family: "Roboto Mono", monospace;
   font-weight: 500;
 }
@@ -89,5 +66,5 @@ body {
 }
 
 .animate-appear-from-right {
-  animation: appear-from-right 150ms ease-out forwards;
+  animation: appear-from-right 150ms forwards;
 }

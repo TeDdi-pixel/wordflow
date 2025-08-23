@@ -37,19 +37,22 @@ export type TypeUser = {
 };
 
 export type OperationResult<S extends string, E extends string> =
-  | { type: S; message: string; errorId: string }
-  | { type: E; message: string; errorId: string }
-  | { type: string; message: string; errorId: string };
+  | { type: S; message: string }
+  | { type: E; message: string }
+  | { type: string; message: string };
 
 export type SessionUser = {
   userId: string;
 };
 
-export type InitialRegForm = TypeUser &
-  OperationResult<"SIGN_UP_SUCCESS", "SIGN_UP_ERROR"> & {
-    verifyEmail: string;
-    verifyPassword: string;
-  };
+export type InitialRegForm = TypeUser & {
+  verifyEmail: string;
+  verifyPassword: string;
+  status: "SUCCESS" | "ERROR" | string;
+  error: string;
+};
 
-export type InitialLoginForm = Omit<TypeUser, "username"> &
-  OperationResult<"SIGN_IN_SUCCESS", "SIGN_IN_ERROR">;
+export type InitialLoginForm = Omit<TypeUser, "username"> & {
+  status: "SUCCESS" | "ERROR" | string;
+  error: string;
+};

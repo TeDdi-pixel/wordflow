@@ -1,11 +1,11 @@
+"use client";
+
 import { useRef, useState } from "react";
 import { TypeUnit } from "../model/types/unit";
 import { showError } from "../lib/toasts";
-import { TypeUserTermItem } from "../model/types/user-terms";
-import toast from "react-hot-toast";
-import LoadingText from "../components/LoadingText";
+import { UserResultTerm } from "../model/types/user-results";
 
-const useSound = (currentUnit: TypeUnit | TypeUserTermItem) => {
+const useSound = (currentUnit: TypeUnit | UserResultTerm | null) => {
   const [active, setActive] = useState<boolean>(false);
 
   const audioRef = useRef<HTMLAudioElement | null>(null);

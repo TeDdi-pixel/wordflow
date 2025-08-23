@@ -1,30 +1,15 @@
-import { TableBottom, TBody, THead } from "@/entities/results-table";
-import { TypeUserTermItem } from "@/shared/model/types/user-terms";
+import { colWidths } from "../model/config";
+import { getScoreSummary } from "../model/getLearnedTermsCount";
+import { ResultTableProps } from "../model/types";
+import { TableBottom } from "./TableBottom";
+import { TBody } from "./TBody";
+import { THead } from "./THead";
 
-type Props = {
-  unitSet: TypeUserTermItem[];
-  unitSetId: string;
-};
-
-export const ResultTable = async ({ unitSetId, unitSet }: Props) => {
-  const numberOfCorrectAnswers =
-    unitSet?.filter((term) => term.status === "learned").length ?? 0;
-
-  const correctAnswers = `${numberOfCorrectAnswers}/${unitSet.length}`;
-
-  const colWidths = [
-    "w-[25%]", // Термін
-    "w-[5px]",
-    "w-[25%]", // Транскрипція
-    "w-[5px]",
-    "w-[25%]", // Визначення
-    "w-[5px]",
-    "w-[25%]", // Моя відповідь
-    "w-[5px]",
-    "w-[10%]", // Статус
-    "w-[5px]",
-    "w-[15%]", // Дії
-  ];
+export const ResultTable = async ({
+  unitSetId,
+  resultSetTerms,
+}: ResultTableProps) => {
+  const scoreSummary = getScoreSummary(resultSetTerms);
 
   return (
     <>
@@ -34,10 +19,13 @@ export const ResultTable = async ({ unitSetId, unitSet }: Props) => {
             <col key={`col-${i}`} className={cls} />
           ))}
         </colgroup>
+
         <THead />
-        <TBody unitSet={unitSet} />
+
+        <TBody resultSetTerms={resultSetTerms} />
       </table>
-      <TableBottom id={unitSetId} correctAnswers={correctAnswers} />
+
+      <TableBottom id={unitSetId} scoreSummary={scoreSummary} />
     </>
   );
 };
