@@ -52,12 +52,10 @@ export const useTempStore = create<TempStore>()(
       },
     ],
 
-    setProposedOption: (options: string) => {
+    setProposedOption: (unitId: string, option: string) => {
       set((state) => ({
         units: state.units.map((unit) =>
-          unit._id === state.currentUnitId
-            ? { ...unit, proposedOption: options }
-            : unit
+          unit._id === unitId ? { ...unit, proposedOption: option } : unit
         ),
       }));
     },
@@ -87,10 +85,10 @@ export const useTempStore = create<TempStore>()(
       }));
     },
 
-    setUnitDefinition: (definition: string) => {
+    setUnitDefinition: (unitId: string, definition: string) => {
       set((state) => ({
         units: state.units.map((unit) =>
-          unit._id === state.currentUnitId ? { ...unit, definition } : unit
+          unit._id === unitId ? { ...unit, definition } : unit
         ),
       }));
     },

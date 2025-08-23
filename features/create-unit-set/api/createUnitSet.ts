@@ -8,9 +8,9 @@ import User from "@/shared/model/schemas/User";
 import { TypeUnit } from "@/shared/model/types/unit";
 import createDbConnection from "@/shared/lib/mongoose";
 import axios from "axios";
-import { normalizeEngWord } from "@/shared/utils/unit-set/normalizeTerm";
+import { normalizeEngWord } from "@/shared/utils/unit-set/normalizeEngWord";
 import { BaseFields } from "@/shared/model/types/forms";
-import { translateText } from "@/shared/api/translateText";
+import UnitSet from "@/shared/model/schemas/UnitSet";
 
 const ERRORS = UNIT_SET_ERROR_MESSAGES;
 
@@ -77,102 +77,40 @@ export const createUnitSet = async <T extends BaseFields>(
         let meanings = [] as unknown[];
         let phonetic = "";
         let audio = "";
-        // let cleanedUnit = null;
 
-        const termLang = form.get("termLang");
-        const definitionLang = form.get("definitionLang");
-
-        const unitFields = [termLang, definitionLang];
-
-        const engFieldIndex = unitFields.indexOf("ENG");
-        const uaWordIndex = unitFields.indexOf("UA");
-
-        if (engFieldIndex === -1) {
-          return { ...unit, audio, phonetic, meanings };
-        }
-
-        const engWord = engFieldIndex === 0 ? unit.term : unit.definition;
-
-        // cleanedUnit = {
-        //   ...unit,
-        //   ...(engFieldIndex === 0
-        //     ? { term: normalizeTerm(unit.term) }
-        //     : { definition: normalizeTerm(unit.definition) }),
-        // };
-
-        if (termLang === "ENG" || definitionLang === "ENG") {
-          try {
-            const res = await axios.get(
-              `https://api.dictionaryapi.dev/api/v2/entries/en/${normalizeEngWord(
-                engWord
-              )}`,
-              { timeout: 5000 }
-            );
-
-            if (
-              !res.data ||
-              !Array.isArray(res.data) ||
-              res.data.length === 0
-            ) {
-              throw new Error("Invalid API response");
-            }
-
-            meanings = res.data[0].meanings;
-
-            // if (uaWordIndex !== -1) {
-            //   meanings = await Promise.all(
-            //     meanings.map(async (item) => {
-            //       if (!item?.definitions) return item;
-
-            //       const translatedDefs = await Promise.all(
-            //         item?.definitions?.map(async (def) => {
-            //           if (!def.definition) return def;
-
-            //           const uaWord = await translateText({
-            //             text: def.definition,
-            //             source: "ru",
-            //             target: "uk",
-            //           });
-
-            //           return {
-            //             ...def,
-            //             definition: uaWord,
-            //           };
-            //         })
-            //       );
-
-            //       return { ...item, definitions: translatedDefs };
-            //     })
-            //   );
-            // }
-
-            let phonetics = res.data[0].phonetics;
-
-            for (const p of phonetics) {
-              if (!phonetic && p.text) {
-                phonetic = p.text;
-              }
-              if (!audio && p.audio) {
-                audio = p.audio;
-              }
-              if (phonetic && audio) break;
-            }
-
-            return {
-              ...unit,
-              audio,
-              phonetic,
-              meanings,
-            };
-          } catch (error: any) {
-            console.error(`Помилка для слова ${unit.term}:`, error.message);
-            return { ...unit };
+        try {
+          const engWord = normalizeEngWord(unit.term);
+          if (!engWord) {
+            return { ...unit, audio, phonetic, meanings };
           }
+
+          const res = await axios.get(
+            `https://api.dictionaryapi.dev/api/v2/entries/en/${engWord}`,
+            { timeout: 5000 }
+          );
+
+          if (!res.data?.[0]) {
+            return { ...unit, audio, phonetic, meanings };
+          }
+
+          meanings = res.data[0].meanings;
+          const phonetics = res.data[0].phonetics;
+
+          for (const p of phonetics) {
+            if (!phonetic && p.text) phonetic = p.text;
+            if (!audio && p.audio) audio = p.audio;
+            if (phonetic && audio) break;
+          }
+
+          return { ...unit, audio, phonetic, meanings };
+        } catch (err) {
+          console.error("Error fetching word", unit.term, err);
+          return { ...unit, audio, phonetic, meanings };
         }
       })
     );
 
-    await UnitSetSchema.create({
+    await UnitSet.create({
       relatedUserId,
       title,
       description,

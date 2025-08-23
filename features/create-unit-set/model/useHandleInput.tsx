@@ -2,7 +2,7 @@
 
 import { translateText } from "@/shared/api/translateText";
 import { useTempStore } from "@/shared/store/useTempStore";
-import { normalizeEngWord } from "@/shared/utils/unit-set/normalizeTerm";
+import { normalizeEngWord } from "@/shared/utils/unit-set/normalizeEngWord";
 import axios from "axios";
 import { ChangeEvent, useCallback, useRef } from "react";
 
@@ -19,7 +19,7 @@ const useHandleInput = ({ unitId, fieldType }: Props) => {
   const definitionLang = useTempStore((state) => state.definitionLang);
   const setProposedOption = useTempStore((state) => state.setProposedOption);
 
-  const debounceRef = useRef<NodeJS.Timeout | null>(null);
+  const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   const handleChange = useCallback(
     (e: ChangeEvent<HTMLInputElement>) => {
@@ -33,55 +33,54 @@ const useHandleInput = ({ unitId, fieldType }: Props) => {
           if (debounceRef.current) clearTimeout(debounceRef.current);
 
           debounceRef.current = setTimeout(async () => {
-            if (value !== "") {
-              try {
-                const res = await axios.get(
-                  `https://api.dictionaryapi.dev/api/v2/entries/en/${normalizeEngWord(
-                    value
-                  )}`,
-                  { timeout: 5000 }
-                );
-
-                if (definitionLang === "UA") {
-                  setProposedOption(
-                    await translateText({
-                      text: res.data[0].word,
-                      source: "en",
-                      target: "uk",
-                    }).then((str) =>
-                      str
-                        .trim()
-                        .replace(/[^a-zа-яёіїєґ'-]/gi, "")
-                        .replace(/\s+/g, " ")
-                        .toLowerCase()
-                    )
-                  );
-                }
-
-                if (definitionLang === "RU") {
-                  setProposedOption(
-                    await translateText({
-                      text: res.data[0].word,
-                      source: "en",
-                      target: "ru",
-                    }).then((str) =>
-                      str
-                        .trim()
-                        .replace(/[^a-zа-яёіїєґ'-]/gi, "")
-                        .replace(/\s+/g, " ")
-                        .toLowerCase()
-                    )
-                  );
-                }
-              } catch (err) {
-                console.error(err);
-              }
+            if (!value.trim()) {
+              setProposedOption(unitId, "");
+              return;
             }
-          }, 1500);
+
+            try {
+              const engWord = normalizeEngWord(value);
+              if (!engWord) {
+                setProposedOption(unitId, "");
+                return;
+              }
+
+              const res = await axios.get(
+                `https://api.dictionaryapi.dev/api/v2/entries/en/${engWord}`,
+                { timeout: 5000 }
+              );
+
+              const word = res.data?.[0]?.word;
+              if (!word) return;
+
+              const targetLang = definitionLang === "UA" ? "uk" : "ru";
+
+              const translated = await translateText({
+                text: word,
+                source: "en",
+                target: targetLang,
+              });
+
+              if (!translated) {
+                setProposedOption(unitId, "");
+                return;
+              }
+
+              const cleaned = translated
+                .trim()
+                .replace(/[^a-zа-яёіїєґ'-]/gi, "")
+                .replace(/\s+/g, " ")
+                .toLowerCase();
+
+              setProposedOption(unitId, cleaned);
+            } catch (err) {
+              setProposedOption(unitId, "");
+            }
+          }, 1000);
         }
       } else {
-        setProposedOption("");
-        setUnitDefinition(value);
+        setProposedOption(unitId, "");
+        setUnitDefinition(unitId, value);
       }
     },
     [
@@ -90,7 +89,9 @@ const useHandleInput = ({ unitId, fieldType }: Props) => {
       setUnitTerm,
       setUnitDefinition,
       setCurrentUnitId,
+      setProposedOption,
       termLang,
+      definitionLang,
     ]
   );
 

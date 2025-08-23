@@ -48,7 +48,7 @@ export const PasswordField = ({
   );
 
   return (
-    <div className="relative w-full overflow-hidden">
+    <div className="relative w-full">
       <AuthInput
         ref={inputRef}
         placeholder={placeholder}
