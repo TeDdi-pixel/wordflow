@@ -9,7 +9,7 @@ import {
 } from "@/shared/utils/auth/checkPasswordSafeness";
 import { getOppositeField } from "@/shared/utils/auth/getOppositeField";
 import { isPasswordField } from "@/shared/utils/auth/isPasswordField";
-import { usePasswordStore } from "@/store/usePasswordStore";
+import { usePasswordStore } from "@/shared/store/usePasswordStore";
 import { useCallback, useEffect, useRef } from "react";
 
 type Props = Omit<TypeInput, "type" | "placeholder" | "name" | "pending"> &

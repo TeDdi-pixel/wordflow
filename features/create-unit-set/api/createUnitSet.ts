@@ -8,8 +8,9 @@ import User from "@/shared/model/schemas/User";
 import { TypeUnit } from "@/shared/model/types/unit";
 import createDbConnection from "@/shared/lib/mongoose";
 import axios from "axios";
-import { normalizeTerm } from "@/shared/utils/unit-set/normalizeTerm";
+import { normalizeEngWord } from "@/shared/utils/unit-set/normalizeTerm";
 import { BaseFields } from "@/shared/model/types/forms";
+import { translateText } from "@/shared/api/translateText";
 
 const ERRORS = UNIT_SET_ERROR_MESSAGES;
 
@@ -34,7 +35,10 @@ export const createUnitSet = async <T extends BaseFields>(
       return withError<T>(prevState, ERRORS.MISSING_FIELDS);
     }
 
-    const units: Omit<TypeUnit, "_id" | "meanings" | "phonetics">[] = [];
+    const units: Omit<
+      TypeUnit,
+      "_id" | "meanings" | "phonetics" | "proposedOption"
+    >[] = [];
 
     const maxCards = 30;
 
@@ -70,46 +74,100 @@ export const createUnitSet = async <T extends BaseFields>(
 
     const updatedUnits = await Promise.all(
       units.map(async (unit) => {
-        const cleanedUnit = {
-          ...unit,
-          term: normalizeTerm(unit.term),
-        };
+        let meanings = [] as unknown[];
+        let phonetic = "";
+        let audio = "";
+        // let cleanedUnit = null;
 
-        try {
-          const res = await axios.get(
-            `https://api.dictionaryapi.dev/api/v2/entries/en/${cleanedUnit.term}`,
-            { timeout: 5000 }
-          );
+        const termLang = form.get("termLang");
+        const definitionLang = form.get("definitionLang");
 
-          if (!res.data || !Array.isArray(res.data) || res.data.length === 0) {
-            throw new Error("Invalid API response");
-          }
+        const unitFields = [termLang, definitionLang];
 
-          const meanings = res.data[0].meanings || [];
-          const phonetics = res.data[0].phonetics || [];
+        const engFieldIndex = unitFields.indexOf("ENG");
+        const uaWordIndex = unitFields.indexOf("UA");
 
-          let audio = undefined as string | undefined;
-          let phonetic = undefined as string | undefined;
+        if (engFieldIndex === -1) {
+          return { ...unit, audio, phonetic, meanings };
+        }
 
-          for (const p of phonetics) {
-            if (!phonetic && p.text) {
-              phonetic = p.text;
+        const engWord = engFieldIndex === 0 ? unit.term : unit.definition;
+
+        // cleanedUnit = {
+        //   ...unit,
+        //   ...(engFieldIndex === 0
+        //     ? { term: normalizeTerm(unit.term) }
+        //     : { definition: normalizeTerm(unit.definition) }),
+        // };
+
+        if (termLang === "ENG" || definitionLang === "ENG") {
+          try {
+            const res = await axios.get(
+              `https://api.dictionaryapi.dev/api/v2/entries/en/${normalizeEngWord(
+                engWord
+              )}`,
+              { timeout: 5000 }
+            );
+
+            if (
+              !res.data ||
+              !Array.isArray(res.data) ||
+              res.data.length === 0
+            ) {
+              throw new Error("Invalid API response");
             }
-            if (!audio && p.audio) {
-              audio = p.audio;
-            }
-            if (phonetic && audio) break;
-          }
 
-          return {
-            ...unit,
-            audio,
-            phonetic,
-            meanings,
-          };
-        } catch (error: any) {
-          console.error(`Помилка для слова ${unit.term}:`, error.message);
-          return { ...unit };
+            meanings = res.data[0].meanings;
+
+            // if (uaWordIndex !== -1) {
+            //   meanings = await Promise.all(
+            //     meanings.map(async (item) => {
+            //       if (!item?.definitions) return item;
+
+            //       const translatedDefs = await Promise.all(
+            //         item?.definitions?.map(async (def) => {
+            //           if (!def.definition) return def;
+
+            //           const uaWord = await translateText({
+            //             text: def.definition,
+            //             source: "ru",
+            //             target: "uk",
+            //           });
+
+            //           return {
+            //             ...def,
+            //             definition: uaWord,
+            //           };
+            //         })
+            //       );
+
+            //       return { ...item, definitions: translatedDefs };
+            //     })
+            //   );
+            // }
+
+            let phonetics = res.data[0].phonetics;
+
+            for (const p of phonetics) {
+              if (!phonetic && p.text) {
+                phonetic = p.text;
+              }
+              if (!audio && p.audio) {
+                audio = p.audio;
+              }
+              if (phonetic && audio) break;
+            }
+
+            return {
+              ...unit,
+              audio,
+              phonetic,
+              meanings,
+            };
+          } catch (error: any) {
+            console.error(`Помилка для слова ${unit.term}:`, error.message);
+            return { ...unit };
+          }
         }
       })
     );

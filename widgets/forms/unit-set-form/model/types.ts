@@ -1,3 +1,4 @@
+import { Language } from "@/shared/model/types/temp-store";
 import { TypeUnit, UnitSetType } from "@/shared/model/types/unit";
 
 export type DescriptionInputProps = {
@@ -17,4 +18,6 @@ export type TypeInitialForm = {
   units: TypeUnit[];
   unitSetType: UnitSetType;
   error: string;
+  termLang: Language;
+  definitionLang: Language;
 };

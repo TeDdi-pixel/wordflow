@@ -12,6 +12,7 @@ import { TitleInput } from "./TitleInput";
 import { DescriptionInput } from "./DescriptionInput";
 import useActionForm from "@/shared/hooks/useActionForm";
 import { FormUnitList } from "@/features/drag-form-units";
+import LanguageSelect from "./LanguageSelect";
 
 export const UnitSetForm = () => {
   const pathname = usePathname();
@@ -37,7 +38,7 @@ export const UnitSetForm = () => {
         defaultValue={state.description}
       />
 
-      {/* <div className="flex w-full gap-[32px]">
+      <div className="flex w-full gap-[32px]">
         <LanguageSelect
           defaultLanguage="ENG"
           id={"termLang"}
@@ -48,7 +49,7 @@ export const UnitSetForm = () => {
           id={"definitionLang"}
           label="Мова визначень:"
         />
-      </div> */}
+      </div>
 
       <div className="flex flex-col">
         <div className="mb-[18px]">

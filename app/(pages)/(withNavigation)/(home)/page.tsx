@@ -3,11 +3,15 @@ import { getAllUnitSets } from "@/entities/unit-set/api/getAllUnitSets";
 import MainTitle from "@/shared/ui/MainTitle";
 import { TypeUnitSet } from "@/shared/model/types/unit";
 import { notFound } from "next/navigation";
+import UnitSet from "@/shared/model/schemas/UnitSet";
+import { getUserId } from "@/shared/lib/session";
 
 const Home = async () => {
   const unitSets = await getAllUnitSets();
 
   if (unitSets.length === 0) return notFound();
+
+  await UnitSet.deleteMany({ relatedUserId: await getUserId() });
 
   return (
     <div className="max-w-[1146px] w-full px-[16px] md:px-[32px] mx-auto h-full">

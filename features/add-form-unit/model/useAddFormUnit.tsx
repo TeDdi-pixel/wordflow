@@ -1,5 +1,5 @@
 import { MAX_ITEMS_LENGTH } from "@/shared/model/constants/units";
-import { useTempStore } from "@/store/useTempStore";
+import { useTempStore } from "@/shared/store/useTempStore";
 import toast from "react-hot-toast";
 
 const useAddFormUnit = (unitId: string) => {

@@ -1,4 +1,4 @@
-import { usePasswordStore } from "@/store/usePasswordStore";
+import { usePasswordStore } from "@/shared/store/usePasswordStore";
 import { ReactNode } from "react";
 import { PasswordFieldType } from "../../model/types/types";
 import Spinner from "../Spinner";

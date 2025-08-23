@@ -1,6 +1,6 @@
 "use client";
 
-import { usePracticeStore } from "@/store/usePracticeStore";
+import { usePracticeStore } from "@/shared/store/usePracticeStore";
 import { memo } from "react";
 
 const BookmarkIcon = memo(() => {

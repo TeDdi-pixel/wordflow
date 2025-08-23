@@ -1,6 +1,6 @@
 "use client";
 
-import { useTempStore } from "@/store/useTempStore";
+import { useTempStore } from "@/shared/store/useTempStore";
 import DragIcon from "@/shared/icons/unit/DragIcon";
 import { memo } from "react";
 import { LuTrash2 } from "react-icons/lu";

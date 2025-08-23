@@ -1,6 +1,6 @@
 "use client";
 
-import { usePasswordStore } from "@/store/usePasswordStore";
+import { usePasswordStore } from "@/shared/store/usePasswordStore";
 import { memo } from "react";
 
 type Props = {

@@ -1,5 +1,5 @@
 import { useEffect, useCallback, useMemo } from "react";
-import { usePracticeStore } from "@/store/usePracticeStore";
+import { usePracticeStore } from "@/shared/store/usePracticeStore";
 import { TypeUnit } from "@/shared/model/types/unit";
 
 type Params = {

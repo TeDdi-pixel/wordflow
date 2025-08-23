@@ -1,6 +1,6 @@
 import { showError } from "@/shared/lib/toasts";
 import { UNIT_SET_ERROR_MESSAGES } from "@/shared/model/constants/errors";
-import { useTempStore } from "@/store/useTempStore";
+import { useTempStore } from "@/shared/store/useTempStore";
 
 const useRemoveFormUnit = (unitId: string) => {
   const removeUnit = useTempStore((state) => state.removeUnit);

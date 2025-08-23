@@ -1,4 +1,4 @@
-import { usePracticeStore } from "@/store/usePracticeStore";
+import { usePracticeStore } from "@/shared/store/usePracticeStore";
 import { SkipButtonProps } from "./types";
 
 const useSkipTerm = ({ units, unitLength }: SkipButtonProps) => {

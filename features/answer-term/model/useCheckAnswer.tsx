@@ -1,6 +1,6 @@
 "use client";
 
-import { usePracticeStore } from "@/store/usePracticeStore";
+import { usePracticeStore } from "@/shared/store/usePracticeStore";
 import { distance } from "fastest-levenshtein";
 import { TypeUnit } from "@/shared/model/types/unit";
 import { useEffect, useRef } from "react";

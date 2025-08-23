@@ -6,7 +6,7 @@ import SoundActiveIcon from "@/shared/icons/unit/SoundActiveIcon";
 import SoundIcon from "@/shared/icons/unit/SoundIcon";
 import { TypeUnit } from "@/shared/model/types/unit";
 import { UserResultTerm } from "@/shared/model/types/user-results";
-import { usePracticeStore } from "@/store/usePracticeStore";
+import { usePracticeStore } from "@/shared/store/usePracticeStore";
 
 type Props = {
   units?: TypeUnit[];

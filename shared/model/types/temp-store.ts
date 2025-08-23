@@ -5,6 +5,8 @@ export type TempStore = {
   unitSetDescription: string;
   units: TypeUnit[];
   currentUnitId: string;
+  termLang: Language;
+  definitionLang: Language;
 
   setUnitSetTitle: (title: string) => void;
   setUnitSetDescription: (description: string) => void;
@@ -16,4 +18,11 @@ export type TempStore = {
   resetTempStore: () => void;
   setCurrentUnitId: (id: string) => void;
   getUnits: () => TypeUnit[];
+  setTermLang: (tLang: Language) => void;
+  setDefinitionLang: (dLang: Language) => void;
+  setProposedOption: (options: string) => void;
+  getProposedOption: (unitId: string) => string;
+  isDefinitionSet: (unitId: string) => boolean;
 };
+
+export type Language = "UA" | "ENG" | "RU";

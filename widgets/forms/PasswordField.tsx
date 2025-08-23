@@ -5,7 +5,7 @@ import { Tip } from "./sign-up-form/ui/Tip";
 import usePassword from "@/widgets/forms/model/usePassword";
 import { FaCheck } from "react-icons/fa";
 import MistakeIcon from "@/shared/icons/unit/MistakeIcon";
-import { usePasswordStore } from "@/store/usePasswordStore";
+import { usePasswordStore } from "@/shared/store/usePasswordStore";
 import CopyPasswordButton from "@/shared/ui/buttons/CopyPasswordButton";
 import AuthInput from "@/shared/ui/inputs/AuthInput";
 import { StatusIconsHover } from "./sign-up-form/ui/StatusIconsHover";

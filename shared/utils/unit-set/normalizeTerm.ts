@@ -1,4 +1,4 @@
-export const normalizeTerm = (term: string): string => {
+export const normalizeEngWord = (term: string): string => {
   const words = term.trim().split(/\s+/);
 
   if (words.length === 1) {

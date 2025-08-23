@@ -8,6 +8,7 @@ export type TypeUnit = {
   meanings?: TypeMeaning[];
   phonetic?: string;
   audio?: string;
+  proposedOption?: string;
 };
 
 export type UnitSetType = "cards";
@@ -31,6 +32,7 @@ export type TypeUnitSet = {
   unitSetType: "cards";
   units: TypeUnit[];
   likesCount: number;
+  proposedDefinitions: string[];
 };
 
 export type TypePhonetic = {

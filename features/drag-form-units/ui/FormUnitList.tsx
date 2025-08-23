@@ -9,7 +9,7 @@ import {
 } from "@dnd-kit/sortable";
 import useDragLogic from "../model/useDrag";
 import { memo } from "react";
-import { useTempStore } from "@/store/useTempStore";
+import { useTempStore } from "@/shared/store/useTempStore";
 import { FormUnit } from "./FormUnit";
 
 export const FormUnitList = memo(() => {

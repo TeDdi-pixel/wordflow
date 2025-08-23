@@ -1,4 +1,4 @@
-import { useTempStore } from "@/store/useTempStore";
+import { useTempStore } from "@/shared/store/useTempStore";
 import { DescriptionInputProps } from "../model/types";
 
 export const DescriptionInput = ({

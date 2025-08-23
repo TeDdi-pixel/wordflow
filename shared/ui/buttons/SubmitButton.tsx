@@ -1,7 +1,7 @@
 "use client";
 
 import AddCollectionIcon from "@/shared/icons/unit/AddCollectionIcon";
-import { useTempStore } from "@/store/useTempStore";
+import { useTempStore } from "@/shared/store/useTempStore";
 import { useEffect, useRef } from "react";
 import { RiUploadCloud2Fill } from "react-icons/ri";
 import { redirect } from "next/navigation";

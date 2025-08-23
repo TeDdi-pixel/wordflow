@@ -1,6 +1,6 @@
 import { useRouter } from "next/navigation";
 import { useCallback, useEffect } from "react";
-import { usePracticeStore } from "@/store/usePracticeStore";
+import { usePracticeStore } from "@/shared/store/usePracticeStore";
 import { showError } from "@/shared/lib/toasts";
 import toast from "react-hot-toast";
 import LoadingText from "@/shared/ui/LoadingText";

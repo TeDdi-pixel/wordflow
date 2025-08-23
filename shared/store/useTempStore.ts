@@ -1,5 +1,5 @@
 import { MAX_ITEMS_LENGTH } from "@/shared/model/constants/units";
-import { TempStore } from "@/shared/model/types/temp-store";
+import { Language, TempStore } from "@/shared/model/types/temp-store";
 import { arrayMove } from "@dnd-kit/sortable";
 import { create } from "zustand";
 import { subscribeWithSelector } from "zustand/middleware";
@@ -11,8 +11,20 @@ const initialUnitSet: Pick<
   unitSetTitle: "",
   unitSetDescription: "",
   units: [
-    { _id: crypto.randomUUID(), termNumber: 1, term: "", definition: "" },
-    { _id: crypto.randomUUID(), termNumber: 2, term: "", definition: "" },
+    {
+      _id: crypto.randomUUID(),
+      termNumber: 1,
+      term: "",
+      definition: "",
+      proposedOption: "",
+    },
+    {
+      _id: crypto.randomUUID(),
+      termNumber: 2,
+      term: "",
+      definition: "",
+      proposedOption: "",
+    },
   ],
 };
 
@@ -21,12 +33,47 @@ export const useTempStore = create<TempStore>()(
     currentUnitId: "",
     unitSetTitle: "",
     unitSetDescription: "",
+    termLang: "ENG",
+    definitionLang: "UA",
     units: [
-      { _id: crypto.randomUUID(), termNumber: 1, term: "", definition: "" },
-      { _id: crypto.randomUUID(), termNumber: 2, term: "", definition: "" },
+      {
+        _id: crypto.randomUUID(),
+        termNumber: 1,
+        term: "",
+        definition: "",
+        proposedOption: "",
+      },
+      {
+        _id: crypto.randomUUID(),
+        termNumber: 2,
+        term: "",
+        definition: "",
+        proposedOption: "",
+      },
     ],
 
+    setProposedOption: (options: string) => {
+      set((state) => ({
+        units: state.units.map((unit) =>
+          unit._id === state.currentUnitId
+            ? { ...unit, proposedOption: options }
+            : unit
+        ),
+      }));
+    },
+
+    setTermLang: (tLang: Language) =>
+      set({
+        termLang: tLang,
+      }),
+
+    setDefinitionLang: (dLang: Language) =>
+      set({
+        definitionLang: dLang,
+      }),
+
     setCurrentUnitId: (id: string) => set({ currentUnitId: id }),
+
     setUnitSetTitle: (title: string) => set({ unitSetTitle: title }),
 
     setUnitSetDescription: (description: string) =>
@@ -47,7 +94,10 @@ export const useTempStore = create<TempStore>()(
         ),
       }));
     },
-
+    isDefinitionSet: (unitId: string) => {
+      const unit = get().units.find((u) => u._id === unitId);
+      return unit ? unit.definition.length > 0 : false;
+    },
     addUnit: () => {
       set((state) => {
         if (state.units.length >= MAX_ITEMS_LENGTH) return {};
@@ -68,6 +118,7 @@ export const useTempStore = create<TempStore>()(
             termNumber: 0,
             term: "",
             definition: "",
+            proposedOption: "",
           })
           .map((unit, index) => ({
             ...unit,
@@ -109,6 +160,13 @@ export const useTempStore = create<TempStore>()(
     resetTempStore: () => {
       set({ ...initialUnitSet });
     },
+
     getUnits: () => get().units,
+
+    getProposedOption: (unitId: string) => {
+      const state = get();
+      const unit = state.units.find((u) => u._id === unitId);
+      return unit?.proposedOption || "";
+    },
   }))
 );

@@ -5,7 +5,7 @@ import { getIcon } from "@/shared/utils/unit-set-practice/getIcons";
 import PracticeInput from "@/shared/ui/inputs/UnitPracticeInput";
 import { TypeUnit } from "@/shared/model/types/unit";
 import useSetInputData from "@/shared/hooks/useSetInputData";
-import { usePracticeStore } from "@/store/usePracticeStore";
+import { usePracticeStore } from "@/shared/store/usePracticeStore";
 import useAnswerTerm from "../model/useAnswerTerm";
 import { useCheckAnswer } from "../model/useCheckAnswer";
 

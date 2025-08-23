@@ -1,9 +1,9 @@
 import { create } from "zustand";
-import { passwordFields } from "./config/passwordFields";
 import {
   PasswordFieldState,
   PasswordFieldType,
 } from "@/shared/model/types/types";
+import { passwordFields } from "@/widgets/forms/model/config";
 
 type PasswordStore = {
   fields: Record<PasswordFieldType, PasswordFieldState>;

@@ -1,4 +1,4 @@
-import { usePracticeStore } from "@/store/usePracticeStore";
+import { usePracticeStore } from "@/shared/store/usePracticeStore";
 
 const useAnswerTerm = (checkAnswer: () => void) => {
   const isPending = usePracticeStore((state) => state.isPending);
