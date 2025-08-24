@@ -44,7 +44,7 @@ export const UnitSetCover = ({
         <TermsCount termsCount={termsCount} />
       </div>
 
-      <div className="flex justify-between items-center h-[32px]">
+      <div className="flex justify-between items-center h-[32px] z-10">
         <div className="flex items-center gap-2 ">
           <CardTypeIcon unitSetType={unitSetType} />
 
