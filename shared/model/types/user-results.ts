@@ -15,4 +15,5 @@ export type UserResults = {
   _id: string;
   relatedUserId: string;
   terms: UserResultTerm[];
+  unitSetId: string;
 };

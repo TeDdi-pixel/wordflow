@@ -18,9 +18,10 @@ const Library = async () => {
       <MainTitle text="Мої вподобання" />
 
       <div className="grid grid-cols-3 gap-4 w-full">
-        {unitSets.map((unitSet) => (
+        {unitSets.map((unitSet, index) => (
           <UnitSetCover
             key={unitSet._id.toString()}
+            index={index}
             unitSetType={unitSet.unitSetType}
             description={unitSet.description}
             authorsName={unitSet.authorsName}

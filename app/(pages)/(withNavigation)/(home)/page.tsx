@@ -1,7 +1,6 @@
 import { UnitSetCover } from "@/entities/unit-set";
 import { getAllUnitSets } from "@/entities/unit-set/api/getAllUnitSets";
 import MainTitle from "@/shared/ui/MainTitle";
-import { TypeUnitSet } from "@/shared/model/types/unit";
 import { notFound } from "next/navigation";
 
 const Home = async () => {
@@ -14,9 +13,10 @@ const Home = async () => {
       <MainTitle text="Усі набори" />
 
       <div className="grid grid-cols-3 gap-4 w-full">
-        {unitSets.map((unitSet: TypeUnitSet) => (
+        {unitSets.map((unitSet, index) => (
           <UnitSetCover
             key={unitSet._id.toString()}
+            index={index}
             unitSetType={unitSet.unitSetType}
             description={unitSet.description}
             authorsName={unitSet.authorsName}

@@ -18,18 +18,18 @@ const History = async () => {
       <MainTitle text="Історія взаємодій" />
 
       <div className="grid grid-cols-3 gap-4 w-full">
-        {unitSets.map((unitSet) => (
-          <div key={unitSet._id.toString()}>
-            <UnitSetCover
-              unitSetType={unitSet.unitSetType}
-              description={unitSet.description}
-              authorsName={unitSet.authorsName}
-              termsCount={unitSet.units.length}
-              title={unitSet.title}
-              unitSetId={unitSet._id.toString()}
-              likesCount={unitSet.likesCount}
-            />
-          </div>
+        {unitSets.map((unitSet, index) => (
+          <UnitSetCover
+            key={unitSet._id.toString()}
+            index={index}
+            unitSetType={unitSet.unitSetType}
+            description={unitSet.description}
+            authorsName={unitSet.authorsName}
+            termsCount={unitSet.units.length}
+            title={unitSet.title}
+            unitSetId={unitSet._id.toString()}
+            likesCount={unitSet.likesCount}
+          />
         ))}
       </div>
     </div>

@@ -6,7 +6,9 @@ export const LikesCount = ({ likesCount }: { likesCount: number }) => {
       <div className="flex gap-1 items-center">
         <LikeIcon />
 
-        <span>{likesCount}</span>
+        <span className="group-hover:text-white transition-colors duration-300">
+          {likesCount}
+        </span>
       </div>
     )
   );

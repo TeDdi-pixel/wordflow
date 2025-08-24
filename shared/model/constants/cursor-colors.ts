@@ -1,0 +1,33 @@
+export const SHADOW_COLORS = [
+  "#ff9dff",
+  "#90f0d8",
+  "#f97316",
+  "#3b82f6",
+  "#8b5cf6",
+  "#ffcfab",
+  "#a855f7",
+  "#8a3e8a",
+  "#10b981",
+  "#ec4899",
+  "#06b6d4",
+  "#d946ef",
+  "#f472b6",
+  "#6366f1",
+];
+
+export const CARD_SQUARE_COLORS = [
+  "#f472b6",
+  "#10b981",
+  "#f97316",
+  "#3b82f6",
+  "#8b5cf6",
+  "#ffcfab",
+  "#a855f7",
+  "#ff9dff",
+  "#90f0d8",
+  "#ec4899",
+  "#06b6d4",
+  "#d946ef",
+  "#b04fb0",
+  "#6366f1",
+];

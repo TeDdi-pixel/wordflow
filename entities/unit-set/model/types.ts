@@ -8,4 +8,5 @@ export type TypeCardSetProps = {
   description: string;
   unitSetType: UnitSetType;
   likesCount: number;
+  index: number;
 };

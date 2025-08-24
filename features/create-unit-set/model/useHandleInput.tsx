@@ -1,10 +1,10 @@
 "use client";
 
-import { translateText } from "@/shared/api/translateText";
 import { useTempStore } from "@/shared/store/useTempStore";
 import { normalizeEngWord } from "@/shared/utils/unit-set/normalizeEngWord";
-import axios from "axios";
-import { ChangeEvent, useCallback, useRef } from "react";
+import { ChangeEvent, useCallback, useEffect, useRef } from "react";
+import useDebounce from "@/shared/hooks/useDebounce";
+import useTranslatedHint from "./useTranslatedHint";
 
 type Props = {
   unitId: string;
@@ -19,68 +19,41 @@ const useHandleInput = ({ unitId, fieldType }: Props) => {
   const definitionLang = useTempStore((state) => state.definitionLang);
   const setProposedOption = useTempStore((state) => state.setProposedOption);
 
-  const debounceRef = useRef<ReturnType<typeof setTimeout> | null>(null);
+  const setTranslatedHint = useTranslatedHint(unitId);
+
+  const lastEngWordRef = useRef<string>("");
+
+  const debouncedFetch = useDebounce(setTranslatedHint, 500);
 
   const handleChange = useCallback(
     (e: ChangeEvent<HTMLInputElement>) => {
       const value = e.target.value;
       setCurrentUnitId(unitId);
 
-      if (fieldType === "term") {
-        setUnitTerm(value);
+      switch (fieldType) {
+        case "term":
+          setUnitTerm(value);
 
-        if (termLang === "ENG") {
-          if (debounceRef.current) clearTimeout(debounceRef.current);
+          if (termLang !== "ENG") return;
 
-          debounceRef.current = setTimeout(async () => {
-            if (!value.trim()) {
-              setProposedOption(unitId, "");
-              return;
-            }
+          if (!value.trim()) {
+            setProposedOption(unitId, "");
+            return;
+          }
 
-            try {
-              const engWord = normalizeEngWord(value);
-              if (!engWord) {
-                setProposedOption(unitId, "");
-                return;
-              }
+          const engWord = normalizeEngWord(value);
+          if (!engWord) {
+            setProposedOption(unitId, "");
+            return;
+          }
 
-              const res = await axios.get(
-                `https://api.dictionaryapi.dev/api/v2/entries/en/${engWord}`,
-                { timeout: 5000 }
-              );
+          lastEngWordRef.current = engWord;
+          debouncedFetch(engWord);
+          break;
 
-              const word = res.data?.[0]?.word;
-              if (!word) return;
-
-              const targetLang = definitionLang === "UA" ? "uk" : "ru";
-
-              const translated = await translateText({
-                text: word,
-                source: "en",
-                target: targetLang,
-              });
-
-              if (!translated) {
-                setProposedOption(unitId, "");
-                return;
-              }
-
-              const cleaned = translated
-                .trim()
-                .replace(/[^a-zа-яёіїєґ'-]/gi, "")
-                .replace(/\s+/g, " ")
-                .toLowerCase();
-
-              setProposedOption(unitId, cleaned);
-            } catch (err) {
-              setProposedOption(unitId, "");
-            }
-          }, 1000);
-        }
-      } else {
-        setProposedOption(unitId, "");
-        setUnitDefinition(unitId, value);
+        case "definition":
+          setProposedOption(unitId, "");
+          setUnitDefinition(unitId, value);
       }
     },
     [
@@ -91,9 +64,19 @@ const useHandleInput = ({ unitId, fieldType }: Props) => {
       setCurrentUnitId,
       setProposedOption,
       termLang,
-      definitionLang,
+      debouncedFetch,
     ]
   );
+
+  useEffect(() => {
+    if (definitionLang === "ENG") {
+      setProposedOption(unitId, "");
+      return;
+    }
+    if (definitionLang && lastEngWordRef.current) {
+      setTranslatedHint(lastEngWordRef.current);
+    }
+  }, [definitionLang, setTranslatedHint, unitId, setProposedOption]);
 
   return handleChange;
 };
