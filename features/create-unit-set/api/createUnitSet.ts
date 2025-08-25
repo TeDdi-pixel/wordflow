@@ -10,6 +10,7 @@ import axios from "axios";
 import { normalizeEngWord } from "@/shared/utils/unit-set/normalizeEngWord";
 import { BaseFields } from "@/shared/model/types/forms";
 import UnitSet from "@/shared/model/schemas/UnitSet";
+import { getNormalizedEngWord } from "@/shared/utils/unit-set/getNormalizedEngWord";
 
 const ERRORS = UNIT_SET_ERROR_MESSAGES;
 
@@ -84,7 +85,8 @@ export const createUnitSet = async <T extends BaseFields>(
         let audio = "";
 
         try {
-          const engWord = normalizeEngWord(unit.term);
+          const engWord = getNormalizedEngWord(unit.term);
+
           if (!engWord) {
             return { ...unit, audio, phonetic, meanings };
           }
