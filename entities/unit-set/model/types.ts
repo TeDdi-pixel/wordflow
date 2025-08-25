@@ -1,3 +1,4 @@
+import { Language } from "@/shared/model/types/temp-store";
 import { UnitSetType } from "@/shared/model/types/unit";
 
 export type TypeCardSetProps = {
@@ -8,5 +9,6 @@ export type TypeCardSetProps = {
   description: string;
   unitSetType: UnitSetType;
   likesCount: number;
-  index: number;
+  source: Language;
+  target: Language;
 };

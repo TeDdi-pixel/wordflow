@@ -1,11 +1,9 @@
 "use client";
 
-import LoadingText from "@/shared/ui/LoadingText";
 import { showError } from "@/shared/lib/toasts";
-import axios, { AxiosError } from "axios";
+import { AxiosError } from "axios";
 import { useParams, useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
-import toast from "react-hot-toast";
 import { getLikeStatus } from "../api/getLikeStatus";
 import { deleteLike } from "../api/deleteLike";
 import { addLike } from "../api/addLike";

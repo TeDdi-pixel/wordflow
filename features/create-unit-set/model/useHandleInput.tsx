@@ -15,8 +15,8 @@ const useHandleInput = ({ unitId, fieldType }: Props) => {
   const setCurrentUnitId = useTempStore((state) => state.setCurrentUnitId);
   const setUnitTerm = useTempStore((state) => state.setUnitTerm);
   const setUnitDefinition = useTempStore((state) => state.setUnitDefinition);
-  const termLang = useTempStore((state) => state.termLang);
-  const definitionLang = useTempStore((state) => state.definitionLang);
+  const source = useTempStore((state) => state.source);
+  const target = useTempStore((state) => state.target);
   const setProposedOption = useTempStore((state) => state.setProposedOption);
 
   const setTranslatedHint = useTranslatedHint(unitId);
@@ -34,7 +34,7 @@ const useHandleInput = ({ unitId, fieldType }: Props) => {
         case "term":
           setUnitTerm(value);
 
-          if (termLang !== "ENG") return;
+          if (source !== "ENG") return;
 
           if (!value.trim()) {
             setProposedOption(unitId, "");
@@ -63,20 +63,20 @@ const useHandleInput = ({ unitId, fieldType }: Props) => {
       setUnitDefinition,
       setCurrentUnitId,
       setProposedOption,
-      termLang,
+      source,
       debouncedFetch,
     ]
   );
 
   useEffect(() => {
-    if (definitionLang === "ENG") {
+    if (target === "ENG") {
       setProposedOption(unitId, "");
       return;
     }
-    if (definitionLang && lastEngWordRef.current) {
+    if (target && lastEngWordRef.current) {
       setTranslatedHint(lastEngWordRef.current);
     }
-  }, [definitionLang, setTranslatedHint, unitId, setProposedOption]);
+  }, [target, setTranslatedHint, unitId, setProposedOption]);
 
   return handleChange;
 };

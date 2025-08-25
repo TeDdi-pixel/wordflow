@@ -4,13 +4,28 @@ import { useRef, useState } from "react";
 import { TypeUnit } from "../model/types/unit";
 import { showError } from "../lib/toasts";
 import { UserResultTerm } from "../model/types/user-results";
+import { usePracticeStore } from "../store/usePracticeStore";
+import { Language } from "../model/types/temp-store";
 
-const useSound = (currentUnit: TypeUnit | UserResultTerm | null) => {
+const useSound = (
+  currentUnit: TypeUnit | UserResultTerm | null,
+  targetLang: Language
+) => {
   const [active, setActive] = useState<boolean>(false);
+  const currentTermLang = usePracticeStore((state) => state.currentTermLang);
 
   const audioRef = useRef<HTMLAudioElement | null>(null);
 
   const handleClick = () => {
+    if (currentTermLang !== "source" && targetLang !== "ENG") {
+      showError(
+        `Термін на мові "${targetLang}" не має звуку вимови`,
+        crypto.randomUUID()
+      );
+      setActive(false);
+      return;
+    }
+
     if (!currentUnit?.audio) {
       showError("Цей термін нажаль немає звуку вимови", crypto.randomUUID());
       setActive(false);

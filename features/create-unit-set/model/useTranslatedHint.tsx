@@ -4,7 +4,7 @@ import { getTranslatedHint } from "../api/getTranslatedHint";
 
 const useTranslatedHint = (unitId: string) => {
   const isDefinitionSet = useTempStore((state) => state.isDefinitionSet);
-  const definitionLang = useTempStore((state) => state.definitionLang);
+  const target = useTempStore((state) => state.target);
   const setProposedOption = useTempStore((state) => state.setProposedOption);
 
   const setTranslatedHint = useCallback(
@@ -12,7 +12,7 @@ const useTranslatedHint = (unitId: string) => {
       try {
         if (isDefinitionSet(unitId)) return;
 
-        const targetLang = definitionLang === "UA" ? "uk" : "ru";
+        const targetLang = target === "UA" ? "uk" : "ru";
         const translatedHint = await getTranslatedHint(word, targetLang);
 
         setProposedOption(unitId, translatedHint || "");
@@ -20,7 +20,7 @@ const useTranslatedHint = (unitId: string) => {
         setProposedOption(unitId, "");
       }
     },
-    [definitionLang, unitId, setProposedOption, isDefinitionSet]
+    [target, unitId, setProposedOption, isDefinitionSet]
   );
   return setTranslatedHint;
 };

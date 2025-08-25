@@ -41,12 +41,12 @@ export const UnitSetForm = () => {
       <div className="flex w-full gap-[32px]">
         <LanguageSelect
           defaultLanguage="ENG"
-          id={"termLang"}
+          id={"source"}
           label="Мова терінів:"
         />
         <LanguageSelect
           defaultLanguage="UA"
-          id={"definitionLang"}
+          id={"target"}
           label="Мова визначень:"
         />
       </div>

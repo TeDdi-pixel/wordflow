@@ -3,14 +3,24 @@ import { BookmarkButton } from "@/features/save-unit-term/ui/BookmarkButton";
 import { HintButton } from "@/features/show-hint";
 import { SoundButton } from "@/shared/ui/buttons/SoundButton";
 import { TypeUnit } from "@/shared/model/types/unit";
+import { Language } from "@/shared/model/types/temp-store";
+import ChangeLangButton from "./ChangeLangButton";
 
-export const ActionBar = ({ units }: { units: TypeUnit[] }) => {
+export const ActionBar = ({
+  units,
+  target,
+}: {
+  units: TypeUnit[];
+  target: Language;
+}) => {
   return (
     <div className="flex justify-between w-full">
       <HintButton />
 
       <div className="flex gap-4">
-        <SoundButton units={units} />
+        <ChangeLangButton />
+
+        <SoundButton units={units} target={target} />
 
         <LikeButton />
 

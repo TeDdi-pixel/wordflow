@@ -16,6 +16,9 @@ export const useSaveUnitSetResult = () => {
   const resetCompletedTerms = usePracticeStore(
     (state) => state.resetCompletedTerms
   );
+  const setCurrentTermLang = usePracticeStore(
+    (state) => state.setCurrentTermLang
+  );
 
   useEffect(() => {
     resetCompletedTerms();
@@ -42,6 +45,7 @@ export const useSaveUnitSetResult = () => {
       const success = await promise;
 
       if (success) {
+        setCurrentTermLang("source");
         router.push(`/card-set/${unitSetId}/results?refresh=${Date.now()}`);
       }
       return success;

@@ -33,6 +33,8 @@ export const getUnitSetForClient = async (unitSetId: string) => {
   return {
     _id: unitSet._id.toString(),
     title: unitSet.title,
+    source: unitSet.source,
+    target: unitSet.target,
     description: unitSet.description,
     authorsName: unitSet.authorsName,
     unitSetType: unitSet.unitSetType,

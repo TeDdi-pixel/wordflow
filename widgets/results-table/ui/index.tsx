@@ -1,5 +1,6 @@
 import { colWidths } from "../model/config";
 import { getScoreSummary } from "../model/getLearnedTermsCount";
+import { getTargetLanguage } from "../api/getTargetLanguage";
 import { ResultTableProps } from "../model/types";
 import { TableBottom } from "./TableBottom";
 import { TBody } from "./TBody";
@@ -11,6 +12,7 @@ export const ResultTable = async ({
 }: ResultTableProps) => {
   const scoreSummary = getScoreSummary(resultSetTerms);
 
+  const target = await getTargetLanguage(unitSetId);
   return (
     <>
       <table className="w-full border-separate border-spacing-y-2 table-fixed">
@@ -22,7 +24,7 @@ export const ResultTable = async ({
 
         <THead />
 
-        <TBody resultSetTerms={resultSetTerms} />
+        <TBody resultSetTerms={resultSetTerms} target={target} />
       </table>
 
       <TableBottom id={unitSetId} scoreSummary={scoreSummary} />

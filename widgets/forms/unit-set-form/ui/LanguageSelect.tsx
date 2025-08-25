@@ -8,25 +8,25 @@ const LanguageSelect = ({
   label,
 }: {
   defaultLanguage: Language;
-  id: "termLang" | "definitionLang";
+  id: "source" | "target";
   label: string;
 }) => {
-  const termLang = useTempStore((state) => state.termLang);
-  const definitionLang = useTempStore((state) => state.definitionLang);
+  const source = useTempStore((state) => state.source);
+  const target = useTempStore((state) => state.target);
   const setTermLang = useTempStore((state) => state.setTermLang);
   const setDefinitionLang = useTempStore((state) => state.setDefinitionLang);
 
-  const selected = id === "termLang" ? termLang : definitionLang;
+  const selected = id === "source" ? source : target;
 
   const handleSelect = (lang: Language) => {
-    if (id === "termLang") {
-      if (definitionLang === lang) {
-        setDefinitionLang(termLang);
+    if (id === "source") {
+      if (target === lang) {
+        setDefinitionLang(source);
       }
       setTermLang(lang);
     } else {
-      if (termLang === lang) {
-        setTermLang(definitionLang);
+      if (source === lang) {
+        setTermLang(target);
       }
       setDefinitionLang(lang);
     }

@@ -33,8 +33,8 @@ export const useTempStore = create<TempStore>()(
     currentUnitId: "",
     unitSetTitle: "",
     unitSetDescription: "",
-    termLang: "ENG",
-    definitionLang: "UA",
+    source: "ENG",
+    target: "UA",
     units: [
       {
         _id: crypto.randomUUID(),
@@ -62,12 +62,12 @@ export const useTempStore = create<TempStore>()(
 
     setTermLang: (tLang: Language) =>
       set({
-        termLang: tLang,
+        source: tLang,
       }),
 
     setDefinitionLang: (dLang: Language) =>
       set({
-        definitionLang: dLang,
+        target: dLang,
       }),
 
     setCurrentUnitId: (id: string) => set({ currentUnitId: id }),

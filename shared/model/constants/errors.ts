@@ -32,6 +32,7 @@ export const UNIT_SET_ERROR_MESSAGES = {
   SERVER_ERROR: "Виникла внутрішня помилка сервера",
   USERNAME_MISSING:
     "Виникла помилка сесії, потрібно повторно пройти аутентифікацію",
+  MISSING_LANGUAGES: "Відсутня мова терміна або визначення",
 };
 
 export const PRACTICE_BOARD_ERROR_MESSAGES = {

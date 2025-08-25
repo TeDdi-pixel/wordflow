@@ -1,3 +1,4 @@
+import { Language } from "@/shared/model/types/temp-store";
 import { UserResultTerm } from "@/shared/model/types/user-results";
 
 export type ResultTableProps = {
@@ -9,6 +10,7 @@ export type TableBottomProps = { id: string; scoreSummary: string };
 
 export type TBodyProps = {
   resultSetTerms: UserResultTerm[];
+  target: Language;
 };
 
 export type ScoreSummaryProps = {

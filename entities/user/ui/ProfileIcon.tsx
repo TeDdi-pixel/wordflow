@@ -1,10 +1,8 @@
+import { Session } from "next-auth";
 import Link from "next/link";
 import { FaUser, FaRegUser } from "react-icons/fa";
-import { auth } from "@/auth";
 
-export const ProfileIcon = async () => {
-  const session = await auth();
-
+export const ProfileIcon = ({ session }: { session: Session | null }) => {
   return (
     <Link href="/login">
       {session ? (

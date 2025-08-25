@@ -1,3 +1,5 @@
+import { Language } from "./temp-store";
+
 export type TypeTermStatus = "unlearned" | "learned" | "excluded";
 
 export type TypeUnit = {
@@ -33,6 +35,8 @@ export type TypeUnitSet = {
   units: TypeUnit[];
   likesCount: number;
   proposedDefinitions: string[];
+  source: Language;
+  target: Language;
 };
 
 export type TypePhonetic = {

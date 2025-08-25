@@ -2,12 +2,10 @@ import LogoutMenuItem from "./LogoutMenuItem";
 
 import { MenuWrapper } from "./MenuWrapper";
 import { MenuItem } from "./MenuItem";
-import { auth } from "@/auth";
 import { menuButtons, TypePopUpMenu } from "../model/config";
+import { Session } from "next-auth";
 
-export const PopUpMenu = async () => {
-  const session = await auth();
-
+export const PopUpMenu = ({ session }: { session: Session | null }) => {
   return (
     session && (
       <MenuWrapper>

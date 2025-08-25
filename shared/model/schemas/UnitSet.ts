@@ -17,6 +17,8 @@ const unitSetSchema = new mongoose.Schema(
       required: true,
     },
     likesCount: { type: Number, required: true, default: 0, min: 0 },
+    source: { type: String, enum: ["ENG", "UA", "RU"], required: true },
+    target: { type: String, enum: ["ENG", "UA", "RU"], required: true },
     units: [
       {
         termNumber: { type: Number, required: true },

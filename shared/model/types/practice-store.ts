@@ -21,6 +21,7 @@ export type PracticeStore = {
   completedTerms: TypeCompletedUnit[];
   isPending: boolean;
   hasNewAnswer: boolean;
+  currentTermLang: "source" | "target";
 
   setUnitSetId: (id: string) => void;
   setCurrentUnitId: (id: string) => void;
@@ -46,4 +47,5 @@ export type PracticeStore = {
   setLocalCheckStatus: (value: CheckStatus) => void;
   resetLocalCheckStatus: () => void;
   setHasNewAnswer: (value: boolean) => void;
+  setCurrentTermLang: (value: "source" | "target") => void;
 };

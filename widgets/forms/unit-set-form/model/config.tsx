@@ -12,6 +12,6 @@ export const initialForm = (pathname: string): TypeInitialForm => ({
   status: "",
   unitSetType: typeMap.get(pathname) as UnitSetType,
   error: "",
-  termLang: "ENG",
-  definitionLang: "UA",
+  source: "ENG",
+  target: "UA",
 });

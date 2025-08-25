@@ -7,7 +7,7 @@ import { SoundButton } from "@/shared/ui/buttons/SoundButton";
 import { TBodyProps } from "../model/types";
 import { BookmarkButton } from "@/features/save-unit-term/ui/BookmarkButton";
 
-export const TBody = ({ resultSetTerms }: TBodyProps) => {
+export const TBody = ({ resultSetTerms, target }: TBodyProps) => {
   return (
     <tbody>
       {resultSetTerms?.map((unit: UserResultTerm) => (
@@ -50,7 +50,7 @@ export const TBody = ({ resultSetTerms }: TBodyProps) => {
             last
             icon={
               <div className="flex gap-4 justify-center items-center h-full">
-                <SoundButton resultUnit={unit} />
+                <SoundButton resultUnit={unit} target={target} />
 
                 <BookmarkButton />
               </div>

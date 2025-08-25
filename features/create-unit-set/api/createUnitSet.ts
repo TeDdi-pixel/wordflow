@@ -3,7 +3,6 @@
 import { withError } from "@/shared/utils/auth/withError";
 import { getUserId } from "@/shared/lib/session";
 import { UNIT_SET_ERROR_MESSAGES } from "@/shared/model/constants/errors";
-import UnitSetSchema from "@/shared/model/schemas/UnitSet";
 import User from "@/shared/model/schemas/User";
 import { TypeUnit } from "@/shared/model/types/unit";
 import createDbConnection from "@/shared/lib/mongoose";
@@ -28,6 +27,12 @@ export const createUnitSet = async <T extends BaseFields>(
     }
 
     const description = form.get("description");
+
+    const source = form.get("source");
+    const target = form.get("target");
+
+    if (!source || !target)
+      return withError<T>(prevState, ERRORS.MISSING_LANGUAGES);
 
     const entries = [...form.entries()];
 
@@ -116,6 +121,8 @@ export const createUnitSet = async <T extends BaseFields>(
       description,
       unitSetType,
       authorsName,
+      source,
+      target,
       units: updatedUnits,
     });
 

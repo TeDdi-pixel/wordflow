@@ -20,6 +20,7 @@ export const useCheckAnswer = (units: TypeUnit[]) => {
   );
   const setCheckStatus = usePracticeStore((state) => state.setCheckStatus);
   const resetCheckStatus = usePracticeStore((state) => state.resetCheckStatus);
+  const currentTermLang = usePracticeStore((state) => state.currentTermLang);
 
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
@@ -43,7 +44,11 @@ export const useCheckAnswer = (units: TypeUnit[]) => {
       return;
     }
 
-    const allUniqueDefinitions = normalizeText(units[termNumber]?.definition);
+    const allUniqueDefinitions = normalizeText(
+      currentTermLang === "source"
+        ? units[termNumber]?.definition
+        : units[termNumber]?.term
+    );
     if (!newAnswer || newAnswer.trim() === "") {
       return;
     }

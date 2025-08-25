@@ -18,6 +18,10 @@ export const usePracticeStore = create<PracticeStore>((set, get) => ({
   isUnitSetCompleted: false,
   isPending: false,
   hasNewAnswer: false,
+  currentTermLang: "source",
+
+  setCurrentTermLang: (value: "source" | "target") =>
+    set({ currentTermLang: value }),
 
   setUnitSetId: (id: string) => set({ unitSetId: id }),
 

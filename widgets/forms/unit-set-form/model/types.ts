@@ -18,6 +18,6 @@ export type TypeInitialForm = {
   units: TypeUnit[];
   unitSetType: UnitSetType;
   error: string;
-  termLang: Language;
-  definitionLang: Language;
+  source: Language;
+  target: Language;
 };
