@@ -1,3 +1,3 @@
 export const Description = ({ description }: { description: string }) => {
-  return <h6 className="truncate duration-300">{description}</h6>;
+  return <h6 className="truncate">{description}</h6>;
 };
