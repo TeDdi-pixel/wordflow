@@ -1,6 +1,7 @@
 import { Language } from "@/shared/model/types/temp-store";
 import { TypeUnit } from "@/shared/model/types/unit";
 import { usePracticeStore } from "@/shared/store/usePracticeStore";
+import { usePathname } from "next/navigation";
 import { useEffect } from "react";
 
 const Hint = ({
@@ -21,6 +22,7 @@ const Hint = ({
   const setActivePartOfSpeech = usePracticeStore(
     (state) => state.setActivePartOfSpeech
   );
+  const setIsHintOpen = usePracticeStore((state) => state.setIsHintOpen);
 
   const meanings = units?.find((unit) => unit._id === currentUnitId)?.meanings;
   const isHintExists = meanings && meanings.length > 0;
@@ -28,6 +30,10 @@ const Hint = ({
   const specificMeaning = meanings?.find(
     (meaning) => meaning.partOfSpeech === activePartOfSpeech
   );
+
+  useEffect(() => {
+    setIsHintOpen(false);
+  }, []);
 
   useEffect(() => {
     if (partsOfSpeech) setActivePartOfSpeech(partsOfSpeech[0]);

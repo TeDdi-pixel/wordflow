@@ -19,7 +19,7 @@ export const PracticeBoardInput = ({ units }: { units: TypeUnit[] }) => {
   useSetInputData();
 
   return (
-    <div className="max-w-[485px] w-full relative overflow-hidden px-[16px]">
+    <div className="max-w-[485px] w-full relative overflow-hidden px-[16px] mt-[32px]">
       <PracticeInput
         handleKeyDown={onEnterPress}
         disabledInput={isPending || checkStatus === "CORRECTNESS"}
