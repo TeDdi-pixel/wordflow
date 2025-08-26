@@ -3,10 +3,10 @@ import {
   PracticeStore,
   TypeCompletedUnit,
 } from "@/shared/model/types/practice-store";
-import { TypeUnit } from "@/shared/model/types/unit";
+import { TypeMeaning, TypeUnit } from "@/shared/model/types/unit";
 import { create } from "zustand";
 
-export const usePracticeStore = create<PracticeStore>((set, get) => ({
+export const usePracticeStore = create<PracticeStore>((set) => ({
   unitSetId: null,
   currentUnitId: null,
   completedTerms: [],
@@ -19,6 +19,37 @@ export const usePracticeStore = create<PracticeStore>((set, get) => ({
   isPending: false,
   hasNewAnswer: false,
   currentTermLang: "source",
+  isHintOpen: false,
+  meaningNumber: 0,
+  activePartOfSpeech: "",
+
+  setActivePartOfSpeech: (value: string) =>
+    set({
+      activePartOfSpeech: value,
+    }),
+
+  showNextMeaning: (meanings: TypeMeaning[]) => {
+    return set((state) => {
+      const meaningsLength = meanings.length;
+
+      const newMeaningNumber =
+        state.meaningNumber < meaningsLength - 1
+          ? state.meaningNumber + 1
+          : state.meaningNumber;
+
+      return { meaningNumber: newMeaningNumber };
+    });
+  },
+
+  showPrevMeaning: () =>
+    set((state) => ({
+      meaningNumber:
+        state.meaningNumber !== 0
+          ? state.meaningNumber - 1
+          : state.meaningNumber,
+    })),
+
+  resetMeaningNumber: () => set({ meaningNumber: 0 }),
 
   setCurrentTermLang: (value: "source" | "target") =>
     set({ currentTermLang: value }),
@@ -135,4 +166,6 @@ export const usePracticeStore = create<PracticeStore>((set, get) => ({
   setIsPending: (value: boolean) => set({ isPending: value }),
 
   setHasNewAnswer: (value: boolean) => set({ hasNewAnswer: value }),
+
+  setIsHintOpen: (status: boolean) => set({ isHintOpen: status }),
 }));

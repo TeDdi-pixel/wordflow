@@ -1,4 +1,4 @@
-import { TypeUnit } from "./unit";
+import { TypeMeaning, TypeUnit } from "./unit";
 
 export type CheckStatus = "MISTAKE" | "CORRECTNESS" | "EXCLUDED" | "";
 export type FeatureName = "bookmark" | "like" | "sound" | "tip";
@@ -22,7 +22,14 @@ export type PracticeStore = {
   isPending: boolean;
   hasNewAnswer: boolean;
   currentTermLang: "source" | "target";
+  isHintOpen: boolean;
+  meaningNumber: number;
+  activePartOfSpeech: string;
 
+  setActivePartOfSpeech: (value: string) => void;
+  showNextMeaning: (meanings: TypeMeaning[]) => void;
+  showPrevMeaning: () => void;
+  resetMeaningNumber: () => void;
   setUnitSetId: (id: string) => void;
   setCurrentUnitId: (id: string) => void;
   setNewAnswer: (value: string) => void;
@@ -48,4 +55,5 @@ export type PracticeStore = {
   resetLocalCheckStatus: () => void;
   setHasNewAnswer: (value: boolean) => void;
   setCurrentTermLang: (value: "source" | "target") => void;
+  setIsHintOpen: (status: boolean) => void;
 };
