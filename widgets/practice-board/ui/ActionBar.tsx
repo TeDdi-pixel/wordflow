@@ -19,7 +19,7 @@ export const ActionBar = ({
   return (
     <div className="flex justify-between w-full">
       <div className="flex gap-4 items-center">
-        <HintButton />
+        <HintButton units={units} />
 
         <Languages target={target} source={source} />
       </div>
