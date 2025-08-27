@@ -1,7 +1,7 @@
 import { redirect } from "next/navigation";
 import { auth } from "@/auth";
 import { IoEnter } from "react-icons/io5";
-import { SignInWithGoogle } from "@/widgets/forms/sign-in-with-google";
+import { SignInWithGoogle } from "@/features/sign-in-with-google";
 import { SignInForm } from "@/widgets/forms/sign-in-form";
 import { SignUpForm } from "@/widgets/forms/sign-up-form";
 import AuthFormName from "@/shared/ui/form/AuthFormName";

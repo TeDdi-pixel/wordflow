@@ -20,7 +20,6 @@ export const POST = async (
     const { unitSetId } = await params;
 
     const { completedTerms } = await req.json();
-    console.log("completedTerms:", completedTerms);
 
     if (completedTerms.length === 0) {
       return NextResponse.json(
@@ -30,10 +29,8 @@ export const POST = async (
     }
 
     const relatedUserId = await getUserId();
-    console.log("relatedUserId:", relatedUserId);
 
     const unitSetDoc = await UnitSet.findById(unitSetId).lean<TypeUnitSet>();
-    console.log("unitSetDoc found?", !!unitSetDoc);
 
     if (!unitSetDoc) {
       return NextResponse.json(

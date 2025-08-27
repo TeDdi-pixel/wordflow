@@ -30,6 +30,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           if (!userData.ok || !userData.id) return false;
 
           user.id = userData.id;
+          user.name = userData.name;
 
           return true;
         } catch (error) {

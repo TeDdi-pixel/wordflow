@@ -4,11 +4,11 @@ import { NextRequest, NextResponse } from "next/server";
 
 export const POST = async (req: NextRequest) => {
   try {
-    const body = await req.json();
+    const { email, userName, provider } = await req.json();
 
     await createDbConnection();
 
-    const userExists = await User.findOne({ email: body.email });
+    const userExists = await User.findOne({ email });
 
     if (userExists) {
       return NextResponse.json(
@@ -23,15 +23,17 @@ export const POST = async (req: NextRequest) => {
 
     try {
       const newUserDoc = await User.create({
-        username: body.userName,
-        email: body.email,
-        provider: body.provider,
+        username: userName,
+        email,
+        provider,
       });
+
       return NextResponse.json(
         {
           ok: true,
           message: "Користувач успішно створений",
           id: newUserDoc._id.toString(),
+          username: newUserDoc.username,
         },
         { status: 200 }
       );

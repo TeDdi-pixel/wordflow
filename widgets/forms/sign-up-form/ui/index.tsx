@@ -5,7 +5,7 @@ import { FaUserPlus } from "react-icons/fa";
 import SubmitButton from "../../../../shared/ui/buttons/AuthSubmitButton";
 import { InitialRegForm } from "@/shared/model/types/auth";
 import AuthInput from "@/shared/ui/inputs/AuthInput";
-import { signUpCredentials } from "../models/signUpCredentials";
+import { signUpCredentials } from "../../../../features/sign-up/model/signUpCredentials";
 import useActionForm from "@/shared/hooks/useActionForm";
 import { initialForm } from "../models/config";
 import { PasswordField } from "../../PasswordField";

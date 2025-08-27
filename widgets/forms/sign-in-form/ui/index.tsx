@@ -8,7 +8,7 @@ import Form from "next/form";
 import useActionForm from "@/shared/hooks/useActionForm";
 import { InitialLoginForm } from "@/shared/model/types/auth";
 import { initialForm } from "../model/config";
-import { signInCredentials } from "../model/signInCredentials";
+import { signInCredentials } from "../../../../features/sign-in/model/signInCredentials";
 import { PasswordField } from "../../PasswordField";
 
 export const SignInForm = () => {
@@ -31,6 +31,7 @@ export const SignInForm = () => {
           autoComplete="email"
           defaultValue={state.email}
         />
+
         <PasswordField
           defaultValue={state.password}
           name="password"
@@ -39,7 +40,9 @@ export const SignInForm = () => {
           isLoginPassword
         />
       </div>
+
       <CheckBox label="запам'ятати мене" />
+
       <SubmitButton
         pending={pending}
         text="вхід"

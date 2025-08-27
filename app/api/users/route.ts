@@ -47,7 +47,7 @@ export const POST = async (req: NextRequest) => {
       email: user.email,
     });
   } catch (error) {
-    console.error("Ошибка в POST /api/users/create:", error);
+    console.error("Ошибка в POST /api/users:", error);
     return NextResponse.json(
       { ok: false, message: "Internal Server Error" },
       { status: 500 }
