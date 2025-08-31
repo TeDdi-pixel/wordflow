@@ -17,14 +17,14 @@ const MyCardSetsPage = async () => {
     <div className="max-w-[1146px] w-full px-[16px] md:px-[32px] mx-auto h-full">
       <MainTitle text={"Мої картки"} />
 
-      <div className="grid grid-cols-3 gap-4 w-full">
+      <div className="grid w-full grid-cols-3 gap-4">
         {unitSets.map((unitSet) => (
           <UnitSetCover
             key={unitSet._id.toString()}
             unitSetType={unitSet.unitSetType}
             description={unitSet.description}
             authorsName={unitSet.authorsName}
-            termsCount={unitSet.units.length}
+            unitsCount={unitSet.units.length}
             title={unitSet.title}
             target={unitSet.target}
             source={unitSet.source}

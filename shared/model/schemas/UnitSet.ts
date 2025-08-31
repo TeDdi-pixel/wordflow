@@ -47,8 +47,15 @@ const unitSetSchema = new mongoose.Schema(
       },
     ],
   },
-  { timestamps: true }
+  {
+    strict: false, // Позволяет работать с любыми полями
+    timestamps: false, // Отключаем автоматические timestamps для этого скрипта
+  }
 );
+
+unitSetSchema.index({ createdAt: 1 });
+unitSetSchema.index({ createdAt: -1 });
+unitSetSchema.index({ likesCount: -1 });
 
 const UnitSet =
   mongoose.models.UnitSet ||

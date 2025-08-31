@@ -20,6 +20,16 @@ export const POST = async (req: NextRequest) => {
         ),
       });
     }
+
+    if (user && user.provider === "credentials") {
+      return NextResponse.json({
+        ok: true,
+        message: "Login successful",
+        id: user._id.toString(),
+        username: user.username,
+      });
+    }
+
     if (!user || !user.password) {
       return NextResponse.json({
         ok: false,

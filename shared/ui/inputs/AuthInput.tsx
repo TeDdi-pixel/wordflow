@@ -24,7 +24,7 @@ const AuthInput = memo(
         <div className="relative w-full overflow-hidden transition-colors border-2 border-transparent rounded-default focus-within:border-bg-accent">
           <input
             ref={ref}
-            className={`bg-fg text-accent placeholder:text-text h-9 w-full rounded-default px-2 focus:outline-none ${
+            className={`bg-fg placeholder:opacity-50 text-accent font-normal placeholder:text-text h-9 w-full rounded-default px-2 focus:outline-none ${
               pending ? "animate-pulse" : ""
             } ${type === "password" ? "pr-[36px]" : ""}`}
             type={type}

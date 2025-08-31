@@ -7,7 +7,6 @@ import User from "@/shared/model/schemas/User";
 import { TypeUnit } from "@/shared/model/types/unit";
 import createDbConnection from "@/shared/lib/mongoose";
 import axios from "axios";
-import { normalizeEngWord } from "@/shared/utils/unit-set/normalizeEngWord";
 import { BaseFields } from "@/shared/model/types/forms";
 import UnitSet from "@/shared/model/schemas/UnitSet";
 import { getNormalizedEngWord } from "@/shared/utils/unit-set/getNormalizedEngWord";
@@ -101,6 +100,7 @@ export const createUnitSet = async <T extends BaseFields>(
           }
 
           meanings = res.data[0].meanings;
+
           const phonetics = res.data[0].phonetics;
 
           for (const p of phonetics) {

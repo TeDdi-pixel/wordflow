@@ -34,7 +34,6 @@ export type TypeUnitSet = {
   unitSetType: "cards";
   units: TypeUnit[];
   likesCount: number;
-  proposedDefinitions: string[];
   source: Language;
   target: Language;
 };

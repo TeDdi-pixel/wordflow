@@ -39,3 +39,10 @@ export type TypeUser = {
 export type SessionUser = {
   userId: string;
 };
+
+export type TypeSort =
+  | "createdAsc"
+  | "createdDesc"
+  | "likesDesc"
+  | "termsDesc"
+  | "termsAsc";

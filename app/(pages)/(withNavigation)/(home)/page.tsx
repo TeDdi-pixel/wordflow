@@ -1,33 +1,38 @@
-import { UnitSetCover } from "@/entities/unit-set";
 import { getAllUnitSets } from "@/entities/unit-set/api/getAllUnitSets";
 import MainTitle from "@/shared/ui/MainTitle";
 import { notFound } from "next/navigation";
+import { Filter } from "@/widgets/filters";
+import { TypeSort } from "@/shared/model/types/types";
+import { UnitSets } from "./UnitSets";
 
-const Home = async () => {
-  const unitSets = await getAllUnitSets();
+const Home = async ({
+  searchParams,
+}: {
+  searchParams: Promise<{ sort?: TypeSort }>;
+}) => {
+  const sort = (await searchParams)?.sort || "createdAsc";
+  const limit = 9;
+
+  const { unitSets, filterLabel, totalDocsCount } = await getAllUnitSets(
+    sort,
+    limit
+  );
 
   if (unitSets.length === 0) return notFound();
 
   return (
     <div className="max-w-[1146px] w-full px-[16px] md:px-[32px] mx-auto h-full">
-      <MainTitle text="Усі набори" />
+      <div className="flex items-center justify-between mb-[50px]">
+        <MainTitle text="Усі набори" marginBottom={0} />
 
-      <div className="grid grid-cols-3 gap-4 w-full">
-        {unitSets.map((unitSet) => (
-          <UnitSetCover
-            key={unitSet._id.toString()}
-            unitSetType={unitSet.unitSetType}
-            description={unitSet.description}
-            authorsName={unitSet.authorsName}
-            termsCount={unitSet.units.length}
-            title={unitSet.title}
-            target={unitSet.target}
-            source={unitSet.source}
-            unitSetId={unitSet._id.toString()}
-            likesCount={unitSet.likesCount}
-          />
-        ))}
+        <Filter filterLabel={filterLabel || "Спочатку старі"} />
       </div>
+
+      <UnitSets
+        initialUnitSets={unitSets}
+        sort={sort ?? "createdAsc"}
+        totalDocsCount={totalDocsCount}
+      />
     </div>
   );
 };

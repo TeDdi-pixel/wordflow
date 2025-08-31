@@ -27,6 +27,7 @@ const PracticeInput = ({
       placeholder="Відповідь"
       disabled={disabledInput}
       autoComplete="off"
+      autoFocus
       autoCorrect="off"
       spellCheck={false}
       name="practice-fg"

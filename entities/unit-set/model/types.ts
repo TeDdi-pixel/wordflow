@@ -4,7 +4,7 @@ import { UnitSetType } from "@/shared/model/types/unit";
 export type TypeCardSetProps = {
   unitSetId: string;
   title: string;
-  termsCount: number;
+  unitsCount: number;
   authorsName: string;
   description: string;
   unitSetType: UnitSetType;

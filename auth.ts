@@ -15,6 +15,20 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
     async signIn({ user, account }) {
       if (account?.provider === "google" && user.email) {
         try {
+          let existingUserRes = await axios.post(
+            `${process.env.BASE_URL}/api/users`,
+            { email: user.email },
+            { headers: { "Content-Type": "application/json" } }
+          );
+
+          const existingUser = existingUserRes.data;
+
+          if (existingUser.ok) {
+            user.id = existingUser.id;
+            user.name = existingUser.username;
+            return true;
+          }
+
           const res = await axios.post(
             `${process.env.BASE_URL}/api/users/create`,
             {
@@ -30,7 +44,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
           if (!userData.ok || !userData.id) return false;
 
           user.id = userData.id;
-          user.name = userData.name;
+          user.name = userData.username;
 
           return true;
         } catch (error) {

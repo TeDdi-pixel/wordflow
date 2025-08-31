@@ -14,7 +14,7 @@ export const UnitSetCover = ({
   unitSetId,
   unitSetType,
   title,
-  termsCount,
+  unitsCount,
   authorsName,
   description,
   likesCount,
@@ -37,7 +37,7 @@ export const UnitSetCover = ({
         {description && <Description description={description} />}
 
         <div className="flex items-center gap-2">
-          <TermsCount termsCount={termsCount} />
+          <TermsCount unitsCount={unitsCount} />
 
           <Languages target={target} source={source} />
         </div>

@@ -1,9 +1,9 @@
-import { getTermsLabel } from "@/shared/utils/unit-set-card/getTermsLabel";
+import { getTermsLabel } from "@/shared/utils/unit-set-cover/getTermsLabel";
 
-export const TermsCount = ({ termsCount }: { termsCount: number }) => {
+export const TermsCount = ({ unitsCount }: { unitsCount: number }) => {
   return (
     <p className="w-fit rounded-default px-[8px] py-[4px] bg-bg-accent-2 text-fg">
-      {termsCount} {getTermsLabel(termsCount)}
+      {unitsCount} {getTermsLabel(unitsCount)}
     </p>
   );
 };

@@ -8,7 +8,7 @@ export const TextWithExpand = memo(({ text }: { text: string }) => {
 
   return (
     <div
-      className="absolute flex items-center justify-center left-0 w-full"
+      className="absolute left-0 flex items-center justify-center w-full"
       onMouseEnter={() => isTextTruncated && setActive(true)}
       onMouseLeave={() => setActive(false)}
     >

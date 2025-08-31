@@ -12,15 +12,15 @@ export const PracticeBoardControls = async ({ unitSetId }: ControlsProps) => {
   const units = unitSet?.units || [];
 
   return (
-    <div className="flex items-center justify-between">
-      <div className="flex gap-4 items-center">
-        <div className="flex gap-4 items-center">
+    <div className="flex items-center justify-between mb-[32px]">
+      <div className="flex items-center gap-4">
+        <div className="flex items-center gap-4">
           <NavButtons units={units} unitSetId={unitSetId} />
           <SkipButton units={units} unitLength={units.length} />
         </div>
       </div>
 
-      <div className="mr-1 flex gap-4 items-center">
+      <div className="flex items-center gap-4 mr-1">
         <TipButton
           type="link"
           path={`/card-set/${unitSetId}/results`}
