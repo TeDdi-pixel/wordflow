@@ -1,4 +1,5 @@
 import { usePracticeStore } from "@/shared/store/usePracticeStore";
+import { useEffect, useRef } from "react";
 
 const PracticeInput = ({
   handleKeyDown,
@@ -12,9 +13,20 @@ const PracticeInput = ({
   const oldAnswer = usePracticeStore((state) => state.oldAnswer);
   const hasNewAnswer = usePracticeStore((state) => state.hasNewAnswer);
   const resetCheckStatus = usePracticeStore((state) => state.resetCheckStatus);
+  const checkStatus = usePracticeStore((state) => state.checkStatus);
+  const currentCardId = usePracticeStore((state) => state.currentUnitId);
+
+  const inputRef = useRef<HTMLInputElement>(null);
+
+  useEffect(() => {
+    if (inputRef.current) {
+      inputRef.current.focus();
+    }
+  }, [checkStatus, currentCardId]);
 
   return (
     <input
+      ref={inputRef}
       onKeyDown={handleKeyDown}
       onChange={(e) => {
         if (!disabledInput) {
