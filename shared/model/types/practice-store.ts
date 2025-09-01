@@ -25,7 +25,10 @@ export type PracticeStore = {
   isHintOpen: boolean;
   meaningNumber: number;
   activePartOfSpeech: string;
+  isShuffled: boolean;
 
+  switchIsShuffled: () => void;
+  resetIsShuffled: () => void;
   setActivePartOfSpeech: (value: string) => void;
   showNextMeaning: (meanings: TypeMeaning[]) => void;
   showPrevMeaning: () => void;

@@ -21,6 +21,7 @@ export const useCheckAnswer = (units: TypeUnit[]) => {
   const setCheckStatus = usePracticeStore((state) => state.setCheckStatus);
   const resetCheckStatus = usePracticeStore((state) => state.resetCheckStatus);
   const currentTermLang = usePracticeStore((state) => state.currentTermLang);
+  const currentUnitId = usePracticeStore((state) => state.currentUnitId);
 
   const timeoutRef = useRef<NodeJS.Timeout | null>(null);
 
@@ -33,10 +34,12 @@ export const useCheckAnswer = (units: TypeUnit[]) => {
   }, []);
 
   const checkAnswer = () => {
+    const currentUnit =
+      units.find((unit) => unit._id === currentUnitId) ?? units[termNumber];
+
     const isTermCompleted = completedTerms.some(
       (term: TypeCompletedUnit) =>
-        term.termId === units[termNumber]._id &&
-        term.checkStatus === "CORRECTNESS"
+        term.termId === currentUnit._id && term.checkStatus === "CORRECTNESS"
     );
     if (isTermCompleted) {
       setNextTerm(units.length);
@@ -45,9 +48,7 @@ export const useCheckAnswer = (units: TypeUnit[]) => {
     }
 
     const allUniqueDefinitions = normalizeText(
-      currentTermLang === "source"
-        ? units[termNumber]?.definition
-        : units[termNumber]?.term
+      currentTermLang === "source" ? currentUnit?.definition : currentUnit?.term
     );
     if (!newAnswer || newAnswer.trim() === "") {
       return;
@@ -65,11 +66,11 @@ export const useCheckAnswer = (units: TypeUnit[]) => {
       setCheckStatus("CORRECTNESS");
       setCompletedTerms(
         units,
-        units[termNumber]._id,
+        currentUnit._id,
         "CORRECTNESS",
         newAnswer ?? "",
-        units[termNumber]?.audio || "",
-        units[termNumber]?.phonetic || ""
+        currentUnit?.audio || "",
+        currentUnit?.phonetic || ""
       );
       resetNewAnswer();
 
@@ -86,11 +87,11 @@ export const useCheckAnswer = (units: TypeUnit[]) => {
       setCheckStatus("MISTAKE");
       setCompletedTerms(
         units,
-        units[termNumber]._id,
+        currentUnit._id,
         "MISTAKE",
         newAnswer ?? "",
-        units[termNumber]?.audio || "",
-        units[termNumber]?.phonetic || ""
+        currentUnit?.audio || "",
+        currentUnit?.phonetic || ""
       );
     }
   };

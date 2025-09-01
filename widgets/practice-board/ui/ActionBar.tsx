@@ -6,6 +6,7 @@ import { TypeUnit } from "@/shared/model/types/unit";
 import { Language } from "@/shared/model/types/temp-store";
 import ChangeLangButton from "./ChangeLangButton";
 import { Languages } from "./Languages";
+import { ShuffleButton } from "@/features/shuffle-units";
 
 export const ActionBar = ({
   units,
@@ -18,13 +19,15 @@ export const ActionBar = ({
 }) => {
   return (
     <div className="flex justify-between w-full">
-      <div className="flex gap-4 items-center">
+      <div className="flex items-center gap-4">
         <HintButton units={units} />
 
         <Languages target={target} source={source} />
       </div>
 
       <div className="flex gap-4">
+        <ShuffleButton />
+
         <ChangeLangButton />
 
         <SoundButton units={units} target={target} />

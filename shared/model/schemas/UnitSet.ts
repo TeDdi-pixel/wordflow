@@ -48,8 +48,7 @@ const unitSetSchema = new mongoose.Schema(
     ],
   },
   {
-    strict: false, // Позволяет работать с любыми полями
-    timestamps: false, // Отключаем автоматические timestamps для этого скрипта
+    timestamps: true,
   }
 );
 

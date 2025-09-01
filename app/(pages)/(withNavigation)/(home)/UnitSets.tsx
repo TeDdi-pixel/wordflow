@@ -4,6 +4,7 @@ import { UnitSetCover } from "@/entities/unit-set";
 import { TypeSort } from "@/shared/model/types/types";
 import { TypeUnitSet } from "@/shared/model/types/unit";
 import LoadingText from "@/shared/ui/LoadingText";
+import axios from "axios";
 import { useEffect, useRef, useState } from "react";
 
 type Props = {
@@ -36,12 +37,11 @@ export const UnitSets = ({ initialUnitSets, sort, totalDocsCount }: Props) => {
         if (entry.isIntersecting && limit < totalDocsCount && !loading) {
           setLoading(true);
 
-          const res = await fetch(
+          const res = await axios.get(
             `/api/unit-sets?sort=${sort}&limit=${limit + 9}`
           );
-          const data = await res.json();
 
-          setUnitSets(data.unitSets);
+          setUnitSets(res.data.unitSets);
           setLimit((prev) => prev + 9);
           setLoading(false);
         }

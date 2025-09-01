@@ -22,7 +22,16 @@ export const usePracticeStore = create<PracticeStore>((set) => ({
   isHintOpen: false,
   meaningNumber: 0,
   activePartOfSpeech: "",
+  isShuffled: false,
 
+  switchIsShuffled: () =>
+    set((state) => ({
+      isShuffled: !state.isShuffled,
+    })),
+  resetIsShuffled: () =>
+    set({
+      isShuffled: false,
+    }),
   setActivePartOfSpeech: (value: string) =>
     set({
       activePartOfSpeech: value,
