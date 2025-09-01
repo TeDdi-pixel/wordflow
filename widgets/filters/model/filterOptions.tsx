@@ -33,7 +33,7 @@ export const filterOptions = [
   {
     id: 4,
     path: "/?sort=termsAsc" as Route,
-    text: "Меньше термінів",
+    text: "Менше термінів",
     icon: <FaSortNumericDownAlt className="text-[16px]" />,
   },
 ];

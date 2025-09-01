@@ -24,7 +24,7 @@ const History = async () => {
             unitSetType={unitSet.unitSetType}
             description={unitSet.description}
             authorsName={unitSet.authorsName}
-            unitsCount={unitSet.units.length}
+            unitsCount={unitSet.unitsCount}
             title={unitSet.title}
             target={unitSet.target}
             source={unitSet.source}

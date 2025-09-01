@@ -1,16 +1,41 @@
 import createDbConnection from "@/shared/lib/mongoose";
 import Like from "@/shared/model/schemas/Like";
-import { TypeLike } from "@/shared/model/types/like";
-import { TypeUnitSet } from "@/shared/model/types/unit";
+import mongoose from "mongoose";
 
 export const getLikedUnitSets = async (userId: string) => {
   await createDbConnection();
 
-  const likedDoc = await Like.find<TypeLike<TypeUnitSet>>({
-    relatedUserId: userId,
-  }).populate("unitSetId");
+  const likedUnitSets = await Like.aggregate([
+    {
+      $match: {
+        relatedUserId: new mongoose.Types.ObjectId(userId),
+      },
+    },
+    {
+      $lookup: {
+        from: "unit_sets",
+        localField: "unitSetId",
+        foreignField: "_id",
+        as: "unitSet",
+      },
+    },
+    {
+      $unwind: "$unitSet",
+    },
+    {
+      $addFields: {
+        "unitSet.unitsCount": { $size: "$unitSet.units" },
+      },
+    },
+    {
+      $project: {
+        "unitSet.units": 0,
+      },
+    },
+    {
+      $replaceRoot: { newRoot: "$unitSet" },
+    },
+  ]);
 
-  const unitSets = likedDoc.map((like) => like.unitSetId).filter(Boolean);
-
-  return unitSets || [];
+  return likedUnitSets || [];
 };

@@ -21,9 +21,15 @@ export const getUserHistoryUnitSets = async (userId: string) => {
     (id) => new mongoose.Types.ObjectId(id)
   );
 
-  const historyUnitSets = await UnitSet.find({
-    _id: { $in: unitSetIdsArray },
-  });
+  const unitSets = await UnitSet.aggregate([
+    {
+      $match: {
+        _id: { $in: unitSetIdsArray },
+      },
+    },
+    { $addFields: { unitsCount: { $size: "$units" } } },
+    { $project: { units: 0 } },
+  ]);
 
-  return historyUnitSets || [];
+  return unitSets || [];
 };
