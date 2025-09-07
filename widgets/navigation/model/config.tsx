@@ -6,6 +6,7 @@ import { HiSquaresPlus } from "react-icons/hi2";
 import CommunityIcon from "@/shared/icons/navigation/CommunityIcon";
 import { FaAngleDown } from "react-icons/fa";
 import { NavItemWithOptions, SingleNavItem } from "./types";
+import { PiBookmarksSimpleFill } from "react-icons/pi";
 
 export const navigation = {
   regularPages: [
@@ -23,6 +24,12 @@ export const navigation = {
     },
     {
       id: 2,
+      icon: <PiBookmarksSimpleFill />,
+      name: "Терміни",
+      path: "/saved-units",
+    },
+    {
+      id: 3,
       icon: <HistoryIcon />,
       name: "Історія",
       path: "/history",

@@ -12,7 +12,7 @@ const useExpandText = (text: string) => {
     let rafId: number | null = null;
 
     const checkTruncation = () => {
-      setIsTextTruncated(element.scrollWidth + 1 > element.clientWidth);
+      setIsTextTruncated(element.scrollWidth > element.clientWidth);
     };
 
     checkTruncation();

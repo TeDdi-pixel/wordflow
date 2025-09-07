@@ -11,6 +11,7 @@ export type TableBottomProps = { id: string; scoreSummary: string };
 export type TBodyProps = {
   resultSetTerms: UserResultTerm[];
   target: Language;
+  unitSetId: string;
 };
 
 export type ScoreSummaryProps = {

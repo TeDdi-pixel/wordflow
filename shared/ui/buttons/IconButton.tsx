@@ -14,7 +14,7 @@ const IconButton = memo(({ handleClick, icon, type, disabled }: Props) => {
     <button
       type={type}
       disabled={disabled}
-      className="cursor-pointer transition-all duration-200 hover:scale-110 text-accent"
+      className="transition-all duration-200 cursor-pointer hover:scale-110 text-accent"
       onClick={handleClick}
     >
       {icon}

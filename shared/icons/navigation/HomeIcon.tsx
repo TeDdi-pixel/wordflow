@@ -1,15 +1,18 @@
-"use client";
-
-import HomeFocused from "./HomeFocused";
-// import HomeUnfocused from "./HomeUnfocused";
-
-// const HomeIcon = () => {
-//   const pathname = usePathname();
-//   return <>{pathname === "/" ? <HomeFocused /> : <HomeUnfocused />}</>;
-// };
-
 const HomeIcon = () => {
-  return <HomeFocused />;
+  return (
+    <svg
+      width={20}
+      height={20}
+      viewBox="0 0 20 20"
+      fill="none"
+      xmlns="http://www.w3.org/2000/svg"
+    >
+      <path
+        d="M3.333 15.833v-7.5A1.66 1.66 0 0 1 4 7l5-3.75q.438-.333 1-.333t1 .333L16 7q.313.23.49.583t.177.75v7.5q0 .688-.49 1.178-.49.489-1.177.489h-2.5a.8.8 0 0 1-.593-.24.8.8 0 0 1-.24-.593V12.5a.8.8 0 0 0-.24-.593.8.8 0 0 0-.593-.24H9.167a.8.8 0 0 0-.593.24.8.8 0 0 0-.24.593v4.167q0 .354-.24.594a.8.8 0 0 1-.593.239H5q-.687 0-1.177-.489a1.6 1.6 0 0 1-.49-1.178"
+        fill="currentColor"
+      />
+    </svg>
+  );
 };
 
 export default HomeIcon;

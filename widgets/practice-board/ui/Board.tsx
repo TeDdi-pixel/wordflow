@@ -13,7 +13,12 @@ export const PracticeBoard = async ({ unitSetId }: { unitSetId: string }) => {
 
   return (
     <div className="mx-auto min-h-[506px] w-full bg-fg rounded-lg p-8 flex flex-col items-center justify-between mb-4">
-      <ActionBar units={units} target={target} source={source} />
+      <ActionBar
+        units={units}
+        target={target}
+        source={source}
+        unitSetId={unitSetId}
+      />
 
       <Term units={units} source={source} target={target} />
 

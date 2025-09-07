@@ -1,21 +1,23 @@
 import { LikeButton } from "@/features/like-unit-set";
-import { BookmarkButton } from "@/features/save-unit-term/ui/BookmarkButton";
+import { BookmarkButton } from "@/features/save-unit/ui/BookmarkButton";
 import { HintButton } from "@/features/show-hint";
-import { SoundButton } from "@/shared/ui/buttons/SoundButton";
 import { TypeUnit } from "@/shared/model/types/unit";
 import { Language } from "@/shared/model/types/temp-store";
 import ChangeLangButton from "./ChangeLangButton";
 import { Languages } from "./Languages";
 import { ShuffleButton } from "@/features/shuffle-units";
+import { SoundButton } from "@/features/play-pronunciation";
 
 export const ActionBar = ({
   units,
   target,
   source,
+  unitSetId,
 }: {
   units: TypeUnit[];
   target: Language;
   source: Language;
+  unitSetId: string;
 }) => {
   return (
     <div className="flex justify-between w-full">
@@ -34,7 +36,7 @@ export const ActionBar = ({
 
         <LikeButton />
 
-        <BookmarkButton />
+        <BookmarkButton unitSetId={unitSetId} />
       </div>
     </div>
   );

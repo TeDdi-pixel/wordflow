@@ -1,8 +1,6 @@
-import { showError } from "@/shared/lib/toasts";
 import { Language } from "@/shared/model/types/temp-store";
 import { TypeUnit } from "@/shared/model/types/unit";
 import { usePracticeStore } from "@/shared/store/usePracticeStore";
-import { usePathname } from "next/navigation";
 import { useEffect } from "react";
 
 const Hint = ({
@@ -26,7 +24,9 @@ const Hint = ({
   const setIsHintOpen = usePracticeStore((state) => state.setIsHintOpen);
 
   const meanings = units?.find((unit) => unit._id === currentUnitId)?.meanings;
-  const isHintExists = meanings && meanings.length > 0;
+  const isHintExists =
+    meanings && meanings !== undefined && meanings.length > 0;
+
   const partsOfSpeech = meanings?.map((meaning) => meaning.partOfSpeech);
   const specificMeaning = meanings?.find(
     (meaning) => meaning.partOfSpeech === activePartOfSpeech
@@ -59,8 +59,8 @@ const Hint = ({
             : "pointer-events-none opacity-0 scale-80 h-0 max-h-0"
         }`}
       >
-        <div className="w-full items-start h-full">
-          <div className="w-fit flex items-center gap-2 mb-4">
+        <div className="items-start w-full h-full">
+          <div className="flex items-center gap-2 mb-4 w-fit">
             {partsOfSpeech?.map((partOfSpeech, index) => (
               <button
                 key={index}

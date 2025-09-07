@@ -13,9 +13,10 @@ export const ResultTable = async ({
   const scoreSummary = getScoreSummary(resultSetTerms);
 
   const target = await getTargetLanguage(unitSetId);
+
   return (
     <>
-      <table className="w-full border-separate border-spacing-y-2 table-fixed">
+      <table className="w-full border-separate table-fixed border-spacing-y-2">
         <colgroup>
           {colWidths.map((cls, i) => (
             <col key={`col-${i}`} className={cls} />
@@ -24,7 +25,11 @@ export const ResultTable = async ({
 
         <THead />
 
-        <TBody resultSetTerms={resultSetTerms} target={target} />
+        <TBody
+          resultSetTerms={resultSetTerms}
+          target={target}
+          unitSetId={unitSetId}
+        />
       </table>
 
       <TableBottom id={unitSetId} scoreSummary={scoreSummary} />

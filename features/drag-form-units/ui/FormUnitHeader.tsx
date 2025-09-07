@@ -4,8 +4,6 @@ import { useTempStore } from "@/shared/store/useTempStore";
 import DragIcon from "@/shared/icons/unit/DragIcon";
 import { memo } from "react";
 import { LuTrash2 } from "react-icons/lu";
-import { UNIT_SET_ERROR_MESSAGES } from "@/shared/model/constants/errors";
-import { showError } from "@/shared/lib/toasts";
 import useRemoveFormUnit from "@/features/remove-form-unit/model/useRemoveFormUnit";
 
 type Props = {
@@ -29,7 +27,7 @@ export const FormUnitHeader = memo(
     const handleClick = useRemoveFormUnit(unitId);
 
     return (
-      <div className="relative w-full flex items-center justify-between mb-2">
+      <div className="relative flex items-center justify-between w-full mb-2">
         #{termNumber}
         <div className="flex items-center gap-4">
           <span
@@ -39,7 +37,7 @@ export const FormUnitHeader = memo(
             onMouseDown={() => setCurrentUnitId(unitId)}
             onMouseUp={() => setCurrentUnitId("")}
             suppressHydrationWarning
-            className="text-text cursor-grab active:cursor-grabbing hover:text-text-2 transition-colors"
+            className="transition-colors text-text cursor-grab active:cursor-grabbing hover:text-text-2"
           >
             <DragIcon />
           </span>

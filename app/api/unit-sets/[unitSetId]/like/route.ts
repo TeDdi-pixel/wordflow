@@ -11,9 +11,9 @@ export const GET = async (
   try {
     const { unitSetId } = await params;
 
-    const userId = await getUserId();
+    const relatedUserId = await getUserId();
 
-    if (!userId)
+    if (!relatedUserId)
       return NextResponse.json(
         {
           ok: false,
@@ -32,7 +32,7 @@ export const GET = async (
 
     await createDbConnection();
 
-    const like = await Like.findOne({ unitSetId, relatedUserId: userId });
+    const like = await Like.findOne({ unitSetId, relatedUserId });
 
     return NextResponse.json({ ok: true, liked: !!like });
   } catch (error) {
@@ -51,9 +51,9 @@ export const POST = async (
   try {
     const { unitSetId } = await params;
 
-    const userId = await getUserId();
+    const relatedUserId = await getUserId();
 
-    if (!userId || !unitSetId) {
+    if (!relatedUserId || !unitSetId) {
       return NextResponse.json(
         { ok: false, message: "Недостатньо даних для виконання операції" },
         { status: 400 }
@@ -62,7 +62,7 @@ export const POST = async (
 
     await createDbConnection();
 
-    await Like.create({ relatedUserId: userId, unitSetId });
+    await Like.create({ relatedUserId, unitSetId });
 
     await UnitSet.findOneAndUpdate(
       { _id: unitSetId },
@@ -98,9 +98,9 @@ export const DELETE = async (
   try {
     const { unitSetId } = await params;
 
-    const userId = await getUserId();
+    const relatedUserId = await getUserId();
 
-    if (!userId || !unitSetId) {
+    if (!relatedUserId || !unitSetId) {
       return NextResponse.json(
         { ok: false, message: "Недостатньо даних для виконання операції" },
         { status: 400 }
@@ -109,7 +109,7 @@ export const DELETE = async (
 
     await createDbConnection();
 
-    await Like.findOneAndDelete({ relatedUserId: userId, unitSetId });
+    await Like.findOneAndDelete({ relatedUserId, unitSetId });
 
     await UnitSet.findOneAndUpdate(
       { _id: unitSetId, likesCount: { $gt: 0 } },

@@ -8,25 +8,34 @@ import { TypeUnit } from "@/shared/model/types/unit";
 import { UserResultTerm } from "@/shared/model/types/user-results";
 import { usePracticeStore } from "@/shared/store/usePracticeStore";
 import { Language } from "@/shared/model/types/temp-store";
+import { TypeSavedUnit } from "@/shared/model/types/saved-unit";
 
 type Props = {
   units?: TypeUnit[];
   resultUnit?: UserResultTerm;
   target: Language;
+  savedUnit?: TypeSavedUnit["unit"];
 };
 
-export const SoundButton = ({ units, resultUnit, target }: Props) => {
-  const currentUnit = usePracticeStore(
-    (state) => units && units[state.termNumber]
-  );
+export const SoundButton = ({
+  units,
+  resultUnit,
+  target,
+  savedUnit,
+}: Props) => {
+  const currentUnit = usePracticeStore((state) => {
+    if (units && units[state.termNumber]) return units[state.termNumber];
+    if (resultUnit) return resultUnit;
+    if (savedUnit) return savedUnit;
+    return null;
+  });
 
-  const unitOrResult = units ? currentUnit : resultUnit;
-  const { active, handleClick } = useSound(unitOrResult ?? null, target);
+  const { active, handleClick } = useSound(currentUnit, target);
 
-  return (
+  return currentUnit?.audio ? (
     <IconButton
       icon={active ? <SoundActiveIcon /> : <SoundIcon />}
       handleClick={handleClick}
     />
-  );
+  ) : null;
 };

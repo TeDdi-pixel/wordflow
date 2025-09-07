@@ -9,15 +9,13 @@ export const POST = async (req: NextRequest) => {
 
   try {
     await createDbConnection();
+
     const user = await User.findOne({ email });
 
     if (user && user.provider === "google") {
       return NextResponse.json({
         ok: false,
-        message: AUTH_ERROR_MESSAGES.EMAIL_REGISTERED_WITH_PROVIDER.replace(
-          "{provider}",
-          "Google"
-        ),
+        message: AUTH_ERROR_MESSAGES.INVALID_CREDENTIALS,
       });
     }
 

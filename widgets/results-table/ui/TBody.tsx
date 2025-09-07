@@ -3,11 +3,12 @@ import { getStatusIcon } from "@/shared/utils/results-table/getStatusIcon";
 import Separator from "../../../shared/ui/table/Separator";
 import Td from "../../../shared/ui/table/Td";
 import { TextWithExpand } from "./TextWithExpand";
-import { SoundButton } from "@/shared/ui/buttons/SoundButton";
 import { TBodyProps } from "../model/types";
-import { BookmarkButton } from "@/features/save-unit-term/ui/BookmarkButton";
+import { BookmarkButton } from "@/features/save-unit/ui/BookmarkButton";
+import NotProvidedIcon from "@/shared/icons/unit/NotProvidedIcon";
+import { SoundButton } from "@/features/play-pronunciation";
 
-export const TBody = ({ resultSetTerms, target }: TBodyProps) => {
+export const TBody = ({ resultSetTerms, target, unitSetId }: TBodyProps) => {
   return (
     <tbody>
       {resultSetTerms?.map((unit: UserResultTerm) => (
@@ -16,29 +17,35 @@ export const TBody = ({ resultSetTerms, target }: TBodyProps) => {
 
           <Separator />
 
-          <td className="px-4 py-2 text-center relative">
-            {unit.phonetic && <TextWithExpand text={unit.phonetic} />}
+          <td className="relative px-4 py-2 text-center">
+            {unit.phonetic ? (
+              <TextWithExpand text={unit.phonetic} />
+            ) : (
+              <NotProvidedIcon />
+            )}
           </td>
 
           <Separator />
 
-          {unit.definition && (
-            <td className="px-4 py-2 text-center relative">
-              <TextWithExpand text={unit.definition} />
-            </td>
-          )}
+          <td className="relative px-4 py-2 text-center">
+            <TextWithExpand text={unit.definition} />
+          </td>
 
           <Separator />
 
-          <td className="px-4 py-2 text-center relative">
-            {unit.lastAnswer && <TextWithExpand text={unit.lastAnswer} />}
+          <td className="relative px-4 py-2 text-center">
+            {unit.lastAnswer ? (
+              <TextWithExpand text={unit.lastAnswer} />
+            ) : (
+              <NotProvidedIcon />
+            )}
           </td>
 
           <Separator />
 
           <Td
             icon={
-              <div className="flex justify-center items-center h-full">
+              <div className="flex items-center justify-center h-full">
                 {getStatusIcon(unit.status)}
               </div>
             }
@@ -49,10 +56,10 @@ export const TBody = ({ resultSetTerms, target }: TBodyProps) => {
           <Td
             last
             icon={
-              <div className="flex gap-4 justify-center items-center h-full">
+              <div className="flex items-center justify-center h-full gap-4">
                 <SoundButton resultUnit={unit} target={target} />
 
-                <BookmarkButton />
+                <BookmarkButton unitSetId={unitSetId} unitId={unit._id} />
               </div>
             }
           />

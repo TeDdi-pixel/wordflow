@@ -14,7 +14,7 @@ export const NavItemWithOptions = ({ item }: NavItemWithOptionsProps) => {
     <>
       <div className="px-[12px] py-[6px] flex gap-1 items-center font-medium hover:text-text transition-all text-text duration-300 h-[33px] group-hover:scale-50 group-hover:opacity-50 scale-100 opacity-100">
         {item.name}
-        <span className="inline-block transition-transform group-hover:rotate-180 rotate-0">
+        <span className="inline-block transition-transform rotate-0 group-hover:rotate-180 text-[16px]">
           {item.icon}
         </span>
       </div>
@@ -28,7 +28,7 @@ export const NavItemWithOptions = ({ item }: NavItemWithOptionsProps) => {
       >
         <span>{item.name}</span>
 
-        <span className="inline-block transition-transform group-hover:rotate-180 rotate-0">
+        <span className="inline-block transition-transform group-hover:rotate-180 rotate-0 text-[16px]">
           {item.icon}
         </span>
       </div>

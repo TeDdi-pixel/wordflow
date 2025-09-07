@@ -7,8 +7,6 @@ export async function GET(req: NextRequest) {
   const limit = await req.nextUrl.searchParams.get("limit");
   const limitNum = parseInt(limit ?? "9", 10);
 
-  console.log(sort);
-
   const { unitSets } = await getAllUnitSets(sort as TypeSort, limitNum);
   return NextResponse.json({ unitSets });
 }

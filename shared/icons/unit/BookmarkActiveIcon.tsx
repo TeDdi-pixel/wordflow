@@ -13,7 +13,7 @@ const BookmarkActiveIcon = () => {
       />
       <path
         d="M5 5c0-1.1.9-2 2-2h7a5.003 5.003 0 0 0 5 7.9v8.58c0 .72-.73 1.2-1.39.92L12 18l-5.61 2.4A.993.993 0 0 1 5 19.48z"
-        fill="#currentColor"
+        fill="currentColor"
       />
     </svg>
   );

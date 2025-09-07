@@ -9,7 +9,7 @@ export const DropdownOptions = ({ options }: { options: NavItemOptions[] }) => (
           <Link
             key={option.id}
             href={option.path}
-            className="group/item px-4 py-2 block hover:bg-bg-accent-2 hover:text-bg-accent text-text cursor-pointer"
+            className="block px-4 py-2 cursor-pointer group/item hover:bg-bg-accent-2 hover:text-bg-accent text-text"
           >
             <li className="flex gap-2.5 h-[20px] items-center group-hover/item:translate-x-2 translate-x-0 transition-transform">
               <span className="text-[16px]">{option.icon}</span>

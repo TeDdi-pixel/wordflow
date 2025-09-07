@@ -13,6 +13,7 @@ export const HintButton = ({ units }: { units: TypeUnit[] }) => {
   const currentUnitId = usePracticeStore((state) => state.currentUnitId);
 
   const meanings = units?.find((unit) => unit._id === currentUnitId)?.meanings;
+  const isHintExists = meanings && meanings.length > 0;
 
   const handleClick = () => {
     if (!meanings || meanings.length === 0) {
@@ -23,9 +24,11 @@ export const HintButton = ({ units }: { units: TypeUnit[] }) => {
   };
 
   return (
-    <IconButton
-      handleClick={handleClick}
-      icon={isHintOpen ? <TipActiveIcon /> : <TipIcon />}
-    />
+    isHintExists && (
+      <IconButton
+        handleClick={handleClick}
+        icon={isHintOpen ? <TipActiveIcon /> : <TipIcon />}
+      />
+    )
   );
 };

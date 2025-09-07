@@ -6,9 +6,10 @@ import { showError } from "../lib/toasts";
 import { UserResultTerm } from "../model/types/user-results";
 import { usePracticeStore } from "../store/usePracticeStore";
 import { Language } from "../model/types/temp-store";
+import { TypeSavedUnit } from "../model/types/saved-unit";
 
 const useSound = (
-  currentUnit: TypeUnit | UserResultTerm | null,
+  currentUnit: TypeUnit | UserResultTerm | TypeSavedUnit["unit"] | null,
   targetLang: Language
 ) => {
   const [active, setActive] = useState<boolean>(false);

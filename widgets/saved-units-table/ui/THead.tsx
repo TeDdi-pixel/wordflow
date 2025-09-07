@@ -6,6 +6,15 @@ export const THead = () => {
           className="px-4 py-2 text-center text-accent"
           style={{ minWidth: "200px" }}
         >
+          #
+        </th>
+
+        <th style={{ width: "5px" }} />
+
+        <th
+          className="px-4 py-2 text-center text-accent"
+          style={{ minWidth: "200px" }}
+        >
           Термін
         </th>
 
@@ -33,16 +42,7 @@ export const THead = () => {
           className="px-4 py-2 text-center text-accent"
           style={{ minWidth: "200px" }}
         >
-          Моя відповідь
-        </th>
-
-        <th style={{ width: "5px" }} />
-
-        <th
-          className="px-4 py-2 text-center text-accent"
-          style={{ maxWidth: "75px" }}
-        >
-          Статус
+          Джерело
         </th>
 
         <th style={{ width: "5px" }} />

@@ -9,7 +9,7 @@ export const Filter = ({ filterLabel }: { filterLabel: string }) => {
           <IoFilter className="text-[24px]" />
         </span>
 
-        <span className="w-full whitespace-nowrap text-[14px]">
+        <span className="w-full whitespace-nowrap text-[14px] cursor-default">
           {filterLabel}
         </span>
       </div>
