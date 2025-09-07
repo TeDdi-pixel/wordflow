@@ -26,8 +26,12 @@ export type PracticeStore = {
   meaningNumber: number;
   activePartOfSpeech: string;
   isShuffled: boolean;
+  likesCount: number;
+  savedUnitsCount: number;
 
   switchIsShuffled: () => void;
+  setLikesCount: (value: number) => void;
+  setSavedUnitsCount: (value: number) => void;
   resetIsShuffled: () => void;
   setActivePartOfSpeech: (value: string) => void;
   showNextMeaning: (meanings: TypeMeaning[]) => void;

@@ -1,22 +1,30 @@
 import TipButton from "@/shared/ui/buttons/TipButton";
 import { FaClipboardList } from "react-icons/fa";
 import { ControlsProps } from "../model/types";
-import { getUnitSetForClient } from "@/shared/utils/unit-set/getUnitSetForClient";
 import { SaveResultButton } from "@/features/save-unit-set-results";
 import { SkipButton } from "@/features/skip-term";
 import { NavButtons } from "./NavButtons";
+import { notFound } from "next/navigation";
+import { getControlsUnitSetData } from "@/entities/unit-set/api/getControlsUnitSetData";
+import { Statistics } from "./Statistics";
 
 export const PracticeBoardControls = async ({ unitSetId }: ControlsProps) => {
-  const unitSet = await getUnitSetForClient(unitSetId);
+  const unitSet = await getControlsUnitSetData(unitSetId);
 
-  const units = unitSet?.units || [];
+  if (!unitSet) return notFound();
 
   return (
     <div className="flex items-center justify-between mb-[32px]">
       <div className="flex items-center gap-4">
         <div className="flex items-center gap-4">
-          <NavButtons units={units} unitSetId={unitSetId} />
-          <SkipButton units={units} unitLength={units.length} />
+          <NavButtons units={unitSet.units} unitSetId={unitSetId} />
+
+          <SkipButton units={unitSet.units} unitLength={unitSet.units.length} />
+
+          <Statistics
+            likesCount={unitSet.likesCount}
+            savedUnitsCount={unitSet.savedUnitsCount}
+          />
         </div>
       </div>
 

@@ -20,15 +20,16 @@ const MyCardSetsPage = async () => {
       <div className="grid w-full grid-cols-3 gap-4">
         {unitSets.map((unitSet) => (
           <UnitSetCover
-            key={unitSet._id.toString()}
+            key={unitSet._id}
             unitSetType={unitSet.unitSetType}
             description={unitSet.description}
             authorsName={unitSet.authorsName}
             unitsCount={unitSet.unitsCount}
+            savedUnitsCount={unitSet.savedUnitsCount}
             title={unitSet.title}
             target={unitSet.target}
             source={unitSet.source}
-            unitSetId={unitSet._id.toString()}
+            unitSetId={unitSet._id}
             likesCount={unitSet.likesCount}
           />
         ))}

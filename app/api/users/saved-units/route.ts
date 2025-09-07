@@ -1,6 +1,7 @@
 import createDbConnection from "@/shared/lib/mongoose";
 import { getUserId } from "@/shared/lib/session";
 import SavedWord from "@/shared/model/schemas/SavedUnit";
+import UnitSet from "@/shared/model/schemas/UnitSet";
 import { NextRequest, NextResponse } from "next/server";
 
 export const POST = async (req: NextRequest) => {
@@ -31,7 +32,18 @@ export const POST = async (req: NextRequest) => {
       unitId,
     });
 
-    return NextResponse.json({ ok: true });
+    const res = await UnitSet.findByIdAndUpdate(
+      { _id: unitSetId },
+      {
+        $inc: { savedUnitsCount: 1 },
+      },
+      { new: true }
+    ).select("savedUnitsCount -_id");
+
+    return NextResponse.json({
+      ok: true,
+      newSavedUnitsCount: res.savedUnitsCount,
+    });
   } catch (error) {
     console.error(error);
     return NextResponse.json(
@@ -69,7 +81,16 @@ export const DELETE = async (req: NextRequest) => {
       unitId,
     });
 
-    return NextResponse.json({ ok: true });
+    const res = await UnitSet.findOneAndUpdate(
+      { _id: unitSetId, savedUnitsCount: { $gt: 0 } },
+      { $inc: { savedUnitsCount: -1 } },
+      { new: true }
+    ).select("savedUnitsCount -_id");
+
+    return NextResponse.json({
+      ok: true,
+      newSavedUnitsCount: res.savedUnitsCount,
+    });
   } catch (error) {
     console.error(error);
     return NextResponse.json(

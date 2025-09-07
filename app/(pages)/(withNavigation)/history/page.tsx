@@ -28,6 +28,7 @@ const History = async () => {
             title={unitSet.title}
             target={unitSet.target}
             source={unitSet.source}
+            savedUnitsCount={unitSet.savedUnitsCount}
             unitSetId={unitSet._id.toString()}
             likesCount={unitSet.likesCount}
           />

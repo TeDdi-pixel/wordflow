@@ -9,6 +9,7 @@ import { LikesCount } from "./ui/LikesCount";
 import { TypeCardSetProps } from "./model/types";
 import CursorFollower from "@/shared/ui/CursorFollower";
 import Languages from "./ui/Languages";
+import { SavedUnitCount } from "./ui/UnitCount";
 
 export const UnitSetCover = ({
   unitSetId,
@@ -20,6 +21,7 @@ export const UnitSetCover = ({
   likesCount,
   source,
   target,
+  savedUnitsCount,
 }: TypeCardSetProps) => {
   return (
     <Link
@@ -50,6 +52,8 @@ export const UnitSetCover = ({
           <AuthorsName authorsName={authorsName} />
 
           <LikesCount likesCount={likesCount} />
+
+          <SavedUnitCount savedUnitCount={savedUnitsCount} />
         </div>
       </div>
     </Link>

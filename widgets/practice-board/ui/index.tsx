@@ -1,4 +1,4 @@
-import { getUnitSetTitle } from "../api/getUnitSetTitle";
+import { getUnitSetTitle } from "../../../entities/unit-set/api/getUnitSetTitle";
 import { PracticeBoardProps } from "../model/types";
 import { PracticeBoard } from "./Board";
 import { PracticeBoardControls } from "./Controls";

@@ -1,28 +1,30 @@
 import { ActionBar } from "./ActionBar";
-import { getUnitSetForClient } from "@/shared/utils/unit-set/getUnitSetForClient";
 import { PracticeBoardInput } from "@/features/answer-term";
 import { Term } from "./Term";
+import { getUnitSet } from "@/entities/unit-set/api/getUnitSet";
+import { notFound } from "next/navigation";
 
 export const PracticeBoard = async ({ unitSetId }: { unitSetId: string }) => {
-  const unitSet = await getUnitSetForClient(unitSetId);
+  const unitSet = await getUnitSet(unitSetId);
 
-  const units = unitSet?.units || [];
-
-  const target = unitSet?.target;
-  const source = unitSet?.source;
+  if (!unitSet) return notFound();
 
   return (
     <div className="mx-auto min-h-[506px] w-full bg-fg rounded-lg p-8 flex flex-col items-center justify-between mb-4">
       <ActionBar
-        units={units}
-        target={target}
-        source={source}
+        units={unitSet.units}
+        target={unitSet?.target}
+        source={unitSet?.source}
         unitSetId={unitSetId}
       />
 
-      <Term units={units} source={source} target={target} />
+      <Term
+        units={unitSet.units}
+        source={unitSet?.source}
+        target={unitSet?.target}
+      />
 
-      <PracticeBoardInput units={units} />
+      <PracticeBoardInput units={unitSet.units} />
     </div>
   );
 };

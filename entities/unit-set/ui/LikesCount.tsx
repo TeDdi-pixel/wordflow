@@ -6,7 +6,7 @@ export const LikesCount = ({ likesCount }: { likesCount: number }) => {
       <div className="flex items-center gap-1">
         <LikeIcon />
 
-        <span>{likesCount}</span>
+        <span className="max-w-[25px] truncate">{likesCount}</span>
       </div>
     )
   );

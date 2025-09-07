@@ -1,8 +1,12 @@
 import createDbConnection from "@/shared/lib/mongoose";
 import UnitSet from "@/shared/model/schemas/UnitSet";
+import { TypeUnitSet } from "@/shared/model/types/unit";
+import { toPlain } from "@/shared/utils/unit-set/toPlain";
 import mongoose from "mongoose";
 
-export const getMyCardSets = async (userId: string) => {
+export const getMyCardSets = async (
+  userId: string
+): Promise<(TypeUnitSet & { unitsCount: number })[]> => {
   await createDbConnection();
 
   const unitSets = await UnitSet.aggregate([
@@ -16,5 +20,5 @@ export const getMyCardSets = async (userId: string) => {
     { $project: { units: 0 } },
   ]);
 
-  return unitSets || [];
+  return toPlain(unitSets) || [];
 };

@@ -11,4 +11,5 @@ export type TypeCardSetProps = {
   likesCount: number;
   source: Language;
   target: Language;
+  savedUnitsCount: number;
 };

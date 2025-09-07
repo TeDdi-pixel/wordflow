@@ -39,7 +39,7 @@ export const GET = async (
     const savedUnitsIds = [] as string[];
 
     dbUnitsIds.forEach((item) => {
-      savedUnitsIds.push(item.unitId.toString());
+      savedUnitsIds.push(item.unitId);
     });
 
     return NextResponse.json({ ok: true, savedUnitsIds });

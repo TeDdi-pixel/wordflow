@@ -64,13 +64,14 @@ export const POST = async (
 
     await Like.create({ relatedUserId, unitSetId });
 
-    await UnitSet.findOneAndUpdate(
+    const res = await UnitSet.findOneAndUpdate(
       { _id: unitSetId },
-      { $inc: { likesCount: 1 } }
-    );
+      { $inc: { likesCount: 1 } },
+      { new: true }
+    ).select("likesCount -_id");
 
     return NextResponse.json(
-      { ok: true, message: "Лайк збережено" },
+      { ok: true, message: "Лайк збережено", newLikesCount: res.likesCount },
       { status: 201 }
     );
   } catch (err) {
@@ -111,13 +112,14 @@ export const DELETE = async (
 
     await Like.findOneAndDelete({ relatedUserId, unitSetId });
 
-    await UnitSet.findOneAndUpdate(
+    const res = await UnitSet.findOneAndUpdate(
       { _id: unitSetId, likesCount: { $gt: 0 } },
-      { $inc: { likesCount: -1 } }
-    );
+      { $inc: { likesCount: -1 } },
+      { new: true }
+    ).select("likesCount -_id");
 
     return NextResponse.json(
-      { ok: true, message: "Лайк видалено" },
+      { ok: true, message: "Лайк видалено", newLikesCount: res.likesCount },
       { status: 200 }
     );
   } catch (error) {

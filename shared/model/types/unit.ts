@@ -36,6 +36,7 @@ export type TypeUnitSet = {
   likesCount: number;
   source: Language;
   target: Language;
+  savedUnitsCount: number;
 };
 
 export type TypePhonetic = {

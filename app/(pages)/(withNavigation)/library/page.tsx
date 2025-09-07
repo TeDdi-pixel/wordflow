@@ -20,7 +20,7 @@ const Library = async () => {
       <div className="grid w-full grid-cols-3 gap-4">
         {unitSets.map((unitSet) => (
           <UnitSetCover
-            key={unitSet._id.toString()}
+            key={unitSet._id}
             unitSetType={unitSet.unitSetType}
             description={unitSet.description}
             authorsName={unitSet.authorsName}
@@ -28,8 +28,9 @@ const Library = async () => {
             title={unitSet.title}
             target={unitSet.target}
             source={unitSet.source}
-            unitSetId={unitSet._id.toString()}
+            unitSetId={unitSet._id}
             likesCount={unitSet.likesCount}
+            savedUnitsCount={unitSet.savedUnitsCount}
           />
         ))}
       </div>

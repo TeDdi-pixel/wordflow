@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import { getLikeStatus } from "../api/getLikeStatus";
 import { deleteLike } from "../api/deleteLike";
 import { addLike } from "../api/addLike";
+import { usePracticeStore } from "@/shared/store/usePracticeStore";
 
 const useLike = () => {
   const [liked, setLiked] = useState<boolean>(false);
@@ -15,6 +16,8 @@ const useLike = () => {
   const params = useParams();
   const unitSetId = params.unitSetId as string;
   const router = useRouter();
+
+  const setLikesCount = usePracticeStore((state) => state.setLikesCount);
 
   const handleClick = async () => {
     if (!isReady || isLoading) return;
@@ -25,9 +28,11 @@ const useLike = () => {
 
     try {
       if (prevLiked) {
-        await deleteLike(unitSetId);
+        const newLikesCount = await deleteLike(unitSetId);
+        setLikesCount(newLikesCount);
       } else {
-        await addLike(unitSetId);
+        const newLikesCount = await addLike(unitSetId);
+        setLikesCount(newLikesCount);
       }
     } catch (error) {
       setLiked(prevLiked);

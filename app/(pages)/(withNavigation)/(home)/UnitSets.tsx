@@ -8,16 +8,21 @@ import axios from "axios";
 import { useEffect, useRef, useState } from "react";
 
 type Props = {
-  initialUnitSets: (Omit<TypeUnitSet, "units"> & { unitsCount: number })[];
+  initialUnitSets: (Omit<TypeUnitSet, "units"> & {
+    unitsCount: number;
+    savedUnitsCount: number;
+  })[];
   sort: TypeSort;
   totalDocsCount: number;
 };
 
 export const UnitSets = ({ initialUnitSets, sort, totalDocsCount }: Props) => {
-  const [unitSets, setUnitSets] =
-    useState<(Omit<TypeUnitSet, "units"> & { unitsCount: number })[]>(
-      initialUnitSets
-    );
+  const [unitSets, setUnitSets] = useState<
+    (Omit<TypeUnitSet, "units"> & {
+      unitsCount: number;
+      savedUnitsCount: number;
+    })[]
+  >(initialUnitSets);
   const [limit, setLimit] = useState(initialUnitSets.length);
   const [loading, setLoading] = useState(false);
 
@@ -59,7 +64,7 @@ export const UnitSets = ({ initialUnitSets, sort, totalDocsCount }: Props) => {
       <div className="grid w-full grid-cols-3 gap-4">
         {unitSets.map((unitSet) => (
           <UnitSetCover
-            key={unitSet._id.toString()}
+            key={unitSet._id}
             unitSetType={unitSet.unitSetType}
             description={unitSet.description}
             authorsName={unitSet.authorsName}
@@ -67,8 +72,9 @@ export const UnitSets = ({ initialUnitSets, sort, totalDocsCount }: Props) => {
             title={unitSet.title}
             target={unitSet.target}
             source={unitSet.source}
-            unitSetId={unitSet._id.toString()}
+            unitSetId={unitSet._id}
             likesCount={unitSet.likesCount}
+            savedUnitsCount={unitSet.savedUnitsCount}
           />
         ))}
       </div>

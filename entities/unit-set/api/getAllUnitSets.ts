@@ -9,7 +9,10 @@ export const getAllUnitSets = async (
   sort: "createdAsc" | "createdDesc" | "likesDesc" | "termsDesc" | "termsAsc",
   limit: number
 ): Promise<{
-  unitSets: (Omit<TypeUnitSet, "units"> & { unitsCount: number })[];
+  unitSets: (Omit<TypeUnitSet, "units"> & {
+    unitsCount: number;
+    savedUnitsCount: number;
+  })[];
   filterLabel: string;
   totalDocsCount: number;
 }> => {
