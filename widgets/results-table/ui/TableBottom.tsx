@@ -4,12 +4,10 @@ import { TableBottomProps } from "../model/types";
 
 export const TableBottom = ({ id, scoreSummary }: TableBottomProps) => {
   return (
-    <div className="bg-fg px-5 py-3 rounded-lg font-semibold">
-      <div className="w-full flex items-center justify-between">
-        <ScoreSummary scoreSummary={scoreSummary} />
+    <div className="flex items-center justify-between w-full px-5 py-3 rounded-default bg-fg">
+      <ScoreSummary scoreSummary={scoreSummary} />
 
-        <TryAgainButton id={id} />
-      </div>
+      <TryAgainButton id={id} />
     </div>
   );
 };

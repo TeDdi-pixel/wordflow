@@ -23,7 +23,7 @@ const RandomUnitsCounterInput = memo(({ label }: { label: string }) => {
         step={1}
         value={randomUnitsCounter}
         placeholder="30"
-        className="border-2 rounded-default px-4 py-1.5 text-accent bg-fg transition-colors focus:border-accent border-transparent focus:outline-none"
+        className="border-2 rounded-default px-4 py-1.5 text-text-2 bg-bg-accent-2 transition-colors focus:border-bg-accent border-transparent focus:outline-none"
         onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
           setRandomUnitsCounter(Number(e.target.value))
         }

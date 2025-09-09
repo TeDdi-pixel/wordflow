@@ -15,7 +15,7 @@ export const SavedWordsTable = async () => {
 
   return (
     <>
-      <table className="w-full mb-4 border-separate table-fixed border-spacing-y-2">
+      <table className="w-full border-separate table-fixed border-spacing-y-2">
         <colgroup>
           {colWidths.map((cls, i) => (
             <col key={`col-${i}`} className={cls} />

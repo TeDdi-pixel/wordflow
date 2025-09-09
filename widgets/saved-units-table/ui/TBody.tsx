@@ -28,7 +28,7 @@ export const TBody = ({ dbSavedUnits }: { dbSavedUnits: TypeSavedUnit[] }) => {
     <tbody>
       {units?.map((doc, index) => (
         <tr key={doc._id} className="bg-fg h-[57px]">
-          <Td first text={String(index + 1)} />
+          <Td first text={String(index + 1)} className="text-accent" />
 
           <Separator />
 

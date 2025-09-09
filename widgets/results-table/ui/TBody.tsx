@@ -8,7 +8,7 @@ import { BookmarkButton } from "@/features/save-unit/ui/BookmarkButton";
 import NotProvidedIcon from "@/shared/icons/unit/NotProvidedIcon";
 import { SoundButton } from "@/features/play-pronunciation";
 
-export const TBody = ({ resultSetTerms, target, unitSetId }: TBodyProps) => {
+export const TBody = ({ resultSetTerms, unitSetId }: TBodyProps) => {
   return (
     <tbody>
       {resultSetTerms?.map((unit: UserResultTerm) => (
