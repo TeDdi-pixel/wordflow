@@ -1,28 +1,43 @@
 import LanguageIcon from "@/shared/icons/unit/LanguageIcon";
 import { Language } from "@/shared/model/types/temp-store";
-import React from "react";
 import { CgArrowsExchangeAlt } from "react-icons/cg";
 
-const Languages = ({
+export const Languages = ({
   source,
   target,
+  savedUnitsLanguages,
 }: {
-  source: Language;
-  target: Language;
+  source?: Language;
+  target?: Language;
+  savedUnitsLanguages?: Language[];
 }) => {
-  return (
-    <div className="flex items-center gap-2">
-      <LanguageIcon />
+  if (savedUnitsLanguages && savedUnitsLanguages.length > 0) {
+    return (
+      <div className="flex items-center gap-2">
+        <LanguageIcon />
 
-      <div className="flex gap-1 items-center">
-        <span>{source}</span>
-
-        <CgArrowsExchangeAlt className="text-[20px]" />
-
-        <span>{target}</span>
+        <div className="flex items-center gap-1">
+          <span>{savedUnitsLanguages.join(", ")}</span>
+        </div>
       </div>
-    </div>
-  );
-};
+    );
+  }
 
-export default Languages;
+  if (source && target) {
+    return (
+      <div className="flex items-center gap-2">
+        <LanguageIcon />
+
+        <div className="flex items-center gap-1">
+          <span>{source}</span>
+
+          <CgArrowsExchangeAlt className="text-[20px]" />
+
+          <span>{target}</span>
+        </div>
+      </div>
+    );
+  }
+
+  return null;
+};

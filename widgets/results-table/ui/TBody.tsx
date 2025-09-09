@@ -57,7 +57,7 @@ export const TBody = ({ resultSetTerms, target, unitSetId }: TBodyProps) => {
             last
             icon={
               <div className="flex items-center justify-center h-full gap-4">
-                <SoundButton resultUnit={unit} target={target} />
+                <SoundButton resultUnit={unit} />
 
                 <BookmarkButton unitSetId={unitSetId} unitId={unit._id} />
               </div>

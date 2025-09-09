@@ -29,6 +29,7 @@ const SubmitButton = ({ pending, text, error, pendingText }: Props) => {
   return (
     <button
       type="submit"
+      disabled={pending}
       className="relative group cursor-pointer bg-fg hover:bg-bg-accent w-[300px] py-[16px] px-[32px] rounded-default flex justify-center items-center overflow-hidden unit-button-shadow transition-all duration-200"
     >
       <div className="z-10 flex items-center justify-center gap-2 transition-all duration-200 group-hover:text-accent">

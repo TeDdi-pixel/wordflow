@@ -8,9 +8,9 @@ const Hint = ({
   target,
   units,
 }: {
-  source: Language;
+  source?: Language;
   units: TypeUnit[];
-  target: Language;
+  target?: Language;
 }) => {
   const currentTermLang = usePracticeStore((state) => state.currentTermLang);
   const currentUnitId = usePracticeStore((state) => state.currentUnitId);
@@ -50,6 +50,7 @@ const Hint = ({
   const hasExample = example && example.length > 0;
 
   return (
+    source &&
     source === "ENG" &&
     isHintExists && (
       <div

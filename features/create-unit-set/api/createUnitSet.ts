@@ -10,6 +10,7 @@ import axios from "axios";
 import { BaseFields } from "@/shared/model/types/forms";
 import UnitSet from "@/shared/model/schemas/UnitSet";
 import { getNormalizedEngWord } from "@/shared/utils/unit-set/getNormalizedEngWord";
+import { Language } from "@/shared/model/types/temp-store";
 
 const ERRORS = UNIT_SET_ERROR_MESSAGES;
 
@@ -28,8 +29,8 @@ export const createUnitSet = async <T extends BaseFields>(
 
     const description = form.get("description");
 
-    const source = form.get("source");
-    const target = form.get("target");
+    const source = form.get("source") as Language;
+    const target = form.get("target") as Language;
 
     if (!source || !target)
       return withError<T>(prevState, ERRORS.MISSING_LANGUAGES);
@@ -60,7 +61,7 @@ export const createUnitSet = async <T extends BaseFields>(
         );
       }
 
-      units.push({ termNumber: i + 1, term, definition });
+      units.push({ termNumber: i + 1, term, definition, source, target });
     }
 
     if (units.length === 0) {
@@ -125,6 +126,7 @@ export const createUnitSet = async <T extends BaseFields>(
       authorsName,
       source,
       target,
+      randomSavedUnitsSet: false,
       units: updatedUnits,
     });
 

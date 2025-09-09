@@ -17,6 +17,8 @@ const initialUnitSet: Pick<
       term: "",
       definition: "",
       proposedOption: "",
+      source: "ENG",
+      target: "UA",
     },
     {
       _id: crypto.randomUUID(),
@@ -24,6 +26,8 @@ const initialUnitSet: Pick<
       term: "",
       definition: "",
       proposedOption: "",
+      source: "ENG",
+      target: "UA",
     },
   ],
 };
@@ -42,6 +46,8 @@ export const useTempStore = create<TempStore>()(
         term: "",
         definition: "",
         proposedOption: "",
+        source: "ENG",
+        target: "UA",
       },
       {
         _id: crypto.randomUUID(),
@@ -49,6 +55,8 @@ export const useTempStore = create<TempStore>()(
         term: "",
         definition: "",
         proposedOption: "",
+        source: "ENG",
+        target: "UA",
       },
     ],
 
@@ -117,6 +125,8 @@ export const useTempStore = create<TempStore>()(
             term: "",
             definition: "",
             proposedOption: "",
+            source: "ENG",
+            target: "UA",
           })
           .map((unit, index) => ({
             ...unit,

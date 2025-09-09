@@ -19,10 +19,10 @@ const PracticeNavButton = ({ side = "right", onClick, isDisabled }: Props) => {
       } ${
         isDisabled
           ? "bg-transparent hover:bg-transparent unit-button-shadow-disabled cursor-not-allowed"
-          : "unit-button-shadow  cursor-pointer"
+          : "unit-button-shadow cursor-pointer "
       }`}
     >
-      <ArrowIcon isDisabled={isDisabled} />
+      <ArrowIcon />
     </button>
   );
 };

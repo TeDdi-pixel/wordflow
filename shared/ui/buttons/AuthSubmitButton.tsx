@@ -31,11 +31,11 @@ const AuthSubmitButton = ({
       disabled={!passwordsAreSafe || pending}
       className={
         className ??
-        `w-full md:w-[268px] px-2 bg-fg cursor-not-allowed py-1.5 rounded-default flex gap-2 justify-center items-center mx-0.5 border-transparent h-[36px] ${
+        `w-full md:w-[268px] px-2 cursor-not-allowed py-1.5 rounded-default flex gap-2 justify-center items-center mx-0.5 border-transparent h-[36px] transition-all ${
           passwordsAreSafe && !pending
-            ? "hover:bg-bg-accent-2 cursor-pointer hover:text-text-2 transition-colors text-text"
+            ? "hover:bg-bg-accent-2 cursor-pointer text-text-2 hover:scale-95"
             : "text-disabled"
-        }`
+        } ${!passwordsAreSafe || pending ? "bg-fg" : "bg-bg-accent-2"}`
       }
     >
       {pending ? (

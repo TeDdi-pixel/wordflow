@@ -1,4 +1,5 @@
-import { PracticeBoardBlock } from "@/widgets/practice-board";
+import { getUnitSetTitle } from "@/entities/unit-set/api/getUnitSetTitle";
+import { PracticeBoard, PracticeBoardControls } from "@/widgets/practice-board";
 import { notFound } from "next/navigation";
 
 const CardSet = async ({
@@ -10,7 +11,17 @@ const CardSet = async ({
 
   if (!unitSetId) notFound();
 
-  return <PracticeBoardBlock unitSetId={unitSetId} />;
+  const title = await getUnitSetTitle(unitSetId);
+
+  return (
+    <div className="max-w-[821px] w-full max-h-max">
+      <h2 className="text-[28px] flex gap-2 items-center mb-[32px]">{title}</h2>
+
+      <PracticeBoard unitSetId={unitSetId} />
+
+      <PracticeBoardControls unitSetId={unitSetId} />
+    </div>
+  );
 };
 
 export default CardSet;

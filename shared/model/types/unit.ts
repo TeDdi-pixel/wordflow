@@ -11,6 +11,8 @@ export type TypeUnit = {
   phonetic?: string;
   audio?: string;
   proposedOption?: string;
+  source: Language;
+  target: Language;
 };
 
 export type UnitSetType = "cards";
@@ -34,9 +36,11 @@ export type TypeUnitSet = {
   unitSetType: "cards";
   units: TypeUnit[];
   likesCount: number;
-  source: Language;
-  target: Language;
+  source?: Language;
+  target?: Language;
+  randomSavedUnitsSet: boolean;
   savedUnitsCount: number;
+  savedUnitsLanguages?: Language[];
 };
 
 export type TypePhonetic = {

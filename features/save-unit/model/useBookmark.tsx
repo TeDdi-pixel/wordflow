@@ -3,13 +3,14 @@ import { usePracticeStore } from "@/shared/store/usePracticeStore";
 import { useEffect, useMemo, useState } from "react";
 import { saveUnit } from "../api/saveUnit";
 import { getSavedUnitsIds } from "../api/getSavedUnitsIds";
+import { useSavedUnitsStore } from "@/shared/store/useSavedUnitsStore";
 
 const useBookmark = (unitSetId: string, unitId?: string) => {
   const [savedWords, setSavedWords] = useState<string[]>([]);
   const [hasChecked, setHasChecked] = useState(false);
 
-  const setSavedUnitsCount = usePracticeStore(
-    (state) => state.setSavedUnitsCount
+  const setSavedUnitsCounts = useSavedUnitsStore(
+    (state) => state.setSavedUnitsCounts
   );
 
   const currentUnitId = usePracticeStore(
@@ -29,7 +30,7 @@ const useBookmark = (unitSetId: string, unitId?: string) => {
     if (!res) return;
 
     if (res.ok) {
-      setSavedUnitsCount(res.newSavedUnitsCount);
+      setSavedUnitsCounts(unitSetId, res.newSavedUnitsCount);
       setSavedWords((prev) =>
         savedWords.includes(currentUnitId)
           ? prev.filter((wordId) => wordId !== currentUnitId)

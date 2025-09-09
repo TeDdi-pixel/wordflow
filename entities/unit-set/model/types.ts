@@ -1,15 +1,9 @@
-import { Language } from "@/shared/model/types/temp-store";
-import { UnitSetType } from "@/shared/model/types/unit";
+import { TypeUnitSet } from "@/shared/model/types/unit";
 
-export type TypeCardSetProps = {
+export type TypeCardSetProps = Omit<
+  TypeUnitSet,
+  "_id" | "randomSavedUnitsSet" | "relatedUserId" | "units"
+> & {
   unitSetId: string;
-  title: string;
   unitsCount: number;
-  authorsName: string;
-  description: string;
-  unitSetType: UnitSetType;
-  likesCount: number;
-  source: Language;
-  target: Language;
-  savedUnitsCount: number;
 };

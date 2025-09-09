@@ -1,17 +1,20 @@
+import { StatisticsProps } from "../model/types";
 import { LikesCount } from "./LikesCount";
-import { SavedUnitCount } from "./UnitCount";
+import { SavedUnitsCount } from "./SavedUnitsCount";
 
-type Props = {
-  likesCount: number;
-  savedUnitsCount: number;
-};
-
-export const Statistics = ({ likesCount, savedUnitsCount }: Props) => {
+export const Statistics = ({
+  likesCount,
+  savedUnitsCount,
+  unitSetId,
+}: StatisticsProps) => {
   return (
     <div className="flex items-center gap-2.5">
-      <LikesCount initialLikesCount={likesCount} />
+      <LikesCount initialLikesCount={likesCount} unitSetId={unitSetId} />
 
-      <SavedUnitCount initialSavedUnitCount={savedUnitsCount} />
+      <SavedUnitsCount
+        initialSavedUnitCount={savedUnitsCount}
+        unitSetId={unitSetId}
+      />
     </div>
   );
 };

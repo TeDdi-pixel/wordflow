@@ -1,6 +1,6 @@
 import { PiBookmarksSimpleFill } from "react-icons/pi";
 
-export const SavedUnitCount = ({
+export const SavedUnitsCount = ({
   savedUnitCount,
 }: {
   savedUnitCount: number;

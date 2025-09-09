@@ -20,6 +20,7 @@ export const getAllUnitSets = async (
 
   const unitSets = await UnitSet.aggregate([
     { $addFields: { unitsCount: { $size: "$units" } } },
+    { $match: { randomSavedUnitsSet: false } },
     { $sort: SORT_TYPE[sort] as any },
     { $project: { units: 0 } },
     { $limit: limit },

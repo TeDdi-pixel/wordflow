@@ -16,15 +16,22 @@ const unitSetSchema = new mongoose.Schema(
       enum: ["cards"],
       required: true,
     },
+    randomSavedUnitsSet: { type: Boolean, required: true, default: false },
     likesCount: { type: Number, required: true, default: 0, min: 0 },
-    source: { type: String, enum: ["ENG", "UA", "RU"], required: true },
-    target: { type: String, enum: ["ENG", "UA", "RU"], required: true },
+    source: { type: String, enum: ["ENG", "UA", "RU"] },
+    target: { type: String, enum: ["ENG", "UA", "RU"] },
+    savedUnitsLanguages: {
+      type: [String],
+      enum: ["ENG", "UA", "RU"],
+    },
     savedUnitsCount: { type: Number, required: true, default: 0, min: 0 },
     units: [
       {
         termNumber: { type: Number, required: true },
         term: { type: String, required: true },
         definition: { type: String, required: true },
+        source: { type: String, enum: ["ENG", "UA", "RU"], required: true },
+        target: { type: String, enum: ["ENG", "UA", "RU"], required: true },
         meanings: {
           type: [
             {

@@ -34,10 +34,6 @@ body {
   }
 }
 
-.unit-button-shadow-disabled {
-  box-shadow: none;
-}
-
 @keyframes text-bounce {
   0%,
   100% {

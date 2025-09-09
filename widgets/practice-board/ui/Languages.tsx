@@ -1,15 +1,22 @@
-import ToLanguageIcon from "@/shared/icons/unit/ToLanguageIcon";
-import { Language } from "@/shared/model/types/temp-store";
+"use client";
 
-export const Languages = ({
-  source,
-  target,
-}: {
-  source: Language;
-  target: Language;
-}) => {
+import ToLanguageIcon from "@/shared/icons/unit/ToLanguageIcon";
+import { TypeUnitSet } from "@/shared/model/types/unit";
+import { usePracticeStore } from "@/shared/store/usePracticeStore";
+
+export const Languages = ({ unitSet }: { unitSet: TypeUnitSet }) => {
+  const currentUnitId = usePracticeStore((state) => state.currentUnitId);
+
+  const source =
+    unitSet.source ??
+    unitSet.units.find((unit) => unit._id === currentUnitId)?.source;
+
+  const target =
+    unitSet.target ??
+    unitSet.units.find((unit) => unit._id === currentUnitId)?.target;
+
   return (
-    <div className="flex gap-3 items-center text-accent">
+    <div className="flex items-center gap-3 text-accent">
       <span className="w-[29px] text-[16px]">{source}</span>
 
       <ToLanguageIcon />

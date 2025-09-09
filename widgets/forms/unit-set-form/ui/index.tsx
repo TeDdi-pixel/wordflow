@@ -58,9 +58,9 @@ export const UnitSetForm = () => {
 
         <div className="flex justify-center w-full">
           <SubmitButton
-            text="Створити список"
+            text="Створити набір"
             pending={pending}
-            pendingText="Створюємо список..."
+            pendingText="Створюємо набір..."
             error={state.error}
           />
         </div>

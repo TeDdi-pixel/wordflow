@@ -8,8 +8,8 @@ import { AuthorsName } from "./ui/AuthorsName";
 import { LikesCount } from "./ui/LikesCount";
 import { TypeCardSetProps } from "./model/types";
 import CursorFollower from "@/shared/ui/CursorFollower";
-import Languages from "./ui/Languages";
-import { SavedUnitCount } from "./ui/UnitCount";
+import { SavedUnitsCount } from "./ui/SavedUnitsCount";
+import { Languages } from "./ui/Languages";
 
 export const UnitSetCover = ({
   unitSetId,
@@ -22,6 +22,7 @@ export const UnitSetCover = ({
   source,
   target,
   savedUnitsCount,
+  savedUnitsLanguages,
 }: TypeCardSetProps) => {
   return (
     <Link
@@ -41,7 +42,11 @@ export const UnitSetCover = ({
         <div className="flex items-center gap-2">
           <TermsCount unitsCount={unitsCount} />
 
-          <Languages target={target} source={source} />
+          <Languages
+            target={target}
+            source={source}
+            savedUnitsLanguages={savedUnitsLanguages}
+          />
         </div>
       </div>
 
@@ -53,7 +58,7 @@ export const UnitSetCover = ({
 
           <LikesCount likesCount={likesCount} />
 
-          <SavedUnitCount savedUnitCount={savedUnitsCount} />
+          <SavedUnitsCount savedUnitCount={savedUnitsCount} />
         </div>
       </div>
     </Link>

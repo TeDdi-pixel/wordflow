@@ -4,6 +4,7 @@ import { colWidths } from "../model/config";
 import { TBody } from "./TBody";
 import { THead } from "./THead";
 import { getUserId } from "@/shared/lib/session";
+import { TableBottom } from "./TableBottom";
 
 export const SavedWordsTable = async () => {
   const relatedUserId = await getUserId();
@@ -14,7 +15,7 @@ export const SavedWordsTable = async () => {
 
   return (
     <>
-      <table className="w-full border-separate table-fixed border-spacing-y-2">
+      <table className="w-full mb-4 border-separate table-fixed border-spacing-y-2">
         <colgroup>
           {colWidths.map((cls, i) => (
             <col key={`col-${i}`} className={cls} />
@@ -25,6 +26,8 @@ export const SavedWordsTable = async () => {
 
         <TBody dbSavedUnits={savedUnits} />
       </table>
+
+      <TableBottom />
     </>
   );
 };

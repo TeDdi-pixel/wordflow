@@ -1,1 +1,2 @@
-export { PracticeBoardBlock } from "./ui";
+export { PracticeBoard } from "./ui/Board";
+export { PracticeBoardControls } from "./ui/Controls";

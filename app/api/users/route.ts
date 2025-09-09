@@ -5,40 +5,38 @@ import bcrypt from "bcrypt";
 import { AUTH_ERROR_MESSAGES } from "@/shared/model/constants/errors";
 
 export const POST = async (req: NextRequest) => {
-  const { password, email } = await req.json();
+  const { email, password } = await req.json();
 
   try {
     await createDbConnection();
 
     const user = await User.findOne({ email });
 
-    if (user && user.provider === "google") {
+    if (!user) {
       return NextResponse.json({
         ok: false,
         message: AUTH_ERROR_MESSAGES.INVALID_CREDENTIALS,
       });
     }
 
-    if (user && user.provider === "credentials") {
+    if (user.provider === "google") {
       return NextResponse.json({
         ok: true,
-        message: "Login successful",
+        message: "Login successful (Google user)",
         id: user._id.toString(),
         username: user.username,
+        email: user.email,
       });
     }
 
-    if (!user || !user.password) {
+    if (!password || !user.password) {
       return NextResponse.json({
         ok: false,
         message: AUTH_ERROR_MESSAGES.INVALID_CREDENTIALS,
       });
     }
 
-    const isPasswordValid = bcrypt.compareSync(
-      password as string,
-      user.password
-    );
+    const isPasswordValid = bcrypt.compareSync(password, user.password);
 
     if (!isPasswordValid) {
       return NextResponse.json({

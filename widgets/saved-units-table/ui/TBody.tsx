@@ -14,19 +14,19 @@ import NotProvidedIcon from "@/shared/icons/unit/NotProvidedIcon";
 import { SoundButton } from "@/features/play-pronunciation";
 
 export const TBody = ({ dbSavedUnits }: { dbSavedUnits: TypeSavedUnit[] }) => {
-  const [savedUnits, setSavedUnits] = useState<TypeSavedUnit[]>(dbSavedUnits);
+  const [units, setUnits] = useState<TypeSavedUnit[]>(dbSavedUnits);
 
   const handleDeleteUnit = (unitId: string) => {
-    setSavedUnits((prev) => prev.filter((doc) => doc.unit._id !== unitId));
+    setUnits((prev) => prev.filter((doc) => doc.unit._id !== unitId));
   };
 
   useEffect(() => {
-    if (savedUnits.length === 0) return notFound();
-  }, [savedUnits]);
+    if (units.length === 0) return notFound();
+  }, [units]);
 
   return (
     <tbody>
-      {savedUnits?.map((doc, index) => (
+      {units?.map((doc, index) => (
         <tr key={doc._id} className="bg-fg h-[57px]">
           <Td first text={String(index + 1)} />
 
@@ -71,7 +71,7 @@ export const TBody = ({ dbSavedUnits }: { dbSavedUnits: TypeSavedUnit[] }) => {
             last
             icon={
               <div className="flex items-center justify-center h-full gap-4">
-                <SoundButton savedUnit={doc.unit} target={doc.target} />
+                <SoundButton savedUnit={doc.unit} />
 
                 <DeleteUnitButton
                   handleDeleteUnit={handleDeleteUnit}

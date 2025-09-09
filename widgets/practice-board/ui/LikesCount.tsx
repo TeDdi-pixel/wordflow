@@ -1,15 +1,19 @@
 "use client";
 
 import LikeIcon from "@/shared/icons/unit/LikeIcon";
-import { usePracticeStore } from "@/shared/store/usePracticeStore";
+import { useLikesStore } from "@/shared/store/useLikesStore";
 
 export const LikesCount = ({
   initialLikesCount,
+  unitSetId,
 }: {
   initialLikesCount: number;
+  unitSetId: string;
 }) => {
-  const likesCount = usePracticeStore(
-    (state) => state.likesCount || initialLikesCount
+  const likesCount = useLikesStore(
+    (state) =>
+      state.likesCounts.find((item) => item.unitSetId === unitSetId)?.count ||
+      initialLikesCount
   );
 
   return (

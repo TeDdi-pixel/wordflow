@@ -14,7 +14,7 @@ const EmptyPage = ({ text, path, buttonText }: Props) => {
       <p>{text}</p>
       <Link
         href={path}
-        className="bg-bg-accent-2 py-2 px-4 rounded-default inline-flex items-center gap-2 text-text-2"
+        className="inline-flex items-center gap-2 px-4 py-2 transition-transform bg-bg-accent-2 rounded-default text-text-2 hover:scale-95"
       >
         <span>{buttonText}</span>
         <IoOpen className="w-[24px] h-[24px]" />

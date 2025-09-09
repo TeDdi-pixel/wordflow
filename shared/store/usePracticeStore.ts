@@ -23,17 +23,7 @@ export const usePracticeStore = create<PracticeStore>((set) => ({
   meaningNumber: 0,
   activePartOfSpeech: "",
   isShuffled: false,
-  likesCount: 0,
-  savedUnitsCount: 0,
 
-  setSavedUnitsCount: (value: number) =>
-    set({
-      savedUnitsCount: value,
-    }),
-  setLikesCount: (value: number) =>
-    set({
-      likesCount: value,
-    }),
   switchIsShuffled: () =>
     set((state) => ({
       isShuffled: !state.isShuffled,

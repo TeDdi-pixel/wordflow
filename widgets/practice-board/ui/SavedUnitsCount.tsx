@@ -1,15 +1,19 @@
 "use client";
 
-import { usePracticeStore } from "@/shared/store/usePracticeStore";
+import { useSavedUnitsStore } from "@/shared/store/useSavedUnitsStore";
 import { PiBookmarksSimpleFill } from "react-icons/pi";
 
-export const SavedUnitCount = ({
+export const SavedUnitsCount = ({
+  unitSetId,
   initialSavedUnitCount,
 }: {
   initialSavedUnitCount: number;
+  unitSetId: string;
 }) => {
-  const savedUnitsCount = usePracticeStore(
-    (state) => state.savedUnitsCount || initialSavedUnitCount
+  const savedUnitsCount = useSavedUnitsStore(
+    (state) =>
+      state.savedUnitsCounts.find((item) => item.unitSetId === unitSetId)
+        ?.count || initialSavedUnitCount
   );
 
   return (

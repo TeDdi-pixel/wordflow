@@ -22,6 +22,7 @@ export const PracticeBoardControls = async ({ unitSetId }: ControlsProps) => {
           <SkipButton units={unitSet.units} unitLength={unitSet.units.length} />
 
           <Statistics
+            unitSetId={unitSetId}
             likesCount={unitSet.likesCount}
             savedUnitsCount={unitSet.savedUnitsCount}
           />

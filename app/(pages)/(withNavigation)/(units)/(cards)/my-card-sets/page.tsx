@@ -31,6 +31,7 @@ const MyCardSetsPage = async () => {
             source={unitSet.source}
             unitSetId={unitSet._id}
             likesCount={unitSet.likesCount}
+            savedUnitsLanguages={unitSet.savedUnitsLanguages}
           />
         ))}
       </div>

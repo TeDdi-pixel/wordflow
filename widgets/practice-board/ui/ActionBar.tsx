@@ -1,8 +1,7 @@
 import { LikeButton } from "@/features/like-unit-set";
 import { BookmarkButton } from "@/features/save-unit/ui/BookmarkButton";
 import { HintButton } from "@/features/show-hint";
-import { TypeUnit } from "@/shared/model/types/unit";
-import { Language } from "@/shared/model/types/temp-store";
+import { TypeUnit, TypeUnitSet } from "@/shared/model/types/unit";
 import ChangeLangButton from "./ChangeLangButton";
 import { Languages } from "./Languages";
 import { ShuffleButton } from "@/features/shuffle-units";
@@ -10,21 +9,17 @@ import { SoundButton } from "@/features/play-pronunciation";
 
 export const ActionBar = ({
   units,
-  target,
-  source,
-  unitSetId,
+  unitSet,
 }: {
   units: TypeUnit[];
-  target: Language;
-  source: Language;
-  unitSetId: string;
+  unitSet: TypeUnitSet;
 }) => {
   return (
     <div className="flex justify-between w-full">
       <div className="flex items-center gap-4">
         <HintButton units={units} />
 
-        <Languages target={target} source={source} />
+        <Languages unitSet={unitSet} />
       </div>
 
       <div className="flex gap-4">
@@ -32,11 +27,13 @@ export const ActionBar = ({
 
         <ChangeLangButton />
 
-        <SoundButton units={units} target={target} />
+        <SoundButton units={units} unitSet={unitSet} />
 
-        <LikeButton />
+        {!unitSet.randomSavedUnitsSet && <LikeButton />}
 
-        <BookmarkButton unitSetId={unitSetId} />
+        {!unitSet.randomSavedUnitsSet && (
+          <BookmarkButton unitSetId={unitSet._id} />
+        )}
       </div>
     </div>
   );

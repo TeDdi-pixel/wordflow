@@ -40,6 +40,16 @@ export const POST = async (req: NextRequest) => {
       { new: true }
     ).select("savedUnitsCount -_id");
 
+    if (!res) {
+      return NextResponse.json(
+        {
+          ok: false,
+          message: "UnitSet not found",
+        },
+        { status: 404 }
+      );
+    }
+
     return NextResponse.json({
       ok: true,
       newSavedUnitsCount: res.savedUnitsCount,
@@ -86,6 +96,16 @@ export const DELETE = async (req: NextRequest) => {
       { $inc: { savedUnitsCount: -1 } },
       { new: true }
     ).select("savedUnitsCount -_id");
+
+    if (!res) {
+      return NextResponse.json(
+        {
+          ok: false,
+          message: "UnitSet not found or savedUnitsCount is already 0",
+        },
+        { status: 404 }
+      );
+    }
 
     return NextResponse.json({
       ok: true,

@@ -18,7 +18,6 @@ export const AUTH_ERROR_MESSAGES = {
   AUTH_ERROR: "Помилка авторизації",
   SIGN_UP_ERROR: "Помилка реєстрації",
   SIGN_IN_ERROR: "Помилка реєстрації, переконайтесь, що дані коректні",
-  GOOGLE_AUTH_ERROR: "Помилка при аутентифікації через Google",
   RESERVED_USERNAME: `Ім'я користувача "admin" недоступне`,
   RESERVED_EMAIL: "Ця електронна адреса недоступна для реєстрації",
 };

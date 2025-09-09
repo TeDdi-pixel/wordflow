@@ -10,7 +10,7 @@ import { TypeSavedUnit } from "../model/types/saved-unit";
 
 const useSound = (
   currentUnit: TypeUnit | UserResultTerm | TypeSavedUnit["unit"] | null,
-  targetLang: Language
+  targetLang?: Language
 ) => {
   const [active, setActive] = useState<boolean>(false);
   const currentTermLang = usePracticeStore((state) => state.currentTermLang);
