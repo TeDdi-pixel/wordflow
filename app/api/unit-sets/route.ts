@@ -16,7 +16,9 @@ export const GET = async (req: NextRequest) => {
   return NextResponse.json({ unitSets });
 };
 
-export const POST = async () => {
+export const POST = async (req: NextRequest) => {
+  const { limit } = await req.json();
+
   const relatedUserId = await getUserId();
   const userName = await getUserName();
 
@@ -27,7 +29,7 @@ export const POST = async () => {
 
   const randomSavedUnits = await SavedUnit.aggregate([
     { $match: { relatedUserId: new mongoose.Types.ObjectId(relatedUserId) } },
-    { $sample: { size: 30 } },
+    { $sample: { size: limit } },
   ]);
 
   if (!randomSavedUnits || randomSavedUnits.length === 0) {

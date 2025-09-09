@@ -5,7 +5,7 @@ import bcrypt from "bcrypt";
 import { AUTH_ERROR_MESSAGES } from "@/shared/model/constants/errors";
 
 export const POST = async (req: NextRequest) => {
-  const { email, password } = await req.json();
+  const { email, password, provider } = await req.json();
 
   try {
     await createDbConnection();
@@ -19,7 +19,7 @@ export const POST = async (req: NextRequest) => {
       });
     }
 
-    if (user.provider === "google") {
+    if (provider === "google") {
       return NextResponse.json({
         ok: true,
         message: "Login successful (Google user)",

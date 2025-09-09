@@ -17,7 +17,7 @@ export const { handlers, signIn, signOut, auth } = NextAuth({
         try {
           let existingUserRes = await axios.post(
             `${process.env.BASE_URL}/api/users`,
-            { email: user.email },
+            { email: user.email, provider: account.provider },
             { headers: { "Content-Type": "application/json" } }
           );
 

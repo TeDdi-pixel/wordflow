@@ -3,13 +3,18 @@
 import { useState } from "react";
 import { createRandomUnitsSet } from "../api/createRandomUnitsSet";
 import { IoCreate } from "react-icons/io5";
+import { useSavedUnitsStore } from "@/shared/store/useSavedUnitsStore";
 export const CreateRandomUnitsSetButton = () => {
   const [isPending, setIsPending] = useState<boolean>(false);
+
+  const randomUnitsCounter = useSavedUnitsStore(
+    (state) => state.randomUnitsCounter
+  );
 
   const handleClick = async () => {
     setIsPending(true);
 
-    const res = await createRandomUnitsSet();
+    const res = await createRandomUnitsSet(randomUnitsCounter);
 
     if (res) setIsPending(false);
   };
@@ -23,7 +28,7 @@ export const CreateRandomUnitsSetButton = () => {
       }`}
       onClick={handleClick}
     >
-      <span>Створити випадковий набір</span>
+      <span>Створити набір</span>
       <IoCreate className="text-[24px]" />
     </button>
   );
