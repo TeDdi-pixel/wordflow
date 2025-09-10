@@ -1,7 +1,9 @@
 import { getAllUnitSets } from "@/entities/unit-set/api/getAllUnitSets";
 import { getUserId, getUserName } from "@/shared/lib/session";
+import { AUTH_ERROR_MESSAGES } from "@/shared/model/constants/errors";
 import SavedUnit from "@/shared/model/schemas/SavedUnit";
 import UnitSet from "@/shared/model/schemas/UnitSet";
+import { UnitCheck } from "@/shared/model/types/saved-units-store";
 import { TypeSort } from "@/shared/model/types/types";
 import { TypeUnit } from "@/shared/model/types/unit";
 import mongoose from "mongoose";
@@ -17,27 +19,53 @@ export const GET = async (req: NextRequest) => {
 };
 
 export const POST = async (req: NextRequest) => {
-  const { limit } = await req.json();
+  const { limit, selectedUnits } = (await req.json()) as {
+    limit: number;
+    selectedUnits: UnitCheck[];
+  };
+
+  const isSelectiveUnitSet = selectedUnits.length > 0;
 
   const relatedUserId = await getUserId();
   const userName = await getUserName();
+
+  if (!relatedUserId || !userName)
+    return NextResponse.json({
+      ok: false,
+      message: AUTH_ERROR_MESSAGES.SESSION_NOT_FOUND,
+    });
 
   const userUnitSetsCount = await UnitSet.countDocuments({
     relatedUserId,
     randomSavedUnitsSet: true,
   });
 
-  const randomSavedUnits = await SavedUnit.aggregate([
-    { $match: { relatedUserId: new mongoose.Types.ObjectId(relatedUserId) } },
-    { $sample: { size: limit } },
-  ]);
+  let savedUnits = [];
 
-  if (!randomSavedUnits || randomSavedUnits.length === 0) {
+  if (isSelectiveUnitSet) {
+    savedUnits = await Promise.all(
+      selectedUnits.map((doc) =>
+        SavedUnit.findOne({
+          relatedUserId: new mongoose.Types.ObjectId(relatedUserId),
+          _id: new mongoose.Types.ObjectId(doc.docId),
+        })
+      )
+    );
+  } else {
+    savedUnits = await SavedUnit.aggregate([
+      { $match: { relatedUserId: new mongoose.Types.ObjectId(relatedUserId) } },
+      { $sample: { size: limit } },
+    ]);
+  }
+
+  savedUnits = savedUnits.filter(Boolean);
+
+  if (!savedUnits || savedUnits.length === 0) {
     return NextResponse.json({ ok: false, message: "No saved units found" });
   }
 
   const unitsWithParent = await Promise.all(
-    randomSavedUnits.map(async (savedUnit) => {
+    savedUnits.map(async (savedUnit) => {
       const unitSet = await UnitSet.findOne(
         {
           _id: savedUnit.unitSetId,
@@ -58,8 +86,6 @@ export const POST = async (req: NextRequest) => {
       return {
         unit,
         unitSetInfo: {
-          title: `Набір випадкових термінів #${userUnitSetsCount + 1}`,
-          description: "Набір випадкових термінів",
           authorsName: userName,
           unitSetType: unitSet.unitSetType,
           source: unitSet.source,
@@ -101,7 +127,12 @@ export const POST = async (req: NextRequest) => {
   try {
     const newUnitSet = await UnitSet.create({
       relatedUserId,
-      title: `Випадкові терміни #${userUnitSetsCount + 1}`,
+      title: `${
+        isSelectiveUnitSet ? "Вибіркових терміни" : "Випадкові терміни"
+      } #${userUnitSetsCount + 1}`,
+      description: isSelectiveUnitSet
+        ? "Набір вибіркових термінів"
+        : "Набір випадкових термінів",
       authorsName: userName,
       unitSetType: "cards",
       units: newUnits,

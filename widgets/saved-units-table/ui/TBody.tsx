@@ -12,23 +12,31 @@ import { useEffect, useState } from "react";
 import { notFound } from "next/navigation";
 import NotProvidedIcon from "@/shared/icons/unit/NotProvidedIcon";
 import { SoundButton } from "@/features/play-pronunciation";
+import { useSavedUnitsStore } from "@/shared/store/useSavedUnitsStore";
+import { TdFirst } from "./TdFirst";
 
 export const TBody = ({ dbSavedUnits }: { dbSavedUnits: TypeSavedUnit[] }) => {
-  const [units, setUnits] = useState<TypeSavedUnit[]>(dbSavedUnits);
+  const [docs, setDocs] = useState<TypeSavedUnit[]>(dbSavedUnits);
+
+  const setUnitsToSelect = useSavedUnitsStore(
+    (state) => state.setUnitsToSelect
+  );
 
   const handleDeleteUnit = (unitId: string) => {
-    setUnits((prev) => prev.filter((doc) => doc.unit._id !== unitId));
+    setDocs((prev) => prev.filter((doc) => doc.unit._id !== unitId));
   };
 
   useEffect(() => {
-    if (units.length === 0) return notFound();
-  }, [units]);
+    if (docs.length === 0) return notFound();
+
+    setUnitsToSelect(docs.map((unit) => unit._id));
+  }, [docs]);
 
   return (
     <tbody>
-      {units?.map((doc, index) => (
-        <tr key={doc._id} className="bg-fg h-[57px]">
-          <Td first text={String(index + 1)} className="text-accent" />
+      {docs?.map((doc, index) => (
+        <tr key={doc._id} className="bg-fg h-[57px] group/checkbox">
+          <TdFirst docIndex={index} docId={doc._id} />
 
           <Separator />
 

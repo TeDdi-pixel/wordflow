@@ -63,6 +63,13 @@ export const UnitSetForm = () => {
             pendingText="Створюємо набір..."
             error={state.error}
           />
+
+          <SubmitButton
+            text="Створити набір"
+            pending={pending}
+            pendingText="Створюємо набір..."
+            error={state.error}
+          />
         </div>
       </div>
     </Form>

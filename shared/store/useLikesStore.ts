@@ -4,10 +4,20 @@ import { TypeLikesStore } from "../model/types/likes-store";
 export const useLikesStore = create<TypeLikesStore>((set) => ({
   likesCounts: [],
 
-  setLikesCounts: (unitSetId: string, count: number) =>
+  setLikesCounts: (unitSetId: string, newCount: number) =>
     set((state) => {
+      const existingUnit = state.likesCounts.find(
+        (unit) => unit.unitSetId === unitSetId
+      );
+
       return {
-        likesCounts: [...state.likesCounts, { unitSetId, count }],
+        likesCounts: existingUnit
+          ? state.likesCounts.map((unit) =>
+              unit.unitSetId === unitSetId
+                ? { unitSetId, count: newCount }
+                : unit
+            )
+          : [...state.likesCounts, { unitSetId, count: newCount }],
       };
     }),
 }));

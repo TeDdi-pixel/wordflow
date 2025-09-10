@@ -4,7 +4,6 @@ import { notFound } from "next/navigation";
 import { Filter } from "@/widgets/filters";
 import { TypeSort } from "@/shared/model/types/types";
 import { UnitSets } from "./UnitSets";
-import { getUserEmail, getUserName } from "@/shared/lib/session";
 
 const Home = async ({
   searchParams,

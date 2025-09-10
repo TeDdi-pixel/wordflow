@@ -1,6 +1,5 @@
 "use client";
 
-import { Language } from "@/shared/model/types/temp-store";
 import { TypeUnit, TypeUnitSet } from "@/shared/model/types/unit";
 import { usePracticeStore } from "@/shared/store/usePracticeStore";
 import Hint from "./Hint";

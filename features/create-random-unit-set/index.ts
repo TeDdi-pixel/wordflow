@@ -1,1 +1,1 @@
-export { CreateRandomUnitsSetButton } from "./ui/CreateRandomUnitsSetButton";
+export { CreateUnitsSetButton } from "./ui/CreateUnitsSetButton";

@@ -1,6 +1,7 @@
-import { useEffect, useCallback, useMemo } from "react";
+import { useEffect, useCallback, useMemo, useRef } from "react";
 import { usePracticeStore } from "@/shared/store/usePracticeStore";
 import { TypeUnit } from "@/shared/model/types/unit";
+import { usePathname } from "next/navigation";
 
 type Params = {
   units: TypeUnit[];
@@ -16,6 +17,16 @@ export const useHandleNavigation = ({ units, unitSetId }: Params) => {
   const setNextTerm = usePracticeStore((state) => state.setNextTerm);
   const resetTermNumber = usePracticeStore((state) => state.resetTermNumber);
   const resetCheckStatus = usePracticeStore((state) => state.resetCheckStatus);
+
+  const pathname = usePathname();
+  const prevPathnameRef = useRef<string | null>(null);
+
+  useEffect(() => {
+    if (prevPathnameRef.current && prevPathnameRef.current !== pathname) {
+      setCurrentUnitId(null);
+    }
+    prevPathnameRef.current = pathname;
+  }, [pathname, setCurrentUnitId]);
 
   useEffect(() => {
     setUnitSetId(unitSetId);

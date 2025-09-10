@@ -6,6 +6,7 @@ const CheckBox = ({ label }: { label: string }) => {
         id="rememberMe"
         className="w-5 h-5 appearance-none rounded-[4px] flex items-center justify-center bg-fg checked:before:content-['✔']"
       />
+
       <label htmlFor="rememberMe" className="text-text">
         {label}
       </label>

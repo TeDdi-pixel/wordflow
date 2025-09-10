@@ -65,7 +65,7 @@ export const usePracticeStore = create<PracticeStore>((set) => ({
 
   setUnitSetId: (id: string) => set({ unitSetId: id }),
 
-  setCurrentUnitId: (id: string) => set({ currentUnitId: id }),
+  setCurrentUnitId: (id: string | null) => set({ currentUnitId: id }),
 
   setCheckStatus: (status) => set({ checkStatus: status }),
 

@@ -38,6 +38,7 @@ const SubmitButton = ({ pending, text, error, pendingText }: Props) => {
             <span className="transition-all duration-200 translate-x-0 group-hover:translate-x-[24px] opacity-100 group-hover:opacity-0">
               <AddCollectionIcon />
             </span>
+
             <span className="transition-all duration-200 translate-x-0 group-hover:-translate-x-[24px] opacity-0 group-hover:opacity-100">
               <RiUploadCloud2Fill className="w-[24px] h-[24px] text-accent" />
             </span>

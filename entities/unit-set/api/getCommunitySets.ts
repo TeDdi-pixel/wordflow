@@ -10,6 +10,7 @@ export const getCommunitySets = async (
 
   const unitSets = await UnitSet.find({
     unitSetType: setType,
+    randomSavedUnitsSet: false,
   });
 
   return toPlain(unitSets) || [];
