@@ -37,7 +37,7 @@ export const UnitInput = ({ unitId, name, label, fieldType }: Props) => {
     fieldType === "definition" && !!proposedOption && !isDefinitionSet(unitId);
 
   return (
-    <div className="flex flex-col w-full relative">
+    <div className="relative flex flex-col w-full">
       <input
         type="text"
         name={name}
@@ -54,9 +54,7 @@ export const UnitInput = ({ unitId, name, label, fieldType }: Props) => {
         hintText={proposedOption}
       />
 
-      <label className="text-[12px] uppercase font-bold mb-[38px]">
-        {label}
-      </label>
+      <label className="text-[14px] uppercase mb-[38px]">{label}</label>
     </div>
   );
 };

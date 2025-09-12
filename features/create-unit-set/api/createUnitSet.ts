@@ -29,6 +29,8 @@ export const createUnitSet = async <T extends BaseFields>(
 
     const description = form.get("description");
 
+    const isPrivate = form.get("isPrivate") === "true";
+
     const source = form.get("source") as Language;
     const target = form.get("target") as Language;
 
@@ -113,6 +115,8 @@ export const createUnitSet = async <T extends BaseFields>(
           return { ...unit, audio, phonetic, meanings };
         } catch (err) {
           console.error("Error fetching word", unit.term, err);
+          prevState.error = `Не вдалося отримати дані для слова "${unit.term}"`;
+
           return { ...unit, audio, phonetic, meanings };
         }
       })
@@ -128,6 +132,7 @@ export const createUnitSet = async <T extends BaseFields>(
       target,
       randomSavedUnitsSet: false,
       units: updatedUnits,
+      isPrivate,
     });
 
     return {

@@ -13,6 +13,7 @@ export type TitleInputProps = {
 
 export type TypeInitialForm = {
   title: string;
+  isPrivate: boolean | null;
   status: "SUCCESS" | "ERROR" | string;
   description: string;
   units: TypeUnit[];

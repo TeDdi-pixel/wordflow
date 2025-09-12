@@ -14,6 +14,8 @@ export const ActionBar = ({
   units: TypeUnit[];
   unitSet: TypeUnitSet;
 }) => {
+  const isActionsVisible = !unitSet.randomSavedUnitsSet || !unitSet.isPrivate;
+
   return (
     <div className="flex justify-between w-full">
       <div className="flex items-center gap-4">
@@ -29,11 +31,9 @@ export const ActionBar = ({
 
         <SoundButton units={units} unitSet={unitSet} />
 
-        {!unitSet.randomSavedUnitsSet && <LikeButton />}
+        {isActionsVisible && <LikeButton />}
 
-        {!unitSet.randomSavedUnitsSet && (
-          <BookmarkButton unitSetId={unitSet._id} />
-        )}
+        {isActionsVisible && <BookmarkButton unitSetId={unitSet._id} />}
       </div>
     </div>
   );

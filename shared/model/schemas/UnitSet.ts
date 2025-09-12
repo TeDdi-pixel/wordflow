@@ -16,6 +16,7 @@ const unitSetSchema = new mongoose.Schema(
       enum: ["cards"],
       required: true,
     },
+    isPrivate: { type: Boolean, required: true, default: false },
     randomSavedUnitsSet: { type: Boolean, required: true, default: false },
     likesCount: { type: Number, required: true, default: 0, min: 0 },
     source: { type: String, enum: ["ENG", "UA", "RU"] },
@@ -60,9 +61,13 @@ const unitSetSchema = new mongoose.Schema(
   }
 );
 
-unitSetSchema.index({ createdAt: 1 });
+unitSetSchema.index({ unitSetType: 1, isPrivate: 1, randomSavedUnitsSet: 1 });
+unitSetSchema.index({ relatedUserId: 1, unitSetType: 1 });
+unitSetSchema.index({ unitSetType: 1, isPrivate: 1, createdAt: -1 });
+unitSetSchema.index({ unitSetType: 1, isPrivate: 1, likesCount: -1 });
 unitSetSchema.index({ createdAt: -1 });
 unitSetSchema.index({ likesCount: -1 });
+unitSetSchema.index({ unitsCount: -1 });
 
 const UnitSet =
   mongoose.models.UnitSet ||

@@ -41,6 +41,7 @@ export type TypeUnitSet = {
   randomSavedUnitsSet: boolean;
   savedUnitsCount: number;
   savedUnitsLanguages?: Language[];
+  isPrivate: boolean;
 };
 
 export type TypePhonetic = {

@@ -137,6 +137,7 @@ export const POST = async (req: NextRequest) => {
       unitSetType: "cards",
       units: newUnits,
       randomSavedUnitsSet: true,
+      isPrivate: true,
       savedUnitsLanguages: Array.from(savedUnitsLanguagesSet),
     });
     return NextResponse.json({ ok: true, newUnitSet });

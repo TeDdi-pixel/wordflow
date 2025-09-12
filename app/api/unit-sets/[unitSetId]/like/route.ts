@@ -5,7 +5,7 @@ import UnitSet from "@/shared/model/schemas/UnitSet";
 import { NextRequest, NextResponse } from "next/server";
 
 export const GET = async (
-  _req: NextRequest,
+  req: NextRequest,
   { params }: { params: Promise<{ unitSetId: string }> }
 ) => {
   try {

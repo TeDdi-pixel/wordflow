@@ -14,4 +14,5 @@ export const initialForm = (pathname: string): TypeInitialForm => ({
   error: "",
   source: "ENG",
   target: "UA",
+  isPrivate: null,
 });

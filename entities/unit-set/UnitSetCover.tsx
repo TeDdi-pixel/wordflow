@@ -10,6 +10,7 @@ import { TypeCardSetProps } from "./model/types";
 import CursorFollower from "@/shared/ui/CursorFollower";
 import { SavedUnitsCount } from "./ui/SavedUnitsCount";
 import { Languages } from "./ui/Languages";
+import { DeleteButton } from "./ui/DeleteButton";
 
 export const UnitSetCover = ({
   unitSetId,
@@ -60,6 +61,8 @@ export const UnitSetCover = ({
 
           <SavedUnitsCount savedUnitCount={savedUnitsCount} />
         </div>
+
+        <DeleteButton unitSetId={unitSetId} />
       </div>
     </Link>
   );

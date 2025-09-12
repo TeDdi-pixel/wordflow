@@ -13,14 +13,30 @@ import { DescriptionInput } from "./DescriptionInput";
 import useActionForm from "@/shared/hooks/useActionForm";
 import { FormUnitList } from "@/features/drag-form-units";
 import LanguageSelect from "./LanguageSelect";
+import { useEffect, useRef } from "react";
+import { useTempStore } from "@/shared/store/useTempStore";
+import toast from "react-hot-toast";
 
 export const UnitSetForm = () => {
   const pathname = usePathname();
+  const hiddenInputRef = useRef<HTMLInputElement>(null);
+  const previousPending = useRef<boolean>(false);
+
+  const resetTempStore = useTempStore((state) => state.resetTempStore);
 
   const { state, action, pending } = useActionForm<TypeInitialForm>(
     createUnitSet,
     initialForm(pathname)
   );
+
+  useEffect(() => {
+    if (previousPending.current && !pending && !state.error) {
+      resetTempStore();
+      toast.success("Набір успішно створений");
+    }
+
+    previousPending.current = pending;
+  }, [pending, resetTempStore]);
 
   useToastLoading(pending);
 
@@ -56,19 +72,30 @@ export const UnitSetForm = () => {
           <FormUnitList />
         </div>
 
-        <div className="flex justify-center w-full">
-          <SubmitButton
-            text="Створити набір"
-            pending={pending}
-            pendingText="Створюємо набір..."
-            error={state.error}
+        <div className="flex justify-center w-full gap-4">
+          <input
+            ref={hiddenInputRef}
+            type="hidden"
+            name="isPrivate"
+            value="false"
           />
 
           <SubmitButton
+            setHiddenInputValue={(val) => {
+              hiddenInputRef.current!.value = val;
+            }}
+            isPrivate={false}
             text="Створити набір"
             pending={pending}
-            pendingText="Створюємо набір..."
-            error={state.error}
+          />
+
+          <SubmitButton
+            setHiddenInputValue={(val) => {
+              hiddenInputRef.current!.value = val;
+            }}
+            isPrivate={true}
+            text="Створити приватний набір"
+            pending={pending}
           />
         </div>
       </div>
