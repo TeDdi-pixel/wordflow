@@ -48,11 +48,11 @@ export type SessionUser = {
 export type InitialRegForm = TypeUser & {
   verifyEmail: string;
   verifyPassword: string;
-  status: "SUCCESS" | "ERROR" | string;
+  operationType: "SUCCESS" | "ERROR" | string;
   error: string;
 };
 
 export type InitialLoginForm = Omit<TypeUser, "username"> & {
-  status: "SUCCESS" | "ERROR" | string;
+  operationType: "SUCCESS" | "ERROR" | string;
   error: string;
 };

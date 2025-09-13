@@ -13,7 +13,7 @@ const useActionForm = <T extends BaseFields>(
   );
 
   useEffect(() => {
-    if (state.status === "ERROR") {
+    if (state.operationType === "ERROR") {
       showError(state.error, crypto.randomUUID());
     }
   }, [state]);

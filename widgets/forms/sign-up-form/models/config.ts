@@ -6,5 +6,5 @@ export const initialForm = {
   password: "",
   verifyPassword: "",
   error: "",
-  status: "",
+  operationType: "",
 };

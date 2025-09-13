@@ -1,7 +1,7 @@
 import { UnitSetType } from "./unit";
 
 export type BaseFields = {
-  status: "SUCCESS" | "ERROR" | string;
+  operationType: "SUCCESS" | "ERROR" | string;
   unitSetType?: UnitSetType;
   error: string;
 };

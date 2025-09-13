@@ -102,5 +102,3 @@ export const UnitSetForm = () => {
     </Form>
   );
 };
-
-export default UnitSetForm;

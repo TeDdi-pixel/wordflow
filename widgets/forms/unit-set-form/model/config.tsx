@@ -9,7 +9,7 @@ export const initialForm = (pathname: string): TypeInitialForm => ({
   title: "",
   description: "",
   units: [],
-  status: "",
+  operationType: "",
   unitSetType: typeMap.get(pathname) as UnitSetType,
   error: "",
   source: "ENG",

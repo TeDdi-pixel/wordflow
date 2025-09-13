@@ -1,4 +1,5 @@
 import { getAllUnitSets } from "@/entities/unit-set/api/getAllUnitSets";
+import createDbConnection from "@/shared/lib/mongoose";
 import { getUserId, getUserName } from "@/shared/lib/session";
 import { AUTH_ERROR_MESSAGES } from "@/shared/model/constants/errors";
 import SavedUnit from "@/shared/model/schemas/SavedUnit";
@@ -34,6 +35,8 @@ export const POST = async (req: NextRequest) => {
       ok: false,
       message: AUTH_ERROR_MESSAGES.SESSION_NOT_FOUND,
     });
+
+  await createDbConnection();
 
   const userUnitSetsCount = await UnitSet.countDocuments({
     relatedUserId,

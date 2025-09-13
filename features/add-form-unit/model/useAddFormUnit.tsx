@@ -1,6 +1,6 @@
+import { showError } from "@/shared/lib/toasts";
 import { MAX_ITEMS_LENGTH } from "@/shared/model/constants/units";
 import { useTempStore } from "@/shared/store/useTempStore";
-import toast from "react-hot-toast";
 
 const useAddFormUnit = (unitId: string) => {
   const addUnit = useTempStore((state) => state.addUnit);
@@ -9,10 +9,10 @@ const useAddFormUnit = (unitId: string) => {
 
   const handleClick = () => {
     if (getUnits().length >= MAX_ITEMS_LENGTH) {
-      toast.error("Ви досягли максимальної кількості карток", {
-        position: "top-center",
-        id: crypto.randomUUID(),
-      });
+      showError(
+        "Ви досягли максимальної кількості карток",
+        crypto.randomUUID()
+      );
     }
     setCurrentUnitId(unitId);
     addUnit();

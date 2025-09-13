@@ -1,7 +1,6 @@
 "use client";
 
 import AddCollectionIcon from "@/shared/icons/unit/AddCollectionIcon";
-import { RiUploadCloud2Fill } from "react-icons/ri";
 import { BsIncognito } from "react-icons/bs";
 
 type Props = {

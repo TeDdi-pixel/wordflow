@@ -5,5 +5,5 @@ export const initialForm: InitialLoginForm = {
   email: "",
   password: "",
   error: "",
-  status: "",
+  operationType: "",
 };

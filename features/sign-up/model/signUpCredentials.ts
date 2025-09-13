@@ -12,7 +12,7 @@ import User from "@/shared/model/schemas/User";
 
 const userBackUpFields = (formData: InitialRegForm) => ({
   ...formData,
-  status: "ERROR",
+  operationType: "ERROR",
 });
 
 export const signUpCredentials = async (

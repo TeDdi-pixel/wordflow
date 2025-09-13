@@ -7,7 +7,6 @@ import { useEffect, useState } from "react";
 import { getLikeStatus } from "../api/getLikeStatus";
 import { deleteLike } from "../api/deleteLike";
 import { addLike } from "../api/addLike";
-import { usePracticeStore } from "@/shared/store/usePracticeStore";
 import { useLikesStore } from "@/shared/store/useLikesStore";
 
 const useLike = () => {

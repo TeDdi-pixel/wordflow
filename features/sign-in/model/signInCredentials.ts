@@ -9,7 +9,7 @@ import { redirect } from "next/navigation";
 
 const userBackUpFields = (formData: InitialLoginForm) => ({
   ...formData,
-  status: "ERROR",
+  operationType: "ERROR",
 });
 
 export const signInCredentials = async (
