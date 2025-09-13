@@ -11,6 +11,7 @@ const useBookmark = (unitSetId: string, unitId?: string) => {
   const currentUnitId = usePracticeStore(
     (state) => state.currentUnitId ?? unitId
   );
+
   const savedUnits = useSavedUnitsStore((state) => state.savedUnits);
   const setSavedUnitsCounts = useSavedUnitsStore(
     (state) => state.setSavedUnitsCounts
