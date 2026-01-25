@@ -29,7 +29,7 @@ export const UnitSetCover = ({
     <Link
       id={`unit-set-cover-${unitSetId}`}
       href={`/card-set/${unitSetId}`}
-      className="group relative max-w-[371px] hover:scale-105 hover:shadow-2xl h-[196px] rounded-default w-full flex flex-col justify-between bg-fg border-3 border-transparent p-[16px] text-[14px] overflow-hidden transition-all duration-[215ms]"
+      className="group relative hover:scale-105 hover:shadow-2xl h-[196px] rounded-default w-full flex flex-col justify-between bg-fg border-3 border-transparent p-[16px] text-[14px] overflow-hidden transition-all duration-[215ms]"
     >
       <CursorFollower unitSetId={unitSetId} />
 
@@ -52,14 +52,18 @@ export const UnitSetCover = ({
       </div>
 
       <div className="flex justify-between items-center h-[32px] z-10">
-        <div className="flex items-center gap-2 ">
-          <CardTypeIcon unitSetType={unitSetType} />
+        <div className="flex items-center gap-2 justify-between w-full">
+          <div className="flex items-center gap-2">
+            <CardTypeIcon unitSetType={unitSetType} unitSetId={unitSetId} />
 
-          <AuthorsName authorsName={authorsName} />
+            <AuthorsName authorsName={authorsName} />
+          </div>
 
-          <LikesCount likesCount={likesCount} />
+          <div className="flex gap-2">
+            <LikesCount likesCount={likesCount} />
 
-          <SavedUnitsCount savedUnitCount={savedUnitsCount} />
+            <SavedUnitsCount savedUnitCount={savedUnitsCount} />
+          </div>
         </div>
 
         <DeleteButton unitSetId={unitSetId} />

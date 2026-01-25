@@ -11,8 +11,8 @@ export const ProfileBlock = ({
   displayName: string;
 }) => {
   return (
-    <div className="relative group w-max">
-      <div className="cursor-pointer hover:text-text transition-colors flex items-center gap-2">
+    <div className="relative group w-max hidden sm:block">
+      <div className="cursor-pointer hover:text-text transition-colors flex items-center gap-2 text-[14px] md:text-[16px]">
         <ProfileIcon session={session} />
 
         <UserName displayName={displayName} />

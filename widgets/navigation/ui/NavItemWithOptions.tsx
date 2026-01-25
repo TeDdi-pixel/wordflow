@@ -2,24 +2,35 @@
 
 import { usePathname } from "next/navigation";
 import { NavItemWithOptionsProps } from "../model/types";
+import { useNavigationStore } from "@/shared/store/useNavigationStore";
 
 export const NavItemWithOptions = ({ item }: NavItemWithOptionsProps) => {
   const pathname = usePathname();
 
   const isActive = item.options?.some(
     (option) =>
-      pathname === option.path || pathname.startsWith(option.path + "/")
+      pathname === option.path || pathname.startsWith(option.path + "/"),
   );
+
+  const isOpened = useNavigationStore((state) => state.isOpened);
+  const setIsOpened = useNavigationStore((state) => state.setIsOpened);
+
   return (
     <>
-      <div className="px-[12px] py-[6px] flex gap-1 items-center font-medium hover:text-text transition-all text-text duration-300 h-[33px] group-hover:scale-50 group-hover:opacity-50 scale-100 opacity-100">
+      <div
+        onClick={setIsOpened}
+        className="px-[12px] py-[6px] flex gap-1 items-center font-medium hover:text-text transition-all text-text duration-300 h-[33px] group-hover:scale-50 group-hover:opacity-50 scale-100 opacity-100"
+      >
         {item.name}
-        <span className="inline-block transition-transform rotate-0 group-hover:rotate-180 text-[16px]">
+        <span
+          className={`inline-block transition-transform rotate-0 group-hover:rotate-180 text-[16px] ${isOpened ? "rotate-180" : ""}`}
+        >
           {item.icon}
         </span>
       </div>
 
       <div
+        onClick={setIsOpened}
         className={`absolute flex gap-1 items-center z-10 rounded-4xl px-[12px] py-[6px] font-medium duration-300 transition-all group-hover:scale-90 ${
           isActive
             ? "-translate-y-[33px] rounded-default text-bg-accent bg-bg-accent-2"
@@ -28,7 +39,9 @@ export const NavItemWithOptions = ({ item }: NavItemWithOptionsProps) => {
       >
         <span>{item.name}</span>
 
-        <span className="inline-block transition-transform group-hover:rotate-180 rotate-0 text-[16px]">
+        <span
+          className={`inline-block transition-transform group-hover:rotate-180 rotate-0 text-[16px] ${isOpened ? "rotate-180" : ""}`}
+        >
           {item.icon}
         </span>
       </div>

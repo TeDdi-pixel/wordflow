@@ -15,15 +15,15 @@ const Home = async ({
 
   const { unitSets, filterLabel, totalDocsCount } = await getAllUnitSets(
     sort,
-    limit
+    limit,
   );
 
   if (unitSets.length === 0) return notFound();
 
   return (
     <div className="max-w-[1146px] w-full px-[16px] md:px-[32px] mx-auto h-full">
-      <div className="flex items-center justify-between mb-[50px]">
-        <MainTitle text="Усі набори" marginBottom={0} />
+      <div className="flex items-center justify-between mb-5 md:mb-[50px]">
+        <MainTitle text="Усі набори" />
 
         <Filter filterLabel={filterLabel || "Спочатку старі"} />
       </div>

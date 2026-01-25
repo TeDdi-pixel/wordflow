@@ -14,7 +14,7 @@ export const SavedWordsTable = async () => {
   if (savedUnits.length === 0) return notFound();
 
   return (
-    <>
+    <div className="flex flex-col">
       <table className="w-full border-separate table-fixed border-spacing-y-2">
         <colgroup>
           {colWidths.map((cls, i) => (
@@ -28,6 +28,6 @@ export const SavedWordsTable = async () => {
       </table>
 
       <TableBottom />
-    </>
+    </div>
   );
 };

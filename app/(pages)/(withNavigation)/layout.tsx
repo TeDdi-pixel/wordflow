@@ -10,6 +10,7 @@ export default function GamesLayout({
   return (
     <>
       <Navigation />
+
       <Suspense fallback={<Loading />}>
         <main className="flex max-w-[1440px] w-full h-full flex-col items-center grow mb-[100px]">
           {children}

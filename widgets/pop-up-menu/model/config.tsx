@@ -23,7 +23,7 @@ export const menuButtons: TypePopUpMenu[] = [
     id: 0,
     name: "Мої юніти",
     icon: <CardsIcon />,
-    path: "/history",
+    path: "/my-card-sets",
   },
   {
     id: 1,

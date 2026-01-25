@@ -43,7 +43,7 @@ export const UnitSets = ({ initialUnitSets, sort, totalDocsCount }: Props) => {
           setLoading(true);
 
           const res = await axios.get(
-            `/api/unit-sets?sort=${sort}&limit=${limit + 9}`
+            `/api/unit-sets?sort=${sort}&limit=${limit + 9}`,
           );
 
           setUnitSets(res.data.unitSets);
@@ -51,7 +51,7 @@ export const UnitSets = ({ initialUnitSets, sort, totalDocsCount }: Props) => {
           setLoading(false);
         }
       },
-      { threshold: 1 }
+      { threshold: 1 },
     );
 
     observer.observe(sentinelRef.current);
@@ -61,7 +61,7 @@ export const UnitSets = ({ initialUnitSets, sort, totalDocsCount }: Props) => {
 
   return (
     <>
-      <div className="grid w-full grid-cols-3 gap-4">
+      <div className="flex flex-wrap justify-center sm:grid w-full sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {unitSets.map((unitSet) => (
           <UnitSetCover
             key={unitSet._id}

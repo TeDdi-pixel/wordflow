@@ -1,8 +1,7 @@
 const LikeIcon = () => {
   return (
     <svg
-      width={24}
-      height={24}
+      className="w-[22px] h-[22px] md:w-[24px] md:h-[24px]"
       viewBox="0 0 24 24"
       fill="currentColor"
       xmlns="http://www.w3.org/2000/svg"

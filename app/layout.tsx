@@ -37,10 +37,13 @@ export default function RootLayout({
           <Suspense fallback={<Loading />}>{children}</Suspense>
         </main>
 
-        <footer className="mb-4 flex text-[12px] items-center">
-          2025 — <IoMdInfinite className="ml-2 text-[24px]" />. All bugs are
-          features, some just undocumented. Proudly made with 1% inspiration and
-          99% StackOverflow.
+        <footer className="mb-4 flex text-[12px] text-center items-center justify-center px-4 flex-wrap">
+          <span className="flex">
+            <span className="flex items-center"> 2025 —</span>{" "}
+            <IoMdInfinite className="ml-2 text-[24px]" />.
+          </span>{" "}
+          All bugs are features, some just undocumented. Proudly made with 1%
+          inspiration and 99% StackOverflow.
         </footer>
 
         <SpeedInsights />

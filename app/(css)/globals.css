@@ -12,19 +12,23 @@
   --color-accent: #ffcfab;
   --color-success: #90f0d8;
   --color-error: #ff7b85;
+  --color-exit: #d05962;
   --color-disabled: #3d3346;
 
   --radius-default: 0.5rem;
+  --breakpoint-w-699: 699px;
   --breakpoint-w-805: 805px;
-
-  --default-transition-timing-function: ;
 }
 
+html,
 body {
-  background: var(--color-bg);
-  color: var(--color-text);
-  font-family: "Roboto Mono", monospace;
+  overflow-x: hidden;
+  width: 100%;
+  position: relative;
   font-weight: 500;
+  font-family: "Roboto Mono", monospace;
+  color: var(--color-text);
+  background: var(--color-bg);
 }
 
 .unit-button-shadow {

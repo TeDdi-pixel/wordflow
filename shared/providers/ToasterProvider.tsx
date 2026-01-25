@@ -6,6 +6,9 @@ import Spinner from "../ui/Spinner";
 export default function ToasterProvider() {
   return (
     <Toaster
+      containerStyle={{
+        zIndex: 2147483647,
+      }}
       toastOptions={{
         style: {
           background: "var(--color-toast-bg)",

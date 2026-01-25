@@ -3,8 +3,8 @@ import { navigation } from "../model/config";
 
 export const Navigation = () => {
   return (
-    <nav className="mb-[100px] w-fit">
-      <ul className="bg-fg rounded-default py-3 px-6 text-text flex gap-1 items-center text-[14px]">
+    <nav className="mb-[50px] md:mb-[100px] w-fit hidden sm:block">
+      <ul className="bg-fg rounded-default px-4 py-3 md:px-6 text-text flex items-center text-[14px]">
         {navigation.regularPages.map((item) => (
           <NavItem key={item.id} item={item} />
         ))}

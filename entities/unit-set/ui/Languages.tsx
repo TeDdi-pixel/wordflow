@@ -29,11 +29,11 @@ export const Languages = ({
         <LanguageIcon />
 
         <div className="flex items-center gap-1">
-          <span>{source}</span>
+          <span className="text-[12px] md:text-[14px]">{source}</span>
 
-          <CgArrowsExchangeAlt className="text-[20px]" />
+          <CgArrowsExchangeAlt className="text-[18px] md:text-[20px]" />
 
-          <span>{target}</span>
+          <span className="text-[12px] md:text-[14px]">{target}</span>
         </div>
       </div>
     );

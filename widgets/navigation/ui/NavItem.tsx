@@ -1,7 +1,10 @@
+"use client";
+
 import { DropdownOptions } from "@/widgets/navigation/ui/DropdownOptions";
 import { NavItemWithOptions } from "@/widgets/navigation/ui/NavItemWithOptions";
 import { SingleNavItem } from "@/widgets/navigation/ui/SingleNavItem";
 import { NavigationItem } from "../model/types";
+import { useNavigationStore } from "@/shared/store/useNavigationStore";
 
 const NavItem = ({ item }: { item: NavigationItem }) => {
   return (
@@ -13,6 +16,7 @@ const NavItem = ({ item }: { item: NavigationItem }) => {
           <NavItemWithOptions item={item} />
         )}
       </div>
+
       {item.options && <DropdownOptions options={item.options} />}
     </li>
   );

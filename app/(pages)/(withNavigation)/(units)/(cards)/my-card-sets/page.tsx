@@ -14,10 +14,10 @@ const MyCardSetsPage = async () => {
   if (unitSets.length === 0) notFound();
 
   return (
-    <div className="max-w-[1146px] w-full px-[16px] md:px-[32px] mx-auto h-full">
+    <div className="max-w-[1146px] w-full px-[16px] md:px-[32px] mx-auto h-full flex flex-col gap-5 md:gap-[50px]">
       <MainTitle text={"Мої картки"} />
 
-      <div className="grid w-full grid-cols-3 gap-4">
+      <div className="flex flex-wrap justify-center sm:grid w-full sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {unitSets.map((unitSet) => (
           <UnitSetCover
             key={unitSet._id}

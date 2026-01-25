@@ -1,8 +1,7 @@
 const LanguageIcon = () => {
   return (
     <svg
-      width={30}
-      height={30}
+      className="w-[27px] h-[27px] md:w-[30px] md:h-[30px]"
       viewBox="0 0 30 30"
       fill="none"
       xmlns="http://www.w3.org/2000/svg"

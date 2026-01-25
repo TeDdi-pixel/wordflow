@@ -26,7 +26,7 @@ export const UnitSetForm = () => {
 
   const { state, action, pending } = useActionForm<TypeInitialForm>(
     createUnitSet,
-    initialForm(pathname)
+    initialForm(pathname),
   );
 
   useEffect(() => {
@@ -42,7 +42,9 @@ export const UnitSetForm = () => {
 
   return (
     <Form action={action} className="max-w-[935px] w-full flex flex-col">
-      <MainTitle text="Створити список карток" />
+      <div className="mb-5 md:mb-[50px]">
+        <MainTitle text="Створити список карток" />
+      </div>
 
       <TitleInput
         placeholder="Створіть назву для вашої картки, наприклад, “Verbs”."

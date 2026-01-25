@@ -1,3 +1,6 @@
+"use client";
+
+import { useFiltersStore } from "@/shared/store/useFiltersStore";
 import { Route } from "next";
 import Link from "next/link";
 import { ReactNode } from "react";
@@ -11,8 +14,13 @@ export const Option = ({
   text: string;
   path: Route;
 }) => {
+  const closeFilters = useFiltersStore((state) => state.closeFilters);
+
   return (
-    <li className="cursor-pointer group/item hover:bg-bg-accent-2 hover:text-text-2 min-w-[154px]">
+    <li
+      className="cursor-pointer group/item hover:bg-bg-accent-2 hover:text-text-2 min-w-[154px]"
+      onClick={closeFilters}
+    >
       <Link
         href={path}
         className="flex items-center gap-2.5 group-hover/item:translate-x-2 transition-transform px-4 py-2"

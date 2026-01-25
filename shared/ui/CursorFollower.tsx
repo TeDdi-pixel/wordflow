@@ -1,7 +1,12 @@
 "use client";
 import { memo, useEffect, useRef, useCallback } from "react";
+import { isTouchDevice } from "../utils/IsTouchDevice";
 
-const CursorFollower = memo(({ unitSetId }: { unitSetId: string }) => {
+interface CursorFollowerProps {
+  unitSetId: string;
+}
+
+const CursorFollower = memo(({ unitSetId }: CursorFollowerProps) => {
   const shadowRef = useRef<HTMLDivElement>(null);
   const lastMouseEvent = useRef<MouseEvent | null>(null);
   const animationFrame = useRef<number | null>(null);
@@ -10,6 +15,8 @@ const CursorFollower = memo(({ unitSetId }: { unitSetId: string }) => {
 
   const updatePosition = useCallback(
     (mouseEvent: MouseEvent) => {
+      if (isTouchDevice()) return;
+
       if (animationFrame.current) {
         cancelAnimationFrame(animationFrame.current);
       }
@@ -17,6 +24,7 @@ const CursorFollower = memo(({ unitSetId }: { unitSetId: string }) => {
       animationFrame.current = requestAnimationFrame(() => {
         const element = document.getElementById(hoverElementId);
         const shadow = shadowRef.current;
+
         if (!element || !shadow) return;
 
         const rect = element.getBoundingClientRect();
@@ -34,9 +42,7 @@ const CursorFollower = memo(({ unitSetId }: { unitSetId: string }) => {
           return;
         }
 
-        if (!isVisible.current) {
-          isVisible.current = true;
-        }
+        if (!isVisible.current) isVisible.current = true;
 
         const centerX = rect.width / 2;
         const centerY = rect.height / 2;
@@ -54,14 +60,13 @@ const CursorFollower = memo(({ unitSetId }: { unitSetId: string }) => {
         shadow.style.transform = "translate(-50%, -50%) scale(1)";
       });
     },
-    [hoverElementId]
+    [hoverElementId],
   );
 
   const throttledUpdate = useCallback(
     (() => {
       let lastTime = 0;
-      const delay = 16;
-
+      const delay = 16; // ~60fps
       return (mouseEvent: MouseEvent) => {
         const now = Date.now();
         if (now - lastTime >= delay) {
@@ -70,10 +75,12 @@ const CursorFollower = memo(({ unitSetId }: { unitSetId: string }) => {
         }
       };
     })(),
-    [updatePosition]
+    [updatePosition],
   );
 
   useEffect(() => {
+    if (isTouchDevice()) return;
+
     const element = document.getElementById(hoverElementId);
     if (!element) return;
 
@@ -96,30 +103,26 @@ const CursorFollower = memo(({ unitSetId }: { unitSetId: string }) => {
     };
 
     const handleScroll = () => {
-      if (lastMouseEvent.current) {
-        throttledUpdate(lastMouseEvent.current);
-      }
+      if (lastMouseEvent.current) throttledUpdate(lastMouseEvent.current);
     };
 
     const handleGlobalMouseMove = (e: MouseEvent) => {
       lastMouseEvent.current = e;
 
+      if (!element) return;
       const rect = element.getBoundingClientRect();
       const x = e.clientX - rect.left;
       const y = e.clientY - rect.top;
       const isInBounds =
         x >= 0 && x <= rect.width && y >= 0 && y <= rect.height;
 
-      if (isInBounds && !isVisible.current) {
-        updatePosition(e);
-      } else if (!isInBounds && isVisible.current) {
+      if (isInBounds && !isVisible.current) updatePosition(e);
+      else if (!isInBounds && isVisible.current) {
         if (shadowRef.current) {
           isVisible.current = false;
           shadowRef.current.style.transform = "translate(-50%, -50%) scale(0)";
         }
-      } else if (isInBounds && isVisible.current) {
-        throttledUpdate(e);
-      }
+      } else if (isInBounds && isVisible.current) throttledUpdate(e);
     };
 
     element.addEventListener("mousemove", handleMove);
@@ -132,9 +135,7 @@ const CursorFollower = memo(({ unitSetId }: { unitSetId: string }) => {
     window.addEventListener("scroll", handleScroll, { passive: true });
 
     return () => {
-      if (animationFrame.current) {
-        cancelAnimationFrame(animationFrame.current);
-      }
+      if (animationFrame.current) cancelAnimationFrame(animationFrame.current);
 
       element.removeEventListener("mousemove", handleMove);
       element.removeEventListener("mouseenter", handleEnter);
@@ -148,11 +149,11 @@ const CursorFollower = memo(({ unitSetId }: { unitSetId: string }) => {
     <div
       ref={shadowRef}
       className="absolute pointer-events-none will-change-transform transition-transform top-0 left-0"
-      style={{
-        transform: "translate(-50%, -50%) scale(0)",
-      }}
+      style={{ transform: "translate(-50%, -50%) scale(0)" }}
     />
   );
 });
+
+CursorFollower.displayName = "CursorFollower";
 
 export default CursorFollower;

@@ -3,9 +3,9 @@ type Props = {
   marginBottom?: number;
 };
 
-const MainTitle = ({ text, marginBottom = 50 }: Props) => {
+const MainTitle = ({ text }: Props) => {
   return (
-    <h1 className={`text-4xl font-bold text-text mb-[${marginBottom}px]`}>
+    <h1 className="text-lg sm:text-2xl md:text-3xl lg:text-4lx font-bold text-text">
       {text}
     </h1>
   );
