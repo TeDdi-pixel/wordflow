@@ -19,7 +19,7 @@ export const TBody = ({ dbSavedUnits }: { dbSavedUnits: TypeSavedUnit[] }) => {
   const [docs, setDocs] = useState<TypeSavedUnit[]>(dbSavedUnits);
 
   const setUnitsToSelect = useSavedUnitsStore(
-    (state) => state.setUnitsToSelect
+    (state) => state.setUnitsToSelect,
   );
 
   const handleDeleteUnit = (unitId: string) => {
@@ -65,7 +65,9 @@ export const TBody = ({ dbSavedUnits }: { dbSavedUnits: TypeSavedUnit[] }) => {
               href={`/card-set/${doc.unitSetId}`}
               className="relative flex items-center justify-center w-full gap-2 overflow-hidden group hover:pr-[30px] transition-all"
             >
-              <span className="scale-90">{unitTypeIcon(doc.unitSetType)}</span>
+              <span className="scale-90">
+                {unitTypeIcon(doc.unitSetType, doc.unitSetId)}
+              </span>
 
               <span className="truncate">{doc.title}</span>
 
