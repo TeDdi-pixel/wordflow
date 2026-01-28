@@ -3,8 +3,9 @@ import EmptyPage from "@/shared/ui/EmptyPage";
 const NotFound = () => {
   return (
     <EmptyPage
-      text="Жодного набора карток ще не створено (ಥ﹏ಥ)"
+      text="Жодного набора карток ще не створено"
       buttonText="Повернутися на головну"
+      textIcon="(ಥ﹏ಥ)"
       path="/"
     />
   );

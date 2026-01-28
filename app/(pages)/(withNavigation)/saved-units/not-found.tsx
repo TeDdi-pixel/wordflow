@@ -3,7 +3,8 @@ import EmptyPage from "@/shared/ui/EmptyPage";
 const NotFound = () => {
   return (
     <EmptyPage
-      text="У вас поки немає жодних збережених термінів ┐( ˘_˘ )┌"
+      text="У вас поки немає жодних збережених термінів"
+      textIcon="┐( ˘_˘ )┌"
       buttonText="Перейти на головну"
       path="/"
     />

@@ -7,7 +7,8 @@ const NotFound = () => {
       <Navigation />
 
       <EmptyPage
-        text="Помилка 404. Потрібна сторінка не знайдена (ಥ﹏ಥ)"
+        text="Помилка 404. Потрібна сторінка не знайдена"
+        textIcon="(ಥ﹏ಥ)"
         buttonText="Перейти на головну"
         path="/"
       />
