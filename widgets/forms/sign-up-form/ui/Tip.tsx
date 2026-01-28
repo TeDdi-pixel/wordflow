@@ -1,3 +1,4 @@
+/* eslint-disable react/display-name */
 "use client";
 
 import { usePasswordStore } from "@/shared/store/usePasswordStore";
@@ -13,7 +14,7 @@ export const Tip = memo(({ name }: Props) => {
 
   return (
     <div
-      className={`absolute top-1/2 right-[40px] px-4 py-2.5 select-none shadow-md bg-bg-accent-2 text-text-2 w-[305px] -translate-y-1/2 rounded-default transition-all z-50 ${
+      className={`absolute top-1/2 left-1/2 sm:left-auto -translate-x-1/2 sm:translate-x-0 sm:right-[40px] px-4 py-2.5 select-none shadow-md bg-bg-accent-2 text-text-2 w-[305px] -translate-y-1/2 rounded-default transition-all z-50 ${
         tipVisible
           ? "opacity-100 scale-100 pointer-events-auto"
           : "opacity-0 scale-80 pointer-events-none"

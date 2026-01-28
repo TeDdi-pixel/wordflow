@@ -23,7 +23,7 @@ const useSortableStyles = ({ unitId }: { unitId: string }) => {
       : `${transition}, scale 150ms cubic-bezier(0.25, 1, 0.5, 1)`,
     zIndex: isDragging ? 9999 : "auto",
     scale: isDragging ? 1.05 : 1,
-    position: "relative" as any,
+    position: "relative" as never,
   };
 
   return {

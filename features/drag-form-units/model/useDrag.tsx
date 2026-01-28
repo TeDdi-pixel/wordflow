@@ -16,7 +16,7 @@ const useDragLogic = () => {
       activationConstraint: {
         distance: 3,
       },
-    })
+    }),
   );
 
   const itemIds = useMemo(() => units.map((item) => item._id), [units]);
@@ -34,7 +34,7 @@ const useDragLogic = () => {
         }
       }
     },
-    [units, reorderUnits]
+    [units, reorderUnits],
   );
 
   return {

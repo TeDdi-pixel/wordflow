@@ -1,3 +1,4 @@
+/* eslint-disable react/display-name */
 "use client";
 
 import { FormUnitHeader } from "./FormUnitHeader";
@@ -24,7 +25,7 @@ export const FormUnit = memo(
       <div ref={setNodeRef} style={style} suppressHydrationWarning>
         <div
           className={`
-            relative group w-full bg-fg rounded-lg py-3 px-6
+            relative group w-full bg-fg rounded-lg py-3 px-6 pb-5 sm:pb-3
             ${isDragging ? "shadow-2xl" : "shadow-sm"}
           `}
         >
@@ -36,9 +37,9 @@ export const FormUnit = memo(
             attributes={attributes}
           />
 
-          <span className="flex w-full h-[2px] bg-text absolute left-0"></span>
+          <span className="flex w-full h-0.5 bg-text absolute left-0"></span>
 
-          <div className="flex w-full gap-8 mt-[46px] mb-40px font-normal">
+          <div className="flex w-full gap-4 sm:gap-8 mt-8 sm:mt-[46px] mb-40px font-normal flex-col sm:flex-row">
             <UnitInput
               unitId={unitId}
               fieldType="term"
@@ -55,10 +56,10 @@ export const FormUnit = memo(
           </div>
         </div>
 
-        <div className="relative h-[32px] flex items-center justify-center group">
+        <div className="relative h-8 flex items-center justify-center group">
           <AddUnitButton handleClick={handleClick} />
         </div>
       </div>
     );
-  }
+  },
 );

@@ -33,7 +33,7 @@ export default function RootLayout({
 
         <Header />
 
-        <main className="flex max-w-[1440px] w-full h-full items-center flex-col grow justify-start">
+        <main className="flex max-w-[1440px] w-full h-full items-center flex-col grow justify-start mb-[50px] md:mb-[100px]">
           <Suspense fallback={<Loading />}>{children}</Suspense>
         </main>
 

@@ -21,7 +21,7 @@ export const UnitInput = ({ unitId, name, label, fieldType }: Props) => {
   });
 
   const proposedOption = useTempStore((state) =>
-    state.getProposedOption(unitId)
+    state.getProposedOption(unitId),
   );
 
   const handleHintClick = () => {
@@ -54,7 +54,7 @@ export const UnitInput = ({ unitId, name, label, fieldType }: Props) => {
         hintText={proposedOption}
       />
 
-      <label className="text-[14px] uppercase mb-[38px]">{label}</label>
+      <label className="text-[14px] uppercase sm:mb-[38px]">{label}</label>
     </div>
   );
 };

@@ -7,6 +7,7 @@ import { useNavigationStore } from "../store/useNavigationStore";
 const useClickOutside = (isOpened: boolean) => {
   const closeFilters = useFiltersStore((state) => state.closeFilters);
   const closeOptions = useNavigationStore((state) => state.closeOptions);
+
   useEffect(() => {
     if (!isOpened) return;
 

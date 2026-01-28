@@ -1,13 +1,14 @@
 "use client";
 
 import { Language } from "@/shared/model/types/temp-store";
+import { useLanguageSelectStore } from "@/shared/store/useLanguageSelect";
 import { useTempStore } from "@/shared/store/useTempStore";
+import { useEffect } from "react";
 
-const LanguageSelect = ({
+export const LanguageSelect = ({
   id,
   label,
 }: {
-  defaultLanguage: Language;
   id: "source" | "target";
   label: string;
 }) => {
@@ -18,33 +19,68 @@ const LanguageSelect = ({
 
   const selected = id === "source" ? source : target;
 
+  const isOpened = useLanguageSelectStore((state) => state.isOpened);
+  const openLanguageSelect = useLanguageSelectStore(
+    (state) => state.openLanguageSelect,
+  );
+  const closeAllLanguageSelects = useLanguageSelectStore(
+    (state) => state.closeAllLanguageSelects,
+  );
   const handleSelect = (lang: Language) => {
     if (id === "source") {
-      if (target === lang) {
-        setDefinitionLang(source);
-      }
+      if (target === lang) setDefinitionLang(source);
       setTermLang(lang);
     } else {
-      if (source === lang) {
-        setTermLang(target);
-      }
+      if (source === lang) setTermLang(target);
       setDefinitionLang(lang);
     }
+    closeAllLanguageSelects();
   };
 
+  useEffect(() => {
+    if (!isOpened.length) return;
+
+    const handleClickOutside = () => {
+      closeAllLanguageSelects();
+    };
+
+    document.addEventListener("click", handleClickOutside);
+
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, [isOpened.length, closeAllLanguageSelects]);
+
   return (
-    <div className="w-full mb-[32px]">
-      <div className="flex items-center gap-4">
-        <label htmlFor={id}>{label}</label>
-        <div className="relative max-w-[120px] w-full group select-none">
+    <div className="w-full mb-3.5 md:mb-8">
+      <div className="flex items-center gap-4 flex-col sm:flex-row">
+        <label htmlFor={id} className="text-[14px] md:text-[16px]">
+          {label}
+        </label>
+
+        <div className="relative sm:max-w-[120px] w-full select-none">
           <button
             id={id}
             type="button"
-            className="border-6 border-bg w-full text-center py-1 px-3 bg-fg rounded-2xl"
+            className="border-2 cursor-pointer border-bg w-full text-center py-1 px-3 bg-fg rounded-default text-text hover:border-accent transition-colors"
+            onClick={() => {
+              closeAllLanguageSelects();
+              openLanguageSelect(id);
+            }}
           >
             {selected}
           </button>
-          <ul className="max-w-[120px] w-full absolute shadow-md z-10 flex flex-col border-6 border-bg rounded-2xl transition-all scale-80 group-hover:scale-100 opacity-0 group-hover:opacity-100 pointer-events-none group-hover:pointer-events-auto">
+
+          <ul
+            onClick={(e) => e.stopPropagation()}
+            className={`md:max-w-[120px] w-full absolute shadow-md flex flex-col border-4 border-bg rounded-default transition-all duration-200
+    ${
+      isOpened.includes(id)
+        ? "scale-100 opacity-100 pointer-events-auto z-50"
+        : "scale-80 opacity-0 pointer-events-none"
+    }
+  `}
+          >
             {(["ENG", "UA", "RU"] as Language[])
               .filter((lang) => lang !== selected)
               .map((lang) => (
@@ -64,5 +100,3 @@ const LanguageSelect = ({
     </div>
   );
 };
-
-export default LanguageSelect;

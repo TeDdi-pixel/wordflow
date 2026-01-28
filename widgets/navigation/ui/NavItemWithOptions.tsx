@@ -19,7 +19,7 @@ export const NavItemWithOptions = ({ item }: NavItemWithOptionsProps) => {
     <>
       <div
         onClick={setIsOpened}
-        className="px-[12px] py-[6px] flex gap-1 items-center font-medium hover:text-text transition-all text-text duration-300 h-[33px] group-hover:scale-50 group-hover:opacity-50 scale-100 opacity-100"
+        className="px-3 py-1.5 flex gap-1 items-center font-medium hover:text-text transition-all text-text duration-300 h-[33px] group-hover:scale-50 group-hover:opacity-50 scale-100 opacity-100"
       >
         {item.name}
         <span
@@ -31,7 +31,7 @@ export const NavItemWithOptions = ({ item }: NavItemWithOptionsProps) => {
 
       <div
         onClick={setIsOpened}
-        className={`absolute flex gap-1 items-center z-10 rounded-4xl px-[12px] py-[6px] font-medium duration-300 transition-all group-hover:scale-90 ${
+        className={`absolute flex gap-1 items-center z-10 rounded-4xl px-3 py-1.5 font-medium duration-300 transition-all group-hover:scale-90 ${
           isActive
             ? "-translate-y-[33px] rounded-default text-bg-accent bg-bg-accent-2"
             : "translate-y-0 group-hover:-translate-y-[33px] bg-bg-accent-2 text-fg scale-100"

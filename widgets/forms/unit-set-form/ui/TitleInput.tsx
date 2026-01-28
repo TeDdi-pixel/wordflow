@@ -1,5 +1,6 @@
 import { useTempStore } from "@/shared/store/useTempStore";
 import { TitleInputProps } from "../model/types";
+import { isTouchDevice } from "@/shared/utils/IsTouchDevice";
 
 export const TitleInput = ({ placeholder, defaultValue }: TitleInputProps) => {
   const setUnitSetTitle = useTempStore((state) => state.setUnitSetTitle);
@@ -11,10 +12,12 @@ export const TitleInput = ({ placeholder, defaultValue }: TitleInputProps) => {
         type="text"
         name="title"
         required
-        placeholder={placeholder}
+        placeholder={
+          isTouchDevice() ? "Створіть назву набору карток" : placeholder
+        }
         defaultValue={unitSetTitle ?? defaultValue}
         onChange={(e) => setUnitSetTitle(e.target.value)}
-        className="w-full py-[12px] px-4 bg-fg rounded-default mb-8 border-2 border-transparent focus:outline-none focus:border-accent transition-colors"
+        className="w-full py-3 px-4 text-[14px] md:text-[16px] bg-fg rounded-default mb-3.5 md:mb-8 border-2 border-transparent focus:outline-none focus:border-accent transition-colors"
       />
     </div>
   );

@@ -16,6 +16,7 @@
   --color-disabled: #3d3346;
 
   --radius-default: 0.5rem;
+  --breakpoint-w-648: 648px;
   --breakpoint-w-699: 699px;
   --breakpoint-w-805: 805px;
 }

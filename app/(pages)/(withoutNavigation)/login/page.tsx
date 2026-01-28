@@ -11,10 +11,10 @@ const page = async () => {
   if (session) redirect("/");
 
   return (
-    <div className="relative flex flex-col items-center justify-around w-full p-4 grow md:flex-row">
+    <div className="relative flex flex-col items-center justify-around w-full p-4 grow gap-[70px] md:gap-0 md:flex-row">
       <SignUpForm />
 
-      <div className="flex flex-col gap-[8px] max-w-[272px] w-full -translate-y-1/2">
+      <div className="flex flex-col gap-[8px] md:max-w-[272px] w-full">
         <AuthFormName icon={<IoEnter className="text-[20px]" />} name="login" />
 
         <SignInWithGoogle />

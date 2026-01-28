@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable react/display-name */
 "use client";
 
 import { useTempStore } from "@/shared/store/useTempStore";
@@ -28,7 +30,7 @@ export const FormUnitHeader = memo(
 
     return (
       <div className="relative flex items-center justify-between w-full mb-2">
-        <span>#{termNumber}</span>
+        <span className="text-[14px] md:text-[16px]">#{termNumber}</span>
         <div className="flex items-center gap-4">
           <span
             ref={setActivatorNodeRef}
@@ -37,16 +39,16 @@ export const FormUnitHeader = memo(
             onMouseDown={() => setCurrentUnitId(unitId)}
             onMouseUp={() => setCurrentUnitId("")}
             suppressHydrationWarning
-            className="transition-colors text-text cursor-grab active:cursor-grabbing hover:text-accent w-[24px] h-[24px]"
+            className="touch-none transition-colors text-text cursor-grab active:cursor-grabbing hover:text-accent w-5 md:w-6 h-5 md:h-6"
           >
-            <MdDragHandle className="w-[24px] h-[24px]" />
+            <MdDragHandle className="w-5 md:w-6 h-5 md:h-6" />
           </span>
 
           <button onClick={handleClick} type="button">
-            <LuTrash2 className="text-text w-[20px] h-[20px] cursor-pointer hover:text-error transition-colors" />
+            <LuTrash2 className="text-text w-4 md:w-5 h-4 md:h-5 cursor-pointer hover:text-error transition-colors" />
           </button>
         </div>
       </div>
     );
-  }
+  },
 );

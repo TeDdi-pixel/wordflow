@@ -14,13 +14,13 @@ import AuthFormName from "@/shared/ui/form/AuthFormName";
 export const SignUpForm = () => {
   const { state, action, pending } = useActionForm<InitialRegForm>(
     signUpCredentials,
-    initialForm
+    initialForm,
   );
 
   return (
     <Form
       action={action}
-      className="flex flex-col gap-1 md:max-w-[272px] w-full -translate-y-1/2"
+      className="flex flex-col gap-1 md:max-w-[272px] w-full"
       autoComplete="on"
     >
       <AuthFormName

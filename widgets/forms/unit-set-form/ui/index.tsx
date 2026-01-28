@@ -12,10 +12,10 @@ import { TitleInput } from "./TitleInput";
 import { DescriptionInput } from "./DescriptionInput";
 import useActionForm from "@/shared/hooks/useActionForm";
 import { FormUnitList } from "@/features/drag-form-units";
-import LanguageSelect from "./LanguageSelect";
 import { useEffect, useRef } from "react";
 import { useTempStore } from "@/shared/store/useTempStore";
 import toast from "react-hot-toast";
+import { LanguageSelect } from "./LanguageSelect";
 
 export const UnitSetForm = () => {
   const pathname = usePathname();
@@ -41,7 +41,10 @@ export const UnitSetForm = () => {
   useToastLoading(pending);
 
   return (
-    <Form action={action} className="max-w-[935px] w-full flex flex-col">
+    <Form
+      action={action}
+      className="max-w-[935px] w-full flex flex-col px-4 md:px-8"
+    >
       <div className="mb-5 md:mb-[50px]">
         <MainTitle text="Створити список карток" />
       </div>
@@ -56,17 +59,9 @@ export const UnitSetForm = () => {
         defaultValue={state.description}
       />
 
-      <div className="flex w-full gap-[32px]">
-        <LanguageSelect
-          defaultLanguage="ENG"
-          id={"source"}
-          label="Мова терінів:"
-        />
-        <LanguageSelect
-          defaultLanguage="UA"
-          id={"target"}
-          label="Мова визначень:"
-        />
+      <div className="flex w-full gap-8">
+        <LanguageSelect id={"source"} label="Мова терінів:" />
+        <LanguageSelect id={"target"} label="Мова визначень:" />
       </div>
 
       <div className="flex flex-col">
@@ -74,7 +69,7 @@ export const UnitSetForm = () => {
           <FormUnitList />
         </div>
 
-        <div className="flex justify-center w-full gap-4">
+        <div className="flex justify-center w-full gap-4 flex-wrap">
           <input
             ref={hiddenInputRef}
             type="hidden"

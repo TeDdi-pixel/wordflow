@@ -13,7 +13,7 @@ export const DropdownOptions = ({ options }: { options: NavItemOptions[] }) => {
   return (
     <div className="relative z-[9998]">
       <div
-        className={`absolute -right-[20px] w-699:left-0 top-0 pt-[7px] group-hover:opacity-100 group-hover:pointer-events-auto group-hover:visible opacity-0 scale-80 group-hover:scale-100 invisible transition-all ${
+        className={`absolute -right-5 w-699:left-0 top-0 pt-[7px] group-hover:opacity-100 group-hover:pointer-events-auto group-hover:visible opacity-0 scale-80 group-hover:scale-100 invisible transition-all ${
           isOpened
             ? "opacity-100 pointer-events-auto visible scale-100"
             : "pointer-events-none opacity-0 scale-80 invisible"

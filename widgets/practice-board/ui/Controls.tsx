@@ -14,7 +14,7 @@ export const PracticeBoardControls = async ({ unitSetId }: ControlsProps) => {
   if (!unitSet) return notFound();
 
   return (
-    <div className="flex items-center justify-between mb-[32px]">
+    <div className="flex items-center justify-between mb-[32px] flex-wrap">
       <div className="flex items-center gap-4">
         <div className="flex items-center gap-4">
           <NavButtons units={unitSet.units} unitSetId={unitSetId} />

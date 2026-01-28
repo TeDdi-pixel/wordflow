@@ -14,8 +14,8 @@ const CardSet = async ({
   const title = await getUnitSetTitle(unitSetId);
 
   return (
-    <div className="max-w-[821px] w-full max-h-max">
-      <h2 className="text-[28px] flex gap-2 items-center mb-[32px]">{title}</h2>
+    <div className="max-w-[821px] w-full max-h-max px-4 md:px-8">
+      <h2 className="text-[28px] flex gap-2 items-center mb-8">{title}</h2>
 
       <PracticeBoard unitSetId={unitSetId} />
 
