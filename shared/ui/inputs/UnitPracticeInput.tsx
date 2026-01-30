@@ -1,4 +1,5 @@
 import { usePracticeStore } from "@/shared/store/usePracticeStore";
+import { isTouchDevice } from "@/shared/utils/IsTouchDevice";
 import { useEffect, useRef } from "react";
 
 const PracticeInput = ({
@@ -39,7 +40,7 @@ const PracticeInput = ({
       placeholder="Відповідь"
       disabled={disabledInput}
       autoComplete="off"
-      autoFocus
+      autoFocus={!isTouchDevice()}
       autoCorrect="off"
       spellCheck={false}
       name="practice-fg"
