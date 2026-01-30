@@ -8,16 +8,16 @@ export const TextWithExpand = memo(({ text }: { text: string }) => {
 
   return (
     <div
-      className="absolute left-0 flex items-center justify-center w-full"
+      className="md:absolute md:left-0 md:flex md:items-center md:justify-center md:w-full"
       onMouseEnter={() => isTextTruncated && setActive(true)}
       onMouseLeave={() => setActive(false)}
     >
       <p
         ref={textRef}
-        className={`px-4 py-2 text-center absolute w-full rounded-default transition-all ${
+        className={`text-accent text-[14px] sm:text-[16px] md:px-4 md:py-2 md:text-center md:absolute md:w-full md:rounded-default md:transition-all ${
           active
-            ? "whitespace-normal z-10 bg-bg-accent-2 text-text-2 scale-110 shadow-md"
-            : "truncate bg-transparent"
+            ? "md:whitespace-normal md:z-10 md:bg-bg-accent-2 md:text-text-2 md:scale-110 md:shadow-md"
+            : "md:truncate md:bg-transparent"
         }`}
       >
         {text}

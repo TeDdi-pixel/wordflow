@@ -3,7 +3,7 @@ import { SavedWordsTable } from "@/widgets/saved-units-table";
 
 const page = () => {
   return (
-    <div className="max-w-[1146px] w-full px-[16px] md:px-[32px] mx-auto h-full flex flex-col gap-3 md:gap-[50px]">
+    <div className="max-w-[1146px] w-full px-[16px] md:px-[32px] mx-auto h-full flex flex-col gap-4 md:gap-[50px]">
       <MainTitle text="Мої збережені терміни" />
 
       <SavedWordsTable />

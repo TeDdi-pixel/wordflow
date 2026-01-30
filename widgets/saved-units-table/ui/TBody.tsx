@@ -15,16 +15,16 @@ import { SoundButton } from "@/features/play-pronunciation";
 import { useSavedUnitsStore } from "@/shared/store/useSavedUnitsStore";
 import { TdFirst } from "./TdFirst";
 
-export const TBody = ({ dbSavedUnits }: { dbSavedUnits: TypeSavedUnit[] }) => {
-  const [docs, setDocs] = useState<TypeSavedUnit[]>(dbSavedUnits);
-
+export const TBody = ({
+  docs,
+  onDelete,
+}: {
+  docs: TypeSavedUnit[];
+  onDelete: (unitId: string) => void;
+}) => {
   const setUnitsToSelect = useSavedUnitsStore(
     (state) => state.setUnitsToSelect,
   );
-
-  const handleDeleteUnit = (unitId: string) => {
-    setDocs((prev) => prev.filter((doc) => doc.unit._id !== unitId));
-  };
 
   useEffect(() => {
     if (docs.length === 0) return notFound();
@@ -84,7 +84,7 @@ export const TBody = ({ dbSavedUnits }: { dbSavedUnits: TypeSavedUnit[] }) => {
                 <SoundButton savedUnit={doc.unit} />
 
                 <DeleteUnitButton
-                  handleDeleteUnit={handleDeleteUnit}
+                  handleDeleteUnit={onDelete}
                   unitSetId={doc.unitSetId}
                   unitId={doc.unit._id}
                 />

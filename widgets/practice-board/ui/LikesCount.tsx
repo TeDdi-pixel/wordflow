@@ -13,7 +13,7 @@ export const LikesCount = ({
   const likesCount = useLikesStore(
     (state) =>
       state.likesCounts.find((item) => item.unitSetId === unitSetId)?.count ||
-      initialLikesCount
+      initialLikesCount,
   );
 
   return (

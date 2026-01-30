@@ -9,7 +9,7 @@ export const CreateUnitsSetButton = () => {
   const [isPending, setIsPending] = useState<boolean>(false);
 
   const randomUnitsCounter = useSavedUnitsStore(
-    (state) => state.randomUnitsCounter
+    (state) => state.randomUnitsCounter,
   );
   const unSelectAll = useSavedUnitsStore((state) => state.unSelectAll);
   const selectedUnits = useSavedUnitsStore((state) => state.selectedUnits);
@@ -27,7 +27,7 @@ export const CreateUnitsSetButton = () => {
 
   return (
     <button
-      className={`flex items-center gap-2 px-4 py-2 transition-all cursor-pointer rounded-default ${
+      className={`flex items-center gap-2 px-4 py-2 transition-all cursor-pointer rounded-default w-full justify-center sm:w-auto ${
         isPending
           ? "bg-fg text-disabled"
           : "hover:scale-95 bg-bg-accent-2 text-text-2"

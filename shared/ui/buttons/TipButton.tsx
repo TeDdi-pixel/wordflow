@@ -26,11 +26,11 @@ const TipButton = ({
     return (
       <a
         href={path}
-        className="group relative max-w-[44px] w-full h-[44px] bg-fg hover:bg-bg-accent hover:text-accent flex items-center justify-center rounded-default transition-all ease-in-out unit-button-shadow cursor-pointer"
+        className="group relative w-full h-[44px] bg-fg hover:bg-bg-accent hover:text-accent flex items-center justify-center rounded-default transition-all gap-2 unit-button-shadow cursor-pointer"
         aria-label={tipText}
       >
         {icon}
-        <span className={tooltipClasses}>{tipText}</span>
+        <span className="block">{tipText}</span>
       </a>
     );
   }

@@ -5,17 +5,17 @@ import { memo } from "react";
 
 const RandomUnitsCounterInput = memo(({ label }: { label: string }) => {
   const randomUnitsCounter = useSavedUnitsStore(
-    (state) => state.randomUnitsCounter
+    (state) => state.randomUnitsCounter,
   );
   const setRandomUnitsCounter = useSavedUnitsStore(
-    (state) => state.setRandomUnitsCounter
+    (state) => state.setRandomUnitsCounter,
   );
   const selectedUnitsCount = useSavedUnitsStore(
-    (state) => state.selectedUnits.filter((doc) => doc.checked).length
+    (state) => state.selectedUnits.filter((doc) => doc.checked).length,
   );
 
   return (
-    <div className="flex items-center gap-4">
+    <div className="flex items-center gap-4 w-full sm:w-auto justify-between">
       <label htmlFor="counter">
         {selectedUnitsCount > 0 ? `Кількість обраних термінів:` : label}
       </label>

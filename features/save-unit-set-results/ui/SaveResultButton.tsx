@@ -24,7 +24,7 @@ export const SaveResultButton = () => {
           </span>
         </div>
 
-        <span>Перевірити</span>
+        <span>Перевірити відповіді</span>
       </div>
     </button>
   );

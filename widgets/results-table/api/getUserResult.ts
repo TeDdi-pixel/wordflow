@@ -12,7 +12,7 @@ export type TypeUserResult = {
 
 export const getUserResultTerms = async (
   userId: string,
-  unitSetId: string
+  unitSetId: string,
 ): Promise<UserResultTerm[] | []> => {
   await createDbConnection();
 

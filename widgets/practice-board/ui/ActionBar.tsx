@@ -2,10 +2,10 @@ import { LikeButton } from "@/features/like-unit-set";
 import { BookmarkButton } from "@/features/save-unit/ui/BookmarkButton";
 import { HintButton } from "@/features/show-hint";
 import { TypeUnit, TypeUnitSet } from "@/shared/model/types/unit";
-import ChangeLangButton from "./ChangeLangButton";
 import { Languages } from "./Languages";
 import { ShuffleButton } from "@/features/shuffle-units";
 import { SoundButton } from "@/features/play-pronunciation";
+import { ChangeLangButton } from "./ChangeLangButton";
 
 export const ActionBar = ({
   units,
@@ -18,13 +18,13 @@ export const ActionBar = ({
 
   return (
     <div className="flex justify-between w-full">
-      <div className="flex items-center gap-4">
+      <div className="flex items-center gap-2 sm:gap-4">
         <HintButton units={units} />
 
         <Languages unitSet={unitSet} />
       </div>
 
-      <div className="flex gap-4">
+      <div className="flex gap-2.5 sm:gap-4">
         <ShuffleButton />
 
         <ChangeLangButton />

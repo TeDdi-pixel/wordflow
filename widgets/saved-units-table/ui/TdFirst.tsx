@@ -13,7 +13,7 @@ export const TdFirst = ({
   const selectedUnits = useSavedUnitsStore((state) => state.selectedUnits);
 
   const checkSelectedUnit = useSavedUnitsStore(
-    (state) => state.checkSelectedUnit
+    (state) => state.checkSelectedUnit,
   );
 
   const isUnitSelected = (docId: string) => {
@@ -39,8 +39,8 @@ export const TdFirst = ({
             isUnitSelected(docId)
               ? "opacity-100 z-10 scale-100"
               : selectedUnits.length >= 30
-              ? "opacity-0 z-0 pointer-events-none scale-80"
-              : "opacity-0 z-0 group-hover/checkbox:opacity-100 group-hover/checkbox:pointer-events-auto group-hover/checkbox:scale-100 scale-80 pointer-events-none"
+                ? "opacity-0 z-0 pointer-events-none scale-80"
+                : "opacity-0 z-0 group-hover/checkbox:opacity-100 group-hover/checkbox:pointer-events-auto group-hover/checkbox:scale-100 scale-80 pointer-events-none"
           }`}
         />
 

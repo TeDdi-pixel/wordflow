@@ -16,7 +16,7 @@ export const SavedUnitsCount = ({
   const savedCount = useSavedUnitsStore(
     (state) =>
       state.savedUnitsCounts.find((item) => item.unitSetId === unitSetId)
-        ?.count || initialSavedUnitCount
+        ?.count || initialSavedUnitCount,
   );
   const savedUnits = useSavedUnitsStore((state) => state.savedUnits);
 

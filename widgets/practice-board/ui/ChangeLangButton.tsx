@@ -5,10 +5,10 @@ import { useState } from "react";
 import SwitchLanguageIcon from "@/shared/icons/unit/SwitchLanguageIcon";
 import IconButton from "@/shared/ui/buttons/IconButton";
 
-const ChangeLangButton = () => {
+export const ChangeLangButton = () => {
   const [lang, setLang] = useState<"source" | "target">("source");
   const setCurrentTermLang = usePracticeStore(
-    (state) => state.setCurrentTermLang
+    (state) => state.setCurrentTermLang,
   );
 
   return (
@@ -21,5 +21,3 @@ const ChangeLangButton = () => {
     />
   );
 };
-
-export default ChangeLangButton;

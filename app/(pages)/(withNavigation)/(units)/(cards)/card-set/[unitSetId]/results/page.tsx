@@ -16,7 +16,7 @@ const page = async ({ params }: { params: Promise<{ unitSetId: string }> }) => {
   if (resultTerms.length === 0) notFound();
 
   return (
-    <div className="max-w-[1000px] w-full">
+    <div className="max-w-[1000px] w-full px-4 md:px-8 flex flex-col gap-4 md:gap-0">
       <MainTitle text="Результати" />
 
       <ResultTable unitSetId={unitSetId} resultSetTerms={resultTerms} />

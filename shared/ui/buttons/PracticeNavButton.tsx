@@ -14,7 +14,7 @@ const PracticeNavButton = ({ side = "right", onClick, isDisabled }: Props) => {
       disabled={isDisabled}
       type="button"
       onClick={onClick}
-      className={`group w-[44px] h-[44px] bg-fg hover:bg-bg-accent flex items-center justify-center rounded-default transition-all ease-in-out ${
+      className={`group w-[44px] h-[44px] bg-fg md:hover:bg-bg-accent hover:text-accent flex items-center justify-center rounded-default transition-all ease-in-out ${
         side === "left" ? "rotate-180" : ""
       } ${
         isDisabled

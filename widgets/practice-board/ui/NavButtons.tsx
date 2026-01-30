@@ -16,7 +16,7 @@ export const NavButtons = ({ units, unitSetId }: Props) => {
   const setIsHintOpen = usePracticeStore((state) => state.setIsHintOpen);
 
   return (
-    <div className="flex w-fit gap-4 items-center ml-[4px]">
+    <div className="flex w-fit gap-2 sm:gap-4 items-center ml-[4px]">
       <PracticeNavButton
         side="left"
         onClick={() => {
@@ -25,7 +25,9 @@ export const NavButtons = ({ units, unitSetId }: Props) => {
         }}
         isDisabled={isDisabledLeft}
       />
+
       <div className="w-[49px] text-center">{range}</div>
+
       <PracticeNavButton
         side="right"
         onClick={() => {

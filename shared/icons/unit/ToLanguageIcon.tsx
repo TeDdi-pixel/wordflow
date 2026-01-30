@@ -8,7 +8,7 @@ const ToLanguageIcon = () => {
 
   return (
     <FaArrowRightLong
-      className={`transition-transform text-[18px] ${
+      className={`transition-transform text-[14px] sm:text-[18px] ${
         currentTermLang === "source" ? "" : "rotate-180"
       }`}
     />

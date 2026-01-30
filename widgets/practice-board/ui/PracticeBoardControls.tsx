@@ -14,28 +14,28 @@ export const PracticeBoardControls = async ({ unitSetId }: ControlsProps) => {
   if (!unitSet) return notFound();
 
   return (
-    <div className="flex items-center justify-between mb-[32px] flex-wrap">
-      <div className="flex items-center gap-4">
-        <div className="flex items-center gap-4">
+    <div className="flex flex-col justify-between mb-8 gap-4 sm:gap-8">
+      <div className="flex items-center gap-2 sm:gap-4 justify-between w-full">
+        <div className="flex items-center gap-2 sm:gap-4">
           <NavButtons units={unitSet.units} unitSetId={unitSetId} />
 
           <SkipButton units={unitSet.units} unitLength={unitSet.units.length} />
-
-          <Statistics
-            unitSetId={unitSetId}
-            likesCount={unitSet.likesCount}
-            savedUnitsCount={unitSet.savedUnitsCount}
-          />
         </div>
+
+        <Statistics
+          unitSetId={unitSetId}
+          likesCount={unitSet.likesCount}
+          savedUnitsCount={unitSet.savedUnitsCount}
+        />
       </div>
 
-      <div className="flex items-center gap-4 mr-1">
+      <div className="flex items-center gap-2 sm:gap-4 mr-1 flex-col sm:flex-row">
         <TipButton
           type="link"
           path={`/card-set/${unitSetId}/results`}
           tipText="Останні результати"
           icon={<FaClipboardList className="w-[24px] h-[24px]" />}
-          side="right"
+          side="left"
         />
 
         <SaveResultButton />

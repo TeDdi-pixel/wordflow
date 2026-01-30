@@ -21,7 +21,9 @@ export const TBody = ({ resultSetTerms, unitSetId }: TBodyProps) => {
             {unit.phonetic ? (
               <TextWithExpand text={unit.phonetic} />
             ) : (
-              <NotProvidedIcon />
+              <div className="flex items-center justify-center w-full">
+                <NotProvidedIcon />
+              </div>
             )}
           </td>
 
@@ -37,7 +39,9 @@ export const TBody = ({ resultSetTerms, unitSetId }: TBodyProps) => {
             {unit.lastAnswer ? (
               <TextWithExpand text={unit.lastAnswer} />
             ) : (
-              <NotProvidedIcon />
+              <div className="flex items-center justify-center w-full">
+                <NotProvidedIcon />
+              </div>
             )}
           </td>
 

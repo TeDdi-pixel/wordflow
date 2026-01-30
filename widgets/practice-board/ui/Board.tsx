@@ -10,7 +10,7 @@ export const PracticeBoard = async ({ unitSetId }: { unitSetId: string }) => {
   if (!unitSet) return notFound();
 
   return (
-    <div className="mx-auto min-h-[506px] w-full bg-fg rounded-lg p-8 flex flex-col items-center justify-between mb-4">
+    <div className="mx-auto min-h-[506px] w-full bg-fg rounded-lg p-4 sm:px-8 py-8 flex flex-col items-center justify-between mb-4">
       <ActionBar units={unitSet.units} unitSet={unitSet} />
 
       <Term units={unitSet.units} unitSet={unitSet} />

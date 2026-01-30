@@ -34,7 +34,10 @@ body {
 
 .unit-button-shadow {
   box-shadow: none;
-  &:hover {
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .unit-button-shadow:hover {
     box-shadow: 4px 4px 0px var(--color-accent);
   }
 }

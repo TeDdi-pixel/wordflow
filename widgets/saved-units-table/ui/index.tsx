@@ -1,33 +1,13 @@
 import { notFound } from "next/navigation";
 import { getSavedUnits } from "../api/getSavedUnits";
-import { colWidths } from "../model/config";
-import { TBody } from "./TBody";
-import { THead } from "./THead";
 import { getUserId } from "@/shared/lib/session";
-import { TableBottom } from "./TableBottom";
+import { SavedWordsClient } from "./SavedWordsClient";
 
 export const SavedWordsTable = async () => {
-  const relatedUserId = await getUserId();
+  const userId = await getUserId();
+  const savedUnits = await getSavedUnits(userId);
 
-  const savedUnits = await getSavedUnits(relatedUserId);
+  if (!savedUnits.length) return notFound();
 
-  if (savedUnits.length === 0) return notFound();
-
-  return (
-    <div className="flex flex-col">
-      <table className="w-full border-separate table-fixed border-spacing-y-2">
-        <colgroup>
-          {colWidths.map((cls, i) => (
-            <col key={`col-${i}`} className={cls} />
-          ))}
-        </colgroup>
-
-        <THead />
-
-        <TBody dbSavedUnits={savedUnits} />
-      </table>
-
-      <TableBottom />
-    </div>
-  );
+  return <SavedWordsClient initialUnits={savedUnits} />;
 };
