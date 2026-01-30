@@ -20,7 +20,7 @@ const PracticeInput = ({
   const inputRef = useRef<HTMLInputElement>(null);
 
   useEffect(() => {
-    if (inputRef.current) {
+    if (!isTouchDevice() && inputRef.current) {
       inputRef.current.focus();
     }
   }, [checkStatus, currentCardId]);
@@ -40,7 +40,6 @@ const PracticeInput = ({
       placeholder="Відповідь"
       disabled={disabledInput}
       autoComplete="off"
-      autoFocus={!isTouchDevice()}
       autoCorrect="off"
       spellCheck={false}
       name="practice-fg"
