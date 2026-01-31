@@ -18,16 +18,16 @@ export const metadata: Metadata = {
   title: "WordFlow — Вивчайте англійську лексику ефективно та зручно",
   description:
     "WordFlow — інтерактивна платформа для вивчення англійської методом інтервальних повторень. Швидко розширюйте свій словниковий запас та впевнено вживайте нові слова!",
+  metadataBase: new URL("https://trywordflow.vercel.app/"),
 
   openGraph: {
     title: "WordFlow — Вивчайте англійську лексику ефективно та зручно",
     description:
       "Інтерактивна платформа для вивчення англійської мови. Швидко розширюйте свій словниковий запас та запам'ятовуйте нові слова назавжди завдяки розумним карткам.",
-    url: "https://trywordflow.vercel.app/",
     siteName: "WordFlow",
     images: [
       {
-        url: "/og-image.jpg",
+        url: "og-image.jpg",
         width: 1200,
         height: 630,
         alt: "WordFlow — Ефективне розширення словникового запасу",
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     title: "WordFlow — Твій шлях до багатого словникового запасу 🚀",
     description:
       "Збільшуй свій вокабуляр швидше за допомогою методу інтервальних повторень. Твоя англійська стане багатшою вже сьогодні!",
-    images: ["/og-image.jpg"],
+    images: ["og-image.jpg"],
   },
 };
 
