@@ -27,7 +27,7 @@ export const metadata: Metadata = {
     siteName: "WordFlow",
     images: [
       {
-        url: "og-image.jpg",
+        url: "og-image.png",
         width: 1200,
         height: 630,
         alt: "WordFlow — Ефективне розширення словникового запасу",
@@ -41,7 +41,7 @@ export const metadata: Metadata = {
     title: "WordFlow — Твій шлях до багатого словникового запасу 🚀",
     description:
       "Збільшуй свій вокабуляр швидше за допомогою методу інтервальних повторень. Твоя англійська стане багатшою вже сьогодні!",
-    images: ["og-image.jpg"],
+    images: ["og-image.png"],
   },
 };
 
