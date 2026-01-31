@@ -15,8 +15,33 @@ const robotoMono = Roboto_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "WordFlow",
-  description: "Site for learning english words",
+  title: "WordFlow — Вивчайте англійську ефективно і зручно",
+  description:
+    "Інтерактивна платформа для вивчення англійської лексики з використанням методу інтервального повторення.",
+  openGraph: {
+    title: "WordFlow — Вивчайте англійську ефективно і зручно",
+    description:
+      "Вивчайте англійські слова за допомогою карток та інтервального повторення.",
+    url: "https://trywordflow.vercel.app/",
+    siteName: "WordFlow",
+    images: [
+      {
+        url: "https://trywordflow.vercel.app/og-image.jpg",
+        width: 630,
+        height: 630,
+        alt: "WordFlow — превʼю платформи",
+      },
+    ],
+    locale: "uk_UA",
+    type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "WordFlow — Вивчайте англійську ефективно і зручно",
+    description:
+      "Вивчайте англійські слова за допомогою карток та інтервального повторення.",
+    images: ["https://trywordflow.vercel.app/og-image.jpg"],
+  },
 };
 
 export default function RootLayout({
